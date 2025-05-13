@@ -17,7 +17,8 @@ library(worrms)
 library(data.table)
 
 ## Dynamic read of the IntroData_raw.csv file.
-Raw_data <- file.path(system("pwd", intern = TRUE), "Raw_data", "IntroData_raw.csv")
+directory <- system("pwd", intern = TRUE)
+Raw_data <- file.path(directory, "Raw_data", "IntroData_raw.csv")
 introdat <- fread(Raw_data, encoding="Latin-1")#[1:10000,] 
 
 ## delete information currently not used
@@ -69,15 +70,10 @@ introdat <- subset(introdat,!(GenusSpecies=="Lycaon pictus" & Country=="South Af
 introdat <- subset(introdat,!GenusSpecies=="Bats, Species not known")
 
 ## concatenate spec + genus names ###################################
-bad_rows <- which(!validUTF8(introdat$GenusSpecies))
-introdat$GenusSpecies[bad_rows]
-print(introdat$Species[182625])
-introdat$Species <- iconv(introdat$Species, from = "latin1", to = "UTF-8", sub = "byte")
-introdat$GenusSpecies <- iconv(introdat$GenusSpecies, from = "latin1", to = "UTF-8", sub = "byte")
-
+introdat$Species <- iconv(introdat$Species, from = "latin1", to = "UTF-8", sub = "byte") #row xxx was not readable
+introdat$GenusSpecies <- iconv(introdat$GenusSpecies, from = "latin1", to = "UTF-8", sub = "byte") #row 182625 was not readable
 
 introdat$GenusSpecies <- gsub("^\\s+|\\s+$", "",introdat$GenusSpecies) # trim leading and trailing whitespace
-
 
 introdat$NewName <- introdat$GenusSpecies
 ind <- nchar(introdat$GenusSpecies)==0
@@ -855,7 +851,8 @@ introdat$LifeForm[introdat$LifeForm=="Other chordates"] <- ""
 introdat$LifeForm[introdat$LifeForm=="Chordata"] <- ""
 introdat$LifeForm2 <- NA
 
-tax <- read.table("Data/LifeFormGrouping_taxonomy_FE_HS.csv",sep=";",header=T,stringsAsFactors=F)
+LifeForm_data <- file.path(directory, "Other_datasets", "LifeFormGrouping_taxonomy_FE_HS.csv")
+tax <- read.table(LifeForm_data,sep=";",header=T,stringsAsFactors=F)
 for (i in 1:dim(tax)[1]){
   introdat$LifeForm2[introdat$LifeForm==tax[i,1]] <- tax[i,5]
   introdat$LifeForm[introdat$LifeForm==tax[i,1]] <- tax[i,4]
@@ -865,7 +862,8 @@ introdat$LifeForm[introdat$LifeForm=="incertae sedis" & introdat$Source=="GISD"]
 
 
 #### substitute herptiles life form ################################
-repamph <- read.table("Data/HerptilesLifeForm_Cesar.csv",sep=";",stringsAsFactors = F,header=T)
+Herptiles_LifeForm_data <- file.path(directory, "Other_datasets", "HerptilesLifeForm_Cesar.csv")
+repamph <- read.table(Herptiles_LifeForm_data,sep=";",stringsAsFactors = F,header=T)
 repamph$Group[grepl("Crotaphytus|Gymnophthalmus|Hemidactylus|Gekko",repamph$Species)] <- "Reptilia"
 repamph$Group[grepl("Eleutherodactylus|Triturus",repamph$Species)] <- "Amphibia"
 repamph <- repamph[!duplicated(repamph),]
@@ -899,7 +897,9 @@ introdat$LifeForm[introdat$LifeForm=="Fish"] <- "Fishes"
 
 ## replace taxon names with obvious wrong entries ####################
 
-newentries <- read.table("Data/WrongSpeciesEntries.csv",sep=";",stringsAsFactors = F,header=T)
+
+Wrong_Species <- file.path(directory, "Other_datasets", "WrongSpeciesEntries.csv")
+newentries <- read.table(Wrong_Species,sep=";",stringsAsFactors = F,header=T)
 for (i in 1:nrow(newentries)){
   introdat$NewName[introdat$NewName==newentries$WrongEntry[i]] <- newentries$NewEntry[i]
 }
@@ -916,7 +916,7 @@ introdat$NewName <- gsub("\\*","",introdat$NewName)
 
 
 # write.table(introdat,"Data/IntroData_beforeTPL.csv",sep=";")
-fwrite(introdat,"Data/IntroData_beforeTPL.gz")
+fwrite(introdat, file.path(directory, "Outputs", "IntroData_beforeTPL.gz"))
 # saveRDS(introdat,"Data/IntroData_beforeTPL.rds")
 # introdat <- read.table("Data/IntroData_beforeTPL.csv",stringsAsFactors=F,sep=";")
 # write.xlsx(IntroData_beforeTPL,file=file.path("Data","IntroData_beforeTPL.xlsx"))
@@ -974,7 +974,8 @@ introdat$scientificName <- str_trim(introdat$scientificName) # trim leading and 
 introdat$NewName <- gsub("  "," ",introdat$NewName,perl=TRUE)
 
 # write.table(introdat,"Data/IntroData_afterTPL.csv",sep=";")
-fwrite(introdat,"Data/IntroData_afterTPL.gz")
+fwrite(introdat,file.path(directory, "Outputs", "IntroData_afterTPL.gz"))
+
 # introdat <- fread("Data/IntroData_afterTPL.gz")
 # introdat <- read.table("Data/IntroData_afterTPL.csv",stringsAsFactors=F)
 
@@ -1040,7 +1041,8 @@ introdat$NewName <- gsub("× ","x ",introdat$NewName,perl=TRUE)
 
 
 ## misspellings ##########################################
-correctplants <- read.table("../GlobalInvasionNetworks/Data/GloNAF/20151224GloNAFNames.csv",sep=",",stringsAsFactors = F)[,1]
+GloNAF_Names <- file.path(directory, "Other_datasets", "20151224GloNAFNames.csv")
+correctplants <- read.table(GloNAF_Names,sep=",",stringsAsFactors = F)[,1]
 plantnames_noTPLmatch <- unique(subset(introdat,LifeForm=="Vascular plants" & TPLindex!=TRUE)$NewName)
 
 levDist_noTPLmatch <- adist(plantnames_noTPLmatch,correctplants)
@@ -1054,7 +1056,7 @@ for (i in 1:length(plantnames_noTPLmatch)){
   allplantnames_noTPLmatch[i,2] <- minLevDist[i]
   allplantnames_noTPLmatch[i,1:length(nams)+2] <- nams
 }
-write.table(allplantnames_noTPLmatch,"Data/PlantNamesCorrection.csv",quote=F,sep=";",row.names=F)
+write.table(allplantnames_noTPLmatch, file.path(directory, "Outputs","PlantNamesCorrection.csv"),quote=F,sep=";",row.names=F)
 # # which(correctplants=="Tilia japonica")
 
 
@@ -1156,8 +1158,8 @@ for (i in 1:length(allspecies)){#[30720:length(nonplants)]
 
 # introdat_taxtree <- introdat[,c("NewName","AccName","scientificName","Family","Class","Order","Phylum","LifeForm","confidence",)]
 
-write.table(GBIFSpeciesLowConfidence,"Data/GBIFSpeciesLowConfidence.csv")
-write.table(introdat,"Data/IntroData_afterGBIF.csv")
+write.table(GBIFSpeciesLowConfidence, file.path(directory, "Outputs","GBIFSpeciesLowConfidence.csv"))
+write.table(introdat,file.path(directory, "Outputs","IntroData_afterGBIF.csv"))
 # introdat <- read.table("Data/IntroData_afterGBIF.csv",stringsAsFactors = F)
 
 introdat$NewName[is.na(introdat$NewName)] <- introdat$OrigName[is.na(introdat$NewName)] # unsure entry in GBIF
@@ -1248,13 +1250,15 @@ introdat$LifeForm[introdat$NewName=="Cheiracus sulcatus"] <- "Spiders"
 
 
 ## invasion status ####################################################
-birds_est <- read.table("Data/EnteredData/AlienBirds_Global_GAVIA_First_date_recorded_ESTABLISHED.csv",sep=";",header=T,stringsAsFactors = F) # add another information
+GAVIA <- file.path(directory, "Other_datasets", "AlienBirds_Global_GAVIA_First_date_recorded_ESTABLISHED.csv")
+birds_est <- read.table(GAVIA,sep=";",header=T,stringsAsFactors = F) # add another information
 introdat[introdat$Source=="GAVIA",]$PresentStatus <- "casual"
 introdat[introdat$Source=="GAVIA" & introdat$GenusSpecies%in%birds_est$Binomial,]$PresentStatus <- "established"
 
 introdat <- subset(introdat,PresentStatus!="Cryptogenic")
 
-invstat <- read.table("Data/InvasionStatusGrouping_FE.csv",sep=";",header=T,stringsAsFactors=F)
+IS_grouping <- file.path(directory, "Other_datasets", "InvasionStatusGrouping_FE.csv")
+invstat <- read.table(IS_grouping,sep=";",header=T,stringsAsFactors=F)
 invstat[,1] <- gsub("â€¦","…",invstat[,1])
 introdat$PresentStatus <- gsub("^\\s+|\\s+$", "",introdat$PresentStatus) # trim leading and trailing whitespace
 
@@ -1478,13 +1482,14 @@ for (i in 1:length(uni_species)){#
     if ("isTerrestrial"%in%colnames(entry)) introdat$Habitat_terrestrial[ind_spec] <- entry$isTerrestrial[ind_worms]
   }
 }
-write.table(introdat,"Data/IntroData_afterWoRMS.csv")
+write.table(introdat,file.path(directory, "Outputs","IntroData_afterWoRMS.csv"))
 # introdat <- read.table("Data/IntroData_afterWoRMS.csv")
 
 ## island/mainland ###########################################################
 introdat[grep("sland",introdat$Country),]$Island <- "yes"
 
-islands <- read.table("../Data/Regions/IslandsList.csv",stringsAsFactors = F)[,1]
+Island_list <- file.path(directory, "Other_datasets", "IslandList.csv")
+islands <- read.table(Islands_list,stringsAsFactors = F)[,1]
 # islands <- c("Azores","Ascension","Madeira","Cyprus","Crete","Corse","Ireland","New Zealand","Iceland","French Polynesia","Taiwan","New Caledonia","Sicily",
 #              "Reunion","Sardinia","Malta","Saint Helena","Mauritius","Martinique","Indonesia","Saint Pierre and Miquelon","Barbados",
 #              "Seychelles","Jamaica","Trinidad and Tobago","Bahamas","Bermuda","Guadeloupe","Northern Ireland","Dominican Republic","Guam",
@@ -1538,7 +1543,7 @@ introdat <- introdat[!is.na(introdat$TaxonName),]
 
 
 ## output #####################################################################
-write.table(introdat,"Data/IntroDat_11Oct2024.csv",sep=";",row.names=F)#[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))]
+write.table(introdat,file.path(directory, "Outputs","IntroDat_11Oct2024.csv"),sep=";",row.names=F)#[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))]
 # write.table(introdat[,c("NewName","LifeForm","LifeForm2","Country","PresentStatus","FirstRecord","FirstRecord_orig","DataQuality","Pathway","Origin","Island","Source","DataUsage")],"Data/DataFirstRecord_140817.csv",sep=";",row.names=F,na="")
 # write.table(introdat[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))],"Data/IntroDat_260116_AllTimeSpans.csv",sep=";",row.names=F,na="")
 # write.table(introdat[,c("NewName","LifeForm","LifeForm2","Country","PresentStatus","FirstRecord","FirstRecord_orig","DataQuality","Pathway","Origin","Island","Source")],"Data/DataFirstRecord_260116_AllTimeSpans.csv",sep=";",row.names=F,na="")
