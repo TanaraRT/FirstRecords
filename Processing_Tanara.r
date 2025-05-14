@@ -1488,7 +1488,7 @@ write.table(introdat,file.path(directory, "Outputs","IntroData_afterWoRMS.csv"))
 ## island/mainland ###########################################################
 introdat[grep("sland",introdat$Country),]$Island <- "yes"
 
-Island_list <- file.path(directory, "Other_datasets", "IslandList.csv")
+Islands_list <- file.path(directory, "Other_datasets", "IslandsList.csv")
 islands <- read.table(Islands_list,stringsAsFactors = F)[,1]
 # islands <- c("Azores","Ascension","Madeira","Cyprus","Crete","Corse","Ireland","New Zealand","Iceland","French Polynesia","Taiwan","New Caledonia","Sicily",
 #              "Reunion","Sardinia","Malta","Saint Helena","Mauritius","Martinique","Indonesia","Saint Pierre and Miquelon","Barbados",
