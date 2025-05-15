@@ -851,7 +851,7 @@ introdat$LifeForm[introdat$LifeForm=="Other chordates"] <- ""
 introdat$LifeForm[introdat$LifeForm=="Chordata"] <- ""
 introdat$LifeForm2 <- NA
 
-LifeForm_data <- file.path(directory, "Other_datasets", "LifeFormGrouping_taxonomy_FE_HS.csv")
+LifeForm_data <- file.path(directory, "Supporting_data", "Life_form_taxonomy.csv")
 tax <- read.table(LifeForm_data,sep=";",header=T,stringsAsFactors=F)
 for (i in 1:dim(tax)[1]){
   introdat$LifeForm2[introdat$LifeForm==tax[i,1]] <- tax[i,5]
@@ -862,7 +862,7 @@ introdat$LifeForm[introdat$LifeForm=="incertae sedis" & introdat$Source=="GISD"]
 
 
 #### substitute herptiles life form ################################
-Herptiles_LifeForm_data <- file.path(directory, "Other_datasets", "HerptilesLifeForm_Cesar.csv")
+Herptiles_LifeForm_data <- file.path(directory, "Supporting_data", "Herptiles.csv")
 repamph <- read.table(Herptiles_LifeForm_data,sep=";",stringsAsFactors = F,header=T)
 repamph$Group[grepl("Crotaphytus|Gymnophthalmus|Hemidactylus|Gekko",repamph$Species)] <- "Reptilia"
 repamph$Group[grepl("Eleutherodactylus|Triturus",repamph$Species)] <- "Amphibia"
@@ -898,7 +898,7 @@ introdat$LifeForm[introdat$LifeForm=="Fish"] <- "Fishes"
 ## replace taxon names with obvious wrong entries ####################
 
 
-Wrong_Species <- file.path(directory, "Other_datasets", "WrongSpeciesEntries.csv")
+Wrong_Species <- file.path(directory, "Supporting_data", "Wrong_species_entries.csv")
 newentries <- read.table(Wrong_Species,sep=";",stringsAsFactors = F,header=T)
 for (i in 1:nrow(newentries)){
   introdat$NewName[introdat$NewName==newentries$WrongEntry[i]] <- newentries$NewEntry[i]
@@ -1041,23 +1041,23 @@ introdat$NewName <- gsub("× ","x ",introdat$NewName,perl=TRUE)
 
 
 ## misspellings ##########################################
-GloNAF_Names <- file.path(directory, "Other_datasets", "20151224GloNAFNames.csv")
-correctplants <- read.table(GloNAF_Names,sep=",",stringsAsFactors = F)[,1]
+GloNAF_names <- file.path(directory, "Supporting_data", "GloNAF_names_2015.csv")
+Correct_plants <- read.table(GloNAF_names,sep=",",stringsAsFactors = F)[,1]
 plantnames_noTPLmatch <- unique(subset(introdat,LifeForm=="Vascular plants" & TPLindex!=TRUE)$NewName)
 
-levDist_noTPLmatch <- adist(plantnames_noTPLmatch,correctplants)
+levDist_noTPLmatch <- adist(plantnames_noTPLmatch,Correct_plants)
 minLevDist <- apply(levDist_noTPLmatch,1,min)
 allplantnames_noTPLmatch <- matrix(NA,nr=length(plantnames_noTPLmatch),nc=20)
 allplantnames_noTPLmatch[,1] <- plantnames_noTPLmatch
 
 for (i in 1:length(plantnames_noTPLmatch)){
   if (minLevDist[i]>2) next # correct only names with a difference of max 2 characters
-  nams <- correctplants[levDist_noTPLmatch[i,]==minLevDist[i]]
+  nams <- Correct_plants[levDist_noTPLmatch[i,]==minLevDist[i]]
   allplantnames_noTPLmatch[i,2] <- minLevDist[i]
   allplantnames_noTPLmatch[i,1:length(nams)+2] <- nams
 }
 write.table(allplantnames_noTPLmatch, file.path(directory, "Outputs","PlantNamesCorrection.csv"),quote=F,sep=";",row.names=F)
-# # which(correctplants=="Tilia japonica")
+# # which(Correct_plants=="Tilia japonica")
 
 
 
@@ -1250,14 +1250,15 @@ introdat$LifeForm[introdat$NewName=="Cheiracus sulcatus"] <- "Spiders"
 
 
 ## invasion status ####################################################
-GAVIA <- file.path(directory, "Other_datasets", "AlienBirds_Global_GAVIA_First_date_recorded_ESTABLISHED.csv")
+### Birds
+GAVIA <- file.path(directory, "Supporting_data", "GAVIA_first_records.csv")
 birds_est <- read.table(GAVIA,sep=";",header=T,stringsAsFactors = F) # add another information
 introdat[introdat$Source=="GAVIA",]$PresentStatus <- "casual"
 introdat[introdat$Source=="GAVIA" & introdat$GenusSpecies%in%birds_est$Binomial,]$PresentStatus <- "established"
 
 introdat <- subset(introdat,PresentStatus!="Cryptogenic")
 
-IS_grouping <- file.path(directory, "Other_datasets", "InvasionStatusGrouping_FE.csv")
+IS_grouping <- file.path(directory, "Supporting_data", "Invasion_status_grouping.csv")
 invstat <- read.table(IS_grouping,sep=";",header=T,stringsAsFactors=F)
 invstat[,1] <- gsub("â€¦","…",invstat[,1])
 introdat$PresentStatus <- gsub("^\\s+|\\s+$", "",introdat$PresentStatus) # trim leading and trailing whitespace
@@ -1488,7 +1489,7 @@ write.table(introdat,file.path(directory, "Outputs","IntroData_afterWoRMS.csv"))
 ## island/mainland ###########################################################
 introdat[grep("sland",introdat$Country),]$Island <- "yes"
 
-Islands_list <- file.path(directory, "Other_datasets", "IslandsList.csv")
+Islands_list <- file.path(directory, "Supporting_data", "Islands_list.csv")
 islands <- read.table(Islands_list,stringsAsFactors = F)[,1]
 # islands <- c("Azores","Ascension","Madeira","Cyprus","Crete","Corse","Ireland","New Zealand","Iceland","French Polynesia","Taiwan","New Caledonia","Sicily",
 #              "Reunion","Sardinia","Malta","Saint Helena","Mauritius","Martinique","Indonesia","Saint Pierre and Miquelon","Barbados",
@@ -1543,7 +1544,9 @@ introdat <- introdat[!is.na(introdat$TaxonName),]
 
 
 ## output #####################################################################
-write.table(introdat,file.path(directory, "Outputs","IntroDat_11Oct2024.csv"),sep=";",row.names=F)#[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))]
+today <- Sys.Date() #get today's date
+filename <- paste0("First_records_database_", today, ".csv") # Build the filename with the date
+write.table(introdat,file.path(directory, "Outputs", filename),sep=";",row.names=F)#[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))]
 # write.table(introdat[,c("NewName","LifeForm","LifeForm2","Country","PresentStatus","FirstRecord","FirstRecord_orig","DataQuality","Pathway","Origin","Island","Source","DataUsage")],"Data/DataFirstRecord_140817.csv",sep=";",row.names=F,na="")
 # write.table(introdat[,c(dim(introdat)[2],1:(dim(introdat)[2]-1))],"Data/IntroDat_260116_AllTimeSpans.csv",sep=";",row.names=F,na="")
 # write.table(introdat[,c("NewName","LifeForm","LifeForm2","Country","PresentStatus","FirstRecord","FirstRecord_orig","DataQuality","Pathway","Origin","Island","Source")],"Data/DataFirstRecord_260116_AllTimeSpans.csv",sep=";",row.names=F,na="")
