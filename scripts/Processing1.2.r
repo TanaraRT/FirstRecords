@@ -14,6 +14,7 @@ library(stringi)
 library(rgbif)
 library(worrms)
 library(data.table)
+library(countrycode)
 
 ## IMPORT RAW DATA ####################################################################################################################################################################
 ### Dynamic read of the IntroData_raw.csv file.
