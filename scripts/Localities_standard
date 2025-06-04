@@ -18,49 +18,105 @@ library(geonames)
 
 # Import data (dynamic)
 directory <- system("pwd", intern = TRUE)
-Raw_data <- file.path(directory, "data", "raw", "IntroData_raw.csv")
-IntroData <- read.csv2(Raw_data, fileEncoding = "UTF-8", stringsAsFactors = FALSE)
-setDT(IntroData) # Convert to data.table
+raw_data <- file.path(directory, "data", "raw", "IntroData_raw.csv")
+intro_data <- read.csv2(raw_data,
+  fileEncoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
+setDT(intro_data) # Convert to data.table
 
-# Select relevant columns
-locality_temp <- IntroData[, .(Country)]
-
-# Delete empty rows
+# Select relevant columns and delete empty rows
+locality_temp <- intro_data[, .(Country)]
 locality_temp[is.na(locality_temp)] <- "" # replace NAs with empty strings
-locality <- locality_temp[Country != ""]  # remove empty rows
+locality <- locality_temp[Country != ""] # remove empty rows
 
-# Store verbatim values in verbatim_country
-locality[, verbatim_country := Country]
+# Store verbatim values in verbatimLocality and create a new columns
+locality[, verbatimLocality := Country]
 locality[, country_std := NA_character_]
+locality[, locality_std := NA_character_]
+
+sum(is.na(locality$locality_std))
 
 # Procude pre-processed file
-output_file <- file.path(directory, "tmp", "locality_pre-process.csv") # determine path
-write.csv(locality, output_file, row.names = FALSE, fileEncoding = "UTF-8")# generate table
+output_file <- file.path(
+  directory,
+  "tmp",
+  "locality_pre-process.csv"
+) # determine path
+write.csv(locality,
+  output_file,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+) # generate table
 
 ### HARMONIZE COUNTRIES AND LOCALITIES ###
 
-# 1) Direct match with countrycode
-locality[, locality_std := countrycode(Country, origin = "country.name", destination = "country.name.en", nomatch = NA, warn = TRUE)]
+# 1) Direct match with countrycode to standardize country names
+locality[, locality_std := countrycode(
+  Country,
+  origin = "country.name",
+  destination = "country.name.en",
+  nomatch = NA,
+  warn = TRUE
+)]
+
+sum(is.na(locality$locality_std)) # Check how many NAs
+
+# Procude mid-processed file
+output_file <- file.path(
+  directory,
+  "tmp",
+  "locality_mid-process1.csv"
+) # determine path
+write.csv(locality,
+  output_file,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+) # generate table
 
 # 2) Fuzzy match for those not matched
-unmatched <- locality[is.na(locality_std) & !is.na(Country), unique(Country)]
+unmatched <- locality[ # Function to get unmatched country names
+  is.na(locality_std) &
+    !is.na(Country),
+  unique(Country)
+]
 valid_names <- unique(countrycode::codelist$country.name.en)
 
 fuzzy_matches <- sapply(unmatched, function(x) {
+  if (nchar(x) < 5) return(NA_character_)  # ignore very short entries
+
   dists <- stringdist::stringdist(tolower(x), tolower(valid_names), method = "jw")
-  if (min(dists, na.rm = TRUE) <= 0.2) {
-    return(valid_names[which.min(dists)])
+  best_match <- valid_names[which.min(dists)]
+  best_score <- min(dists, na.rm = TRUE)
+
+  # only accept high-confidence matches
+  if (best_score <= 0.15 && startsWith(tolower(best_match), substr(tolower(x), 1, 2))) {
+    return(best_match)
   } else {
     return(NA_character_)
   }
 }, USE.NAMES = TRUE)
 
-for (u in names(fuzzy_matches)) { # Apply fuzzy matches
-  locality[Country == u & is.na(locality_std), locality_std := fuzzy_matches[[u]]]
-}
+sum(is.na(locality$locality_std)) # Check how many NAs
+
+# Procude mid-processed file
+output_file <- file.path(
+  directory,
+  "tmp",
+  "locality_mid-process2.csv"
+) # determine path
+write.csv(locality,
+  output_file,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+) # generate table
 
 # 3) Custom locality mapping
-custom_mapping_file <- file.path(directory, "data", "external", "custom_locality_mapping.csv")
+custom_mapping_file <- file.path(
+  directory, "data",
+  "external",
+  "custom_locality_mapping.csv"
+)
 custom_map <- fread(custom_mapping_file, sep = ",", encoding = "UTF-8")
 
 # Match lowercased versions
@@ -74,23 +130,43 @@ locality[, custom_idx := match(Country_lc, custom_map$variant_lc)]
 locality[!is.na(custom_idx), locality_std := fifelse(
   !is.na(custom_map$locality_standard[custom_idx]),
   custom_map$locality_standard[custom_idx],
-  fifelse(!is.na(custom_map$country_standard[custom_idx]),
-          custom_map$country_standard[custom_idx],
-          locality_std)
+  fifelse(
+    !is.na(custom_map$country_standard[custom_idx]),
+    custom_map$country_standard[custom_idx],
+    locality_std
+  )
 )]
 
 # Assign country_std from custom map only if NA
-locality[!is.na(custom_idx) & is.na(country_std), 
-         country_std := custom_map$country_standard[custom_idx]]
+locality[
+  !is.na(custom_idx) & is.na(country_std),
+  country_std := custom_map$country_standard[custom_idx]
+]
 
 # Clean up
 locality[, c("Country_lc", "custom_idx") := NULL]
 
+sum(is.na(locality$locality_std)) # Check how many NAs
+# Procude mid-processed file
+output_file <- file.path(
+  directory,
+  "tmp",
+  "locality_mid-process3.csv"
+) # determine path
+write.csv(locality,
+  output_file,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+) # generate table
 
 # Fill in Country_std
 locality[is.na(country_std) & !is.na(locality_std), country_std := locality_std]
 # Get valid country names with ISO codes (i.e., sovereign countries)
-valid_countries <- unique(na.omit(countrycode::codelist$country.name.en[!is.na(countrycode::codelist$iso3c)]))
+valid_countries <- unique(
+  na.omit(countrycode::codelist$country.name.en[
+    !is.na(countrycode::codelist$iso3c)
+  ])
+)
 
 # Keep only matches to official countries
 locality[!country_std %in% valid_countries, country_std := NA]
@@ -124,16 +200,24 @@ write.csv(locality, output_file, row.names = FALSE, fileEncoding = "UTF-8")
 
 
 
-### CHECK ### 
+### CHECK ###
 # Unique harmonized output
 matched_unique <- unique(locality[, .(locality_std)])
 output_file <- file.path(directory, "outputs", "locality_matched.csv")
-write.csv(matched_unique, output_file, row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(matched_unique,
+  output_file,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+)
 # Filter rows where harmonization (incl. fuzzy match) failed
 locality_unmatched <- locality[is.na(country_std)]
 # Optional: Keep only unique unmatched names for review
-unmatched_unique <- unique(locality_unmatched[, .(verbatim_country)])
+unmatched_unique <- unique(locality_unmatched[, .(verbatimLocality)])
 # Define output path
 unmatched_output <- file.path(directory, "tmp", "locality_unmatched.csv")
 # Write to CSV
-write.csv(unmatched_unique, unmatched_output, row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(unmatched_unique,
+  unmatched_output,
+  row.names = FALSE,
+  fileEncoding = "UTF-8"
+)
