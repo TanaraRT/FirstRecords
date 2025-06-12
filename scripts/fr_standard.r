@@ -75,7 +75,7 @@ fr_years[ # Assign verbatim_fr from DateNaturalisation if it's empty
   verbatim_fr %in% c("", NA) & FirstRecord_intentional != "",
   verbatim_fr := FirstRecord_intentional
 ]
-fr_years[ # Assign verbatim_fr from DateNaturalisation if it's empty
+fr_years[ # Assign verbatim_fr 
   FirstRecord1 != "" & FirstRecord2 != "",
   verbatim_fr := paste(FirstRecord1, FirstRecord2, sep = " - ")
 ]
@@ -91,7 +91,7 @@ fr_years[, c(
   "FirstRecord_intentional"
 ) := NULL]
 
-print("Step 1 completed: workspace prepared and data extracted.")
+cat("\nStep 1 completed: workspace prepared and data extracted\n line break\n.") #cat instead of print
 
 # Save pre-processed data
 output <- file.path(directory, "tmp", "fr_years_pre-process.csv")
@@ -207,7 +207,7 @@ fr_years$event_fr <- str_replace_all(
     paste0(parts[2], "-", "20", parts[3])
   }
 )
-## For standalone 2-digit years (avoiding centuries)
+## For standalone 2-digit years (avoiding centuries), ex: 78 -> 1978
 fr_years$event_fr <- str_replace_all(
   fr_years$event_fr,
   "(?<!\\d)(\\d{2})(?!\\d|\\s*(st|nd|rd|th)\\s+(century|c|cen))",
@@ -218,7 +218,7 @@ fr_years$event_fr <- str_replace_all(
   }
 )
 
-# Handle BC years
+# Handle BC years, ex: 500 BC -> -500
 fr_years$event_fr <- str_replace_all(
   fr_years$event_fr,
   regex("\\(?\\bBC\\b\\)?\\s*(\\d{3,4})|
@@ -238,11 +238,10 @@ print("STEP 3: Confidence assignment")
 
 mark_confidence <- function(dt) {
   # 1. Full years: high or low confidence based on threshold
-  dt[grepl("^\\d{4}$", event_fr),
-     confidence_fr := ifelse(as.numeric(event_fr) >= 1500,
-                             "high confidence", "low confidence")]
+  dt[grepl("^\\d{4}$", event_fr) & as.numeric(event_fr) >= 1500,
+     confidence_fr := "high confidence"]
 
-  # 2. Decades: low to medium-high confidence
+  # 2. Decades: low to medium-high confidence (add examples)
   dt[grepl("^\\d{4}s$|^\\d{2}s$", event_fr), confidence_fr := {
     decade_num <- as.numeric(gsub("s", "", event_fr))
     ifelse(!is.na(decade_num) & decade_num >= 1500 & decade_num %% 100 != 0,
@@ -308,7 +307,7 @@ for (i in ind){
 }
 print("Decades handled: randomized last digit of decades.")
 
-# CENTURIES
+# CENTURIES, e.g., 18th century -> 1750
 convert_century_to_year <- function(text) {
   pattern <- regex("\\b(\\d{1,2})(st|nd|rd|th)?\\s+(century|c|cen)\\b",
     ignore_case = TRUE
@@ -316,7 +315,7 @@ convert_century_to_year <- function(text) {
   matches <- str_match(text, pattern)
   if (!is.na(matches[1, 1])) {
     century_num <- as.integer(matches[1, 2])
-    year <- (century_num - 1) * 100
+    year <- (century_num - 1) * 100 + 50
     return(as.character(year))
   }
 
@@ -474,7 +473,7 @@ fr_years$confidence_fr[matched_inds] <-
 
 print("After and post years handled")
 
-# CHECK FOR NON-MATCHING FORMATS
+# CHECK FOR NON-MATCHING FORMATS 1
 pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
 # Filter rows that DO NOT match this pattern
 non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
@@ -498,7 +497,18 @@ clean_first_record <- function(dt) {
 }
 clean_first_record(fr_years)
 # Remove empty event_fr values
+# Extract rows that we will delete (empty event_fr, but not empry verbatim_fr)
 fr_years <- fr_years[event_fr != ""]
+
+# CHECK FOR NON-MATCHING FORMATS 2
+pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
+# Filter rows that DO NOT match this pattern
+non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
+tmp_file <- file.path(directory, "tmp", "fr_non_matching_formats2.csv")
+fwrite(non_matching_rows, tmp_file)
+
+print("Step 4 completed: years standardized")
+
 
 # Save processed data
 output <- file.path(directory, "outputs", "fr_years_processed.csv")
