@@ -3,7 +3,7 @@
 ##
 
 ## 1) PREPARE WORKSPACE AND DATA
-print("STEP 1: Prepare workspace and data")
+cat("\nSTEP 1: PREPARE WORKSPACE AND DATA") 
 
 # Call libraries
 graphics.off()
@@ -15,11 +15,9 @@ library(stringr)
 library(stringi)
 library(data.table)
 
-# Import data (dynamic)
-directory <- system("pwd", intern = TRUE)
-raw_data <- file.path(directory, "data", "raw", "IntroData_raw.csv")
+# Import data
 intro_data <- read.csv2(
-  raw_data,
+  'data/raw/IntroData_raw.csv',
   fileEncoding = "UTF-8",
   stringsAsFactors = FALSE
 )
@@ -91,14 +89,15 @@ fr_years[, c(
   "FirstRecord_intentional"
 ) := NULL]
 
-cat("\nStep 1 completed: workspace prepared and data extracted\n line break\n.") #cat instead of print
+cat("\nStep 1 completed: workspace prepared and data extracted\n ") 
 
 # Save pre-processed data
-output <- file.path(directory, "tmp", "fr_years_pre-process.csv")
+output <- file.path("tmp", "fr_years_pre-process.csv")
 write.csv(fr_years, output, row.names = FALSE, fileEncoding = "UTF-8")
 
 ## 2) BASIC DATA CLEANING
-print("STEP 2: BASIC DATA CLEANING")
+cat("\nSTEP 2: BASIC DATA CLEANING") 
+
 # Clean text
 fr_years$event_fr <- gsub(",", "", fr_years$event_fr) # Remove commas
 fr_years$event_fr <- gsub("['’]", "", fr_years$event_fr) # Remove apostrophes
@@ -231,17 +230,24 @@ fr_years$event_fr <- str_replace_all(
   }
 )
 
-print("Step 2 completed: cleaned text and standardized years.")
+cat("\nStep 2 completed: cleaned text and standardized years.\n ") 
 
 ## 3) CONFIDENCE ASSIGNMENT
-print("STEP 3: Confidence assignment")
+cat("\nSTEP 3: CONFIDENCE ASSIGNMENT\
+    Full years above 1500: high confidence\
+    Decades above 1500: medium-high confidence\
+     - Ranges <9: medium-high confidence\
+     - 9 < Ranges <=15: medium confidence\
+     - 15 < Ranges <=20: medium-low confidence\
+     - 20 < Ranges : low confidence\
+     Other: low confidence") 
 
 mark_confidence <- function(dt) {
-  # 1. Full years: high or low confidence based on threshold
+  # 1. Full years: high or low confidence based on 1500 threshold (1991 -> high confidence; 1491 -> low confidence)
   dt[grepl("^\\d{4}$", event_fr) & as.numeric(event_fr) >= 1500,
      confidence_fr := "high confidence"]
 
-  # 2. Decades: low to medium-high confidence (add examples)
+  # 2. Decades: low to medium-high confidence (1990s -> medium-high confidence; 1490s -> low confidence)
   dt[grepl("^\\d{4}s$|^\\d{2}s$", event_fr), confidence_fr := {
     decade_num <- as.numeric(gsub("s", "", event_fr))
     ifelse(!is.na(decade_num) & decade_num >= 1500 & decade_num %% 100 != 0,
@@ -295,17 +301,17 @@ mark_confidence <- function(dt) {
 
 fr_years <- mark_confidence(fr_years)
 
-print("Step 3 completed: confidence assigned")
+cat("\nStep 3 completed: confidence assigned\n ")
 
 ## 4) STANDARDIZE YEARS
-print("STEP 4: Standardize years")
+cat("\nSTEP4: STANDARDIZE YEARS") 
 
 # DECADES
 ind <- grep("0s", fr_years$event_fr)
 for (i in ind){
   fr_years[i, event_fr := gsub("0s", sample(0:9, 1), event_fr, perl = TRUE)]
 }
-print("Decades handled: randomized last digit of decades.")
+cat("\n  Decades handled: randomized last digit of decades")
 
 # CENTURIES, e.g., 18th century -> 1750
 convert_century_to_year <- function(text) {
@@ -325,7 +331,7 @@ century_years <- sapply(fr_years$event_fr, convert_century_to_year)
 inds <- which(!is.na(century_years))
 fr_years$event_fr[inds] <- century_years[inds]
 
-print("Centuries handled (note: I did not randomized last two digits)")
+cat("\n  Centuries handled")
 
 # TWO POSSIBLE YEARS ("OR" and "AND")
 range_pattern <- "^\\s*(-?\\d+)\\s*(or|and)\\s*(-?\\d+)\\s*$" # pattern
@@ -343,7 +349,7 @@ if (any(range_rows)) { # Extract start and end years from pattern
   fr_years$event_fr[range_rows] <- as.character(end_years) # Assign most recent
 }
 
-print("Two possible years handled (and and or)")
+cat("\n  Two possible years handled (and and or)")
 
 # RANGES
 range_pattern <- "^.*?(-?\\d{1,4})\\D+(-?\\d{1,4}).*?$"
@@ -371,7 +377,24 @@ if (any(range_rows)) {
   fr_years$event_fr[range_rows] <- as.character(collapsed_years)
 }
 
-print("Ranges handled")
+cat("\n  Ranges handled")
+
+
+### HANDLING "YEARS/DECADES/CENTURIES AGO" ###
+reference_year <- 2000 # Define reference year
+time_units <- list("years? ago" = 1, "decades? ago" = 10, "centur(?:y|ies) ago" = 100) # Define time units and their multipliers (in years)
+
+# Loop through units and process them
+for (pattern in names(time_units)) {
+    full_pattern <- paste0("([\\d]+(?:\\.\\d+)?)\\s*(?:or more\\s*)?", pattern)
+    matches <- str_match(fr_years$event_fr, full_pattern)
+    has_match <- !is.na(matches[, 1]);
+if (any(has_match)) {
+    value <- as.numeric(matches[has_match, 2]) * time_units[[pattern]]
+    fr_years$event_fr[has_match] <- as.character(reference_year - value)
+    }}
+
+cat ("\n  Years ago handled")
 
 # "EARLY", "MID", "LATE" DECADES AND CENTURIES
 
@@ -448,7 +471,7 @@ partial_century_years <- sapply(fr_years$event_fr, convert_partial_century)
 inds <- which(!is.na(partial_century_years))
 fr_years$event_fr[inds] <- as.character(partial_century_years[inds])
 
-print("Early, mid-, late decades and centuries handled")
+cat("\n  Early, mid-, late decades and centuries handled")
 
 # AFTER/POST YEARS
 convert_after <- function(text) {
@@ -471,19 +494,19 @@ fr_years$event_fr[matched_inds] <- after_results[matched_inds, "year"]
 fr_years$confidence_fr[matched_inds] <-
   after_results[matched_inds, "confidence"]
 
-print("After and post years handled")
+cat("\n  After and post years handled")
 
 # CHECK FOR NON-MATCHING FORMATS 1
 pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
 # Filter rows that DO NOT match this pattern
 non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
-tmp_file <- file.path(directory, "tmp", "fr_non_matching_formats1.csv")
+tmp_file <- file.path("tmp", "fr_non_matching_formats1.csv")
 fwrite(non_matching_rows, tmp_file)
 
-print("Step 4 completed: years standardized")
+cat("\nStep 4 completed: years standardized\n ")
 
 ## 5) FINAL CLEANING
-print("STEP 5: Final cleaning")
+cat("\nSTEP 5: FINAL CLEANING")
 
 clean_first_record <- function(dt) {
   dt[, event_fr := gsub("[^0-9\\-]", "", event_fr)]  # Keep only digits and -
@@ -504,14 +527,13 @@ fr_years <- fr_years[event_fr != ""]
 pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
 # Filter rows that DO NOT match this pattern
 non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
-tmp_file <- file.path(directory, "tmp", "fr_non_matching_formats2.csv")
+tmp_file <- file.path("tmp", "fr_non_matching_formats2.csv")
 fwrite(non_matching_rows, tmp_file)
 
-print("Step 4 completed: years standardized")
-
+cat("\nStep 5 completed: final cleaning done")
 
 # Save processed data
-output <- file.path(directory, "outputs", "fr_years_processed.csv")
+output <- file.path("outputs", "fr_years_processed.csv")
 write.csv(fr_years, output, row.names = FALSE, fileEncoding = "UTF-8")
 
-print("Step 5 completed: processed data saved.")
+cat("\nYears have been processed. Output file saved.\n ")
