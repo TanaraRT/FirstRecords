@@ -230,6 +230,8 @@ fr_years$event_fr <- str_replace_all(
   }
 )
 
+fr_years$event_fr <- trimws(fr_years$event_fr) # Trim whitespace
+
 cat("\nStep 2 completed: cleaned text and standardized years.\n ") 
 
 ## 3) CONFIDENCE ASSIGNMENT
@@ -352,28 +354,28 @@ if (any(range_rows)) { # Extract start and end years from pattern
 cat("\n  Two possible years handled (and and or)")
 
 # RANGES
-range_pattern <- "^.*?(-?\\d{1,4})\\D+(-?\\d{1,4}).*?$"
+range_pattern <- "^\\s*(-?\\d{1,4})\\s*[-–]\\s*(-?\\d{1,4})\\s*$"
 range_rows <- grepl(range_pattern, fr_years$event_fr)
 if (any(range_rows)) {
   ranges <- str_match(fr_years$event_fr[range_rows], range_pattern)
   start_years <- as.integer(ranges[, 2])
   end_years <- as.integer(ranges[, 3]) # Extract start and end years
-  ordered <- mapply(function(start, end) {
-    if (start > end) c(end, start) else c(start, end)
-  }, start_years, end_years) # Order start/end properly
-
-  start_years <- as.integer(ordered[1, ])
-  end_years <- as.integer(ordered[2, ])
+  # Chronologically order start and end years (oldest to most recent)
+  is_later <- start_years > end_years
+  tmp <- start_years
+  start_years[is_later] <- end_years[is_later]
+  end_years[is_later] <- tmp[is_later]
+  
   range_widths <- end_years - start_years
+  
   collapsed_years <- mapply(function(start, end) {
     if (start == end) {
-      start #if range is a single year, return it
+      start
     } else {
-      sample(seq(start, end), 1) #else return a random year from the range
+      sample(seq(start, end), 1)
     }
   }, start_years, end_years)
-
-  # Update the event_fr field
+  
   fr_years$event_fr[range_rows] <- as.character(collapsed_years)
 }
 
