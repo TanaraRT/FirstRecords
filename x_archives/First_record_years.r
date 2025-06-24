@@ -14,14 +14,28 @@ library(stringr)
 library(stringi)
 library(data.table)
 
-# Import data (dynamic)
-directory <- system("pwd", intern = TRUE)
-Raw_data <- file.path(directory, "data", "raw", "IntroData_raw.csv")
-IntroData <- read.csv2(Raw_data, fileEncoding = "UTF-8", stringsAsFactors = FALSE)
-setDT(IntroData) # Convert to data.table
+# Import data
+intro_data <- read.csv2(
+  'data/raw/IntroData_raw.csv',
+  fileEncoding = "UTF-8",
+  stringsAsFactors = FALSE
+)
+setDT(intro_data) # Convert to data.table
 
-# Select relevant columns
-FR_years_0 <- IntroData[, .(FirstRecord1, FirstRecord2, FirstRecord, DateNaturalisation)]
+# Extract relevant columns
+fr_years_0 <- intro_data[, .(
+  FirstRecord1,
+  FirstRecord2,
+  FirstRecord,
+  DateNaturalisation,
+  FirstRecord_intentional
+)]
+
+# Delete information currently not used
+introdat[,GrowthFormPlants:=NULL]
+introdat[,Origin:=NULL]
+introdat[,Habitat:=NULL]
+introdat[,NextDataSet:=NULL]
 
 # Delete empty rows
 

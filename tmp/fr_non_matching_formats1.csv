@@ -2,11 +2,11 @@ verbatim_fr,event_fr,confidence_fr
 Imported since mid-age,imported since mid-age,low confidence
 Possibly 1972,possibly 1972,low confidence
 ca 1940,ca 1940,low confidence
-1970s or later,1979 or later,low confidence
-"1960s, 1980s",1968 1988,low confidence
+middle to late 19C,middle - late 19c,low confidence
 ca 1900,ca 1900,low confidence
 ca 1955,ca 1955,low confidence
 ca 1870,ca 1870,low confidence
+Middle to late 19C,middle - late 19c,low confidence
 1994 or earlier,1994 or earlier,low confidence
 Circa 1400,circa 1400,low confidence
 Circa 1000,circa 1000,low confidence
@@ -15,7 +15,7 @@ Recent,recent,low confidence
 1994 or earlier,1994 or earlier,low confidence
 Just after WWII,just after wwii,low confidence
 "After W W II, by 1971",after w w ii by 1971,low confidence
-1990s or earlier,1996 or earlier,low confidence
+Late 19C to early 20C,late 19c - early 20c,low confidence
 ca 1865,ca 1865,low confidence
 Pre WWII,pre wwii,low confidence
 ca1900,ca1900,low confidence
@@ -25,13 +25,14 @@ Pre WWII,pre wwii,low confidence
 ca 1920,ca 1920,low confidence
 Circa 1870,circa 1870,low confidence
 Circa 1955,circa 1955,low confidence
-1911 � 1924,1911 � 1924,low confidence
+17C - mid 19C,17c - mid 19c,low confidence
 Pre WWII,pre wwii,low confidence
 Around 1950,around 1950,low confidence
 2008 or earlier,2008 or earlier,low confidence
 1976 or earlier,1976 or earlier,low confidence
 ca 1870,ca 1870,low confidence
 "ca 1870,",ca 1870,low confidence
+Late 19C or early 20C,late 19c or early 20c,low confidence
 Circa 1960,circa 1960,low confidence
 <1893,<1893,low confidence
 <1982,<1982,low confidence
@@ -100,6 +101,8 @@ After 25,after 25,low confidence
 1950*,1950*,low confidence
 Ancient,ancient,low confidence
 1980*,1980*,low confidence
+Late 19th,late 19th,low confidence
+Late 19th,late 19th,low confidence
 1980*,1980*,low confidence
 1940*,1940*,low confidence
 1920*,1920*,low confidence
@@ -111,8 +114,10 @@ Modern,modern,low confidence
 1600*,1600*,low confidence
 Modern,modern,low confidence
 1900*,1900*,low confidence
+Late 19th,late 19th,low confidence
 Before 618,before 618,low confidence
 Mordern,mordern,low confidence
+Late 20th,late 20th,low confidence
 Modern,modern,low confidence
 Modern,modern,low confidence
 1700*,1700*,low confidence
@@ -137,6 +142,7 @@ Modern,modern,low confidence
 Ancient,ancient,low confidence
 Before 2008,before 2008,low confidence
 Modern,modern,low confidence
+Late 17th,late 17th,low confidence
 Modern,modern,low confidence
 Modern,modern,low confidence
 Modern,modern,low confidence
@@ -144,11 +150,14 @@ Modern,modern,low confidence
 1950*,1950*,low confidence
 65,65,low confidence
 1800*,1800*,low confidence
+Late 19th,late 19th,low confidence
 Ancient,ancient,low confidence
+Late 19th,late 19th,low confidence
 Ancient,ancient,low confidence
 Ancient,ancient,low confidence
 2000*,2000*,low confidence
 1900*,1900*,low confidence
+Late 19th,late 19th,low confidence
 Mordern,mordern,low confidence
 1980*,1980*,low confidence
 1950*,1950*,low confidence
@@ -158,7 +167,7 @@ Mordern,mordern,low confidence
 1920*,1920*,low confidence
 1900*,1900*,low confidence
 >1990 - 1993,>1990 - 1993,low confidence
-"1903, 1914 - 1966",1903 1914 - 1966,low confidence
+"1903, 1914 - 1966",1903-1914 - 1966,low confidence
 1900-1999 - 1900,1900-1999 - 1900,low confidence
 17c - 1830,17c - 1830,low confidence
 1900-2000 - 1900,1900-2000 - 1900,low confidence
@@ -174,20 +183,14 @@ Mordern,mordern,low confidence
  ,"",low confidence
 >1980,>1980,low confidence
 >1980,>1980,low confidence
-Begin 1980s,begin 1983,low confidence
-End 1950s,end 1959,low confidence
 >1980,>1980,low confidence
 >1990,>1990,low confidence
 1992/3,1992/3,low confidence
 c 1900,c 1900,low confidence
-1824�1845,1824�1845,low confidence
-1824�1845,1824�1845,low confidence
 1977 -  -,1977 - -,low confidence
 <1930,<1930,low confidence
-1996 (1994),1996 (1994),low confidence
 before 1986,before 1986,low confidence
 before 1986,before 1986,low confidence
-1964 & 1970,1964 & 1970,low confidence
 <1952,<1952,low confidence
 Before 1846,before 1846,low confidence
 Before 1796,before 1796,low confidence
@@ -201,6 +204,7 @@ Before 1790,before 1790,low confidence
 Before 1792,before 1792,low confidence
 Before 1960,before 1960,low confidence
 Before 1767,before 1767,low confidence
+Early 20th,early 20th,low confidence
 Before 1833,before 1833,low confidence
 Before 1833,before 1833,low confidence
 Before 1820,before 1820,low confidence
@@ -237,7 +241,6 @@ Before 1783,before 1783,low confidence
 Before 1834,before 1834,low confidence
 Before 1834,before 1834,low confidence
 Before 1900,before 1900,low confidence
-1939�1945,1939�1945,low confidence
 Before 1843,before 1843,low confidence
 Before 1834,before 1834,low confidence
 <1976,<1976,low confidence
@@ -252,14 +255,13 @@ Before 1830,before 1830,low confidence
 Before 1856,before 1856,low confidence
 Before 1856,before 1856,low confidence
 Before 1843,before 1843,low confidence
-1906�1908,1906�1908,low confidence
 Before 1871,before 1871,low confidence
 Before 1758,before 1758,low confidence
 <1758,<1758,low confidence
 Before 1775,before 1775,low confidence
 Before 1797,before 1797,low confidence
 Before 1889,before 1889,low confidence
-4340�4450 BC,4340�4450 bc,low confidence
+4340�4450 BC,4340-4450 bc,low confidence
 Before 1792,before 1792,low confidence
 Before 1842,before 1842,low confidence
 Before 1842,before 1842,low confidence
@@ -289,7 +291,6 @@ Before 1758,before 1758,low confidence
 1890(1960),1890(1960),low confidence
 1845(1960),1845(1960),low confidence
 1794(1865),1794(1865),low confidence
-1820 (1998),1820 (1998),low confidence
 1791(1830),1791(1830),low confidence
 1830(1905),1830(1905),low confidence
 17c(1830),17c(1830),low confidence
@@ -340,7 +341,6 @@ M,m,low confidence
 B,b,low confidence
  ,"",low confidence
 I,i,low confidence
-1830 (1853),1830 (1853),low confidence
 I,i,low confidence
 N,n,low confidence
  ,"",low confidence
@@ -369,7 +369,6 @@ M,m,low confidence
 B,b,low confidence
 20c(2010),20c(2010),low confidence
 B,b,low confidence
-1830 (1936),1830 (1936),low confidence
 1890(1937),1890(1937),low confidence
 M,m,low confidence
  ,"",low confidence
@@ -521,7 +520,6 @@ M,m,low confidence
 1791(1863),1791(1863),low confidence
 1997(2010),1997(2010),low confidence
 M,m,low confidence
-1866 (1936),1866 (1936),low confidence
  ,"",low confidence
 17c(2008),17c(2008),low confidence
 1903(2006),1903(2006),low confidence
@@ -575,7 +573,6 @@ M,m,low confidence
 1791(1830),1791(1830),low confidence
 1720(1830),1720(1830),low confidence
 1992(1995),1992(1995),low confidence
-1856 (1901),1856 (1901),low confidence
 1830(1853),1830(1853),low confidence
  ,"",low confidence
 B,b,low confidence
@@ -1377,6 +1374,7 @@ Archaeophyte,archaeophyte,low confidence
 <1914,<1914,low confidence
 <1885,<1885,low confidence
 <1895,<1895,low confidence
+800s,800s,low confidence
 <1989,<1989,low confidence
 <2000,<2000,low confidence
 <1972,<1972,low confidence
@@ -1934,7 +1932,7 @@ Middle Ages,middle ages,low confidence
 <1843,<1843,low confidence
 <1749,<1749,low confidence
 <1854,<1854,low confidence
-Pre 1800 (BC),pre 1800 (bc),low confidence
+Pre 1800 (BC),pre 1800,low confidence
 <1914,<1914,low confidence
 <1885,<1885,low confidence
 <1927,<1927,low confidence
@@ -3046,32 +3044,33 @@ Pre-1900,pre-1900,low confidence
 Pre-1900,pre-1900,low confidence
 Pre-1800,pre-1800,low confidence
 Pre-1800,pre-1800,low confidence
--100 - 0,-50,low confidence
+-100 - 0,-73,low confidence
 -200,-200,low confidence
--100 - 0,-77,low confidence
--200 - 200,68,low confidence
--100 - 0,-23,low confidence
--1000 - 700,-343,low confidence
--1000 - 700,-489,low confidence
+-100 - 0,-34,low confidence
+-200 - 200,78,low confidence
+-100 - 0,-71,low confidence
+-1000 - 700,-171,low confidence
+-1000 - 700,-113,low confidence
 0,0,low confidence
   ,"",low confidence
--1000 - -100,-720,low confidence
--1000 - 0,-482,low confidence
+-1000 - -100,-415,low confidence
+-1000 - 0,-472,low confidence
 -218,-218,low confidence
--100 - 0,-1,low confidence
+-100 - 0,-12,low confidence
 0,0,low confidence
 50,50,low confidence
--100 - 0,-90,low confidence
--300 - -100,-255,low confidence
-0 - 100,75,low confidence
+-100 - 0,-8,low confidence
+-300 - -100,-280,low confidence
+0 - 100,56,low confidence
 -429,-429,low confidence
--900 - -500,-571,low confidence
--900 - -500,-503,low confidence
+-900 - -500,-857,low confidence
+-900 - -500,-800,low confidence
 -700,-700,low confidence
 -200,-200,low confidence
--600 - -400,-589,low confidence
--1200 - -500,-901,low confidence
-1850s � 1860s,1850 � 1860,low confidence
+-600 - -400,-545,low confidence
+-1200 - -500,-575,low confidence
+-1400 - -700,-986,low confidence
+-1200 - -500,-794,low confidence
 ca 1800,ca 1800,low confidence
 ca 1986,ca 1986,low confidence
 ca 1900,ca 1900,low confidence
@@ -3080,7 +3079,6 @@ ca 1920,ca 1920,low confidence
 ca 1900,ca 1900,low confidence
 17th,17th,low confidence
 17th,17th,low confidence
-ca 1990s,ca 1999,low confidence
 17th,17th,low confidence
  ca 1990,ca 1990,low confidence
 ca 1820,ca 1820,low confidence
@@ -3154,231 +3152,11 @@ before 1923,before 1923,low confidence
 >1907,>1907,low confidence
 <1850,<1850,low confidence
 <1900,<1900,low confidence
-"1903, 1914",1903 1914,low confidence
-1961 (publication),1961 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1959 (publication),1959 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1900 (circa),1900 (circa),low confidence
-1905 (publication),1905 (publication),low confidence
-1812 (pre),1812 (pre),low confidence
 -,-,low confidence
-1866 (publication),1866 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
 0,0,low confidence
-1957 (publication),1957 (publication),low confidence
-1982 (publication),1982 (publication),low confidence
-1709 (pre),1709 (pre),low confidence
-1922 (publication),1922 (publication),low confidence
-1983 (publication),1983 (publication),low confidence
-1900 (circa),1900 (circa),low confidence
-1863 (publication),1863 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1863 (publication),1863 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1977 (publication),1977 (publication),low confidence
-1894 (publication),1894 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1836 (circa),1836 (circa),low confidence
-1905 (publication),1905 (publication),low confidence
-1899 (publication),1899 (publication),low confidence
-1899 (publication),1899 (publication),low confidence
-1876 (circa),1876 (circa),low confidence
-1905 (publication),1905 (publication),low confidence
-1899 (publication),1899 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1899 (publication),1899 (publication),low confidence
-1863 (publication),1863 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1868 (publication),1868 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1876 (publication),1876 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1788 (publication),1788 (publication),low confidence
-1770 (circa),1770 (circa),low confidence
-1961 (publication),1961 (publication),low confidence
-1919 (circa),1919 (circa),low confidence
-1899 (publication),1899 (publication),low confidence
-1970 (circa),1970 (circa),low confidence
-1968 (publication),1968 (publication),low confidence
-1968  (publication),1968 (publication),low confidence
-1888 (publication),1888 (publication),low confidence
-1870 (circa),1870 (circa),low confidence
-1844 (publication),1844 (publication),low confidence
-1928 (publication),1928 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1982 (publication),1982 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
 No information found,no information found,low confidence
-1927 (publication),1927 (publication),low confidence
-1832 (publication),1832 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1928 (publication),1928 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1762 (publication),1762 (publication),low confidence
-1879 (publication),1879 (publication),low confidence
-1972 (circa),1972 (circa),low confidence
-1961 (publication),1961 (publication),low confidence
-1867 (publication),1867 (publication),low confidence
-1858 (publication),1858 (publication),low confidence
-1888 (publication),1888 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1996 (publication),1996 (publication),low confidence
-1830 (circa),1830 (circa),low confidence
-1900 (publication),1900 (publication),low confidence
-1975 (publication),1975 (publication),low confidence
-1957 (circa),1957 (circa),low confidence
-1888 (publication),1888 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
 n/a,n/a,low confidence
-1904 (publication),1904 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1897 (publication),1897 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1937 (publication),1937 (publication),low confidence
-1961 (publication),1961 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1928 (publication),1928 (publication),low confidence
-1970 (circa),1970 (circa),low confidence
-1849 (publication),1849 (publication),low confidence
-1848 (publication),1848 (publication),low confidence
-1770 (circa),1770 (circa),low confidence
-1849 (publication),1849 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1913 (pre),1913 (pre),low confidence
-1989 (circa),1989 (circa),low confidence
-1866 (publication),1866 (publication),low confidence
-1730 (circa),1730 (circa),low confidence
-1957 (publication),1957 (publication),low confidence
-1887 (publication),1887 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1862 (publication),1862 (publication),low confidence
-1831 (publication),1831 (publication),low confidence
-1836 (publication),1836 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1893 (circa),1893 (circa),low confidence
-1830 (circa),1830 (circa),low confidence
-1858 (publication),1858 (publication),low confidence
-1867 (publication),1867 (publication),low confidence
-1970 (pre),1970 (pre),low confidence
-1597 (publication),1597 (publication),low confidence
-1900 (circa),1900 (circa),low confidence
-1902 (publication),1902 (publication),low confidence
-1863 (publication),1863 (publication),low confidence
-1982 (publication),1982 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1863 (publication),1863 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1913 (pre),1913 (pre),low confidence
-1905 (publication),1905 (publication),low confidence
-1971 (publication),1971 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1869 (publication),1869 (publication),low confidence
-1832 (publication),1832 (publication),low confidence
-1650 (circa),1650 (circa),low confidence
-1840 (publication),1840 (publication),low confidence
-1840 (circa),1840 (circa),low confidence
-1650 (circa),1650 (circa),low confidence
-1884 (pre),1884 (pre),low confidence
-1830 (circa),1830 (circa),low confidence
-1928 (publication),1928 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1896 (publication),1896 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1893 (publication),1893 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1963 (publication),1963 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1759 (publication),1759 (publication),low confidence
 before 1908,before 1908,low confidence
-1700 (circa),1700 (circa),low confidence
-1886 (publication),1886 (publication),low confidence
-1927 (publication),1927 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1862 (publication),1862 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1862 (publication),1862 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1867 (publication),1867 (publication),low confidence
-1888 (publication),1888 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1914 (publication),1914 (publication),low confidence
-1977 (publication),1977 (publication),low confidence
-1898 (publication),1898 (publication),low confidence
-1800 (circa),1800 (circa),low confidence
-1961 (publication),1961 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1914 (publication),1914 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1809 (pre),1809 (pre),low confidence
-1865 (publication),1865 (publication),low confidence
-1979 (circa),1979 (circa),low confidence
-1876 (publication),1876 (publication),low confidence
-1957 (publication),1957 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1876 (publication),1876 (publication),low confidence
-1873 (pre),1873 (pre),low confidence
-1650 (circa),1650 (circa),low confidence
-1977 (publication),1977 (publication),low confidence
-1876 (publication),1876 (publication),low confidence
-1849 (pre),1849 (pre),low confidence
-1816 (pre),1816 (pre),low confidence
-1887 (publication),1887 (publication),low confidence
-1967 (publication),1967 (publication),low confidence
-1862 (publication),1862 (publication),low confidence
-1879 (pre),1879 (pre),low confidence
-1905 (publication),1905 (publication),low confidence
-1928 (publication),1928 (publication),low confidence
-1953 (publication),1953 (publication),low confidence
-1953 (publication),1953 (publication),low confidence
-1908 (publication),1908 (publication),low confidence
-1862 (publication),1862 (publication),low confidence
-1867 (publication),1867 (publication),low confidence
-1863 (publication),1863 (publication),low confidence
-1874 (publication),1874 (publication),low confidence
-1968 (publication),1968 (publication),low confidence
-1868 (publication),1868 (publication),low confidence
-1859 (publication),1859 (publication),low confidence
-1927 (publication),1927 (publication),low confidence
-1971 (publication),1971 (publication),low confidence
-1928 (publication),1928 (publication),low confidence
-1905 (publication),1905 (publication),low confidence
-1975 (publication),1975 (publication),low confidence
-1996 (publication),1996 (publication),low confidence
-1996 (publication),1996 (publication),low confidence
-1975 (circa),1975 (circa),low confidence
-1967 (pre),1967 (pre),low confidence
-1969 (pre),1969 (pre),low confidence
-1902 (circa),1902 (circa),low confidence
-1905 (publication),1905 (publication),low confidence
-1912 (pre),1912 (pre),low confidence
 <1950,<1950,low confidence
 <1900,<1900,low confidence
 <1875,<1875,low confidence
@@ -3455,11 +3233,10 @@ before 1908,before 1908,low confidence
 -,-,low confidence
 -,-,low confidence
 -,-,low confidence
-� ,�,low confidence
-"1974,1975",19741975,low confidence
-"1949-51, 1953",1949-1951 1953,low confidence
+� ,"",low confidence
+"1949-51, 1953",1949-1951-1953,low confidence
 recently imported,recently imported,low confidence
-1917-1919; 1920-1923,1917-1919; 1920-1923,low confidence
+1917-1919; 1920-1923,1917-1919- 1920-1923,low confidence
 around 1938,around 1938,low confidence
 around 1938,around 1938,low confidence
 around 1904,around 1904,low confidence
@@ -3467,23 +3244,18 @@ around 1925,around 1925,low confidence
 around 1922,around 1922,low confidence
 Accidental introduction,accidental introduction,low confidence
 around 1900,around 1900,low confidence
-"1934,1940",19341940,low confidence
-1934-1943 & 1946,1934-1943 & 1946,low confidence
-1969 to 1980,1969 to 1980,low confidence
-prior to 1959,prior to 1959,low confidence
+1934-1943 & 1946,1934-1943 - 1946,low confidence
+prior to 1959,prior - 1959,low confidence
 "1972,73,79,80",1972737980,low confidence
 before 1959,before 1959,low confidence
 before 1959,before 1959,low confidence
 around 1956-1957,around 1956-1957,low confidence
 around 1938,around 1938,low confidence
 around 1948,around 1948,low confidence
-"1970,1972",19701972,low confidence
-up to 1947,up to 1947,low confidence
-"1931,1933",19311933,low confidence
+up to 1947,up - 1947,low confidence
 since 1969,since 1969,low confidence
 accidentally released ,accidentally released,low confidence
-"1931, 1933, 1936",1931 1933 1936,low confidence
-1928 & 1935,1928 & 1935,low confidence
+"1931, 1933, 1936",1931-1933 1936,low confidence
 around 1983,around 1983,low confidence
 around 1957,around 1957,low confidence
 around 1939,around 1939,low confidence
@@ -3498,7 +3270,9 @@ c 1650,c 1650,low confidence
 c 1700,c 1700,low confidence
 c 1946,c 1946,low confidence
 c 1785,c 1785,low confidence
--1800 - 1800,-833,low confidence
+-1800 - 1800,-563,low confidence
+-1800 - 1800,-716,low confidence
+-1800 - 1800,-643,low confidence
 na,na,low confidence
 na,na,low confidence
 na,na,low confidence
@@ -3742,20 +3516,18 @@ XVII,xvii,low confidence
 <1835 ,<1835,low confidence
 <1835 ,<1835,low confidence
 <1800 ,<1800,low confidence
+late 90ies,late 90ies,low confidence
 Before 1995 ,before 1995,low confidence
 Before 1949 ,before 1949,low confidence
 ND ,nd,low confidence
 ND ,nd,low confidence
 ND ,nd,low confidence
-1930s � 1940s,1930 � 1940,low confidence
-1960 � 1970,1960 � 1970,low confidence
 <1600,<1600,low confidence
 750–500 B,750–500 b,low confidence
 Modern,modern,low confidence
 modern,modern,low confidence
 Before Spring,before spring,low confidence
 Before liberation,before liberation,low confidence
-1840 (Introduction of British Concession),1840 (introduction of british concession),low confidence
 Ancient,ancient,low confidence
 Ancient,ancient,low confidence
 "The Qing Dynasty came in, first used for flowers",the qing dynasty came in first used for flowers,low confidence
@@ -3764,8 +3536,6 @@ modern,modern,low confidence
 Ancient,ancient,low confidence
 Ancient,ancient,low confidence
 Introduced during colonial period,introduced during colonial period,low confidence
-1950s earlier than the small phlox,1953 earlier than the small phlox,low confidence
-1860 (Shandong Yantai),1860 (shandong yantai),low confidence
 modern,modern,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
@@ -3778,7 +3548,6 @@ modern,modern,low confidence
 modern,modern,low confidence
 Ancient,ancient,low confidence
 Ancient,ancient,low confidence
-"1933 (Kaohsiung, Taiwan), 1947 (Hainan)",1933 (kaohsiung taiwan) 1947 (hainan),low confidence
 Record in 1688,record in 1688,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
@@ -3802,30 +3571,20 @@ Modern,modern,low confidence
 Modern,modern,low confidence
 Ancient,ancient,low confidence
 modern,modern,low confidence
-1861 (Hong Kong),1861 (hong kong),low confidence
 modern,modern,low confidence
-1966 (Taiwan),1966 (taiwan),low confidence
-1953 (Taiwan),1953 (taiwan),low confidence
 Modern,modern,low confidence
-1908�/ 1930s,1908�/ 1938,low confidence
+Half a century ago,half a century ago,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
 modern,modern,low confidence
-1992 (Shenzhen),1992 (shenzhen),low confidence
-1959 (Taiwan) 1976 (Guangdong),1959 (taiwan) 1976 (guangdong),low confidence
-1983 (Guangdong Shunde),1983 (guangdong shunde),low confidence
 1993 or earlier,1993 or earlier,low confidence
 Invaded Taiwan in 2000,invaded taiwan in 2000,low confidence
-1995 2003,1995 2003,low confidence
 Before 1995,before 1995,low confidence
 Before 1949,before 1949,low confidence
 Before 1920,before 1920,low confidence
-�1955 (possible),�1955 (possible),low confidence
 Ancient,ancient,low confidence
-1988 (Shaanxi),1988 (shaanxi),low confidence
-2008 (first time in Guangdong),2008 (first time in guangdong),low confidence
 No data,no data,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
@@ -4145,7 +3904,6 @@ No data,no data,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
-1847;1998,1847;1998,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
 Before 1750,before 1750,low confidence
@@ -4153,33 +3911,18 @@ No data,no data,low confidence
 1200 - 1400 AC,1200 - 1400 ac,low confidence
 16th-17th centuries,16th-17th centuries,low confidence
 16th - 17th centuries,16th - 17th centuries,low confidence
-2005 � 2013,2005 � 2013,low confidence
-1996 � 1997,1996 � 1997,low confidence
 No data,no data,low confidence
-1982 � 1983,1982 � 1983,low confidence
-1997 � 1998,1997 � 1998,low confidence
-2012 � 2013,2012 � 2013,low confidence
 Before 1926,before 1926,low confidence
 No data,no data,low confidence
 17th - 18th  centuries,17th - 18th centuries,low confidence
-1997 � 1998,1997 � 1998,low confidence
-1998 � 2003,1998 � 2003,low confidence
-1929 � 1931,1929 � 1931,low confidence
-1964 � 1969,1964 � 1969,low confidence
-1983 � 1989,1983 � 1989,low confidence
 Before 1965,before 1965,low confidence
 No data,no data,low confidence
-1935 � 1963,1935 � 1963,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
-1957 � 1970 � 1973,1957 � 1970 � 1973,low confidence
+1957 � 1970 � 1973,1957-1970  1973,low confidence
 No data,no data,low confidence
-1999 � 2003,1999 � 2003,low confidence
-1950 � 1953,1950 � 1953,low confidence
-1980 � 1985,1980 � 1985,low confidence
-1931 � 1944,1931 � 1944,low confidence
 No data,no data,low confidence
-1982 � 1994 � 2005,1982 � 1994 � 2005,low confidence
+1982 � 1994 � 2005,1982-1994  2005,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
 No data,no data,low confidence
@@ -4500,7 +4243,7 @@ nd,nd,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
-�nd,�nd,low confidence
+�nd,nd,low confidence
 19204,19204,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
@@ -4516,7 +4259,6 @@ nd,nd,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
-2001�,2001�,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
 nd,nd,low confidence
@@ -4584,79 +4326,51 @@ around 1975,around 1975,low confidence
 around 1988,around 1988,low confidence
 around 1884,around 1884,low confidence
 "1913 (only one exemplar was found), 1930",1913 (only 1 exemplar was found) 1930,low confidence
-1945-Republic of Tyva;  1958- Republic of Khakassia; 195-1953 Republic of Buryatia; 1956- Irkutsk,1945-republic of tyva; 1958- republic of khakassia; 195-1953 republic of buryatia; 1956- irkutsk,low confidence
-late XIX; 1884-Omsk; 1933-Kemerovo,late xix; 1884-omsk; 1933-kemerovo,low confidence
+1945-Republic of Tyva;  1958- Republic of Khakassia; 195-1953 Republic of Buryatia; 1956- Irkutsk,1945-republic of tyva- 1958- republic of khakassia- 195-1953 republic of buryatia- 1956- irkutsk,low confidence
+late XIX; 1884-Omsk; 1933-Kemerovo,late xix- 1884-omsk- 1933-kemerovo,low confidence
 in the end of 1990,in the end of 1990,low confidence
-"2005, 2006",2005 2006,low confidence
-"2002, 2005",2002 2005,low confidence
 ~1991,~1991,low confidence
 ~1991,~1991,low confidence
-"(1991, 1999)",(1991 1999),low confidence
+"(1991, 1999)",(1991-1999),low confidence
 < 2002,< 2002,low confidence
 < 1957,< 1957,low confidence
 < 1999,< 1999,low confidence
-< 1950s,< 1951,low confidence
 <1923,<1923,low confidence
 <1983,<1983,low confidence
 < 1947,< 1947,low confidence
 < 1991,< 1991,low confidence
 < 1991,< 1991,low confidence
-1900�1910,1900�1910,low confidence
 < 2002,< 2002,low confidence
-2001 � 2007,2001 � 2007,low confidence
-2006�2007,2006�2007,low confidence
 < 2004,< 2004,low confidence
-< 2003 � 2004,< 2003 � 2004,low confidence
+< 2003 � 2004,< 2003-2004,low confidence
 < 2006,< 2006,low confidence
 < 1996,< 1996,low confidence
 < 2003,< 2003,low confidence
-2005 � 2007,2005 � 2007,low confidence
 < 1991,< 1991,low confidence
-2001 � 2007,2001 � 2007,low confidence
-2006 � 2007,2006 � 2007,low confidence
 <2006,<2006,low confidence
 < 2005,< 2005,low confidence
 < 2005,< 2005,low confidence
-"1967, 2004",1967 2004,low confidence
 < 2003,< 2003,low confidence
 < 2003,< 2003,low confidence
 < 2001,< 2001,low confidence
 <2001,<2001,low confidence
-< 2004 � 2007,< 2004 � 2007,low confidence
-2003 � 2006,2003 � 2006,low confidence
+< 2004 � 2007,< 2004-2007,low confidence
 <2005,<2005,low confidence
-2004 � 2007,2004 � 2007,low confidence
-< 2006 � 2007,< 2006 � 2007,low confidence
+< 2006 � 2007,< 2006-2007,low confidence
 ~ 1958,~ 1958,low confidence
 < 2002 ,< 2002,low confidence
-2004 � 2007,2004 � 2007,low confidence
 < 2001,< 2001,low confidence
 < 2001,< 2001,low confidence
-2005 � 2007,2005 � 2007,low confidence
-2002/2003,2002/2003,low confidence
-2006 � 2007,2006 � 2007,low confidence
-< 2003 � 2007,< 2003 � 2007,low confidence
+< 2003 � 2007,< 2003-2007,low confidence
 < 2004,< 2004,low confidence
-2003 � 2007,2003 � 2007,low confidence
-2000 � 2007,2000 � 2007,low confidence
-"2004, 2006",2004 2006,low confidence
-2003 � 2007,2003 � 2007,low confidence
-2000 � 2001,2000 � 2001,low confidence
 < 2004,< 2004,low confidence
-2004 � 2007,2004 � 2007,low confidence
-2001 � 2007,2001 � 2007,low confidence
-2003 � 2007,2003 � 2007,low confidence
 <2007,<2007,low confidence
-2005 � 2007,2005 � 2007,low confidence
 (1798)1842,(1798)1842,low confidence
-1976�1985,1976�1985,low confidence
-1962�1987,1962�1987,low confidence
 >1900,>1900,low confidence
 <1900,<1900,low confidence
 >1900,>1900,low confidence
 >2001,>2001,low confidence
 >1990,>1990,low confidence
-1953�,1953�,low confidence
 < 1758 ,< 1758,low confidence
 < 1758 ,< 1758,low confidence
 <2004,<2004,low confidence
@@ -4669,1183 +4383,289 @@ N/A,n/a,low confidence
 N/A,n/a,low confidence
 <1900,<1900,low confidence
 before 1949,before 1949,low confidence
-end of 1970s,end of 1974,low confidence
-1940�s,1940�s,low confidence
-1980�s,1980�s,low confidence
-1960�s,1960�s,low confidence
-1990�s,1990�s,low confidence
 before 1977,before 1977,low confidence
->1969 (Reynolds (2018)),>1969 (reynolds (2018)),low confidence
+>1969 (Reynolds (2018)),>1969,low confidence
 before 2009,before 2009,low confidence
->1951 (Reynolds (2018)),>1951 (reynolds (2018)),low confidence
+>1951 (Reynolds (2018)),>1951,low confidence
 before 2008,before 2008,low confidence
 before 1972,before 1972,low confidence
->1968 (Reynolds (2018)),>1968 (reynolds (2018)),low confidence
+>1968 (Reynolds (2018)),>1968,low confidence
 before 2005,before 2005,low confidence
 before 1943,before 1943,low confidence
 before 1968,before 1968,low confidence
 before 1965,before 1965,low confidence
 before 1984,before 1984,low confidence
 before 1978,before 1978,low confidence
-1937 (Reynolds (2018)),1937 (reynolds (2018)),low confidence
 before 2016,before 2016,low confidence
->1961 (Reynolds (2018)),>1961 (reynolds (2018)),low confidence
+>1961 (Reynolds (2018)),>1961,low confidence
 before 2010,before 2010,low confidence
 before 2017,before 2017,low confidence
 before 2016,before 2016,low confidence
->1968 (Reynolds (2018)),>1968 (reynolds (2018)),low confidence
->1952 (Reynolds (2018)),>1952 (reynolds (2018)),low confidence
->1980 (Reynolds (2018)),>1980 (reynolds (2018)),low confidence
+>1968 (Reynolds (2018)),>1968,low confidence
+>1952 (Reynolds (2018)),>1952,low confidence
+>1980 (Reynolds (2018)),>1980,low confidence
 before 1972,before 1972,low confidence
 before 2008,before 2008,low confidence
->1970 (Reynolds (2019)),>1970 (reynolds (2019)),low confidence
+>1970 (Reynolds (2019)),>1970,low confidence
 before 2002,before 2002,low confidence
 before 2017,before 2017,low confidence
 before 2004,before 2004,low confidence
 before 2001,before 2001,low confidence
 before 2000,before 2000,low confidence
-prior to 1780,prior to 1780,low confidence
+prior to 1780,prior - 1780,low confidence
 before 1978,before 1978,low confidence
 before 2002,before 2002,low confidence
 before 1983,before 1983,low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1903 (Imada et al (2005)),1903 (imada et al (2005)),low confidence
-1960 (Imada et al (2005)),1960 (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1924 (Imada et al (2005)),1924 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1923 (Imada et al (2005)),1923 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1912 (Imada et al (2005)),1912 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1988 (Imada et al (2005)),1988 (imada et al (2005)),low confidence
-1904 (Bridwell (1917)),1904 (bridwell (1917)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1854-1855 (Imada et al (2005)),1854-1855 (imada et al (2005)),low confidence
 ~1939,~1939,low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1923 (Imada et al (2005)),1923 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1945 (Imada et al (2005)),1945 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1999 (Imada et al (2005)),1999 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1936 (Christensen (1996)),1936 (christensen (1996)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1924 (Imada et al (2005)),1924 (imada et al (2005)),low confidence
 ~1933,~1933,low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1936 (Imada et al (2005)),1936 (imada et al (2005)),low confidence
-1969 (Imada et al (2005)),1969 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1949 (Imada et al (2005)),1949 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1992 (Imada et al (2005)),1992 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1970 (American Ornithologists' Union (1998b)),1970 (american ornithologists union (1998b)),low confidence
 before 1928,before 1928,low confidence
-1940 (Roth and Willis (1960)),1940 (roth and willis (1960)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
 ~1892,~1892,low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-2010 (Matsunaga et al (2019)),2010 (matsunaga et al (2019)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1958 (Imada et al (2005)),1958 (imada et al (2005)),low confidence
-1948 (Kraus (2009)),1948 (kraus (2009)),low confidence
-1981 (Kraus (2009)),1981 (kraus (2009)),low confidence
-1980 (Kraus (2009)),1980 (kraus (2009)),low confidence
-prior to 1908 (Hinson (2014)),prior to 1908 (hinson (2014)),low confidence
+prior to 1908 (Hinson (2014)),prior - 1908,low confidence
 <1859,<1859,low confidence
 <1942,<1942,low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1998 (Matsunaga et al (2019)),1998 (matsunaga et al (2019)),low confidence
 ~1909,~1909,low confidence
 ~1939,~1939,low confidence
-1939 (Matsunaga et al (2019)),1939 (matsunaga et al (2019)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1949 (Imada et al (2005)),1949 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1962 (Imada et al (2005)),1962 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1950 (Imada et al (2005)),1950 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-2006 (Matsunaga et al (2019)),2006 (matsunaga et al (2019)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1998 (Matsunaga et al (2019)),1998 (matsunaga et al (2019)),low confidence
 ~1981,~1981,low confidence
-1988 (Imada et al (2005)),1988 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
 ~1907,~1907,low confidence
-1980 (Matsunaga et al (2019)),1980 (matsunaga et al (2019)),low confidence
-1951 (Imada et al (2005)),1951 (imada et al (2005)),low confidence
-1989 (Imada et al (2005)),1989 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1951 (Imada et al (2005)),1951 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1975 (Imada et al (2005)),1975 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1956 (Imada et al (2005)),1956 (imada et al (2005)),low confidence
-1993 (Matsunaga et al (2019)),1993 (matsunaga et al (2019)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1942 (Imada et al (2005)),1942 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-before 1917 (Bridwell (1917)),before 1917 (bridwell (1917)),low confidence
-before 1917 (Bridwell (1917)),before 1917 (bridwell (1917)),low confidence
-1971 (Imada et al (2005)),1971 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
-2000 (Matsunaga et al (2019)),2000 (matsunaga et al (2019)),low confidence
-prior to 1917 (Bridwell (1917)),prior to 1917 (bridwell (1917)),low confidence
-1993 (Imada et al (2005)),1993 (imada et al (2005)),low confidence
+before 1917 (Bridwell (1917)),before 1917,low confidence
+before 1917 (Bridwell (1917)),before 1917,low confidence
+prior to 1917 (Bridwell (1917)),prior - 1917,low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1957 (Imada et al (2005)),1957 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-2009 (Lau and Frohlich (2012)),2009 (lau and frohlich (2012)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1984 (Imada et al (2005)),1984 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1969 (Imada et al (2005)),1969 (imada et al (2005)),low confidence
-2016 (Matsunaga et al (2019)),2016 (matsunaga et al (2019)),low confidence
-prior to 1917 (Bridwell (1917)),prior to 1917 (bridwell (1917)),low confidence
-1945 (Imada et al (2005)),1945 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1924 (Imada et al (2005)),1924 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1980 (Imada et al (2005)),1980 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1909 (Matsunaga et al (2019)),1909 (matsunaga et al (2019)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1990s (Kraus (2009)),1992 (kraus (2009)),low confidence
-2002-2003 (Matsunaga et al (2019)),2002-2003 (matsunaga et al (2019)),low confidence
-1913 (Imada et al (2005)),1913 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1953 (Imada et al (2005)),1953 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1974 (Imada et al (2005)),1974 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
+prior to 1917 (Bridwell (1917)),prior - 1917,low confidence
 ~1900,~1900,low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1903 (Imada et al (2005)),1903 (imada et al (2005)),low confidence
-Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1935 (Imada et al (2005)),1935 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1989 (Imada et al (2005)),1989 (imada et al (2005)),low confidence
-1924 (Imada et al (2005)),1924 (imada et al (2005)),low confidence
-1980 (Imada et al (2005)),1980 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1950 (Imada et al (2005)),1950 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
+Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
 Polynesian period (HI),polynesian period (hi),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
 ~1869,~1869,low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1912 (Imada et al (2005)),1912 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1921 (Imada et al (2005)),1921 (imada et al (2005)),low confidence
-1965 (Imada et al (2005)),1965 (imada et al (2005)),low confidence
-1947 (Imada et al (2005)),1947 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1947 (Imada et al (2005)),1947 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
 before 1826,before 1826,low confidence
-1932 (Kraus (2009)),1932 (kraus (2009)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1845-47 (Imada et al (2005)),1845-47 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1988/1991,1988/1991,low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1947 (Imada et al (2005)),1947 (imada et al (2005)),low confidence
-2007 (Matsunaga et al (2019)),2007 (matsunaga et al (2019)),low confidence
-1993 (Imada et al (2005)),1993 (imada et al (2005)),low confidence
-1942 (Imada et al (2005)),1942 (imada et al (2005)),low confidence
-1903 (Imada et al (2005)),1903 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1945 (Imada et al (2005)),1945 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-2010 (Matsunaga et al (2019)),2010 (matsunaga et al (2019)),low confidence
-1917 (Roth and Willis (1960)),1917 (roth and willis (1960)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1997 (Matsunaga et al (2019)),1997 (matsunaga et al (2019)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1963 (Imada et al (2005)),1963 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-~1987 (Kraus (2009)),~1987 (kraus (2009)),low confidence
-~1992 (Krause (2009)),~1992 (krause (2009)),low confidence
+~1987 (Kraus (2009)),~1987,low confidence
+~1992 (Krause (2009)),~1992,low confidence
 before 1967,before 1967,low confidence
-1954 (Zimmerman 1957),1954 (zimmerman 1957),low confidence
 Polynesian period (HI),polynesian period (hi),low confidence
-1979 (Matsunaga et al (2019)),1979 (matsunaga et al (2019)),low confidence
-1990 (Matsunaga et al (2019)),1990 (matsunaga et al (2019)),low confidence
-1992 (Matsunaga et al (2019)),1992 (matsunaga et al (2019)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1946 (Imada et al (2005)),1946 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1942 (Imada et al (2005)),1942 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1945 (Imada et al (2005)),1945 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
 before 1999,before 1999,low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
 ~1900,~1900,low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1999 (Matsunaga et al (2019)),1999 (matsunaga et al (2019)),low confidence
-1976 (Cognato et al (2015)),1976 (cognato et al (2015)),low confidence
-1955 (Harley (1984)),1955 (harley (1984)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1994 (Imada et al (2005)),1994 (imada et al (2005)),low confidence
-1923 (Imada et al (2005)),1923 (imada et al (2005)),low confidence
-2004 (Garcia and Hara (2011)),2004 (garcia and hara (2011)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1958 (Imada et al (2005)),1958 (imada et al (2005)),low confidence
-2000 (Imada et al (2005)),2000 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-2006 (Matsunaga et al (2019)),2006 (matsunaga et al (2019)),low confidence
-2000 (Matsunaga et al (2019)),2000 (matsunaga et al (2019)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1998 (Matsunaga et al (2019)),1998 (matsunaga et al (2019)),low confidence
-2002-2003 (Matsunaga et al (2019)),2002-2003 (matsunaga et al (2019)),low confidence
-2010 (Matsunaga et al (2019)),2010 (matsunaga et al (2019)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1960 (Imada et al (2005)),1960 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1912 (Imada et al (2005)),1912 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1983 (Imada et al (2005)),1983 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
 ~400 (Kraus (2009)),~400 (kraus (2009)),low confidence
 ~1908,~1908,low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1950 (Imada et al (2005)),1950 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1948 (Imada et al (2005)),1948 (imada et al (2005)),low confidence
 before 2009,before 2009,low confidence
-2003 (Matsunaga et al (2019)),2003 (matsunaga et al (2019)),low confidence
-1983 (Imada et al (2005)),1983 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1970 (Imada et al (2005)),1970 (imada et al (2005)),low confidence
-1913 (Imada et al (2005)),1913 (imada et al (2005)),low confidence
-1913 (Imada et al (2005)),1913 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1963 (Imada et al (2005)),1963 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1942 (Imada et al (2005)),1942 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1969 (Imada et al (2005)),1969 (imada et al (2005)),low confidence
 ~1930,~1930,low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1940s (Kraus (2009)),1945 (kraus (2009)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1957 (Imada et al (2005)),1957 (imada et al (2005)),low confidence
 ~400 (Kraus (2009)),~400 (kraus (2009)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1968 (Imada et al (2005)),1968 (imada et al (2005)),low confidence
-1935 (Imada et al (2005)),1935 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1998 (Matsunaga et al (2019)),1998 (matsunaga et al (2019)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
-1989 (Imada et al (2005)),1989 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
 <1965,<1965,low confidence
-2001 (Matsunaga et al (2019)),2001 (matsunaga et al (2019)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1955 (Imada et al (2005)),1955 (imada et al (2005)),low confidence
-1950s (Kraus (2009)),1957 (kraus (2009)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1956 (Imada et al (2005)),1956 (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1920s (Kraus (2009)),1929 (kraus (2009)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1950 (Imada et al (2005)),1950 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1988 (Imada et al (2005)),1988 (imada et al (2005)),low confidence
 ~1882,~1882,low confidence
 ~1900,~1900,low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
 ~400 (Kraus (2009)),~400 (kraus (2009)),low confidence
-2007 (Matsunaga et al (2019)),2007 (matsunaga et al (2019)),low confidence
-1956 (Imada et al (2005)),1956 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1989 (Imada et al (2005)),1989 (imada et al (2005)),low confidence
 Polynesian period (HI),polynesian period (hi),low confidence
-1980 (Imada et al (2005)),1980 (imada et al (2005)),low confidence
-1897-1899 (Kraus (2009)),1897-1899 (kraus (2009)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1936 (Imada et al (2005)),1936 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1984 (Imada et al (2005)),1984 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1914 (Imada et al (2005)),1914 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1958 (Imada et al (2005)),1958 (imada et al (2005)),low confidence
-1913 (Imada et al (2005)),1913 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-2008 (Matsunaga et al (2019)),2008 (matsunaga et al (2019)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1999 (Matsunaga et al (2019)),1999 (matsunaga et al (2019)),low confidence
-1957 (Imada et al (2005)),1957 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1911 (Imada et al (2005)),1911 (imada et al (2005)),low confidence
 ~1932,~1932,low confidence
-1995 (Imada et al (2005)),1995 (imada et al (2005)),low confidence
-1982 (Imada et al (2005)),1982 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1992 (Imada et al (2005)),1992 (imada et al (2005)),low confidence
-1912 (Imada et al (2005)),1912 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1980 (Imada et al (2005)),1980 (imada et al (2005)),low confidence
 <1967,<1967,low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
 <1959,<1959,low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-before 1942 (Roth and Willis (1960)),before 1942 (roth and willis (1960)),low confidence
-before 1922 (Roth and Willis (1960)),before 1922 (roth and willis (1960)),low confidence
-1967 (Imada et al (2005)),1967 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1928 (Imada et al (2005)),1928 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1992 (Imada et al (2005)),1992 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1948 (Imada et al (2005)),1948 (imada et al (2005)),low confidence
-1912 (Imada et al (2005)),1912 (imada et al (2005)),low confidence
-1924 (Imada et al (2005)),1924 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1964 (Imada et al (2005)),1964 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
+before 1942 (Roth and Willis (1960)),before 1942,low confidence
+before 1922 (Roth and Willis (1960)),before 1922,low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
 ~1892,~1892,low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
 <1959,<1959,low confidence
-1947 (Imada et al (2005)),1947 (imada et al (2005)),low confidence
-1992 (Cowie (1997)),1992 (cowie (1997)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1936 (Imada et al (2005)),1936 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1914 (Imada et al (2005)),1914 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1935 (Imada et al (2005)),1935 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1934 (Imada et al (2005)),1934 (imada et al (2005)),low confidence
-1999 (Matsunaga et al (2019)),1999 (matsunaga et al (2019)),low confidence
-before 1927 (Roth and Willis (1960)),before 1927 (roth and willis (1960)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1960 (Imada et al (2005)),1960 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-2001 (Matsunaga et al (2019)),2001 (matsunaga et al (2019)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-~1865 (American Ornithologists' Union (1998a)),~1865 (american ornithologists union (1998a)),low confidence
+before 1927 (Roth and Willis (1960)),before 1927,low confidence
+~1865 (American Ornithologists' Union (1998a)),~1865,low confidence
 before 2003,before 2003,low confidence
-1996 (Kraus (2009)),1996 (kraus (2009)),low confidence
-1974 (Kraus (2009)),1974 (kraus (2009)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
-1960 (Imada et al (2005)),1960 (imada et al (2005)),low confidence
-1953 (Imada et al (2005)),1953 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1980 (Imada et al (2005)),1980 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1989 (Imada et al (2005)),1989 (imada et al (2005)),low confidence
-1992 (Imada et al (2005)),1992 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1990 (Imada et al (2005)),1990 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1956 (Imada et al (2005)),1956 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1918 (Imada et al (2005)),1918 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1958 (Imada et al (2005)),1958 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
 before 1950,before 1950,low confidence
-1936 (Imada et al (2005)),1936 (imada et al (2005)),low confidence
-1973 (Taiti and Howarth (1996)),1973 (taiti and howarth (1996)),low confidence
-1975 (Imada et al (2005)),1975 (imada et al (2005)),low confidence
-1922 (Imada et al (2005)),1922 (imada et al (2005)),low confidence
 ~1909,~1909,low confidence
-1920 (Imada et al (2005)),1920 (imada et al (2005)),low confidence
-1992 (Imada et al (2005)),1992 (imada et al (2005)),low confidence
 <2000,<2000,low confidence
 ~1896,~1896,low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
 before 1952,before 1952,low confidence
-1887 (Imada et al (2005)),1887 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1932 (Easteal (1981)),1932 (easteal (1981)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
 before October 1946,before  1946,low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1961 (Imada et al (2005)),1961 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1965 (Imada et al (2005)),1965 (imada et al (2005)),low confidence
-1970 (Imada et al (2005)),1970 (imada et al (2005)),low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1976 (Imada et al (2005)),1976 (imada et al (2005)),low confidence
-1944 (Imada et al (2005)),1944 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
 <1995,<1995,low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1993 (Imada et al (2005)),1993 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1973 (Imada et al (2005)),1973 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1987 (Imada et al (2005)),1987 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
 ~1916,~1916,low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1940 (Imada et al (2005)),1940 (imada et al (2005)),low confidence
-1908 (Imada et al (2005)),1908 (imada et al (2005)),low confidence
-1952 (Imada et al (2005)),1952 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1991 (Hill et al (2001)),1991 (hill et al (2001)),low confidence
-1960 (Imada et al (2005)),1960 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
 before 1871,before 1871,low confidence
-1925 (Imada et al (2005)),1925 (imada et al (2005)),low confidence
-1999 (Matsunaga et al (2019)),1999 (matsunaga et al (2019)),low confidence
-1999 (Matsunaga et al (2019)),1999 (matsunaga et al (2019)),low confidence
 ~1898,~1898,low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1919 (Imada et al (2005)),1919 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
-1971 (Imada et al (2005)),1971 (imada et al (2005)),low confidence
-prior to 1873,prior to 1873,low confidence
-1913 (Imada et al (2005)),1913 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1942 (Imada et al (2005)),1942 (imada et al (2005)),low confidence
-prior to 1917 (Bridwell (1917)),prior to 1917 (bridwell (1917)),low confidence
-1895 (Imada et al (2005)),1895 (imada et al (2005)),low confidence
+prior to 1873,prior - 1873,low confidence
+prior to 1917 (Bridwell (1917)),prior - 1917,low confidence
 <1924,<1924,low confidence
-1915 (Imada et al (2005)),1915 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1984 (Imada et al (2005)),1984 (imada et al (2005)),low confidence
-1905 (Imada et al (2005)),1905 (imada et al (2005)),low confidence
-1958 (Imada et al (2005)),1958 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1956 (Imada et al (2005)),1956 (imada et al (2005)),low confidence
-1890 (Imada et al (2005)),1890 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1945 (Imada et al (2005)),1945 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1975 (Imada et al (2005)),1975 (imada et al (2005)),low confidence
-1979 (Imada et al (2005)),1979 (imada et al (2005)),low confidence
-1931 (Imada et al (2005)),1931 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1959 (Imada et al (2005)),1959 (imada et al (2005)),low confidence
 before 2014,before 2014,low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1954 (Imada et al (2005)),1954 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1927 (Imada et al (2005)),1927 (imada et al (2005)),low confidence
 pre 2002,pre 2002,low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1923 (Imada et al (2005)),1923 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1909 (Imada et al (2005)),1909 (imada et al (2005)),low confidence
-1986 (Imada et al (2005)),1986 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
 ~1910,~1910,low confidence
-2000 (Matsunaga et al (2019)),2000 (matsunaga et al (2019)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1939 (Imada et al (2005)),1939 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1917 (Imada et al (2005)),1917 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1980 (Kraus (2009)),1980 (kraus (2009)),low confidence
-1949 (Imada et al (2005)),1949 (imada et al (2005)),low confidence
-1937 (Imada et al (2005)),1937 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1938 (Imada et al (2005)),1938 (imada et al (2005)),low confidence
-1998 (Matsunaga et al (2019)),1998 (matsunaga et al (2019)),low confidence
-1870-83 (Imada et al (2005)),1870-83 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1926 (Imada et al (2005)),1926 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1941 (Imada et al (2005)),1941 (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
 ~1881,~1881,low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1932 (Imada et al (2005)),1932 (imada et al (2005)),low confidence
-1999 (Imada et al (2005)),1999 (imada et al (2005)),low confidence
-1985 (Imada et al (2005)),1985 (imada et al (2005)),low confidence
-1943 (Imada et al (2005)),1943 (imada et al (2005)),low confidence
-1910 (Imada et al (2005)),1910 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1923 (Imada et al (2005)),1923 (imada et al (2005)),low confidence
 ~1930,~1930,low confidence
-1933 (Imada et al (2005)),1933 (imada et al (2005)),low confidence
-2007 (Matsunaga et al (2019)),2007 (matsunaga et al (2019)),low confidence
-1951 (Imada et al (2005)),1951 (imada et al (2005)),low confidence
-1984 (Imada et al (2005)),1984 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
-1930 (Imada et al (2005)),1930 (imada et al (2005)),low confidence
 Polynesian (Imada et al (2005)),polynesian (imada et al (2005)),low confidence
-1916 (Imada et al (2005)),1916 (imada et al (2005)),low confidence
-1929 (Imada et al (2005)),1929 (imada et al (2005)),low confidence
 before 1963,before 1963,low confidence
-1925 (Aukema and McCullough (2009)),1925 (aukema and mccullough (2009)),low confidence
 before 1986,before 1986,low confidence
-~1860 (Randall and Marinelli (1996),~1860 (randall and marinelli (1996),low confidence
+~1860 (Randall and Marinelli (1996),~1860,low confidence
 before 1989,before 1989,low confidence
-1987 (Aukema and McCullough (2009)),1987 (aukema and mccullough (2009)),low confidence
-1954 (Aukema and McCullough (2009)),1954 (aukema and mccullough (2009)),low confidence
-1920 (Aukema and McCullough (2009)),1920 (aukema and mccullough (2009)),low confidence
-1881 (Aukema and McCullough (2009)),1881 (aukema and mccullough (2009)),low confidence
-1895 (Aukema and McCullough (2009)),1895 (aukema and mccullough (2009)),low confidence
-1941 (Aukema and McCullough (2009)),1941 (aukema and mccullough (2009)),low confidence
-1908 (Aukema and McCullough (2009)),1908 (aukema and mccullough (2009)),low confidence
-1878 (Aukema and McCullough (2009)),1878 (aukema and mccullough (2009)),low confidence
-1840 (Bousquet (2012)),1840 (bousquet (2012)),low confidence
-1920 (Aukema and McCullough (2009)),1920 (aukema and mccullough (2009)),low confidence
-2002 (Aukema and McCullough (2009)),2002 (aukema and mccullough (2009)),low confidence
-1893 (Christensen (1996)),1893 (christensen (1996)),low confidence
-1976 (Frank and McCoy (1992)),1976 (frank and mccoy (1992)),low confidence
 >1885,>1885,low confidence
 >1960,>1960,low confidence
 <1928,<1928,low confidence
-1904 (Bousquet (2012)),1904 (bousquet (2012)),low confidence
 <1865,<1865,low confidence
-1929 (Bousquet (2012)),1929 (bousquet (2012)),low confidence
-1901 (Bousquet (2012)),1901 (bousquet (2012)),low confidence
-1925 (Bousquet (2012)),1925 (bousquet (2012)),low confidence
-1970s (Enkerlin-Hoeflich and Hogan (1997)),1970 (enkerlin-hoeflich and hogan (1997)),low confidence
-1987 (Aukema and McCullough (2009)),1987 (aukema and mccullough (2009)),low confidence
 <1954,<1954,low confidence
->1934 (Reynolds (2018)),>1934 (reynolds (2018)),low confidence
->1914 (Reynolds (2018)),>1914 (reynolds (2018)),low confidence
->1936 (Reynolds (2018)),>1936 (reynolds (2018)),low confidence
->1952 (Reynolds (2018)),>1952 (reynolds (2018)),low confidence
->1941 (Reynolds (2018)),>1941 (reynolds (2018)),low confidence
->1954 (Reynolds (2018)),>1954 (reynolds (2018)),low confidence
->1953 (Reynolds (2018)),>1953 (reynolds (2018)),low confidence
+>1934 (Reynolds (2018)),>1934,low confidence
+>1914 (Reynolds (2018)),>1914,low confidence
+>1936 (Reynolds (2018)),>1936,low confidence
+>1952 (Reynolds (2018)),>1952,low confidence
+>1941 (Reynolds (2018)),>1941,low confidence
+>1954 (Reynolds (2018)),>1954,low confidence
+>1953 (Reynolds (2018)),>1953,low confidence
 ~1934,~1934,low confidence
 before May 2013,before  2013,low confidence
-1817 (Aukema and McCullough (2009)),1817 (aukema and mccullough (2009)),low confidence
-1986 (Frank and McCoy (1992)),1986 (frank and mccoy (1992)),low confidence
 <2014,<2014,low confidence
-1978 (Kraus (2009)),1978 (kraus (2009)),low confidence
-1874 (Aukema and McCullough (2009)),1874 (aukema and mccullough (2009)),low confidence
-approx 1620 (Bain (1998)),approx 1620 (bain (1998)),low confidence
+approx 1620 (Bain (1998)),approx 1620,low confidence
 before 1960,before 1960,low confidence
->1887 (Reynolds (2018)),>1887 (reynolds (2018)),low confidence
->1934 (Reynolds (2018)),>1934 (reynolds (2018)),low confidence
->1976 (Reynolds (2018)),>1976 (reynolds (2018)),low confidence
->1909 (Reynolds (2018)),>1909 (reynolds (2018)),low confidence
->1909 (Reynolds (2018)),>1909 (reynolds (2018)),low confidence
->1890 (Reynolds (2018)),>1890 (reynolds (2018)),low confidence
->1890 (Reynolds (2018)),>1890 (reynolds (2018)),low confidence
+>1887 (Reynolds (2018)),>1887,low confidence
+>1934 (Reynolds (2018)),>1934,low confidence
+>1976 (Reynolds (2018)),>1976,low confidence
+>1909 (Reynolds (2018)),>1909,low confidence
+>1909 (Reynolds (2018)),>1909,low confidence
+>1890 (Reynolds (2018)),>1890,low confidence
+>1890 (Reynolds (2018)),>1890,low confidence
 before 1960,before 1960,low confidence
-1937 (Aukema and McCullough (2009)),1937 (aukema and mccullough (2009)),low confidence
 before 2007,before 2007,low confidence
 before 2007,before 2007,low confidence
-2000 (Aukema and McCullough (2009)),2000 (aukema and mccullough (2009)),low confidence
 <1897,<1897,low confidence
-1891 (Bousquet (2012)),1891 (bousquet (2012)),low confidence
-approx 1650 (Bain (1998)),approx 1650 (bain (1998)),low confidence
-1897; aggressive strain B 1986,1897; aggressive strain b 1986,low confidence
+approx 1650 (Bain (1998)),approx 1650,low confidence
+1897; aggressive strain B 1986,1897- aggressive strain b 1986,low confidence
 before 1943,before 1943,low confidence
-2001 (Aukema and McCullough (2009)),2001 (aukema and mccullough (2009)),low confidence
 before 1886,before 1886,low confidence
 before 1986,before 1986,low confidence
-before 1926 (Roth and Willis (1960)),before 1926 (roth and willis (1960)),low confidence
-1933 (Bousquet (2012)),1933 (bousquet (2012)),low confidence
+before 1926 (Roth and Willis (1960)),before 1926,low confidence
 before 1974,before 1974,low confidence
-1983 (Frank and McCoy (1992)),1983 (frank and mccoy (1992)),low confidence
-1968-1972 (Brightsmith et al (2017)),1968-1972 (brightsmith et al (2017)),low confidence
-1905 (Lakoba et al (2020)),1905 (lakoba et al (2020)),low confidence
-1989 (Frank and McCoy (1992)),1989 (frank and mccoy (1992)),low confidence
 before 1943,before 1943,low confidence
-since the 1950s,since the 1954,low confidence
-1799 (Aukema and McCullough (2009)),1799 (aukema and mccullough (2009)),low confidence
-1914 (Aukema and McCullough (2009)),1914 (aukema and mccullough (2009)),low confidence
-1929 (Aukema and McCullough (2009)),1929 (aukema and mccullough (2009)),low confidence
-1931 (Aukema and McCullough (2009)),1931 (aukema and mccullough (2009)),low confidence
 <1985,<1985,low confidence
-1890 (Bousquet (2012)),1890 (bousquet (2012)),low confidence
-1853 (Lakoba et al (2020)),1853 (lakoba et al (2020)),low confidence
 approx 1620,approx 1620,low confidence
-1903 (Aukema and McCullough (2009)),1903 (aukema and mccullough (2009)),low confidence
-1970s (Arnett et al (2002)),1972 (arnett et al (2002)),low confidence
 1901+-,1901+-,low confidence
 before 1946,before 1946,low confidence
-1907 (Lakoba et al (2020)),1907 (lakoba et al (2020)),low confidence
 Norse exploration,norse exploration,low confidence
 before 1962,before 1962,low confidence
 approx 1620,approx 1620,low confidence
 approx 1620,approx 1620,low confidence
 approx 1620,approx 1620,low confidence
-1908 (Aukema and McCullough (2009)),1908 (aukema and mccullough (2009)),low confidence
 "before July 24, 2013",before  24 2013,low confidence
-1985 (Frank and McCoy (1992)),1985 (frank and mccoy (1992)),low confidence
-1953 (Frank and McCoy (1992)),1953 (frank and mccoy (1992)),low confidence
 before 2000,before 2000,low confidence
-1945 (Aukema and McCullough (2009)),1945 (aukema and mccullough (2009)),low confidence
 before 1955,before 1955,low confidence
-1600s (Lakoba et al (2020)),1603 (lakoba et al (2020)),low confidence
+mid-19th cenury,mid-19th cenury,low confidence
 <1838,<1838,low confidence
 <1995,<1995,low confidence
-1915 (Aukema and McCullough (2009)),1915 (aukema and mccullough (2009)),low confidence
-1885 (Aukema and McCullough (2009)),1885 (aukema and mccullough (2009)),low confidence
-1890s (Lakoba et al (2020)),1891 (lakoba et al (2020)),low confidence
-1960 (Aukema and McCullough (2009)),1960 (aukema and mccullough (2009)),low confidence
-1700s (Lakoba et al (2020)),1706 (lakoba et al (2020)),low confidence
-1965 (Aukema and McCullough (2009)),1965 (aukema and mccullough (2009)),low confidence
 after the turn of the century,after the turn of the century,low confidence
 approx 1620,approx 1620,low confidence
 before 1957,before 1957,low confidence
 before 1957,before 1957,low confidence
-1975 (Frank and McCoy (1992)),1975 (frank and mccoy (1992)),low confidence
-1900 (Aukema and McCullough (2009)),1900 (aukema and mccullough (2009)),low confidence
-1876 (Aukema and McCullough (2009)),1876 (aukema and mccullough (2009)),low confidence
-1915 (Aukema and McCullough (2009)),1915 (aukema and mccullough (2009)),low confidence
-1868 (Aukema and McCullough (2009)),1868 (aukema and mccullough (2009)),low confidence
 <1967,<1967,low confidence
 <1972,<1972,low confidence
-1944 (Aukema and McCullough (2009)),1944 (aukema and mccullough (2009)),low confidence
-1987 (Aukema and McCullough (2009)),1987 (aukema and mccullough (2009)),low confidence
-"Oregon 1970s, Northeastern US 2005",oregon 1971 northeastern us 2005,low confidence
->1981 (Reynolds (2018)),>1981 (reynolds (2018)),low confidence
->1889 (Reynolds (2018)),>1889 (reynolds (2018)),low confidence
->1909 (Reynolds (2018)),>1909 (reynolds (2018)),low confidence
+>1981 (Reynolds (2018)),>1981,low confidence
+>1889 (Reynolds (2018)),>1889,low confidence
+>1909 (Reynolds (2018)),>1909,low confidence
 >1968,>1968,low confidence
->1909 (Reynolds (2018)),>1909 (reynolds (2018)),low confidence
+>1909 (Reynolds (2018)),>1909,low confidence
 approx 1620,approx 1620,low confidence
->1997 (Reynolds (2018)),>1997 (reynolds (2018)),low confidence
->1896 (Reynolds (2018)),>1896 (reynolds (2018)),low confidence
-1910 (Aukema and McCullough (2009)),1910 (aukema and mccullough (2009)),low confidence
+>1997 (Reynolds (2018)),>1997,low confidence
+>1896 (Reynolds (2018)),>1896,low confidence
 ~1987,~1987,low confidence
 <1980,<1980,low confidence
-1914 (Aukema and McCullough (2009)),1914 (aukema and mccullough (2009)),low confidence
-1975 (Aukema and McCullough (2009)),1975 (aukema and mccullough (2009)),low confidence
-1924 (Aukema and McCullough (2009)),1924 (aukema and mccullough (2009)),low confidence
-1974 (Aukema and McCullough (2009)),1974 (aukema and mccullough (2009)),low confidence
 <2008,<2008,low confidence
 >1950,>1950,low confidence
->1894 (Reynolds (2018)),>1894 (reynolds (2018)),low confidence
->1914 (Reynolds (2018)),>1914 (reynolds (2018)),low confidence
-1900 (Aukema and McCullough (2009)),1900 (aukema and mccullough (2009)),low confidence
+>1894 (Reynolds (2018)),>1894,low confidence
+>1914 (Reynolds (2018)),>1914,low confidence
 before 1953,before 1953,low confidence
-1909 (Aukema and McCullough (2009)),1909 (aukema and mccullough (2009)),low confidence
-2003 (Aukema and McCullough (2009)),2003 (aukema and mccullough (2009)),low confidence
 before 1975,before 1975,low confidence
-1899 (Aukema and McCullough (2009)),1899 (aukema and mccullough (2009)),low confidence
->1953 (Reynolds (2018)),>1953 (reynolds (2018)),low confidence
->1966 (Reynolds (2018)),>1966 (reynolds (2018)),low confidence
-1827 (Lakoba et al (2020)),1827 (lakoba et al (2020)),low confidence
-1986 (Frank and McCoy (1992)),1986 (frank and mccoy (1992)),low confidence
-1907 (Aukema and McCullough (2009)),1907 (aukema and mccullough (2009)),low confidence
-2002 (Aukema and McCullough (2009)),2002 (aukema and mccullough (2009)),low confidence
-1850s (Lakoba et al (2020)),1858 (lakoba et al (2020)),low confidence
-prior to 1920s,prior to 1926,low confidence
+>1953 (Reynolds (2018)),>1953,low confidence
+>1966 (Reynolds (2018)),>1966,low confidence
 before 1862,before 1862,low confidence
 <2010,<2010,low confidence
-1957-1959 (Nesom (2004)),1957-1959 (nesom (2004)),low confidence
 before 1957,before 1957,low confidence
 <2008,<2008,low confidence
-1922 (Aukema and McCullough (2009)),1922 (aukema and mccullough (2009)),low confidence
-1998 (Aukema and McCullough (2009)),1998 (aukema and mccullough (2009)),low confidence
 approx 1620,approx 1620,low confidence
-before 1939 (Kraus (2009)),before 1939 (kraus (2009)),low confidence
+before 1939 (Kraus (2009)),before 1939,low confidence
 before 1885,before 1885,low confidence
-1923 (Aukema and McCullough (2009)),1923 (aukema and mccullough (2009)),low confidence
-1912 (Aukema and McCullough (2009)),1912 (aukema and mccullough (2009)),low confidence
-1974 (Aukema and McCullough (2009)),1974 (aukema and mccullough (2009)),low confidence
 before 1919,before 1919,low confidence
-<1798 (Bousquet (2012)),<1798 (bousquet (2012)),low confidence
-1937 (Bousquet (2012)),1937 (bousquet (2012)),low confidence
-1913 (Aukema and McCullough (2009)),1913 (aukema and mccullough (2009)),low confidence
-1970s (Kraus (2009)),1973 (kraus (2009)),low confidence
-1950s (Kraus (2009)),1958 (kraus (2009)),low confidence
-before 1991 (Kraus (2009),before 1991 (kraus (2009),low confidence
-1908 (Aukema and McCullough (2009)),1908 (aukema and mccullough (2009)),low confidence
-1849 (Aukema and McCullough (2009)),1849 (aukema and mccullough (2009)),low confidence
-1850 (Aukema and McCullough (2009)),1850 (aukema and mccullough (2009)),low confidence
-2001 (Aukema and McCullough (2009)),2001 (aukema and mccullough (2009)),low confidence
-2000 (Aukema and McCullough (2009)),2000 (aukema and mccullough (2009)),low confidence
-1949 (Aukema and McCullough (2009)),1949 (aukema and mccullough (2009)),low confidence
-1933 (Aukema and McCullough (2009)),1933 (aukema and mccullough (2009)),low confidence
-1960 (Aukema and McCullough (2009)),1960 (aukema and mccullough (2009)),low confidence
-1868 (Aukema and McCullough (2009)),1868 (aukema and mccullough (2009)),low confidence
-2005 (Conant et al (2009)),2005 (conant et al (2009)),low confidence
-1915 (Frohlich and Lau (2010)),1915 (frohlich and lau (2010)),low confidence
-1950s (Kraus (2009)),1959 (kraus (2009)),low confidence
+<1798 (Bousquet (2012)),<1798,low confidence
+before 1991 (Kraus (2009),before 1991,low confidence
 <1874,<1874,low confidence
 <1894,<1894,low confidence
 ~1994,~1994,low confidence
-2010s (Florida Fish and Wildlife Conservation Commission (2019)),2014 (florida fish and wildlife conservation commission (2019)),low confidence
-1809 (Lakoba et al (2020)),1809 (lakoba et al (2020)),low confidence
-1918 (Aukema and McCullough (2009)),1918 (aukema and mccullough (2009)),low confidence
 ~1891,~1891,low confidence
->1933 (Reynolds (2018)),>1933 (reynolds (2018)),low confidence
->1974 (Reynolds (2018)),>1974 (reynolds (2018)),low confidence
->2003 (Reynolds (2018)),>2003 (reynolds (2018)),low confidence
->2011 (Reynolds (2018)),>2011 (reynolds (2018)),low confidence
->1905 (Reynolds (2018)),>1905 (reynolds (2018)),low confidence
->1871 (Reynolds (2018)),>1871 (reynolds (2018)),low confidence
-1869 (Aukema and McCullough (2009)),1869 (aukema and mccullough (2009)),low confidence
+>1933 (Reynolds (2018)),>1933,low confidence
+>1974 (Reynolds (2018)),>1974,low confidence
+>2003 (Reynolds (2018)),>2003,low confidence
+>2011 (Reynolds (2018)),>2011,low confidence
+>1905 (Reynolds (2018)),>1905,low confidence
+>1871 (Reynolds (2018)),>1871,low confidence
 <1999,<1999,low confidence
-1950 (Aukema and McCullough (2009)),1950 (aukema and mccullough (2009)),low confidence
-1872 (Aukema and McCullough (2009)),1872 (aukema and mccullough (2009)),low confidence
-1991 (Aukema and McCullough (2009)),1991 (aukema and mccullough (2009)),low confidence
-1924 (Aukema and McCullough (2009)),1924 (aukema and mccullough (2009)),low confidence
->1866 (Reynolds (2018)),>1866 (reynolds (2018)),low confidence
->1948 (Reynolds (2018)),>1948 (reynolds (2018)),low confidence
->1965 (Reynolds (2018)),>1965 (reynolds (2018)),low confidence
->1966 (Reynolds (2018)),>1966 (reynolds (2018)),low confidence
->1920 (Reynolds (2018)),>1920 (reynolds (2018)),low confidence
->1895 (Reynolds (2018)),>1895 (reynolds (2018)),low confidence
-"before 2010; 1997 BC, Canada",before 2010; 1997 bc canada,low confidence
-1986 (Frank and McCoy (1992)),1986 (frank and mccoy (1992)),low confidence
->1950 (Reynolds (2018)),>1950 (reynolds (2018)),low confidence
+>1866 (Reynolds (2018)),>1866,low confidence
+>1948 (Reynolds (2018)),>1948,low confidence
+>1965 (Reynolds (2018)),>1965,low confidence
+>1966 (Reynolds (2018)),>1966,low confidence
+>1920 (Reynolds (2018)),>1920,low confidence
+>1895 (Reynolds (2018)),>1895,low confidence
+"before 2010; 1997 BC, Canada",before 2010- 1997 bc canada,low confidence
+>1950 (Reynolds (2018)),>1950,low confidence
 ~1956,~1956,low confidence
 before 1933,before 1933,low confidence
 approx 1620,approx 1620,low confidence
-2007 (Bousquet (2012)),2007 (bousquet (2012)),low confidence
-1896 (Aukema and McCullough (2009)),1896 (aukema and mccullough (2009)),low confidence
-1925 (Aukema and McCullough (2009)),1925 (aukema and mccullough (2009)),low confidence
-1992 (Beenen (2005)),1992 (beenen (2005)),low confidence
-1992 (Beenen (2005)),1992 (beenen (2005)),low confidence
-1882 (Lakoba et al (2020)),1882 (lakoba et al (2020)),low confidence
-1985 (Frank and McCoy (1992)),1985 (frank and mccoy (1992)),low confidence
 ~2000,~2000,low confidence
 before 1975,before 1975,low confidence
 >1878,>1878,low confidence
->1911 (Reynolds (2018)),>1911 (reynolds (2018)),low confidence
->1950 (Reynolds (2018)),>1950 (reynolds (2018)),low confidence
+>1911 (Reynolds (2018)),>1911,low confidence
+>1950 (Reynolds (2018)),>1950,low confidence
 approx 1620,approx 1620,low confidence
-1971 (Frank and McCoy (1992)),1971 (frank and mccoy (1992)),low confidence
-1930 (Aukema and McCullough (2009)),1930 (aukema and mccullough (2009)),low confidence
-1945 (Aukema and McCullough (2009)),1945 (aukema and mccullough (2009)),low confidence
-1954 (Bousquet (2012)),1954 (bousquet (2012)),low confidence
-1963 (Frank and McCoy (1992)),1963 (frank and mccoy (1992)),low confidence
-2004 (Aukema and McCullough (2009)),2004 (aukema and mccullough (2009)),low confidence
-1800s (Kraus (2009)),1806 (kraus (2009)),low confidence
-1852 (Aukema and McCullough (2009)),1852 (aukema and mccullough (2009)),low confidence
-1876 (Aukema and McCullough (2009)),1876 (aukema and mccullough (2009)),low confidence
-1872 (Aukema and McCullough (2009)),1872 (aukema and mccullough (2009)),low confidence
 approx 1620,approx 1620,low confidence
-1989 (Frank and McCoy (1992)),1989 (frank and mccoy (1992)),low confidence
-before 1958 (Roth and Willis (1960)),before 1958 (roth and willis (1960)),low confidence
+before 1958 (Roth and Willis (1960)),before 1958,low confidence
 before 1939,before 1939,low confidence
 before 1974,before 1974,low confidence
 <1993,<1993,low confidence
-1986 (Frank and McCoy (1992)),1986 (frank and mccoy (1992)),low confidence
-1985 (Frank and McCoy (1992)),1985 (frank and mccoy (1992)),low confidence
-1968 (Aukema and McCullough (2009)),1968 (aukema and mccullough (2009)),low confidence
-1870 (Audubon (2019a)),1870 (audubon (2019a)),low confidence
-1790s (Audubon (2019b)),1795 (audubon (2019b)),low confidence
-<1853 (Bousquet (2012)),<1853 (bousquet (2012)),low confidence
->2012 (Reynolds (2018)),>2012 (reynolds (2018)),low confidence
-1924 (Aukema and McCullough (2009)),1924 (aukema and mccullough (2009)),low confidence
-before 1915 (Roth and Willis (1960)),before 1915 (roth and willis (1960)),low confidence
-before 1916 (Roth and Willis (1960)),before 1916 (roth and willis (1960)),low confidence
+<1853 (Bousquet (2012)),<1853,low confidence
+>2012 (Reynolds (2018)),>2012,low confidence
+before 1915 (Roth and Willis (1960)),before 1915,low confidence
+before 1916 (Roth and Willis (1960)),before 1916,low confidence
 before 1839,before 1839,low confidence
 before 2012,before 2012,low confidence
-1982 (Frank and McCoy (1992)),1982 (frank and mccoy (1992)),low confidence
 fall of 2007,fall of 2007,low confidence
 before 1996,before 1996,low confidence
 <2011,<2011,low confidence
-1882 (Giudice and Ratti (2001)),1882 (giudice and ratti (2001)),low confidence
-1967 (Sarnat (2017)),1967 (sarnat (2017)),low confidence
-1996 (Kraus (2009)),1996 (kraus (2009)),low confidence
 before 1983,before 1983,low confidence
 approx 1620,approx 1620,low confidence
 >1895,>1895,low confidence
-1995 (Aukema and McCullough (2009)),1995 (aukema and mccullough (2009)),low confidence
-1800s (Lakoba et al (2020)),1800 (lakoba et al (2020)),low confidence
-1940 (Aukema and McCullough (2009)),1940 (aukema and mccullough (2009)),low confidence
 before 1957,before 1957,low confidence
 approx 1620,approx 1620,low confidence
-1850 (Aukema and McCullough (2009)),1850 (aukema and mccullough (2009)),low confidence
-1923 (Aukema and McCullough (2009)),1923 (aukema and mccullough (2009)),low confidence
-1995 (Aukema and McCullough (2009)),1995 (aukema and mccullough (2009)),low confidence
-1939 (Aukema and McCullough (2009)),1939 (aukema and mccullough (2009)),low confidence
 before 1999,before 1999,low confidence
->1968 (Reynolds (2018)),>1968 (reynolds (2018)),low confidence
-1988 (Aukema and McCullough (2009)),1988 (aukema and mccullough (2009)),low confidence
+>1968 (Reynolds (2018)),>1968,low confidence
 ~1990,~1990,low confidence
 <1833,<1833,low confidence
-1951 (Kraus (2009)),1951 (kraus (2009)),low confidence
 before 1987,before 1987,low confidence
 before 2006,before 2006,low confidence
->1942 (Reynolds (2018)),>1942 (reynolds (2018)),low confidence
->1900 (Reynolds (2018)),>1900 (reynolds (2018)),low confidence
-1916 (Aukema and McCullough (2009)),1916 (aukema and mccullough (2009)),low confidence
-1923 (Taiti and Howarth (1996)),1923 (taiti and howarth (1996)),low confidence
-<1900 (Bousquet (2012)),<1900 (bousquet (2012)),low confidence
-1939 (Aukema and McCullough (2009)),1939 (aukema and mccullough (2009)),low confidence
-1895 (Aukema and McCullough (2009)),1895 (aukema and mccullough (2009)),low confidence
-1880 (McClory and Gotthardt (2008)),1880 (mcclory and gotthardt (2008)),low confidence
-<1965 (Hulburt (1965)),<1965 (hulburt (1965)),low confidence
-1891 (Aukema and McCullough (2009)),1891 (aukema and mccullough (2009)),low confidence
+>1942 (Reynolds (2018)),>1942,low confidence
+>1900 (Reynolds (2018)),>1900,low confidence
+<1900 (Bousquet (2012)),<1900,low confidence
+<1965 (Hulburt (1965)),<1965,low confidence
 before 1960,before 1960,low confidence
 before 1937,before 1937,low confidence
 approx 1620,approx 1620,low confidence
-1876 (Lakoba et al (2020)),1876 (lakoba et al (2020)),low confidence
-1960 (Audubon (2019e)),1960 (audubon (2019e)),low confidence
-1947 (Aukema and McCullough (2009)),1947 (aukema and mccullough (2009)),low confidence
-prior to 1985,prior to 1985,low confidence
-1983 (Majka et al (2009)),1983 (majka et al (2009)),low confidence
+prior to 1985,prior - 1985,low confidence
 approx 1620,approx 1620,low confidence
-2002 (Aukema and McCullough (2009)),2002 (aukema and mccullough (2009)),low confidence
-1910 (Lakoba et al (2020)),1910 (lakoba et al (2020)),low confidence
 <1916,<1916,low confidence
-1914 (Aukema and McCullough (2009)),1914 (aukema and mccullough (2009)),low confidence
-1866 (Lakoba et al (2020)),1866 (lakoba et al (2020)),low confidence
-1870 (Aukema and McCullough (2009)),1870 (aukema and mccullough (2009)),low confidence
->1951 (Reynolds (2018)),>1951 (reynolds (2018)),low confidence
-1961 (Aukema and McCullough (2009)),1961 (aukema and mccullough (2009)),low confidence
-1884 (Aukema and McCullough (2009)),1884 (aukema and mccullough (2009)),low confidence
-1868 (Aukema and McCullough (2009)),1868 (aukema and mccullough (2009)),low confidence
-1909 (Aukema and McCullough (2009)),1909 (aukema and mccullough (2009)),low confidence
-1878 (Aukema and McCullough (2009)),1878 (aukema and mccullough (2009)),low confidence
+>1951 (Reynolds (2018)),>1951,low confidence
 20 years before 2006,20 years before 2006,low confidence
-1880 (Aukema and McCullough (2009)),1880 (aukema and mccullough (2009)),low confidence
 ~1996,~1996,low confidence
 approx 1620,approx 1620,low confidence
 approx 1620,approx 1620,low confidence
-1917 (Audubon (2019c)),1917 (audubon (2019c)),low confidence
 before 1941,before 1941,low confidence
-1888 (Aukema and McCullough (2009)),1888 (aukema and mccullough (2009)),low confidence
-1987 (Frank and McCoy (1992)),1987 (frank and mccoy (1992)),low confidence
-1982 (Frank and McCoy (1992)),1982 (frank and mccoy (1992)),low confidence
-1967 (Frank and McCoy (1992)),1967 (frank and mccoy (1992)),low confidence
-before 1952 (Roth and Willis (1960)),before 1952 (roth and willis (1960)),low confidence
-1904 (Aukema and McCullough (2009)),1904 (aukema and mccullough (2009)),low confidence
+before 1952 (Roth and Willis (1960)),before 1952,low confidence
 <1943,<1943,low confidence
-1990 (Florida Fish and Wildlife Conservation Commission (2019)),1990 (florida fish and wildlife conservation commission (2019)),low confidence
-1990 (Frank and McCoy (1992)),1990 (frank and mccoy (1992)),low confidence
 approx 1620,approx 1620,low confidence
-1896 (Nisip et al (2019)),1896 (nisip et al (2019)),low confidence
 before 1900,before 1900,low confidence
-1963 (Audubon (2019d)),1963 (audubon (2019d)),low confidence
-1925 (Aukema and McCullough (2009)),1925 (aukema and mccullough (2009)),low confidence
-1967 (Frank and McCoy (1992)),1967 (frank and mccoy (1992)),low confidence
-1990 (Frank and McCoy (1992)),1990 (frank and mccoy (1992)),low confidence
-1991 (Aukema and McCullough (2009)),1991 (aukema and mccullough (2009)),low confidence
 <2010,<2010,low confidence
 <1863,<1863,low confidence
-1887 (Aukema and McCullough (2009)),1887 (aukema and mccullough (2009)),low confidence
-16�17 July 1981,16�17  1981,low confidence
 approx 1620,approx 1620,low confidence
-1997 (Aukema and McCullough (2009)),1997 (aukema and mccullough (2009)),low confidence
 <2005,<2005,low confidence
-1881 (Aukema and McCullough (2009)),1881 (aukema and mccullough (2009)),low confidence
-1946 (Aukema and McCullough (2009)),1946 (aukema and mccullough (2009)),low confidence
-1927 (Aukema and McCullough (2009)),1927 (aukema and mccullough (2009)),low confidence
-1915 (Aukema and McCullough (2009)),1915 (aukema and mccullough (2009)),low confidence
-1941 (Aukema and McCullough (2009)),1941 (aukema and mccullough (2009)),low confidence
-1974 (Aukema and McCullough (2009)),1974 (aukema and mccullough (2009)),low confidence
-1931 (Aukema and McCullough (2009)),1931 (aukema and mccullough (2009)),low confidence
-1909 (Aukema and McCullough (2009)),1909 (aukema and mccullough (2009)),low confidence
-1882 (Aukema and McCullough (2009)),1882 (aukema and mccullough (2009)),low confidence
-1950 (Aukema and McCullough (2009)),1950 (aukema and mccullough (2009)),low confidence
 <2015,<2015,low confidence
 <1989,<1989,low confidence
 To 1977,to 1977,low confidence
@@ -6939,6 +5759,7 @@ To 2016,to 2016,low confidence
 To 1989,to 1989,low confidence
 To 2011,to 2011,low confidence
 From 2001,from 2001,low confidence
+mid-19th,mid-19th,low confidence
 2018 Februray,2018 februray,low confidence
 1869 Septembe,1869 septembe,low confidence
 1856 Juuly,1856 juuly,low confidence
@@ -7420,19 +6241,8 @@ sd,sd,low confidence
 BC350,bc350,low confidence
 BC100,bc100,low confidence
 BC600,bc600,low confidence
-1998/1999,1998/1999,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
 c1945,c1945,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
 since 1986,since 1986,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
-2007/2008,2007/2008,low confidence
 <1875,<1875,low confidence
 <2013,<2013,low confidence
 <2000,<2000,low confidence
@@ -7453,7 +6263,7 @@ unkn,unkn,low confidence
 <1836,<1836,low confidence
 1937 /,1937 /,low confidence
 <1814,<1814,low confidence
-1866 ;,1866 ;,low confidence
+1866 ;,1866 -,low confidence
 <1800,<1800,low confidence
 Around 1975,around 1975,low confidence
 After World War 2,after world war 2,low confidence
@@ -7462,9 +6272,8 @@ After World War 2,after world war 2,low confidence
 After World War 2,after world war 2,low confidence
 Around 1920,around 1920,low confidence
 After World War 2,after world war 2,low confidence
-Showa 20s (1945-1955) or later,showa 23 (1945-1955) or later,low confidence
+Showa 20s (1945-1955) or later,showa 20s (1945-1955) or later,low confidence
 Around 1920,around 1920,low confidence
-1940s or later,1948 or later,low confidence
 After World War 2,after world war 2,low confidence
 After World War 2,after world war 2,low confidence
 Around 1930,around 1930,low confidence

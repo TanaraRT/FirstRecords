@@ -109,10 +109,15 @@ fr_years$event_fr <- str_replace_all( # Normalize whitespace
   "\\p{Zs}|\\s+",
   " "
 )
+fr_years$event_fr <- gsub(" to ", " - ", fr_years$event_fr) # Replace "to" by "-"
+fr_years$event_fr <- gsub(" & ", " - ", fr_years$event_fr) # Replace "&" by "-"
+fr_years$event_fr <- gsub(";", "-", fr_years$event_fr) # Replace ";" by "-"
+fr_years$event_fr <- gsub("�", "", fr_years$event_fr, fixed = TRUE)# Delete "�"
+
+cat("\n  Removed or standardized spaces and special characters") 
 
 # Replace words with numbers
 word_to_number <- c(
-  "half a" = "0.5",
   "one" = "1",
   "two" = "2",
   "three" = "3",
@@ -143,6 +148,8 @@ for (word in names(word_to_number)) {
     ignore.case = TRUE
   )
 }
+
+cat("\n  Replaced number words with digits")
 
 # Replace full dates with years
 pattern <- paste0(
@@ -187,7 +194,18 @@ for (month in names(remove_months)) {
   )
 }
 
+cat("\n  Converted full (d, m, y) and partial dates (m, y) to years")
+
 # Standardize years with 2 digits
+## Ranges - in the 19th century
+fr_years$event_fr <- str_replace_all(
+  fr_years$event_fr,
+  "(\\b18\\d{2})[-–|,](\\d{2})\\b",
+  function(x) {
+    parts <- str_match(x, "(18\\d{2})[-–](\\d{2})")
+    paste0(parts[2], "-", "18", parts[3])
+  }
+)
 ## Ranges - in the 20th century
 fr_years$event_fr <- str_replace_all(
   fr_years$event_fr,
@@ -197,6 +215,7 @@ fr_years$event_fr <- str_replace_all(
     paste0(parts[2], "-", "19", parts[3])
   }
 )
+
 ## Ranges - in the 21st century
 fr_years$event_fr <- str_replace_all(
   fr_years$event_fr,
@@ -230,9 +249,27 @@ fr_years$event_fr <- str_replace_all(
   }
 )
 
+cat("\n  Normalized two-digit and BC years to four-digit format") 
+
+# Replace two dates separated by a space by a range
+pattern_years <- regex("(\\b\\d{4})\\s*(\\d{4}\\b)", ignore_case = TRUE)
+fr_years$event_fr <- gsub(pattern_years, "\\1-\\2", fr_years$event_fr, ignore.case = TRUE)
+
+# Replace two dates separated by a / by a range
+pattern_years <- regex("(\\b\\d{4})\\s*/\\s*(\\d{4}\\b)", ignore_case = TRUE)
+fr_years$event_fr <- gsub(pattern_years, "\\1-\\2", fr_years$event_fr, ignore.case = TRUE)
+
+cat("\n  Replaced slashes/spaces between years with hyphens")
+
+# Delete references
+pattern_ref <- regex("\\b(\\d{4})\\s+(\\(.*\\))$", ignore_case = TRUE)
+fr_years$event_fr <- gsub(pattern_ref, "\\1", fr_years$event_fr, ignore.case = TRUE)
+
+cat("\n  Deleted references")
+
 fr_years$event_fr <- trimws(fr_years$event_fr) # Trim whitespace
 
-cat("\nStep 2 completed: cleaned text and standardized years.\n ") 
+cat("\nStep 2 completed: cleaned text and standardized years\n ") 
 
 ## 3) CONFIDENCE ASSIGNMENT
 cat("\nSTEP 3: CONFIDENCE ASSIGNMENT\
@@ -246,9 +283,9 @@ cat("\nSTEP 3: CONFIDENCE ASSIGNMENT\
 
 mark_confidence <- function(dt) {
   # 1. Full years: high or low confidence based on 1500 threshold (1991 -> high confidence; 1491 -> low confidence)
-  dt[grepl("^\\d{4}$", event_fr) & as.numeric(event_fr) >= 1500,
-     confidence_fr := "high confidence"]
-
+  dt[grepl("^\\d{4}$", event_fr), 
+     confidence_fr := ifelse(as.numeric(event_fr) >= 1500, "high confidence", confidence_fr)]
+  
   # 2. Decades: low to medium-high confidence (1990s -> medium-high confidence; 1490s -> low confidence)
   dt[grepl("^\\d{4}s$|^\\d{2}s$", event_fr), confidence_fr := {
     decade_num <- as.numeric(gsub("s", "", event_fr))
@@ -306,34 +343,84 @@ fr_years <- mark_confidence(fr_years)
 cat("\nStep 3 completed: confidence assigned\n ")
 
 ## 4) STANDARDIZE YEARS
-cat("\nSTEP4: STANDARDIZE YEARS") 
+cat("\nSTEP 4: STANDARDIZE YEARS") 
 
-# DECADES
-ind <- grep("0s", fr_years$event_fr)
-for (i in ind){
-  fr_years[i, event_fr := gsub("0s", sample(0:9, 1), event_fr, perl = TRUE)]
+# DECADES (early, mid, late, \ decades)
+convert_decade_expression_to_year <- function(text) {
+  # 1. Specific: early/mid/late 1970s
+  pattern_specific <- regex("(early|mid|middle|late)[- ]?(\\d{3})0s", ignore_case = TRUE)
+  match_specific <- str_match(text, pattern_specific)
+  
+  if (!is.na(match_specific[1, 1])) {
+    decade_start <- as.numeric(match_specific[1, 3]) * 10
+    offset <- switch(trimws(tolower(match_specific[1, 2])),
+                     early = 2,
+                     mid = 5,
+                     middle = 5,
+                     late = 8,
+                     5)  # default fallback
+    return(as.character(decade_start + offset))
+  }
+  
+  # 2. Generic: 1970s, 1980s, etc. → randomize last digit
+  pattern_generic <- regex("\\b(\\d{3})0s\\b", ignore_case = TRUE)
+  match_generic <- str_match(text, pattern_generic)
+  
+  if (!is.na(match_generic[1, 1])) {
+    decade_start <- as.numeric(match_generic[1, 2]) * 10
+    random_offset <- sample(0:9, 1)
+    return(as.character(decade_start + random_offset))
+  }
+  
+  # No match
+  NA
 }
-cat("\n  Decades handled: randomized last digit of decades")
+decade_years <- sapply(fr_years$event_fr, convert_decade_expression_to_year)
+inds <- which(!is.na(decade_years))
+fr_years$event_fr[inds] <- decade_years[inds]
 
-# CENTURIES, e.g., 18th century -> 1750
-convert_century_to_year <- function(text) {
-  pattern <- regex("\\b(\\d{1,2})(st|nd|rd|th)?\\s+(century|c|cen)\\b",
+cat("\n  Decades handled: randomized or interpreted early/mid/late decades")
+
+# CENTURIES (early, mid, late, \ century)
+convert_century_expression_to_year <- function(text) {
+  # First: try to match "early/mid/late 19th century"
+  pattern_specific <- regex(
+    "(early|mid| middle|late)[- ]?(\\d{1,2})(?:th|st|nd|rd)?\\s*century",
     ignore_case = TRUE
   )
-  matches <- str_match(text, pattern)
-  if (!is.na(matches[1, 1])) {
-    century_num <- as.integer(matches[1, 2])
+  match_specific <- str_match(text, pattern_specific)
+  
+  if (!is.na(match_specific[1, 1])) {
+    century_num <- as.numeric(match_specific[1, 3])
+    base_year <- (century_num - 1) * 100
+    offset <- switch(trimws(tolower(match_specific[1, 2])),
+                     early = 20,
+                     mid = 50,
+                     middle = 50,
+                     late = 80,
+                     50)  # default fallback
+    return(as.character(base_year + offset))
+  }
+  
+  # If no specific match, try the generic "19th century"
+  pattern_generic <- regex(
+    "\\b(\\d{1,2})(st|nd|rd|th)?\\s+(century|c|cen)\\b",
+    ignore_case = TRUE
+  )
+  match_generic <- str_match(text, pattern_generic)
+  
+  if (!is.na(match_generic[1, 1])) {
+    century_num <- as.integer(match_generic[1, 2])
     year <- (century_num - 1) * 100 + 50
     return(as.character(year))
   }
-
-  NA
+  NA # If no match at all
 }
-century_years <- sapply(fr_years$event_fr, convert_century_to_year)
+century_years <- sapply(fr_years$event_fr, convert_century_expression_to_year)
 inds <- which(!is.na(century_years))
 fr_years$event_fr[inds] <- century_years[inds]
 
-cat("\n  Centuries handled")
+cat("\n  Centuries handled: +50 or interpreted early/mid/late decades")
 
 # TWO POSSIBLE YEARS ("OR" and "AND")
 range_pattern <- "^\\s*(-?\\d+)\\s*(or|and)\\s*(-?\\d+)\\s*$" # pattern
@@ -398,83 +485,6 @@ if (any(has_match)) {
 
 cat ("\n  Years ago handled")
 
-# "EARLY", "MID", "LATE" DECADES AND CENTURIES
-
-# For decades
-convert_mid_decade_random <- function(text) {
-  pattern <- regex("(early|mid|middle|late)[- ]?(\\d{3})0s", ignore_case = TRUE)
-  matches <- str_match(text, pattern)
-  if (!is.na(matches[1, 1])) {
-    decade_start <- as.numeric(matches[1, 3]) * 10
-    offset <- switch(matches [1, 2],
-      early = 2,
-      mid   = 5,
-      middle = 5,
-      late  = 8,
-      17
-    )
-    return(decade_start + offset)
-  }
-  NA
-}  # return NA if no match
-
-# For centuries
-convert_mid_century_random <- function(text) {
-  pattern <- regex(
-    "(early|mid| middle| late)[- ]?(\\d{1,2})(?:th|st|nd|rd)? century",
-    ignore_case = TRUE
-  )
-  matches <- str_match(text, pattern)
-  if (!is.na(matches[1, 1])) {
-    century_num <- as.numeric(matches[1, 3])
-    base_year <- (century_num - 1) * 100
-    offset <- switch(matches [1, 2],
-      early = 20,
-      mid   = 50,
-      middle = 50,
-      late  = 80,
-      17
-    )
-    return(base_year + offset)
-  }
-  NA
-}
-
-# For partial centuries
-convert_partial_century <- function(text) {
-  pattern <- regex(
-    "(early|mid|late)[ -]?(\\d{1,2})(?:th|st|nd|rd)?(?!\\s*century)",
-    ignore_case = TRUE
-  )
-  matches <- str_match(text, pattern)
-  if (!is.na(matches[1, 1])) {
-    century_num <- as.numeric(matches[1, 3])
-    base_year <- (century_num - 1) * 100
-    offset <- switch(tolower(matches[1, 2]),
-                     "early" = 20,
-                     "mid"   = 50,
-                     "late"  = 80,
-                     17)
-    return(base_year + offset)
-  }
-  NA
-}
-
-# Apply to fr_years
-mid_century_years <- sapply(fr_years$event_fr, convert_mid_century_random)
-inds <- which(!is.na(mid_century_years))
-fr_years$event_fr[inds] <- as.character(mid_century_years[inds])
-
-mid_decade_years <- sapply(fr_years$event_fr, convert_mid_decade_random)
-inds <- which(!is.na(mid_decade_years))
-fr_years$event_fr[inds] <- as.character(mid_decade_years[inds])
-
-partial_century_years <- sapply(fr_years$event_fr, convert_partial_century)
-inds <- which(!is.na(partial_century_years))
-fr_years$event_fr[inds] <- as.character(partial_century_years[inds])
-
-cat("\n  Early, mid-, late decades and centuries handled")
-
 # AFTER/POST YEARS
 convert_after <- function(text) {
   pattern <- regex("(?i)(?:after|post)[ -]?(\\d{4})(?:\\s+or\\s+later)?\\b")
@@ -504,6 +514,7 @@ pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
 non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
 tmp_file <- file.path("tmp", "fr_non_matching_formats1.csv")
 fwrite(non_matching_rows, tmp_file)
+cat("\nNon-matching rows pre-final cleaning \"fr_non_matching_formats1.csv\" available in tmp folder")
 
 cat("\nStep 4 completed: years standardized\n ")
 
@@ -522,20 +533,29 @@ clean_first_record <- function(dt) {
 }
 clean_first_record(fr_years)
 # Remove empty event_fr values
-# Extract rows that we will delete (empty event_fr, but not empry verbatim_fr)
+# Extract rows that we will delete (empty event_fr, but not empty verbatim_fr)
 fr_years <- fr_years[event_fr != ""]
 
-# CHECK FOR NON-MATCHING FORMATS 2
-pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
+cat("\nStep 5 completed: final cleaning done\n ")
+
+# Extract non-processed/non-matching years
+pattern <- "^\\d{3,4}$|^-\\d{3,4}$|^\\d{3,4}\\s*-\\s*\\d{3,4}$"
 # Filter rows that DO NOT match this pattern
 non_matching_rows <- fr_years[!grepl(pattern, event_fr)]
 tmp_file <- file.path("tmp", "fr_non_matching_formats2.csv")
 fwrite(non_matching_rows, tmp_file)
 
-cat("\nStep 5 completed: final cleaning done")
+cat("\nNon-processed rows post-final cleaning \"fr_non_matching_formats2.csv\" available in tmp folder")
+
+# Remove non-processed/non-matching years and save processed data
+pattern <- "^-?\\d{3,4}$"
+# Filter rows that DO NOT match this pattern
+processed <- fr_years[grepl(pattern, fr_years$event_fr), ]
+output <- file.path("outputs", "fr_years_processed.csv")
+write.csv(processed, output, row.names = FALSE, fileEncoding = "UTF-8")
 
 # Save processed data
-output <- file.path("outputs", "fr_years_processed.csv")
-write.csv(fr_years, output, row.names = FALSE, fileEncoding = "UTF-8")
+#output <- file.path("outputs", "fr_years_processed.csv")
+#write.csv(fr_years, output, row.names = FALSE, fileEncoding = "UTF-8")
 
-cat("\nYears have been processed. Output file saved.\n ")
+cat("\nYears have been processed. Output file available in outputs folder\n ")
