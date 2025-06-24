@@ -27,11 +27,22 @@ fr_prepare_mdataset <- function (fr_raw_data){
     originalNameUsage = "",
     originalNameUsage1 = GenusSpecies,
     originalNameUsage2 = paste(Genus, Species, Author),
+    scientificName = "",
     scientificNameAuthorship = Author,
+    GBIFstatus = "MISSING",
+    GBIFmatchtype = NA,
+    GBIFnote = NA,
+    GBIFstatus_Synonym = NA,
+    species = NA,
+    genus = NA,
+    family = NA,
+    class = NA,
+    order = NA,
+    phylum = NA,
+    kingdom = NA,
+    GBIFtaxonRank = NA,
+    GBIFusageKey = NA,
     taxonRemarks = LifeForm,
-    family = Family,
-    order = Order,
-    class = Class,
     habitat = Habitat,
     FirstRecord1,
     FirstRecord2,
@@ -107,7 +118,6 @@ fr_prepare_mdataset <- function (fr_raw_data){
     "DateNaturalisation", "FirstRecord", "FirstRecord1", "FirstRecord2",
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"
   ) := NULL]
-  
-  cat("\nStep 1 completed: workspace prepared and data extracted\n ") 
+  cat("\nStep 2 completed: main dataset 'fr_mdataset' ready to be processed\n ") 
   return(fr_mdataset)
 }
