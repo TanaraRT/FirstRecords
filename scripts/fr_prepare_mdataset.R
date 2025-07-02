@@ -17,13 +17,17 @@
 
 # Location: location ID| locality | country | continent
 
-fr_prepare_mdataset <- function (fr_raw_data){
+fr_prepare_mdataset <- function (dataset = NULL){
+  if (is.null(dataset) || !is.data.frame(dataset)) {
+    stop("Invalid input: dataset must be a data.frame or data.table")
+  }
   # prepare master dataset
-  fr_mdataset <- fr_raw_data[, .(
+  fr_mdataset <- dataset[, .(
     locationID = "",
     locality = Country,
     country = "",
     continent = "",
+    Taxon = "",
     originalNameUsage = "",
     originalNameUsage1 = GenusSpecies,
     originalNameUsage2 = paste(Genus, Species, Author),
@@ -114,10 +118,13 @@ fr_prepare_mdataset <- function (fr_raw_data){
   ]
   
   # delete old columns
+  fr_mdataset$Taxon <- fr_mdataset$originalNameUsage
   fr_mdataset[, c(
     "DateNaturalisation", "FirstRecord", "FirstRecord1", "FirstRecord2",
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"
   ) := NULL]
   cat("\nStep 2 completed: main dataset 'fr_mdataset' ready to be processed\n ") 
+  write.table(fr_mdataset, "tmp/fr_mdataset_step1.csv")
+
   return(fr_mdataset)
-}
+  }
