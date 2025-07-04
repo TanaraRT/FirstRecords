@@ -19,62 +19,29 @@
 ##########################################################################
 
 
-OverwriteTaxonNames <- function (FileInfo){
-
-  ## identify input datasets based on file name "StandardSpec_....csv"
-  allfiles <- list.files(file.path("Output/","Intermediate"))
-  inputfiles_all <- allfiles[grep("Step4_StandardTaxonNames_",allfiles)]
-  inputfiles <- vector()
-  for (i in 1:nrow(FileInfo)){
-    # inputfiles <- c(inputfiles,grep(FileInfo[i,"Dataset_brief_name"],inputfiles_all,value=T))
-    inputfiles <- c(inputfiles,paste("Step4_StandardTaxonNames_",FileInfo[i,"Dataset_brief_name"],".csv",sep=""))
+OverwriteTaxonNames <- function (dataset, fullspeclist, missing){
+  new_names <- read.xlsx("data/external/UserDefinedTaxonNames.xlsx")
+  ## replace taxonomic information for each provided new taxon name 
+  for (j in 1:nrow(new_names)){
+    ## overwrite taxononomic information in individual database files
+    dataset[dataset$originalNameUsage==new_names$originalNameUsage[j],]$Taxon <- new_names$New_Taxon[j]
+    if (!is.na(new_names$New_scientificName[j])) dataset[dataset$Taxon==new_names$originalNameUsage[j],]$scientificName <- new_names$New_scientificName[j]
+      
+    ## overwrite taxononomic information in full taxon list
+    fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$Taxon <- new_names$New_Taxon[j]
+    fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$GBIFstatus <- ""
+    if (!is.na(new_names$New_scientificName[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$scientificName <- new_names$New_scientificName[j]
+    if (!is.na(new_names$family[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$family <- new_names$family[j]
+    if (!is.na(new_names$order[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$order <- new_names$order[j]
+    if (!is.na(new_names$class[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$class <- new_names$class[j]
+    if (!is.na(new_names$phylum[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$phylum <- new_names$phylum[j]
+    if (!is.na(new_names$kingdom[j])) fullspeclist[fullspeclist$originalNameUsage==new_names$originalNameUsage[j],]$kingdom <- new_names$kingdom[j]
+      
+    ## remove taxon name from list of missing taxon names
+    if (any(new_names$originalNameUsage[j]%in%missing)) missing <- missing[!missing%in%new_names$originalNameUsage[j]]
   }
-  inputfiles <- inputfiles[!is.na(inputfiles)]
-  
-  
-  ## overwrite taxonomic information ################################################
-  
-  new_names <- read.xlsx(file.path("Config","UserDefinedTaxonNames.xlsx"))
-  fullspeclist <- read.table(file.path("Output",paste0(outputfilename,"_",version,"_","FullTaxaList.csv")),stringsAsFactors = F,header=T)
-
-  ## loop over all data sets 
-  for (i in 1:length(inputfiles)){ # loop over inputfiles 
-    
-    dat <- read.table(file.path("Output","Intermediate",inputfiles[i]),header=T,stringsAsFactors = F)
-    missing <- read.table(file.path("Output","Check",paste0("Missing_Taxa_",FileInfo[i,"Dataset_brief_name"],".csv")),stringsAsFactors=F)[,1]
-    
-    if (!any(new_names$Taxon_orig%in%dat$Taxon_orig)) next # jump to next database if no match found
-    
-    ## replace taxonomic information for each provided new taxon name 
-    for (j in 1:nrow(new_names)){
-      
-      # if (length(unique(dat[dat$Taxon_orig==new_names$Taxon_orig[j],]$Family))>1 & is.na(new_names$Family[j])){
-      #   cat(paste0("\n Warning: Taxon name '",new_names$Taxon_orig[j],"' found for more than one family. Add taxonomic information in UserDefinedTaxonNames.xlsx \n"))
-      #   next
-      # }
-  
-      ## overwrite taxononomic information in individual database files
-      dat[dat$Taxon_orig==new_names$Taxon_orig[j],]$Taxon <- new_names$New_Taxon[j]
-      if (!is.na(new_names$New_scientificName[j])) dat[dat$Taxon==new_names$Taxon_orig[j],]$scientificName <- new_names$New_scientificName[j]
-      
-      ## overwrite taxononomic information in full taxon list
-      fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$Taxon <- new_names$New_Taxon[j]
-      fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$GBIFstatus <- ""
-      if (!is.na(new_names$New_scientificName[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$scientificName <- new_names$New_scientificName[j]
-      if (!is.na(new_names$family[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$family <- new_names$family[j]
-      if (!is.na(new_names$order[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$order <- new_names$order[j]
-      if (!is.na(new_names$class[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$class <- new_names$class[j]
-      if (!is.na(new_names$phylum[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$phylum <- new_names$phylum[j]
-      if (!is.na(new_names$kingdom[j])) fullspeclist[fullspeclist$Taxon_orig==new_names$Taxon_orig[j],]$kingdom <- new_names$kingdom[j]
-      
-      ## remove taxon name from list of missing taxon names
-      if (any(new_names$Taxon_orig[j]%in%missing)) missing <- missing[!missing%in%new_names$Taxon_orig[j]]
-    }
-    
-    write.table(missing,file.path("Output","Check",paste0("Missing_Taxa_",FileInfo[i,"Dataset_brief_name"],".csv")))
-    
-    write.table(dat,file.path("Output","Intermediate",paste0("Step4_StandardTaxonNames_",FileInfo[i,"Dataset_brief_name"],".csv")))
-  }
+  fwrite(missing, "tmp/fr_check_tmissing_taxa2b.csv")
+  fwrite(dataset, "tmp/fr_main_dataset_step2b.csv")
   
   ## define major taxonomic groups ###################
   fullspeclist$taxaGroup <- NA
@@ -112,5 +79,7 @@ OverwriteTaxonNames <- function (FileInfo){
   fullspeclist$taxaGroup[fullspeclist$scientificName%in%subset(fullspeclist, genus%in%c("Plasmodium"))$scientificName] <- "SAR"
   
   # write output
-  write.table(fullspeclist,file.path("Output",paste0(outputfilename,"_",version,"_","FullTaxaList.csv")),row.names=F)
+  fwrite(fullspeclist, "tmp/fr_fulltaxalist_2b.csv")
+  cat("Step 2b completed: wrong species names have been overwritten\n" ) 
+  return(dataset)
 }

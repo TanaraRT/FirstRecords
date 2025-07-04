@@ -7,27 +7,27 @@
 #########################################################################################
 
 
-StandardiseLocationNames <- function(FileInfo){
-  
+StandardiseLocationNames <- function(dataset){
+
   ## identify input datasets based on file name "StandardSpec_....csv"
-  allfiles <- list.files(file.path("tmp",))
-  inputfiles_all <- allfiles[grep("Step2_StandardTerms_",allfiles)]
-  inputfiles <- vector()
-  for (i in 1:nrow(FileInfo)){
-    # inputfiles <- c(inputfiles,grep(FileInfo[i,"Dataset_brief_name"],inputfiles_all,value=T))
-    inputfiles <- c(inputfiles,paste("Step2_StandardTerms_",FileInfo[i,"Dataset_brief_name"],".csv",sep=""))
-  }
-  inputfiles <- inputfiles[!is.na(inputfiles)]
+#  allfiles <- list.files(file.path("tmp",))
+#  inputfiles_all <- allfiles[grep("Step2_StandardTerms_",allfiles)]
+#  inputfiles <- vector()
+#  for (i in 1:nrow(dataset)){
+#    # inputfiles <- c(inputfiles,grep(dataset[i,"Dataset_brief_name"],inputfiles_all,value=T))
+#    inputfiles <- c(inputfiles,paste("Step2_StandardTerms_",dataset[i,"Dataset_brief_name"],".csv",sep=""))
+#  }
+#  inputfiles <- inputfiles[!is.na(inputfiles)]
 
   ## load location tables #################################################
   # load table with countries
-  regions <- read.xlsx(file.path("data/external", "AllLocations.xlsx"), sheet = 2, na.strings = "") # Sheet with first aggregation level (i.e. countries)
+  regions <- read.xlsx("data/external/AllLocations.xlsx") # Sheet with first aggregation level (i.e. countries)
   regions <- regions[, c("locationID", "location", "location_var")]
   regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
   regions$Location_lower <- tolower(regions$location)  # Set all to lowercase for matching
   
   # load table with state, provinces, departments, etc...
-  subregions <- read.xlsx(file.path("data/external", "AllLocations.xlsx"), sheet = 3, na.strings = "") # Sheet with second aggregation level (i.e. states, provinces...)
+  subregions <- read.xlsx("data/external/AllLocations.xlsx") # Sheet with second aggregation level (i.e. states, provinces...)
   subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var")]
   subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
   subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
@@ -36,9 +36,7 @@ StandardiseLocationNames <- function(FileInfo){
   dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
   
   ## loop over all data set ############################################
-  for (i in 1:length(inputfiles)){
-    
-    dat <- read.table(file.path("Output","Intermediate",paste0(inputfiles[i])),header=T,stringsAsFactors = F)
+#  dat <- read.table(file.path("Output","Intermediate",paste0(inputfiles[i])),header=T,stringsAsFactors = F)
     
     # dat <- dat[dat$GBIFstatus!="Missing",]
     #   print(inputfiles[i])
@@ -48,7 +46,7 @@ StandardiseLocationNames <- function(FileInfo){
     # }
     
     # Prepare for matching with regions
-    dat_match1 <- dat ## use another dat set for region matching to keep the original names
+    dat_match1 <- dataset ## use another dat set for region matching to keep the original names
     dat_match1$order <- 1:nrow(dat_match1)
     dat_match1$Location_orig <- gsub("\\xa0|\\xc2", " ", dat_match1$Location_orig)  # Replace special spaces
     dat_match1$Location_orig <- gsub("^\\s+|\\s+$", "", dat_match1$Location_orig)  # Trim leading/trailing whitespace
@@ -56,9 +54,10 @@ StandardiseLocationNames <- function(FileInfo){
     dat_match1$Location_orig <- gsub(" \\(the\\)", "", dat_match1$Location_orig)  # Remove " (the)"
     dat_match1$Location_lower <- tolower(dat_match1$Location_orig)  # Lowercase for matching
     
-    ## Step 1: Match names of 'dat' with region names of 'regions' and 'subregions' 
+    ## Step 1: Match names of 'dataset' with region names of 'regions' and 'subregions' 
     dat_match_regions <- merge(dat_match1, regions, by.x = "Location_lower", by.y = "Location_lower", all.x = TRUE)
-    dat_match_subregions <- merge(dat_match1, subregions, by.x = "Location_lower", by.y = "Gadm1_lower", all.x = TRUE)
+#    dat_match_subregions <- merge(dat_match1, subregions, by.x = "Location_lower", by.y = "Gadm1_lower", all.x = TRUE)
+    dat_match_subregions <- merge(dat_match1, subregions, by.x = "locality", by.y = "Gadm1_lower", all.x = TRUE)
     
     ## Step 2a: Match based on keywords in 'regions' - after "location_var" column
     ind_keys_regions <- which(!is.na(regions$location_var))
@@ -102,23 +101,23 @@ StandardiseLocationNames <- function(FileInfo){
     dat_match1 <- dat_match1[order(dat_match1$order),]
     if (!identical(dat_match1$Taxon_orig,dat$Taxon_orig)) stop("Data sets not sorted equally!")
     
-    dat$locationID <- dat_match1$locationID
-    dat$Location <- dat_match1$Location
-    dat$stateProvince <- dat_match1$gadm1_name
+    dataset$locationID <- dat_match1$locationID
+    dataset$Location <- dat_match1$Location
+    dataset$stateProvince <- dat_match1$gadm1_name
     
     ## Check if any locations in the original dataframe correspond to duplicated locations in the world. 
-    if (any(dat$Location_orig %in% dup)) {
-      # Extract the matching names from dat$Location_orig
-      matching_names <- unique(dat$Location_orig[dat$Location_orig %in% dup])
+    if (any(dataset$Location_orig %in% dup)) {
+      # Extract the matching names from dataset$Location_orig
+      matching_names <- unique(dataset$Location_orig[dataset$Location_orig %in% dup])
       warning(paste(
-        "\n    Warning: Unresolved terms in ",FileInfo[i,"Dataset_brief_name"],".The following location name(s) correspond to multiple subregions in the world:",
+        "\n    Warning: Unresolved terms in ",dataset[i,"Dataset_brief_name"],".The following location name(s) correspond to multiple subregions in the world:",
         paste(matching_names, collapse = ", "),
         ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia). ) \n"
         ))
     }
     
-    #dat_regnames <- merge(dat,regions[,c("locationID","location")],by.x="region",by.y="location",all.x=T)
-    dat_regnames <- dat
+    #dat_regnames <- merge(dataset,regions[,c("locationID","location")],by.x="region",by.y="location",all.x=T)
+    dat_regnames <- dataset
     
     ## Remove duplicated entries
     dat_regnames <- dat_regnames[!duplicated(dat_regnames), ]
@@ -133,21 +132,23 @@ StandardiseLocationNames <- function(FileInfo){
     ## output ###############################################################################
     
     # Output: Save the file with standardized location names
-    write.table(write_regnames,file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",FileInfo[i,"Dataset_brief_name"],".csv")),row.names=F)
+#    write.table(write_regnames,file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",dataset[i,"Dataset_brief_name"],".csv")),row.names=F)
+    fwrite(fullspeclist, "tmp/fr_main_dataset_step3.csv")
     
     # Check and export missing locations
     missing <- dat_regnames$Location_orig[is.na(dat_regnames$locationID)]
     if (length(missing) > 0) {
-      write.table(sort(unique(missing)),file.path("Output","Check",paste0("Missing_Locations_",FileInfo[i,"Dataset_brief_name"],".csv")),row.names = F,col.names=F)
+      missing <- sort(unique(missing))
+      fwrite(missing, "tmp/fr_check_missing_locations.csv")
+#      write.table(sort(unique(missing)),file.path("Output","Check",paste0("Missing_Locations_",dataset[i,"Dataset_brief_name"],".csv")),row.names = F,col.names=F)
     }
-  }
   
   ## Post-processing: Aggregate and export changed location names
   if (nrow(dat_regnames)>0){ # avoid step when no region names have changed
     reg_names <- vector()
     for (i in 1:length(inputfiles)){
-      dat <- read.table(file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",FileInfo[i,"Dataset_brief_name"],".csv")),stringsAsFactors = F,header=T)
-      reg_names <- rbind(reg_names,cbind(dat[,c("Location","Location_orig")],FileInfo[i,1]))
+      dataset <- read.table(file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",dataset[i,"Dataset_brief_name"],".csv")),stringsAsFactors = F,header=T)
+      reg_names <- rbind(reg_names,cbind(dataset[,c("Location","Location_orig")],dataset[i,1]))
     }
     reg_names <- reg_names[reg_names$Location!=reg_names$Location_orig,] # export only region names deviating from the original
     reg_names <- unique(reg_names[order(reg_names$Location),])
@@ -155,7 +156,8 @@ StandardiseLocationNames <- function(FileInfo){
     
     # Clean locations and locationID 
     reg_names  <- reg_names |> left_join(regions |> select(location, locationID), by = c("Location" = "location"))
-    
-    write.table(reg_names,file.path("Output","Translated_LocationNames.csv"),row.names=F)
+    fwrite(reg_names, "tmp/fr_translated_locationNames.csv")
+#    write.table(reg_names,file.path("Output","Translated_LocationNames.csv"),row.names=F)
+    return(dataset)
   }
 }

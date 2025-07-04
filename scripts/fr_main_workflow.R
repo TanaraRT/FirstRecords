@@ -10,7 +10,7 @@
 
 ## 1) PREPARE WORKSPACE AND IMPORT DATA ##################################
 
-cat("\nSTEP 1: Prepare workspace and import data") 
+cat("\nINITIALIZATION: Prepare workspace and import data") 
 
 # clean workspace
 graphics.off()
@@ -24,6 +24,7 @@ library(data.table)
 library(rgbif)
 library(worrms)
 library(openxlsx)
+library(tidyverse)
 
 # import data
 fr_raw_data <- read.csv2('data/raw/IntroData_raw.csv', fileEncoding = "UTF-8",
@@ -34,34 +35,31 @@ fr_raw_data <- read.csv2('data/raw/IntroData_raw.csv', fileEncoding = "UTF-8",
 setDT(fr_raw_data) 
 
 # load functions
-source("scripts/fr_prepare_mdataset.r")
+source("scripts/fr_prepare_main_dataset.r")
 source("scripts/fr_taxons_standard.r")
-source("scripts/checkGBIFTax.r")
+source("scripts/check_GBIF_taxa.r")
+source("scripts/OverwriteTaxonNames.r")
 source("scripts/StandardiseLocationNames.r")
 
-cat("\nStep 1 completed: library, functions and raw data loaded\n ") 
+cat("\nIntialization completed: library, functions and raw data loaded\n ") 
 
 
-## 2) PREPARATION OF DATASET #############################################
-cat("\nSTEP 2: Prepare main dataset: fr_mdataset") 
-fr_mdataset <- fr_prepare_mdataset(fr_raw_data)
+## 1) PREPARATION OF DATASET #############################################
+cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
+fr_main_dataset_1 <- fr_prepare_main_dataset(fr_raw_data)
 
-## 3) STANDARDIZATION OF TAXA ############################################
-cat("\nSTEP 3: Standardize taxa\n") 
-fr_mdataset_step3a <- fr_taxons_standard (fr_mdataset)
-fr_mdataset_step3b <-fr_mdataset_step3a$taxon_dataset
+## 2) STANDARDIZATION OF TAXA ############################################
+cat("\nSTEP 2: Standardize taxa\n") 
+results_step2 <- fr_taxons_standard (fr_main_dataset_1)
+fr_main_dataset_2a <- results_step2$taxon_dataset # without Taxon ID
+fr_fullspeclist <- results_step2$fullspeclist # with Taxon ID
+fr_mismatches <- results_step2$mismatches
+fr_main_dataset_2b <- OverwriteTaxonNames(fr_main_dataset_2a, fr_fullspeclist, fr_mismatches)
+  
+## 3) STANDARDIZATION OF LOCALITIES #######################################
+cat("\nSTEP 3: Standardize localities\n") 
+fr_main_dataset_step3 <- StandardiseLocationNames(fr_main_dataset_2b)
 
-# Step 4
-cat("\nSTEP 4: Standardize localities\n") 
-fr_mdataset_step4 <- StandardiseLocationNames(fr_mdataset)
-
-
-
-
-
-## 4) STANDARDIZATION OF LOCALITIES
-#cat("\nSTEP 3: Standardize taxa\n") 
-#fr_mdataset_step4 <-StandardiseLocationNames (taxon_dataset)
 
 
 
