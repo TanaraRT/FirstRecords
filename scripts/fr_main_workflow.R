@@ -46,11 +46,11 @@ cat("\nIntialization completed: library, functions and raw data loaded\n ")
 
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
-fr_main_dataset_1 <- fr_prepare_main_dataset(fr_raw_data)
+fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_raw_data, save_to_disk = TRUE)
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa\n") 
-results_step2 <- fr_taxons_standard (fr_main_dataset_1)
+results_step2 <- fr_taxons_standard (dataset = fr_main_dataset_1)
 fr_main_dataset_2a <- results_step2$taxon_dataset # without Taxon ID
 fr_fullspeclist <- results_step2$fullspeclist # with Taxon ID
 fr_mismatches <- results_step2$mismatches

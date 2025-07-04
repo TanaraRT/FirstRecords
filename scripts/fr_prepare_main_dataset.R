@@ -8,6 +8,8 @@
 ## vx.x, 2025                                                           ##
 ##########################################################################
 
+
+#
 # Organization:
 #  Main dataset: locality | locationID | taxon| scientificName | taxonID | 
 # firstRecord | verbatimFirstRecordEvent | confidenceFirstRecord | occurenceStatus | 
@@ -17,7 +19,7 @@
 
 # Location: location ID| locality | country | continent
 
-fr_prepare_main_dataset <- function (dataset = NULL){
+fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
@@ -124,7 +126,8 @@ fr_prepare_main_dataset <- function (dataset = NULL){
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"
   ) := NULL]
   cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
+  if (save_to_disk == TRUE){
   fwrite(dataset, "tmp/fr_main_dataset_step1.csv")
-  
+  }
   return(dataset)
   }
