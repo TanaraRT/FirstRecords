@@ -1,10 +1,13 @@
 
-####### SInAS workflow: Integration and standardisation of alien species data ###########
-##
-## Step 2b: Standardisation of location names using a translation table "AllLocations.xlsx"
-##
-## Manuela Gómez-Suárez, Hanno Seebens, Gießen, 17.06.2025
-#########################################################################################
+##########################################################################
+##                                                                      ##
+##                        FIRST RECORDS WORKFLOW                        ##
+##               Step 3: Standardisation of location names              ##
+##             using a translation table "AllLocations.xlsx"            ##
+##                                                                      ##
+## M. Gómez-Suárez, H. Seebens, T. Renard Truong                        ##
+## vx.x, 2025                                                           ##
+##########################################################################
 
 
 StandardiseLocationNames <- function(dataset){

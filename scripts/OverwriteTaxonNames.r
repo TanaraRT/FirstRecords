@@ -1,17 +1,9 @@
 
-####### SInAS workflow: Integration and standardisation of alien species data ###########
-##
-## Step 2c: Standardisation of taxon names
-##
-## Replacing taxon names by user-defined list "UserDefinedTaxonNames.xlsx"
-##
-## Hanno Seebens, Gießen, 17.06.2025
-#########################################################################################
-
 ##########################################################################
 ##                                                                      ##
 ##                       FIRST RECORDS WORKFLOW                         ##
-##                       Standardize taxonomy 2                         ##
+##                    Step 2: Standardize taxonomy                      ##
+##              2b: Replacing taxon names by user-defined list          ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## H. Seebens, T. Renard Truong                                         ##
