@@ -43,22 +43,6 @@ check_GBIF_taxa <- function(taxon_names=NULL,
     
   }
   
-#  dat$scientificName <- NA
-#  dat$Taxon <- dat$originalNameUsage
-#  dat$GBIFstatus <- "MISSING"
-#  dat$GBIFmatchtype <- NA
-#  dat$GBIFnote <- NA
-#  dat$GBIFstatus_Synonym <- NA
-#  dat$species <- NA
-#  dat$genus <- NA
-#  dat$family <- NA
-#  dat$class <- NA
-#  dat$order <- NA
-#  dat$phylum <- NA
-#  dat$kingdom <- NA 
-#  dat$GBIFtaxonRank <- NA
-#  dat$GBIFusageKey <- NA
-  
   if (any(colnames(dat)=="kingdom_user")){
     taxlist_lifeform <- unique(dat[,c("Taxon","kingdom_user")])
     taxlist <- taxlist_lifeform$Taxon
@@ -77,10 +61,9 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   
   mismatches <- data.frame(Taxon=NA,status=NA,matchType=NA)
   
-  for (j in 52400:n_taxa) {# loop over all species names; takes some hours...
+  for (j in 52000:n_taxa) {# loop over all species names; takes some hours...
 #    for (j in 1:n_taxa) {# loop over all species names; takes some hours...
       
-  
     # select species name and download taxonomy
     ind_tax <- which(dat$Taxon==taxlist[j])
     db_all <- name_backbone_verbose(taxlist[j],strict=T) # check for names and synonyms
@@ -90,7 +73,6 @@ check_GBIF_taxa <- function(taxon_names=NULL,
     if (any(db$status=="ACCEPTED" & db$matchType=="EXACT" & colnames(db)=="canonicalName")) { 
       
       ### EXACT MATCHES: select only accepted names and exact matches ##############################################
-      
       dat$Taxon[ind_tax]      <- db[db$status=="ACCEPTED" & db$matchType=="EXACT",]$canonicalName[1]
       dat$scientificName[ind_tax] <- db[db$status=="ACCEPTED" & db$matchType=="EXACT",]$scientificName[1]
       dat$GBIFstatus[ind_tax]      <- db[db$status=="ACCEPTED" & db$matchType=="EXACT",]$status[1]
@@ -150,7 +132,9 @@ check_GBIF_taxa <- function(taxon_names=NULL,
         db_all_2 <- name_backbone_verbose(dat$Taxon[ind_tax][1],strict=T) # get scientific name
         db_2 <- db_all_2[["data"]]
 
-        if (db_2$matchType=="EXACT"){ # exact matches
+      #  if (db_2$matchType=="EXACT"){ # exact matches
+          if (!is.null(db_2) && nrow(db_2) > 0 && "matchType" %in% colnames(db_2) && any(db_2$matchType == "EXACT")) {
+            
           dat$scientificName[ind_tax]  <- db_2[db_2$matchType=="EXACT",]$scientificName[1]
           dat$GBIFstatus_Synonym[ind_tax]<- db_2[db_2$matchType=="EXACT",]$status[1]
           try(dat$species[ind_tax]     <- db_2[db_2$matchType=="EXACT",]$species[1],silent=T)
@@ -439,6 +423,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   out <- list()
   out[[1]] <- dat
   out[[2]] <- mismatches
+  cat("Step 2a completed: species names have been standardized across the GBIF backbone taxonomy\n")
   return(out)
 }
 

@@ -9,16 +9,6 @@
 ##########################################################################
 
 
-#
-# Organization:
-#  Main dataset: locality | locationID | taxon| scientificName | taxonID | 
-# firstRecord | verbatimFirstRecordEvent | confidenceFirstRecord | occurenceStatus | 
-#establishmentMeans | degreeOfEstablishment| datasetName | bibliographicCitation
-
-# Taxonomy: taxonID | scientificName |scientificNameAuthorship| originalNameUsage | taxonRemarks | family | order | class | phylum | habitat |
-
-# Location: location ID| locality | country | continent
-
 fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
@@ -48,7 +38,7 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
     kingdom = NA,
     GBIFtaxonRank = NA,
     GBIFusageKey = NA,
-    taxonRemarks = LifeForm,
+    taxaGroup = LifeForm,
     habitat = Habitat,
     FirstRecord1,
     FirstRecord2,
