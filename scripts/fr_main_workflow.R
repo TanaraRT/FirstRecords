@@ -39,7 +39,7 @@ source("scripts/fr_prepare_main_dataset.r")
 source("scripts/fr_taxons_standard.r")
 source("scripts/check_GBIF_taxa.r")
 source("scripts/fr_years_standard.r")
-source("scripts/StandardiseLocationNames.r")
+source("scripts/fr_localities_standard.r")
 
 cat("\nIntialization completed: library, functions and raw data loaded\n ") 
 
@@ -50,14 +50,15 @@ fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_raw_data, save_to_disk
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa\n") 
-fr_main_dataset_2a <- fr_taxons_standard (dataset = fr_main_dataset_1)
+fr_main_dataset_2 <- fr_taxons_standard (dataset = fr_main_dataset_1)
 
 ## 3) STANDARDIZATION OF FIRST RECORDS####################################
-fr_main_dataset_3 <- fr_years_standard (dataset = fr_main_dataset_2a)
+cat("\nSTEP 3: Standardize years\n") 
+fr_main_dataset_3 <- fr_years_standard (dataset = fr_main_dataset_2)
   
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
-cat("\nSTEP 3: Standardize localities\n") 
-fr_main_dataset_step3 <- StandardiseLocationNames(fr_main_dataset_2b)
+cat("\nSTEP 4: Standardize localities\n") 
+fr_main_dataset_step4 <- fr_localities_standard(fr_main_dataset_3)
 
 
 

@@ -79,7 +79,7 @@ fr_taxons_standard <- function(dataset = NULL) {
   
   setcolorder(fr_main_dataset_step2, c(setdiff(names(fr_main_dataset_step2), "taxonID"), "taxonID"))
   
-  fr_main_dataset_step2 <- fr_main_dataset_step2[, c("locationID", "locality", "country", "continent", "taxonID", "Taxon",
+  fr_main_dataset_step2 <- fr_main_dataset_step2[, c("locationID", "verbatimLocation", "locality", "country", "continent", "taxonID", "Taxon",
                                                      "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                                      "confidenceFirstRecordEvent",	"occurenceStatus",	"establishmentMeans",
                                                      "degreeOfEstablishment",	"datasetName",	"bibliographicCitation",	

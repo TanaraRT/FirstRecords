@@ -16,7 +16,8 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   # prepare master dataset
   dataset <- dataset[, .(
     locationID = "",
-    locality = Country,
+    verbatimLocation = Country,
+    locality = "",
     country = "",
     continent = "",
     Taxon = "",
