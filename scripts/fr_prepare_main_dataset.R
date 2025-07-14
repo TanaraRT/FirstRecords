@@ -8,7 +8,6 @@
 ## vx.x, 2025                                                           ##
 ##########################################################################
 
-
 fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
@@ -17,9 +16,9 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   dataset <- dataset[, .(
     locationID = "",
     verbatimLocation = Country,
-    locality = "",
+    locality = Country,
     country = "",
-    continent = "",
+    region = "",
     Taxon = "",
     originalNameUsage = "",
     originalNameUsage1 = GenusSpecies,

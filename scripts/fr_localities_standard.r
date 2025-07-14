@@ -11,163 +11,126 @@
 
 
 fr_localities_standard <- function(dataset){
+
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
+  class(dataset)
+  print(names(dataset))
   
-  ## load location tables #################################################
-  # load table with countries
-  regions <- read.xlsx("data/external/AllLocations.xlsx") # Sheet with first aggregation level (i.e. countries)
-  regions <- regions[, c("locationID", "location", "location_var")]
-  regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
-  regions$Location_lower <- tolower(regions$location)  # Set all to lowercase for matching
-  
-  # load table with state, provinces, departments, etc...
-  subregions <- read.xlsx("data/external/AllLocations.xlsx") # Sheet with second aggregation level (i.e. states, provinces...)
-  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var")]
-  subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
-  subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
-  
+  ## load locations reference table
+  reference_locations <- read.xlsx("data/external/AllLocations.xlsx") 
+  setDT(reference_locations)
+  reference_locations_unique <- reference_locations[!duplicated(location)]
+  reference_locations_unique <-  reference_locations_unique[, location := tolower(location)]
+  reference_locations_unique <-  reference_locations_unique[, gadm1_name := tolower(location)]
+  fwrite (reference_locations_unique, "tmp/reference_locations_unique.csv")
+
   # Get duplicated names of subregions  
-  dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
+  dup <- unique(gsub("\\s*\\(.*?\\)", "", reference_locations$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", reference_locations$gadm1_name))])
   
-  ## loop over all data set ############################################
-#  dat <- read.table(file.path("Output","Intermediate",paste0(inputfiles[i])),header=T,stringsAsFactors = F)
-    
-    # dat <- dat[dat$GBIFstatus!="Missing",]
-    #   print(inputfiles[i])
-    #   print(dim(dat))
-    #   print(length(unique(dat$Species_name_orig)))
-    #   print(length(unique(dat$verbatimLocation)))
-    # }
-    
-    # Prepare dataset for matching with regions
-    dat_match1 <- dataset ## use another dat set for region matching to keep the original names
-    dat_match1$order <- 1:nrow(dat_match1)
-    dat_match1$verbatimLocation <- gsub("\\xa0|\\xc2", " ", dat_match1$verbatimLocation)  # Replace special spaces
-    dat_match1$verbatimLocation <- gsub("^\\s+|\\s+$", "", dat_match1$verbatimLocation)  # Trim leading/trailing whitespace
-    dat_match1$verbatimLocation <- gsub("  ", " ", dat_match1$verbatimLocation)  # Replace double spaces
-    dat_match1$verbatimLocation <- gsub(" \\(the\\)", "", dat_match1$verbatimLocation)  # Remove " (the)"
-    dat_match1$Location_lower <- tolower(dat_match1$verbatimLocation)  # Lowercase for matching
-    
-    ## Step 1: Match names of 'dataset' with region names of 'regions' and 'subregions' 
-    dat_match_regions <- merge(dat_match1, regions, by.x = "Location_lower", by.y = "Location_lower", all.x = TRUE)
-#    dat_match_subregions <- merge(dat_match1, subregions, by.x = "Location_lower", by.y = "Gadm1_lower", all.x = TRUE)
-    dat_match_subregions <- merge(dat_match1, subregions, by.x = "locality", by.y = "Gadm1_lower", all.x = TRUE)
-    
-    ## Step 2a: Match based on keywords in 'regions' - after "location_var" column
-    ind_keys_regions <- which(!is.na(regions$location_var))
-    for (j in ind_keys_regions) {  # loop over rows with multiple country name variations
-      location_var <- unlist(strsplit(regions$location_var[j], "; ")) # check if multiple country name variations provided
-      for (k in location_var) {
-        ind_match <- which(dat_match_regions$Location_lower == k)
-        if (length(unique(regions$location[j])) > 1) 
-          cat(paste0("Warning: ", k, " matches multiple location names. Refine location_var!"))
-        
-        dat_match_regions$location[ind_match] <- regions$location[j]
-        dat_match_regions$locationID[ind_match] <- regions$locationID[j]
-      }
-    }
-    
-    ## Step 2b: Match based on keywords in 'subregions' - after "gadm1_var" column
-    ind_keys_subregions <- which(!is.na(subregions$gadm1_var))
-    for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
-      gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple subregion name variations provided
-      for (k in gadm1_var) {
-        ind_match <- which(dat_match_subregions$Location_lower == k)
-        if (length(unique(subregions$gadm1_name[j])) > 1) 
-          cat(paste0("Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
-        
-        dat_match_subregions$gadm1_name[ind_match] <- subregions$gadm1_name[j]
-        dat_match_subregions$location[ind_match] <- subregions$location[j]
-        dat_match_subregions$locationID[ind_match] <- subregions$locationID[j]
-      }
-    }
-    
-    ## Merge both data frames with standardized locations names ('region' and 'subregion')
-    dat_match1 <- full_join(dat_match_subregions, 
-                            dat_match_regions |> select(order, locationID, location), 
-                            by="order") |> 
-    #mutate(locationID = coalesce(as.character(locationID.x), as.character(locationID.y)),
-    #         Location = coalesce(location.x, location.y))
-    #mutate(locationID = coalesce(locationID.x, locationID.y),
-    #         Location = coalesce(location.x, location.y))|> 
-    mutate(locationID = coalesce(as.character(locationID.x.x), as.character(locationID.y)),
-           Location = coalesce(location.y, location.x))  # location.y seems more complete
-    
-    # Check column names
-    print(names(dat_match1))
-    
-#      select(-locationID.x, -locationID.y, -location.x, -location.y, -location_var, -gadm1_var)
-    
-
-    
-    ## final merging of both data sets with standardized region names to original data
-    dat_match1 <- dat_match1[order(dat_match1$order),]
-    if (!identical(dat_match1$Taxon,dataset$Taxon)) stop("Data sets not sorted equally!")
-    
-    dataset$locationID <- dat_match1$locationID
-    dataset$Location <- dat_match1$Location
-    dataset$stateProvince <- dat_match1$gadm1_name
-    
-    ## Check if any locations in the original dataframe correspond to duplicated locations in the world. 
-    if (any(dataset$verbatimLocation %in% dup)) {
-      # Extract the matching names from dataset$verbatimLocation
-      matching_names <- unique(dataset$verbatimLocation[dataset$verbatimLocation %in% dup])
-      warning(paste(
-        "\n    Warning: Unresolved terms in. The following location name(s) correspond to multiple subregions in the world:",
-        paste(matching_names, collapse = ", "),
-        ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia). ) \n"
-        ))
-    }
-    
-    #dat_regnames <- merge(dataset,regions[,c("locationID","location")],by.x="region",by.y="location",all.x=T)
-    dat_regnames <- dataset
-    
-    ## Remove duplicated entries
-    dat_regnames <- dat_regnames[!duplicated(dat_regnames), ]
-    write_regnames <- dat_regnames
-    
-    # Clean locations and locationID 
-    write_regnames <- write_regnames |> 
-      select(-c(stateProvince, locationID)) |> 
-      left_join(regions |> select(location, locationID), by = c("Location" = "location"))
-
-    
-    ## output ###############################################################################
-    
-    # Output: Save the file with standardized location names
-#    write.table(write_regnames,file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",dataset[i,"Dataset_brief_name"],".csv")),row.names=F)
-    fwrite(write_regnames, "tmp/fr_main_dataset_step4.csv")
-    
-    # Check and export missing locations
-    missing <- dat_regnames$verbatimLocation[is.na(dat_regnames$locationID)]
-    if (length(missing) > 0) {
-      missing <- sort(unique(missing))
-      fwrite(missing, "tmp/fr_check_missing_locations.csv")
-#      write.table(sort(unique(missing)),file.path("Output","Check",paste0("Missing_Locations_",dataset[i,"Dataset_brief_name"],".csv")),row.names = F,col.names=F)
-    }
+  # prepare a copy of dataset for matching with regions
+  dataset_copy <- copy(dataset) # copy
+  dataset_copy$locality <- gsub("\\xa0|\\xc2", " ", dataset_copy$locality)  # Replace special spaces
+  dataset_copy$locality <- gsub("^\\s+|\\s+$", "", dataset_copy$locality)  # Trim leading/trailing whitespace
+  dataset_copy$locality <- gsub("  ", " ", dataset_copy$locality)  # Replace double spaces
+  dataset_copy$locality <- gsub(" \\(the\\)", "", dataset_copy$locality)  # Remove " (the)"
+  setDT(dataset_copy)  
+  dataset_copy$order <- 1:nrow(dataset_copy)
+  dataset_copy$locality <- tolower(dataset_copy$locality)  # Lowercase for matching
   
-  ## Post-processing: Aggregate and export changed location names
-  if (nrow(dat_regnames)>0){ # avoid step when no region names have changed
-    reg_names <- dataset[, c("Location", "verbatimLocation")]
-    reg_names <- reg_names[reg_names$Location != reg_names$verbatimLocation, ]
-    reg_names <- unique(reg_names[order(reg_names$Location), ])
+  ## Step 1a: Match localities of dataset with reference locations in dataset_match1
+  dataset_match1 <- merge(dataset_copy, reference_locations_unique, by.x = "locality", by.y = "location", all.x = TRUE)
+  dataset_match1[, locationID := locationID.y]
+  dataset_match1[, locationID.y := NULL]
+  dataset_match1[, locationID.x := NULL]
+  
+  ## Step 1b: Match localities of 'dataset' with reference gadm1_name in dataset_match2
+  dataset_match2 <- merge(dataset_copy, reference_locations_unique, by.x = "locality", by.y = "gadm1_name", all.x = TRUE)
+  dataset_match2[, locationID := locationID.y]
+  dataset_match2[, locationID.y := NULL]
+  dataset_match2[, locationID.x := NULL]
+  
+  ## Step 2a: Match localities of 'dataset' with reference location keywords (after "location_var" column) in dataset_match1
+  ind_keys_regions <- which(!is.na(reference_locations_unique$location_var))
+  for (j in ind_keys_regions) {  # loop over rows with multiple country name variations
+    location_var <- unlist(strsplit(reference_locations_unique$location_var[j], "; ")) # check if multiple country name variations provided
+    for (k in location_var) {
+      ind_match <- which(dataset_match1$locality == k)
+      if (length(unique(reference_locations_unique$location[j])) > 1) 
+        cat(paste0("Warning: ", k, " matches multiple location names. Refine location_var!"))
+      
+      dataset_match1$locality[ind_match] <- reference_locations_unique$location[j]
+      dataset_match1$locationID[ind_match] <- reference_locations_unique$locationID[j]
+    }
   }
-#    reg_names <- vector()
- #   for (i in 1:length(inputfiles)){
-  #    dataset <- read.table(file.path("Output","Intermediate",paste0("Step3_StandardLocationNames_",dataset,".csv")),stringsAsFactors = F,header=T)
-#      reg_names <- rbind(reg_names,cbind(dataset[,c("Location","verbatimLocation")],dataset[i,1]))
-#    }
-#    reg_names <- reg_names[reg_names$Location!=reg_names$verbatimLocation,] # export only region names deviating from the original
-#    reg_names <- unique(reg_names[order(reg_names$Location),])
-#    colnames(reg_names) <- c("Location","verbatimLocation","origDB")
-    
-    # Clean locations and locationID 
-    reg_names  <- reg_names |> left_join(regions |> select(location, locationID), by = c("Location" = "location"))
-    fwrite(reg_names, "tmp/fr_translated_locationNames.csv")
-#    write.table(reg_names,file.path("Output","Translated_LocationNames.csv"),row.names=F)
-    return(dataset)
+  
+  ## Step 2b: Match localities of 'dataset' with reference gadm1_name keywords (after "gadm1_var" column) in dataset_match2
+  ind_keys_subregions <- which(!is.na(reference_locations_unique$gadm1_var))
+  for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
+    gadm1_var <- unlist(strsplit(reference_locations_unique$gadm1_var[j], "; ")) # check if multiple subregion name variations provided
+    for (k in gadm1_var) {
+      ind_match <- which(dataset_match2$Location_lower == k)
+      if (length(unique(reference_locations_unique$gadm1_name[j])) > 1) 
+        cat(paste0("Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
+      
+      dataset_match2$gadm1_name[ind_match] <- reference_locations_unique$gadm1_name[j]
+      dataset_match2$locality[ind_match] <- reference_locations_unique$location[j]
+      dataset_match2$locationID[ind_match] <- reference_locations_unique$locationID[j]
+    }
+  }
+  
+  ## Merge both data frames with standardized locations names ('dataset_match1' and 'dataset_match2')
+  dataset_match3 <- full_join(dataset_match2, 
+                              dataset_match1 |> select(order, locationID, locality), 
+                          by="order") |> 
+    mutate(locationID = coalesce(locationID.x, locationID.y),
+           locality = coalesce(locality.x, locality.y))|> 
+    select(-locationID.x, -locationID.y, -locality.x, -locality.y, -location_var, -gadm1_var)
+
+  
+  ## final merging of both data sets with standardized region names to original data
+  dataset_match3 <- dataset_match3[order(dataset_match3$order),]
+  if (!identical(dataset_match3$Taxon,dataset$Taxon)) stop("Datasets not sorted equally!")
+  
+  dataset$locationID <- dataset_match3$locationID
+  dataset$country <- dataset_match3$locality
+  dataset$locality <- dataset_match3$gadm1_name
+  dataset$region <- dataset_match3$sinas_region
+  
+  fwrite(dataset, "tmp/fr_main_dataset_4.csv")
+  
+  ## Check if any locations in the original dataframe correspond to duplicated locations in the world. 
+  if (any(dataset$verbatimLocation %in% dup)) {
+    # Extract the matching names from dat$Location_orig
+    matching_names <- unique(dataset$verbatimLocation[dataset$verbatimLocation %in% dup])
+    warning(paste(
+      "\n    Warning: Unresolved terms in the dataset.The following location name(s) correspond to multiple subregions in the world:",
+      paste(matching_names, collapse = ", "),
+      ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia). ) \n"
+    ))
+  }
+  
+  # Produce location table
+  location_table <- dataset[, .(locationID, locality, country, verbatimLocation)]
+  location_table <- location_table[!is.na(locationID)]
+#  location_table <- location_table[!rowSums(is.na(location_table)) == ncol(location_table)]
+  setorder(location_table, -locationID)
+  location_table <- unique(location_table)  # Remove duplicated entries
+  fwrite(location_table, "outputs/location_table.csv")
+  
+  # Check and export missing locations
+  missing <- dataset[is.na(locationID), .(locality, country, verbatimLocation)]
+#  if (length(missing) > 0) {
+#    fwrite(data.table(missingLocation = sort(unique(missing))), "tmp/missing_Locations.csv")
 #  }
+  
+  if (nrow(missing) > 0) {
+    fwrite(
+      data.table(missingLocation = sort(unique(missing$verbatimLocation))),
+      "tmp/missing_Locations.csv"
+    )
+  }
+  return(dataset)
 }
 

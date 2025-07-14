@@ -316,7 +316,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
                 try(dat$kingdom[ind_tax]     <- alternatives[alternatives$status=="ACCEPTED" & alternatives$matchType=="EXACT" & alternatives$class=="Mammalia",]$kingdom[1],silent=T)
               }
             }
-          } # !!!!! new line
+          } 
         } else {
         
         ## case: a single accepted name in "alternatives" 

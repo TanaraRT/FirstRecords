@@ -7,18 +7,20 @@
 ## H. Seebens, T. Renard Truong                                         ##
 ## vx.x, 2025                                                           ##
 ##########################################################################
-
+#do not towerTaxon
 fr_taxons_standard <- function(dataset = NULL) {
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # 1. Clean taxon names
-  dataset[, Taxon := str_squish(tolower(trimws(Taxon)))]
+  dataset[, Taxon := str_squish(trimws(Taxon))]
   dataset <- dataset[Taxon != "" & !is.na(Taxon)]
+  
   
   # 2. Call GBIF check function
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "Taxon")
   matched_taxa <- unique(gbif_result[[1]])
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$Taxon)])
+  fwrite(matched_taxa,"tmp/test.csv")
 
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
   
@@ -59,36 +61,28 @@ fr_taxons_standard <- function(dataset = NULL) {
   
   cat("Step 2b completed: taxonomic groups have been allocated\n")
 
-  # 4. Create taxonomy table with unique taxonIDs
-  matched_taxa[, sequence := .I]
-  unique_taxa <- unique(na.omit(matched_taxa[, .(scientificName)]))
+  # 4. Creating and adding unique taxonIDs
+#  matched_taxa[, sequence := .I]
+  unique_taxa <- unique(na.omit(matched_taxa[, .(Taxon)]))
   unique_taxa[, taxonID := .I]
   
-  taxonomy_table <- merge(matched_taxa, unique_taxa, by = "scientificName", all = TRUE)
-  taxonomy_table[is.na(taxonID), taxonID := max(taxonID, na.rm = TRUE) + .I]
+  matched_taxa <- merge(matched_taxa, unique_taxa, by = "Taxon", all = TRUE)
+  #taxonomy_table[is.na(taxonID), taxonID := max(taxonID, na.rm = TRUE) + .I]
   
-  taxonomy_table <- unique(taxonomy_table[,c("taxonID", "Taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
-                                             "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
-                                             "GBIFusageKey","GBIFnote","species","genus","family",
-                                             "order","class","phylum","kingdom", "taxaGroup"
-      )])
-  
-  # 5. Add taxonID to the main dataset (ensure unique Taxon values)
-  taxon_id_lookup <- unique(taxonomy_table[, .(Taxon, taxonID)])
-  fr_main_dataset_step2 <- merge(matched_taxa, taxon_id_lookup, by = "Taxon", all.x = TRUE)
-  
-  setcolorder(fr_main_dataset_step2, c(setdiff(names(fr_main_dataset_step2), "taxonID"), "taxonID"))
-  
-  fr_main_dataset_step2 <- fr_main_dataset_step2[, c("locationID", "verbatimLocation", "locality", "country", "continent", "taxonID", "Taxon",
-                                                     "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
-                                                     "confidenceFirstRecordEvent",	"occurenceStatus",	"establishmentMeans",
-                                                     "degreeOfEstablishment",	"datasetName",	"bibliographicCitation",	
-                                                     "accessRights"
+  # 5. Write outputs
+  fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "Taxon",
+                                            "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
+                                            "confidenceFirstRecordEvent",	"occurenceStatus",	"establishmentMeans",
+                                            "degreeOfEstablishment",	"datasetName",	"bibliographicCitation",	
+                                            "accessRights"
   )]
   
-  
-  # 6. Write outputs
-  fwrite(taxonomy_table, "tmp/taxonomy_table.csv")
+  taxonomy_table <- unique(matched_taxa[,c("taxonID", "Taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
+                                           "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
+                                           "GBIFusageKey","GBIFnote","species","genus","family",
+                                           "order","class","phylum","kingdom", "taxaGroup"
+  )])
+  fwrite(taxonomy_table, "outputs/taxonomy_table.csv")
   fwrite(fr_main_dataset_step2, "tmp/fr_main_dataset_step2.csv")
   fwrite(mismatches, "tmp/fr_check_missing_taxa_2a.csv")
   

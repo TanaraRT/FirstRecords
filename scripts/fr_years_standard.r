@@ -461,7 +461,8 @@ cat("\n  - Non-processed rows post-final cleaning \"fr_non_matching_formats2.csv
 # Remove non-processed/non-matching years and save processed data
 pattern <- "^-?\\d{3,4}$"
 # Filter rows that DO NOT match this pattern
-fr_main_dataset_step3 <- dataset[grepl(pattern, dataset$firstRecordEvent), ]
+fr_main_dataset_step3 <- as.data.table(dataset[grepl(pattern, dataset$firstRecordEvent), ])
+#fr_main_dataset_step3 <- dataset[grepl(pattern, dataset$firstRecordEvent), ]
 #fwrite(fr_main_dataset_step3, "outputs/fr_years_processed.csv", row.names = FALSE, fileEncoding = "UTF-8")
 fwrite(fr_main_dataset_step3, "tmp/fr_main_dataset_step3.csv")
 

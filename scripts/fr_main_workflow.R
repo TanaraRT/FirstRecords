@@ -50,15 +50,16 @@ fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_raw_data, save_to_disk
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa\n") 
-fr_main_dataset_2 <- fr_taxons_standard (dataset = fr_main_dataset_1)
+fr_main_dataset_2 <- fr_taxons_standard(dataset = fr_main_dataset_1)
 
-## 3) STANDARDIZATION OF FIRST RECORDS####################################
+## 3) STANDARDIZATION OF YEARS############################################
 cat("\nSTEP 3: Standardize years\n") 
-fr_main_dataset_3 <- fr_years_standard (dataset = fr_main_dataset_2)
-  
+fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2)
+
+
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
 cat("\nSTEP 4: Standardize localities\n") 
-fr_main_dataset_step4 <- fr_localities_standard(fr_main_dataset_3)
+fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3)
 
 
 
