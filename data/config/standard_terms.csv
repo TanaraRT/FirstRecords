@@ -1,0 +1,69 @@
+origTerm_degreeOfEstablishment,standardTerm_degreeOfEstablishment,origTerm_establishmentMeans,standardTerm_establishmentMeans,origTerm_habitat,standardTerm_habitat,origTerm_occurrenceStatus,standardTerm_occurrenceStatus,origTerm_pathway,standardTerm_pathway
+,native,native,native,Terrestrial,terrestrial,unsuccessful,absent,Released,Release in nature
+,captive,reintroduced,native,Marine,marine,diedout,absent,,Release in nature: Biological control
+,cultivated,indigenous,native,Terrestrial|Freshwater,terrestrial; freshwater,extirpated,absent,Biological Control (L),Release in nature: Biological control
+,released,endemic,native,Freshwater,freshwater,extinct,absent,Biological Control,Release in nature: Biological control
+,failing,Native - Endemic,native,Freshwater|Brackish,freshwater; brackish,present,present,,Release in nature: Erosion control/dune stabilization
+,casual,Native - Non-endemic,native,Freshwater|Brackish|Marine,freshwater; brackish; marine,extant,present,,Release in nature: Landscape/flora/fauna
+breeding,reproducing,introduced,introduced,marine; freshwater; brackish,freshwater; brackish; marine,possibly extant,uncertain,,Release in nature: Fishery in the wild
+naturalized,established,exotic,introduced,Brackish|Marine,brackish; marine,probably extant,uncertain,,Release in nature: Hunting in the wild
+,colonising,alien,introduced,marine; brackish,brackish; marine,possibly extinct,uncertain,Hunting (L),Release in nature: Hunting in the wild
+,invasive,non-native,introduced,Terrestrial|Freshwater|Marine,terrestrial; freshwater; marine,presence uncertain,uncertain,Hunting,Release in nature: Hunting in the wild
+,widespreadInvasive,non-indigenous,introduced,marine; terrestrial; freshwater,terrestrial; freshwater; marine,,,,Release in nature: Introduction for conservation purposes
+,,nonindigenous,introduced,Terrestrial|Freshwater|Brackish,terrestrial; freshwater; brackish,,,"Conservation, Zoo",Release in nature: Introduction for conservation purposes
+,,established,introduced,Terrestrial|Brackish,terrestrial; brackish,,,Conservation (L),Release in nature: Introduction for conservation purposes
+,,naturalised,introduced,Brackish,brackish,,,Conservation,Release in nature: Introduction for conservation purposes
+,,naturalized,introduced,Freshwater|Marine,freshwater; marine,,,,Release in nature: Release in nature for use
+,,assisted colonisation,introducedAssistedColonisation,marine; freshwater,freshwater; marine,,,,Release in nature: Other intentional release
+,,vagrant,vagrant,Terrestrial|Freshwater|Brackish|Marine,terrestrial; freshwater; brackish; marine,,,"Fauna Improvement, Hunting",Release in nature: Other intentional release
+,,casual,introduced,Terrestrial|Marine,terrestrial; marine,,,Escaped,Escape from confinement
+,,uncertain,uncertain,marine; terrestrial,terrestrial; marine,,,,Escape from confinement: Agriculture
+,,cryptogenic,uncertain,Terrestrial|Brackish|Marine,terrestrial; brackish; marine,,,,Escape from confinement: Farmed animals
+,,unknown,uncertain,,,,,Farming,Escape from confinement: Farmed animals
+,,cryptogenic|uncertain,uncertain,,,,,,Escape from confinement: Forestry
+,,origin uncertain,uncertain,,,,,,Escape from confinement: Fur farms
+,,established.outdoors,introduced,,,,,Fur Farming,Escape from confinement: Fur farms
+,,established.indoors,introduced,,,,,Wild Fur,Escape from confinement: Fur farms
+,,,,,,,,,Escape from confinement: Horticulture
+,,,,,,,,,Escape from confinement: Aquaculture/mariculture
+,,,,,,,,,Escape from confinement: Botanical garden/zoo/aquaria
+,,,,,,,,Zoo,Escape from confinement: Botanical garden/zoo/aquaria
+,,,,,,,,,Escape from confinement: Pet/aquarium/terrarium species
+,,,,,,,,Pet (L),Escape from confinement: Pet/aquarium/terrarium species
+,,,,,,,,Pet,Escape from confinement: Pet/aquarium/terrarium species
+,,,,,,,,Ornamental Purposes,Escape from confinement: Ornamental purpose other than horticulture
+,,,,,,,,,Escape from confinement: Ornamental purpose other than horticulture
+,,,,,,,,Research,Escape from confinement: Research and ex-situ breeding
+,,,,,,,,,Escape from confinement: Research and ex-situ breeding
+,,,,,,,,,Escape from confinement: Live food and live bait
+,,,,,,,,,Escape from confinement: Other escape from confinement
+,,,,,,,,,Transport – contaminant
+,,,,,,,,,Transport – contaminant: Contaminant nursery material
+,,,,,,,,,Transport – contaminant: Contaminated bait
+,,,,,,,,,Transport – contaminant: Food contaminant
+,,,,,,,,,Transport – contaminant: Contaminant on animals
+,,,,,,,,,Transport – contaminant: Parasites on animals
+,,,,,,,,,Transport – contaminant: Contaminant on plants
+,,,,,,,,,Transport – contaminant: Parasites on plants
+,,,,,,,,,Transport – contaminant: Seed contaminant
+,,,,,,,,,Transport – contaminant: Timber trade
+,,,,,,,,,Transport – contaminant: Transportation of habitat material
+,,,,,,,,,Transport – stowaway
+,,,,,,,,Stowaway,Transport – stowaway
+,,,,,,,,Stowaway (L),Transport – stowaway
+,,,,,,,,,Transport – stowaway: Angling/fishing equipment
+,,,,,,,,,Transport – stowaway: Container/bulk
+,,,,,,,,,Transport – stowaway: Hitchhikers in or on airplane
+,,,,,,,,ShipStowaway,Transport – stowaway: Hitchhikers on ship/boat
+,,,,,,,,,Transport – stowaway: Ship/boat ballast water
+,,,,,,,,,Transport – stowaway: Ship/boat hull fouling
+,,,,,,,,,Transport – stowaway: Machinery/equipment
+,,,,,,,,,Transport – stowaway: People and their luggage/equipment
+,,,,,,,,,Transport – stowaway: Organic packing material
+,,,,,,,,,Transport – stowaway: Vehicles
+,,,,,,,,,Transport – stowaway: Other means of transport
+,,,,,,,,,Corridor
+,,,,,,,,,Corridor: Interconnected waterways/basins/seas
+,,,,,,,,,Corridor: Tunnels and land bridges
+,,,,,,,,,Unaided
+,,,,,,,,,Unaided: Natural dispersal
