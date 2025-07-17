@@ -45,7 +45,6 @@ source("R/standardize_and_filter_terms.r")
 
 cat("\nIntialization completed: library, functions and input data loaded\n ") 
 
-
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
 fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_input_data, save_to_disk = TRUE)
@@ -58,15 +57,10 @@ fr_main_dataset_2 <- fr_taxons_standard(dataset = fr_main_dataset_1, save_to_dis
 cat("\nSTEP 3: Standardize years\n") 
 fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2, save_to_disk = TRUE)
 
-
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
 cat("\nSTEP 4: Standardize localities\n") 
-fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3)
+fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3, save_to_disk = TRUE)
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
 cat("\nSTEP 5: Standardize remaining terms\n") 
 fr_final_dataset <- fr_terms_standard(fr_main_dataset_4)
-
-
-
-

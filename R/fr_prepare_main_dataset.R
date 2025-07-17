@@ -19,7 +19,7 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
     locality = Country,
     country = "",
     region = "",
-    Taxon = "",
+    taxon = "",
     originalNameUsage = "",
     originalNameUsage1 = GenusSpecies,
     originalNameUsage2 = paste(Genus, Species, Author),
@@ -111,7 +111,7 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
   ]
   
   # delete old columns
-  dataset$Taxon <- dataset$originalNameUsage
+  dataset$taxon <- dataset$originalNameUsage
   dataset[, c(
     "DateNaturalisation", "FirstRecord", "FirstRecord1", "FirstRecord2",
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"

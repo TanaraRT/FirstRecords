@@ -9,7 +9,7 @@
 ## vx.x, 2025                                                           ##
 ##########################################################################
 
-standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_col) {
+standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_col, ref_col = NULL, std_ref = NULL) {
   term_col_sym <- as.name(term_col)
   
   # Clean and lowercase for easy matching
@@ -25,6 +25,12 @@ standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_
   # Replace matched terms
   dt[!is.na(match_idx), (term_col) := translated[!is.na(match_idx)]]
   
+  # Optional: add reference
+  if (!is.null(ref_col) && !is.null(std_ref)) {
+    ref_vals <- std_table[[std_ref]][match_idx]
+    dt[!is.na(match_idx), (ref_col) := ref_vals[!is.na(match_idx)]]
+  }
+  
   # Collect unresolved terms
   unresolved <- unique(dt[is.na(match_idx), ..term_col])
   unresolved <- unresolved[get(term_col) != ""]
@@ -34,6 +40,12 @@ standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_
   match_idx2 <- match(tolower(dt[[term_col]]), std_table$std_lc)
   final_translation <- std_table[[std_col]][match_idx2]
   dt[, (term_col) := fifelse(!is.na(match_idx2), final_translation, "")]
+  
+  # Optional: final update of reference
+  if (!is.null(ref_col) && !is.null(std_ref)) {
+    final_refs <- std_table[[std_ref]][match_idx2]
+    dt[!is.na(match_idx2), (ref_col) := final_refs[!is.na(match_idx2)]]
+  }
   
   # Cleanup
   dt[, term_lc := NULL]

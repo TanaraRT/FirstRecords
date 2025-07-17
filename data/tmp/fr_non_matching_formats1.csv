@@ -1492,7 +1492,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",United States,United States,"","",29731,Apluda mutica,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Portugal,Portugal,"","",12210,Aplysia dactylomela,"",from 1987,From 1987,low confidence,"","","","",AquaNIS (2020),AquaNIS (2020),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",26307,Apoanagyrus californicus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
-"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19266,Apodemus sylvaticus (Linnaeus 1758),"",-1,-100 - 0,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19266,Apodemus sylvaticus (Linnaeus 1758),"",-74,-100 - 0,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",France,France,"","",32350,Apoglossum gregarium,"",to 1996,To 1996,low confidence,"","","","",AquaNIS (2020),AquaNIS (2020),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",26308,Apolinus lividigaster lividigaster,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",29732,Apomecyna binubila,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
@@ -5650,7 +5650,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",United States,United States,"","",30217,Daltonia splachnoides,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Germany,Germany,"","",9414,Dama dama,"",800s,800s,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
 "",United States,United States,"","",9414,Dama dama,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
-"",France (Corsica),France (Corsica),"","",19290,Dama dama (Linnaeus 1758),"",-19,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
+"",France (Corsica),France (Corsica),"","",19290,Dama dama (Linnaeus 1758),"",-8,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
 "",Germany,Germany,"","",17559,Damalina meyeri,"",<1989,<1989,low confidence,Not known,Not known,Not known,"",NOBANIS,NOBANIS,Free
 "",Italy,Italy,"","",35732,Danae racemosa,"",<1492,<1492,low confidence,"","","","","EASIN, 3890","EASIN, 3890",""
 "",Falklands/Malvinas,Falklands/Malvinas,"","",38077,"Danaus erippus Cramer, 1775",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -6541,6 +6541,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",United States of America,United States of America,"","",25806,Eleutherodactylus planirostris,"","","",low confidence,"","","","",Mangiante et al (2018),Mangiante et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",25806,Eleutherodactylus planirostris,"",~1992,~1992 (Krause (2009)),low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",27174,Elimaea punctifera,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
+"",United Kingdom,United Kingdom,"","",19296,Eliomys quercinus Linnaeus 1766,"",-60,-200 - 200,low confidence,Extinct,Extinct,Extinct,"",Piero Genovesi,Piero Genovesi,Free
 "",Hawaiian Islands,Hawaiian Islands,"","",27176,Elixothrips brevisetis,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Czech Republic,Czech Republic,"","",35806,Ellisia nyctelea,"",<1492,<1492,low confidence,"","","","","EASIN, 4124","EASIN, 4124",""
 "",Ireland,Ireland,"","",17660,Elminius modestus,"","","",low confidence,established,established,established,accidental (alone or together with other species),SeaLifeBase,SeaLifeBase,Free
@@ -8113,7 +8114,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",United States,United States,"","",9982,Glinus lotoides,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",8336,Gliricidia sepium,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Germany,Germany,"","",17818,Gliricola porcelli,"",<1966,<1966,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
-"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19305,Glis glis Linnaeus 1766,"",-12,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
+"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19305,Glis glis Linnaeus 1766,"",-60,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
 "",United States,United States,"","",30465,Globba schomburgkii,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Germany,Germany,"","",8337,Globodera pallida,"",<1991,<1991,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
 "",Germany,Germany,"","",8338,Globodera rostochiensis,"",<1991,<1991,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
@@ -9100,6 +9101,8 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Germany,Germany,"","",17929,Hyssopus thymus,"",<1996,<1996,low confidence,Not known,Not known,Not known,"",NOBANIS,NOBANIS,Free
 "",Hawaiian Islands,Hawaiian Islands,"","",15675,Hysteroneura setariae,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",30572,Hysterothylacium brachyurum,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
+"",Italy (mainland),Italy (mainland),"","",19312,"Hystrix cristata Linnaeus, 1758","",16,-1000 - 700,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
+"",Italy (Sicily),Italy (Sicily),"","",19312,"Hystrix cristata Linnaeus, 1758","",-947,-1000 - 700,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
 "",France,France,"","",32737,Ianiropsis serricaudis,"",from 2015,From 2015,low confidence,"","","","",AquaNIS (2020),AquaNIS (2020),Free
 "",Austria,Austria,"","",13253,Iberis amara,"",<1859,<1859,low confidence,Not established,Not established,Not established,"",NOBANIS,NOBANIS,Free
 "",Alaska,Alaska,"","",13253,Iberis amara,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
@@ -11634,8 +11637,8 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Hawaiian Islands,Hawaiian Islands,"","",8392,Mus musculus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",8392,Mus musculus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Finland (mainland),Finland (mainland),"","",19342,Mus musculus Linnaeus 1758,"","",  ,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
-"",France (Corsica),France (Corsica),"","",19342,Mus musculus Linnaeus 1758,"",-744,-1000 - -100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
-"",France (mainland),France (mainland),"","",19342,Mus musculus Linnaeus 1758,"",-320,-1000 - 0,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",France (Corsica),France (Corsica),"","",19342,Mus musculus Linnaeus 1758,"",-111,-1000 - -100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",France (mainland),France (mainland),"","",19342,Mus musculus Linnaeus 1758,"",-409,-1000 - 0,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Malta,Malta,"","",19342,Mus musculus Linnaeus 1758,"",-218,-218,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Campbell,Campbell,"","",38368,"Mus musculus Linnaeus, 1758",terrestrial,"","",low confidence,absent,absent,absent,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Crozet,Crozet,"","",38368,"Mus musculus Linnaeus, 1758",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -11673,7 +11676,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Hawaiian Islands,Hawaiian Islands,"","",28163,Muscina stabulans,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Campbell,Campbell,"","",38371,"Muscina stabulans (Fall�n, 1817)",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Ireland,Ireland,"","",8395,Mustela furo,"",>1900,>1900,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
-"",Spain (Balearic Islands),Spain (Balearic Islands),"","",19344,Mustela nivalis Linnaeus 1766,"",-27,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
+"",Spain (Balearic Islands),Spain (Balearic Islands),"","",19344,Mustela nivalis Linnaeus 1766,"",-72,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
 "",Italy (Sicily),Italy (Sicily),"","",19345,Mustela putorius Linnaeus 1758,"",0,0,low confidence,Not established,Not established,Not established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Spain (Balearic Islands),Spain (Balearic Islands),"","",19345,Mustela putorius Linnaeus 1758,"",50,50,low confidence,Extinct,Extinct,Extinct,Intentional,Piero Genovesi,Piero Genovesi,Free
 "",Alaska,Alaska,"","",26004,Mustela putorius furo,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
@@ -12623,7 +12626,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Iceland,Iceland,"","",8418,Oryctolagus cuniculus,"",<1875,<1875,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
 "",Alaska,Alaska,"","",8418,Oryctolagus cuniculus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",8418,Oryctolagus cuniculus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
-"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19354,Oryctolagus cuniculus (Linnaeus 1758),"",-78,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
+"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19354,Oryctolagus cuniculus (Linnaeus 1758),"",-37,-100 - 0,low confidence,Established,Established,Established,"",Piero Genovesi,Piero Genovesi,Free
 "",Campbell,Campbell,"","",4951,"Oryctolagus cuniculus (Linnaeus, 1758)",terrestrial,"","",low confidence,absent,absent,absent,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Crozet,Crozet,"","",4951,"Oryctolagus cuniculus (Linnaeus, 1758)",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Falklands/Malvinas,Falklands/Malvinas,"","",4951,"Oryctolagus cuniculus (Linnaeus, 1758)",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -15084,11 +15087,11 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Alaska,Alaska,"","",8462,Rattus rattus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",8462,Rattus rattus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",8462,Rattus rattus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
-"",France (Corsica),France (Corsica),"","",19367,Rattus rattus (Linnaeus 1758),"",-183,-300 - -100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
-"",France (mainland),France (mainland),"","",19367,Rattus rattus (Linnaeus 1758),"",98,0 - 100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",France (Corsica),France (Corsica),"","",19367,Rattus rattus (Linnaeus 1758),"",-139,-300 - -100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",France (mainland),France (mainland),"","",19367,Rattus rattus (Linnaeus 1758),"",60,0 - 100,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Greece (mainland),Greece (mainland),"","",19367,Rattus rattus (Linnaeus 1758),"",-429,-429,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
-"",Italy (mainland),Italy (mainland),"","",19367,Rattus rattus (Linnaeus 1758),"",-897,-900 - -500,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
-"",Italy (Sicily),Italy (Sicily),"","",19367,Rattus rattus (Linnaeus 1758),"",-567,-900 - -500,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",Italy (mainland),Italy (mainland),"","",19367,Rattus rattus (Linnaeus 1758),"",-837,-900 - -500,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",Italy (Sicily),Italy (Sicily),"","",19367,Rattus rattus (Linnaeus 1758),"",-624,-900 - -500,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Malta,Malta,"","",19367,Rattus rattus (Linnaeus 1758),"",-700,-700,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Spain (Balearic Islands),Spain (Balearic Islands),"","",19367,Rattus rattus (Linnaeus 1758),"",-200,-200,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Falklands/Malvinas,Falklands/Malvinas,"","",5004,"Rattus rattus (Linnaeus, 1758)",terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -16573,6 +16576,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",United States,United States,"","",31372,Silvanus proximus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",29072,Silvanus unidentatus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Austria,Austria,"","",1291,Silybum marianum,"",<1830,<1830,low confidence,Not established,Not established,Not established,"",NOBANIS,NOBANIS,Free
+"",Sweden,Sweden,"","",1291,Silybum marianum,"",-546,-1800 - 1800,low confidence,Established,Established,Established,"",Strand et al (2018),Strand et al (2018),Free
 "",United States,United States,"","",1291,Silybum marianum,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "","","","","",25493,Simmondsia chinensis,"","","",low confidence,"","","","","EASIN, 7443","EASIN, 7443",""
 "",Hawaiian Islands,Hawaiian Islands,"","",29073,Simocephalus serrulatus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
@@ -17399,13 +17403,15 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Falklands/Malvinas,Falklands/Malvinas,"","",38632,Suillus luteus (L) Roussel,host,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Falklands/Malvinas,Falklands/Malvinas,"","",38633,Suillus punctipes (Peck) Singer,host,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Iceland,Iceland,"","",18759,Suillus variegatus,"",>1900,>1900,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
-"",France (Corsica),France (Corsica),"","",19374,Suncus etruscus (Savi 1822),"",-544,-600 - -400,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
+"",France (Corsica),France (Corsica),"","",19374,Suncus etruscus (Savi 1822),"",-553,-600 - -400,low confidence,Established,Established,Established,Unintentional,Piero Genovesi,Piero Genovesi,Free
 "",Hawaiian Islands,Hawaiian Islands,"","",4214,Sunius debilicornis,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",18760,Supella longipalpa,"",before 1952,before 1952 (Roth and Willis (1960)),low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Germany,Germany,"","",18761,Supella supellectilium,"",<1945,<1945,low confidence,Established,Established,Established,"",NOBANIS,NOBANIS,Free
 "",Alaska,Alaska,"","",9444,Sus scrofa,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",9444,Sus scrofa,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",9444,Sus scrofa,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
+"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19375,Sus scrofa Linnaeus 1758,"",-729,-1200 - -500,low confidence,Extinct,Extinct,Extinct,"",Piero Genovesi,Piero Genovesi,Free
+"",Spain (Balearic Islands),Spain (Balearic Islands),"","",19375,Sus scrofa Linnaeus 1758,"",-797,-1400 - -700,low confidence,Extinct,Extinct,Extinct,"",Piero Genovesi,Piero Genovesi,Free
 "",Auckland,Auckland,"","",38634,"Sus scrofa Linnaeus, 1758",terrestrial,"","",low confidence,absent,absent,absent,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Falklands/Malvinas,Falklands/Malvinas,"","",38634,"Sus scrofa Linnaeus, 1758",terrestrial,"","",low confidence,absent,absent,absent,introduced,Leihy et al (2023),Leihy et al (2023),Free
 "",Tristan group,Tristan group,"","",38634,"Sus scrofa Linnaeus, 1758",terrestrial,"","",low confidence,absent,absent,absent,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -18522,7 +18528,6 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Germany,Germany,"","",18877,Uchida pallidulus,"",<1989,<1989,low confidence,Not known,Not known,Not known,"",NOBANIS,NOBANIS,Free
 "",France,France,"","",36983,Ulex breoganii,"","","",low confidence,"","","","","EASIN, 7990","EASIN, 7990",""
 "",Austria,Austria,"","",1439,Ulex europaeus,"",<1954,<1954,low confidence,Not known,Not known,Not known,"",NOBANIS,NOBANIS,Free
-"",Sweden,Sweden,"","",1439,Ulex europaeus,"",-31,-1800 - 1800,low confidence,Established,Established,Established,"",Strand et al (2018),Strand et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",1439,Ulex europaeus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",1439,Ulex europaeus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Auckland,Auckland,"","",5051,Ulex europaeus L,terrestrial,"","",low confidence,present,present,present,introduced,Leihy et al (2023),Leihy et al (2023),Free
@@ -19015,6 +19020,7 @@ locationID,verbatimLocation,locality,country,region,taxonID,Taxon,habitat,firstR
 "",Hawaiian Islands,Hawaiian Islands,"","",29510,Vriesea sanguinolenta,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",4451,Vryburgia amaryllidis,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Hawaiian Islands,Hawaiian Islands,"","",29511,Vulgichneumon diminutus,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
+"",Greece (South Aegean Islands),Greece (South Aegean Islands),"","",19382,Vulpes vulpes (Linnaeus 1758),"",-697,-1200 - -500,low confidence,Extinct,Extinct,Extinct,"",Piero Genovesi,Piero Genovesi,Free
 "",Hawaiian Islands,Hawaiian Islands,"","",1497,Vulpia bromoides,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",United States,United States,"","",1497,Vulpia bromoides,"","","",low confidence,"","","","",Simpson et al (2018),Simpson et al (2018),Free
 "",Poland,Poland,"","",1497,Vulpia bromoides,"","","",low confidence,"","","","","EASIN, 8215","EASIN, 8215",""

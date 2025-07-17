@@ -10,13 +10,11 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dataset){
+fr_localities_standard <- function(dataset, save_to_disk = FALSE){
 
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
-  class(dataset)
-  print(names(dataset))
   
   ## load locations reference table
   reference_locations <- read.xlsx("data/config/AllLocations.xlsx") 
@@ -58,7 +56,7 @@ fr_localities_standard <- function(dataset){
     for (k in location_var) {
       ind_match <- which(dataset_match1$locality == k)
       if (length(unique(reference_locations_unique$location[j])) > 1) 
-        cat(paste0("Warning: ", k, " matches multiple location names. Refine location_var!"))
+        cat(paste0("⚠ Warning: ", k, " matches multiple location names. Refine location_var!"))
       
       dataset_match1$locality[ind_match] <- reference_locations_unique$location[j]
       dataset_match1$locationID[ind_match] <- reference_locations_unique$locationID[j]
@@ -72,7 +70,7 @@ fr_localities_standard <- function(dataset){
     for (k in gadm1_var) {
       ind_match <- which(dataset_match2$Location_lower == k)
       if (length(unique(reference_locations_unique$gadm1_name[j])) > 1) 
-        cat(paste0("Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
+        cat(paste0("⚠ Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
       
       dataset_match2$gadm1_name[ind_match] <- reference_locations_unique$gadm1_name[j]
       dataset_match2$locality[ind_match] <- reference_locations_unique$location[j]
@@ -91,28 +89,37 @@ fr_localities_standard <- function(dataset){
   
   ## final merging of both data sets with standardized region names to original data
   dataset_match3 <- dataset_match3[order(dataset_match3$order),]
-  if (!identical(dataset_match3$Taxon,dataset$Taxon)) stop("Datasets not sorted equally!")
+  if (!identical(dataset_match3$taxon,dataset$taxon)) stop("Datasets not sorted equally!")
   
   dataset$locationID <- dataset_match3$locationID
   dataset$country <- dataset_match3$locality
   dataset$locality <- dataset_match3$gadm1_name
   dataset$region <- dataset_match3$sinas_region
   
-  fwrite(dataset, "data/tmp/fr_main_dataset_4.csv")
+  fr_main_dataset_step4 <- dataset[, c("locationID", "country", "taxonID", "taxon",
+                                            "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
+                                            "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
+                                            "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
+                                            "accessRights"
+  )]
+  
+  if (save_to_disk == TRUE){
+    fwrite(fr_main_dataset_step4, "data/tmp/fr_main_dataset_4.csv")
+  }
   
   ## Check if any locations in the original dataframe correspond to duplicated locations in the world. 
   if (any(dataset$verbatimLocation %in% dup)) {
     # Extract the matching names from dat$Location_orig
     matching_names <- unique(dataset$verbatimLocation[dataset$verbatimLocation %in% dup])
     warning(paste(
-      "\n    Warning: Unresolved terms in the dataset.The following location name(s) correspond to multiple subregions in the world:",
+      "\n    ⚠ Warning: Unresolved terms in the dataset.The following location name(s) correspond to multiple subregions in the world:",
       paste(matching_names, collapse = ", "),
       ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia). ) \n"
     ))
   }
   
   # Produce location table
-  location_table <- dataset[, .(locationID, locality, country, verbatimLocation)]
+  location_table <- dataset[, .(locationID, locality, country, verbatimLocation, region)]
   location_table <- location_table[!is.na(locationID)]
 #  location_table <- location_table[!rowSums(is.na(location_table)) == ncol(location_table)]
   setorder(location_table, -locationID)
@@ -128,9 +135,9 @@ fr_localities_standard <- function(dataset){
   if (nrow(missing) > 0) {
     fwrite(
       data.table(missingLocation = sort(unique(missing$verbatimLocation))),
-      "data/tmp/missing_Locations.csv"
+      "data/tmp/check_missing_locations.csv"
     )
   }
-  return(dataset)
+  return(fr_main_dataset_step4)
 }
 

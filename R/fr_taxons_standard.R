@@ -7,19 +7,19 @@
 ## H. Seebens, T. Renard Truong                                         ##
 ## vx.x, 2025                                                           ##
 ##########################################################################
-#do not towerTaxon
+
 fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # 1. Clean taxon names
-  dataset[, Taxon := str_squish(trimws(Taxon))]
-  dataset <- dataset[Taxon != "" & !is.na(Taxon)]
+  dataset[, taxon := str_squish(trimws(taxon))]
+  dataset <- dataset[taxon != "" & !is.na(taxon)]
   
   
   # 2. Call GBIF check function
-  gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "Taxon")
+  gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "taxon")
   matched_taxa <- unique(gbif_result[[1]])
-  mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$Taxon)])
+  mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)])
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
   
   # 3. Define taxonomic groups
@@ -61,21 +61,21 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
 
   # 4. Creating and adding unique taxonIDs
 #  matched_taxa[, sequence := .I]
-  unique_taxa <- unique(na.omit(matched_taxa[, .(Taxon)]))
+  unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)]))
   unique_taxa[, taxonID := .I]
   
-  matched_taxa <- merge(matched_taxa, unique_taxa, by = "Taxon", all = TRUE)
+  matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE)
   #taxonomy_table[is.na(taxonID), taxonID := max(taxonID, na.rm = TRUE) + .I]
   
   # 5. Write outputs
-  fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "Taxon",
+  fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                             "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
                                             "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
                                             "accessRights"
   )]
   
-  taxonomy_table <- unique(matched_taxa[,c("taxonID", "Taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
+  taxonomy_table <- unique(matched_taxa[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
                                            "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
                                            "GBIFusageKey","GBIFnote","species","genus","family",
                                            "order","class","phylum","kingdom", "taxaGroup"
