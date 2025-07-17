@@ -20,8 +20,6 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "Taxon")
   matched_taxa <- unique(gbif_result[[1]])
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$Taxon)])
-  fwrite(matched_taxa,"data/tmp/test.csv")
-
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
   
   # 3. Define taxonomic groups
