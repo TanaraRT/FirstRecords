@@ -52,11 +52,11 @@ fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_input_data, save_to_di
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa\n") 
-fr_main_dataset_2 <- fr_taxons_standard(dataset = fr_main_dataset_1)
+fr_main_dataset_2 <- fr_taxons_standard(dataset = fr_main_dataset_1, save_to_disk = TRUE)
 
 ## 3) STANDARDIZATION OF YEARS############################################
 cat("\nSTEP 3: Standardize years\n") 
-fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2)
+fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2, save_to_disk = TRUE)
 
 
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
@@ -65,7 +65,7 @@ fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3)
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
 cat("\nSTEP 5: Standardize remaining terms\n") 
-fr_main_dataset_5 <- fr_terms_standard(fr_main_dataset_4)
+fr_final_dataset <- fr_terms_standard(fr_main_dataset_4)
 
 
 

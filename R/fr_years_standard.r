@@ -8,7 +8,7 @@
 ## vx.x, 2025                                                           ##
 ##########################################################################
 
-fr_years_standard <- function(dataset = NULL){
+fr_years_standard <- function(dataset = NULL, save_to_disk = FALSE){
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   ## 1) BASIC DATA CLEANING
   cat("\n  Step3a: basic data cleaning") 
@@ -463,7 +463,9 @@ pattern <- "^-?\\d{3,4}$"
 fr_main_dataset_step3 <- as.data.table(dataset[grepl(pattern, dataset$firstRecordEvent), ])
 #fr_main_dataset_step3 <- dataset[grepl(pattern, dataset$firstRecordEvent), ]
 #fwrite(fr_main_dataset_step3, "outputs/fr_years_processed.csv", row.names = FALSE, fileEncoding = "UTF-8")
-fwrite(fr_main_dataset_step3, "tmp/fr_main_dataset_step3.csv")
+if (save_to_disk == TRUE){
+  fwrite(fr_main_dataset_step3, "tmp/fr_main_dataset_step3.csv")
+}
 
 
 # Save processed data

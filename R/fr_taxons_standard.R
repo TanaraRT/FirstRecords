@@ -8,7 +8,7 @@
 ## vx.x, 2025                                                           ##
 ##########################################################################
 #do not towerTaxon
-fr_taxons_standard <- function(dataset = NULL) {
+fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # 1. Clean taxon names
@@ -83,8 +83,11 @@ fr_taxons_standard <- function(dataset = NULL) {
                                            "order","class","phylum","kingdom", "taxaGroup"
   )])
   fwrite(taxonomy_table, "data/outputs/taxonomy_table.csv")
-  fwrite(fr_main_dataset_step2, "data/tmp/fr_main_dataset_step2.csv")
-  fwrite(mismatches, "data/tmp/fr_check_missing_taxa_2a.csv")
+  fwrite(mismatches, "data/tmp/fr_check_missing_taxa.csv")
+  
+  if (save_to_disk == TRUE){
+    fwrite(fr_main_dataset_step2, "data/tmp/fr_main_dataset_step2.csv")
+    }
   
   cat("Step 2c completed: taxon ID have been allocated\n")
   

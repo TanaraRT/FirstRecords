@@ -1,7 +1,18 @@
+##########################################################################
+##                                                                      ##
+##                       FIRST RECORDS WORKFLOW                         ##
+##            Standardize remaining term - general function             ##
+##   Check and replace terms using a standard terms reference table     ##
+##                   -----------------------------                      ##
+##                                                                      ##
+## T. Renard Truong                                                     ##
+## vx.x, 2025                                                           ##
+##########################################################################
+
 standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_col) {
   term_col_sym <- as.name(term_col)
   
-  # Clean and lowercase
+  # Clean and lowercase for easy matching
   dt[, (term_col) := trimws(get(term_col))]
   dt[, term_lc := tolower(get(term_col))]
   std_table[, orig_lc := tolower(get(orig_col))]
@@ -19,11 +30,9 @@ standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_
   unresolved <- unresolved[get(term_col) != ""]
   if (nrow(unresolved) > 0) unresolved[, context := term_col]
   
-  # Second pass: strict match to standard term set
+  # Second pass: strict match to identify and delete unmatched terms
   match_idx2 <- match(tolower(dt[[term_col]]), std_table$std_lc)
   final_translation <- std_table[[std_col]][match_idx2]
-  
-  # Replace valid terms; set unmatched to blank
   dt[, (term_col) := fifelse(!is.na(match_idx2), final_translation, "")]
   
   # Cleanup
