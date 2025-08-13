@@ -15,7 +15,6 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   dataset[, taxon := str_squish(trimws(taxon))]
   dataset <- dataset[taxon != "" & !is.na(taxon)]
   
-  
   # 2. Call GBIF check function
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "taxon")
   matched_taxa <- unique(gbif_result[[1]])
