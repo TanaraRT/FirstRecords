@@ -6,13 +6,13 @@ fr_localities_standard <- function(dat, save_to_disk = FALSE){
 
 # Load location table
 
-regions <- read.xlsx("data/config/AllLocations.xlsx", sheet = 2, na.strings = "")
-regions <- regions[, c("locationID", "location", "location_var")]
+regions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "location", na.strings = "")
+regions <- regions[, c("locationID", "location", "location_var", "sinas_region")]
 regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
 regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
 
-subregions <- read.xlsx("data/config/AllLocations.xlsx", sheet = 3, na.strings = "")
-subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var")]
+subregions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "stateProvince", na.strings = "")
+subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")]
 subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
 subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
 
@@ -101,11 +101,11 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
   write_regnames <- dat_regnames
   
   # Clean locations and locationID 
+  #  write_regnames <- rename(write_regnames, "sinas_region" = "region")
   write_regnames <- write_regnames |> 
     select(-c(stateProvince, locationID)) |> 
-    left_join(regions |> select(location, locationID), by = "location")
-  
-  
+    left_join(regions |> select(location, locationID, sinas_region), by = "location")
+ 
   ## output ###############################################################################
   
   # Output: Save the file with standardized location names
@@ -117,13 +117,24 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
   )]
   
   if (save_to_disk == TRUE){
-    as.data.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_4.csv")
+    as.data.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_step4.csv")
+    write.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_step4.csv")
+  }
   
   # Check and export missing locations
   missing <- dat_regnames$location_orig[is.na(dat_regnames$locationID)]
   if (length(missing) > 0) {
     write.table(sort(unique(missing)),"data/tmp/check_missing_locations.csv" ,row.names = F,col.names=F)
   }
-  }
+  
+  # Create location table
+  
+  location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
+  location_table <- unique(location_table, by = "locationID")
+  location_table <- location_table[locationID != "" & !is.na(locationID)]
+  names(location_table)[names(location_table) == "sinas_region"] <- "region"
+  fwrite(location_table, "data/outputs/location_table.csv")
+
+  cat("\nStep 4 completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
   return(fr_main_dataset_step4)
 }
