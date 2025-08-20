@@ -4,11 +4,9 @@
 ##                    Standardize remaining terms                       ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
-## H. Seebens, T. Renard Truong                                         ##
-## vx.x, 2025                                                           ##
+## T. Renard Truong, H. Seebens                                         ##
+## v2.0, August 2025                                                    ##
 ##########################################################################
-
-
 
 fr_terms_standard <- function(dataset){
     

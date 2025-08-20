@@ -6,7 +6,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## H. Seebens, T. Renard Truong                                         ##
-## vx.x, 2025                                                           ##
+## v2.0, August 2025                                                    ##
 ##########################################################################
 
 check_GBIF_taxa <- function(taxon_names=NULL,
@@ -61,9 +61,8 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
   
-  for (j in 52000:n_taxa) {# loop over all species names; takes some hours...
-  #for (j in 1:n_taxa) {# loop over all species names; takes some hours...
-      
+  for (j in 1:n_taxa) {# loop over all species names; takes some hours...
+
     # select species name and download taxonomy
     ind_tax <- which(dat$taxon==taxlist[j])
     db_all <- name_backbone_verbose(taxlist[j],strict=T) # check for names and synonyms

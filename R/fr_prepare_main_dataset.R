@@ -4,8 +4,8 @@
 ##                       Prepare master dataset                         ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
-## H. Seebens, T. Renard Truong                                         ##
-## vx.x, 2025                                                           ##
+## T. Renard Truong, H. Seebens                                         ##
+## v2.0, 2025                                                           ##
 ##########################################################################
 
 fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
