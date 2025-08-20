@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## H. Seebens, T. Renard Truong                                         ##
-## vx.x, 2025                                                           ##
+## v2.0, August 2025                                                    ##
 ##########################################################################
 
 fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
@@ -59,13 +59,11 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   cat("Step 2b completed: taxonomic groups have been allocated\n")
 
   # 4. Creating and adding unique taxonIDs
-#  matched_taxa[, sequence := .I]
   unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)]))
   unique_taxa[, taxonID := .I]
   
   matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE)
-  #taxonomy_table[is.na(taxonID), taxonID := max(taxonID, na.rm = TRUE) + .I]
-  
+
   # 5. Write outputs
   fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 

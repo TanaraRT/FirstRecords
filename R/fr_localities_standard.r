@@ -1,29 +1,36 @@
-library(openxlsx)
-library(data.table)
-library(tidyverse)
+##########################################################################
+##                                                                      ##
+##                       FIRST RECORDS WORKFLOW                         ##
+##                       Standardize localities                         ##
+##                   -----------------------------                      ##
+##                                                                      ##
+## M. Gomez Suarez, H. Seebens, T. Renard Truong                        ##
+## v2.0, August 2025                                                    ##
+##########################################################################
+
 
 fr_localities_standard <- function(dat, save_to_disk = FALSE){
 
-# Load location table
-
-regions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "location", na.strings = "")
-regions <- regions[, c("locationID", "location", "location_var", "sinas_region")]
-regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
-regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
-
-subregions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "stateProvince", na.strings = "")
-subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")]
-subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
-subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
-
-# Get duplicated names of subregions  
-dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
+  ## STEP 4A: Prepare reference tables and dataset
+  # --- 1. Load reference location table ---
+  regions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "location", na.strings = "")
+  regions <- regions[, c("locationID", "location", "location_var", "sinas_region")]
+  regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
+  regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
   
-#  dat <- fread("data/tmp/fr_main_dataset_step3.csv")
-  dat <- rename(dat, "location_orig" = "locality")
-  dat <- select(dat, -locationID)
+  subregions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "stateProvince", na.strings = "")
+  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")]
+  subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
+  subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
+
+  # --- 2. Get duplicated names of subregions ---
+  dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
   
-  # Prepare for matching with regions
+  # --- 3. Prepare dataset for processing ---
+  dat <- rename(dat, "location_orig" = "locality") #standardize column name
+  dat <- select(dat, -locationID) #remove existing locationID column
+  
+  # --- 4. Prepare for matching with regions ---
   dat_match1 <- dat ## use another dat set for region matching to keep the original names
   dat_match1$order <- 1:nrow(dat_match1)
   dat_match1$location_orig <- gsub("\\xa0|\\xc2", " ", dat_match1$location_orig)  # Replace special spaces
@@ -32,11 +39,21 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
   dat_match1$location_orig <- gsub(" \\(the\\)", "", dat_match1$location_orig)  # Remove " (the)"
   dat_match1$location_lower <- tolower(dat_match1$location_orig)  # Lowercase for matching
   
-  ## Step 1: Match names of 'dat' with region names of 'regions' and 'subregions' 
+  cat("\nStep 4a completed: reference table and dataset ready for process")
+  
+  ## STEP 4B: Exact location matching
+  
+  # --- 1: Match names of 'dat' with region names of 'regions'--- 
   dat_match_regions <- merge(dat_match1, regions, by.x = "location_lower", by.y = "location_lower", all.x = TRUE)
+  
+  # --- 2: Match names of 'dat' with region names of 'subregions' --- 
   dat_match_subregions <- merge(dat_match1, subregions, by.x = "location_lower", by.y = "Gadm1_lower", all.x = TRUE)
   
-  ## Step 2a: Match based on keywords in 'regions' - after "location_var" column
+  cat("\nStep 4b completed: exact region and subregion names matched")
+  
+  ## STEP 4C: Keyword matching
+  
+  # --- 1: Match based on keywords in 'regions' - after 'location_var' column ---
   ind_keys_regions <- which(!is.na(regions$location_var))
   for (j in ind_keys_regions) {  # loop over rows with multiple country name variations
     location_var <- unlist(strsplit(regions$location_var[j], "; ")) # check if multiple country name variations provided
@@ -50,7 +67,7 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
     }
   }
   
-  ## Step 2b: Match based on keywords in 'subregions' - after "gadm1_var" column
+  # --- 2: Match based on keywords in 'subregions' - after 'gadm1_var' column ---
   ind_keys_subregions <- which(!is.na(subregions$gadm1_var))
   for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
     gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple subregion name variations provided
@@ -65,7 +82,7 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
     }
   }
   
-  ## Merge both data frames with standardized locations names ('region' and 'subregion')
+  # --- 3: Merge both data frames with standardized locations names ('region' and 'subregion') ---
   dat_match1 <- full_join(dat_match_subregions, 
                           dat_match_regions |> select(order, locationID, location), 
                           by="order") |> 
@@ -74,7 +91,7 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
     select(-locationID.x, -locationID.y, -location.x, -location.y, -location_var, -gadm1_var)
   
   
-  ## final merging of both data sets with standardized region names to original data
+  # --- 4: Final merging of both data sets with standardized region names to original data ---
   dat_match1 <- dat_match1[order(dat_match1$order),]
   if (!identical(dat_match1$taxon_orig,dat$taxon_orig)) stop("Data sets not sorted equally!")
   
@@ -82,7 +99,11 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
   dat$location <- dat_match1$location
   dat$stateProvince <- dat_match1$gadm1_name
   
-  ## Check if any locations in the original dataframe correspond to duplicated locations in the world. 
+  cat("\nStep 4c completed: variant region and subregion names matched")
+  
+  ## STEP 4D: Warnings for duplication
+  
+  # --- 1: Check if any locations in the original dataframe correspond to duplicated locations in the world ---
   if (any(dat$location_orig %in% dup)) {
     # Extract the matching names from dat$location_orig
     matching_names <- unique(dat$location_orig[dat$location_orig %in% dup])
@@ -92,23 +113,23 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
       ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia)) \n"
     ))
   }
-  
-  #dat_regnames <- merge(dat,regions[,c("locationID","location")],by.x="region",by.y="location",all.x=T)
   dat_regnames <- dat
   
-  ## Remove duplicated entries
+  
+  cat("\nStep 4d completed: warnings will be issued for unresolved terms")
+  
+  ## STEP 4E: Outputs
+  
+  # --- 1: Remove duplicated entries ---
   dat_regnames <- dat_regnames[!duplicated(dat_regnames), ]
   write_regnames <- dat_regnames
   
-  # Clean locations and locationID 
-  #  write_regnames <- rename(write_regnames, "sinas_region" = "region")
+  # --- 2: Clean locations and locationID 
   write_regnames <- write_regnames |> 
     select(-c(stateProvince, locationID)) |> 
     left_join(regions |> select(location, locationID, sinas_region), by = "location")
- 
-  ## output ###############################################################################
   
-  # Output: Save the file with standardized location names
+  # --- 3: Save fr_main_dataset_step4 with standardized location names ---
   fr_main_dataset_step4 <- write_regnames[, c("locationID", "location", "taxonID", "taxon",
                                        "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                        "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
@@ -121,20 +142,20 @@ dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("
     write.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_step4.csv")
   }
   
-  # Check and export missing locations
+  # --- 4: Check and save missing location names ---
   missing <- dat_regnames$location_orig[is.na(dat_regnames$locationID)]
   if (length(missing) > 0) {
     write.table(sort(unique(missing)),"data/tmp/check_missing_locations.csv" ,row.names = F,col.names=F)
   }
   
-  # Create location table
-  
+  # ---5: Save location table ---
   location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
   location_table <- unique(location_table, by = "locationID")
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
   fwrite(location_table, "data/outputs/location_table.csv")
 
-  cat("\nStep 4 completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
+  cat("\nStep 4e completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
+  
   return(fr_main_dataset_step4)
 }

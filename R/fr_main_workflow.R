@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## H. Seebens, T. Renard Truong                                         ##
-## v2.0, 2025                                                           ##
+## v2.0, August 2025                                                    ##
 ##########################################################################
 
 ## 1) PREPARE WORKSPACE AND IMPORT DATA ##################################
@@ -18,6 +18,7 @@ rm(list = ls())
 
 # call libraries
 library(Hmisc)
+library(gsubfn)
 library(stringr)
 library(stringi)
 library(data.table)
@@ -50,17 +51,17 @@ cat("\nSTEP 1: Prepare main dataset: fr_main_dataset")
 fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = fr_input_data, save_to_disk = TRUE)
 
 ## 2) STANDARDIZATION OF TAXA ############################################
-cat("\nSTEP 2: Standardize taxa\n") 
+cat("\nSTEP 2: Standardize taxa") 
 fr_main_dataset_2 <- fr_taxons_standard(dataset = fr_main_dataset_1, save_to_disk = TRUE)
 
 ## 3) STANDARDIZATION OF YEARS############################################
-cat("\nSTEP 3: Standardize years\n") 
-fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2, save_to_disk = TRUE)
+cat("\nSTEP 3: Standardize years") 
+fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2, firstRecordEvent = "firstRecordEvent", save_to_disk = TRUE)
 
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
-cat("\nSTEP 4: Standardize localities\n") 
+cat("\nSTEP 4: Standardize localities") 
 fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3, save_to_disk = TRUE)
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
-cat("\nSTEP 5: Standardize remaining terms\n") 
+cat("\nSTEP 5: Standardize remaining terms") 
 fr_final_dataset <- fr_terms_standard(fr_main_dataset_4)

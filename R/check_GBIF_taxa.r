@@ -52,7 +52,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
     taxlist <- unique(dat$taxon)
   }
   n_taxa <- length(taxlist)
-  print(n_taxa)
+  cat("The number of taxa to be processed is", n_taxa, "\n")
 
   #setup progress bar
   pb <- txtProgressBar(min=0, max=n_taxa, initial=0,style = 3)
