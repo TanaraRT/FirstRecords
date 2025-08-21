@@ -416,7 +416,7 @@ fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_d
   # Extract rows that we will delete (empty firstRecordEvent, but not empty verbatim_fr)
   dataset <- dataset[firstRecordEvent != ""]
   
-  # Extract non-processed/non-matching years
+  # Extract non-processed/non-matching years (e.g., ranges)
   pattern <- "^\\d{3,4}$|^-\\d{3,4}$|^\\d{3,4}\\s*-\\s*\\d{3,4}$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
