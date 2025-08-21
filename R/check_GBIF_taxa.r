@@ -52,7 +52,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
     taxlist <- unique(dat$taxon)
   }
   n_taxa <- length(taxlist)
-  cat("The number of taxa to be processed is", n_taxa, "\n")
+  cat("\nThe number of taxa to be processed is", n_taxa, "\n")
 
   #setup progress bar
   pb <- txtProgressBar(min=0, max=n_taxa, initial=0,style = 3)
@@ -61,7 +61,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
   
-  for (j in 1:n_taxa) {# loop over all species names; takes some hours...
+  for (j in 52490:n_taxa) {# loop over all species names; takes some hours...
 
     # select species name and download taxonomy
     ind_tax <- which(dat$taxon==taxlist[j])

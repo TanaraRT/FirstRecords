@@ -215,7 +215,6 @@ locationID,location,verbatimLocation,region
 222,El Salvador,El Salvador,Central America and the Caribbean
 107,French Guiana,French Guiana,Southern America
 109,Guyana,Guyana,Southern America
-101,Aegean,Greece (South Aegean Islands),Europe
 111,Heard Island and McDonald Island,Heard and McDonald Islands,Antarctic
 187,Nauru,Nauru,Pacific
 47,Central African Republic,Central African Republic,Sub-Saharan Africa
@@ -227,6 +226,7 @@ locationID,location,verbatimLocation,region
 213,Senegal,Senegal,Sub-Saharan Africa
 212,Sudan,Sudan,Saharo-Arabia
 237,Togo,Togo,Sub-Saharan Africa
+101,Aegean,Greece (South aegean),Europe
 19,Amsterdam Island,Amsterdam Islands,Antarctic
 5,Åland,�LAND ISLANDS,Europe
 223,San Marino,SAN MARINO,Europe

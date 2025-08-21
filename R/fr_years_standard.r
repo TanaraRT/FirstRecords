@@ -133,7 +133,7 @@ fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_d
   # example: 500 BC -> -500
   dataset$firstRecordEvent <- str_replace_all(
     dataset$firstRecordEvent,
-    regex("\\(?\\s*(?:BC\\s*)?(\\d{1,4})(?:\\s*BC)?\\s*\\)?", ignore_case = TRUE),
+    regex("\\(?\\s*(?:BC\\.?E?\\.?\\s*(\\d{1,4})|(\\d{1,4})\\s*\\(?(?:BC\\.?E?\\.?)\\)?)\\s*\\)?", ignore_case = TRUE),
     function(x) {
       year <- as.integer(str_extract(x, "\\d{3,4}"))
       paste0("-", year)
@@ -388,7 +388,7 @@ fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_d
   dataset$confidenceFirstRecordEvent[matched_inds] <-after_results[matched_inds, "confidence"]
   
   # --- Check non-matching formats (1) ---
-  pattern <- "^\\d{3,4}$|^-\\d{4}$|^\\d{4}\\s*-\\s*\\d{4}$"
+  pattern <- "^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5]))$|^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])\\s*-\\s*(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])))$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
   fwrite(non_matching_rows, "data/tmp/fr_check_missing_years_1.csv")
@@ -426,6 +426,8 @@ fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_d
   pattern <- "^-?\\d{3,4}$"
   # Filter rows that DO NOT match this pattern
   fr_main_dataset_step3 <- as.data.table(dataset[grepl(pattern, dataset$firstRecordEvent), ])
+  # Remove rows where years are >= 2025
+  fr_main_dataset_step3 <- fr_main_dataset_step3[firstRecordEvent <= 2025 | is.na(firstRecordEvent)]
   
   cat("Step 3d completed: final cleaning, text has been erased")
   cat("\n  - Non-processed rows post-final cleaning \"fr_check_missing_years2.csv\" available in tmp folder")
