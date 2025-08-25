@@ -14,7 +14,7 @@ fr_terms_standard <- function(dataset, use_log = FALSE){
     
     # --- Open log file ---
     if (use_log == TRUE){
-      log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+      log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
       if (file.exists(log_file)) {
         sink(log_file, append = TRUE)  # Open log file for appending
       } else {
@@ -87,12 +87,14 @@ fr_terms_standard <- function(dataset, use_log = FALSE){
 #    setnames(all_unresolved, "V1", "unmatched_term")
     if (nrow(all_unresolved) > 0) {
       setnames(all_unresolved, names(all_unresolved)[1], "unmatched_term")  # rename first column safely
-      fwrite(unique(all_unresolved), "data/tmp/check_unresolved_terms.csv")
-      cat("\n    ⚠ Warning: Unresolved terms found. See data/tmp/check_unresolved_terms.csv\n")
+      filename <- file.path(tmp, "check_unresolved_terms.csv")
+      #fwrite(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
+      fwrite(unique(all_unresolved), filename)
+      cat("\n    ⚠ Warning: Unresolved terms found. See 'check_unresolved_terms.csv' available in the 'tmp' folder\n")
     }    
 
     # --- Export cleaned dataset ---
-    filename <- paste0("data/outputs/fr_main_dataset_final_", Sys.Date(), ".csv")
+    filename <- file.path(outputs, paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
     fwrite(dataset, filename)
     
     cat("\n  Final dataset available in data/output folder\n ")

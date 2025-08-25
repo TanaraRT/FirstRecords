@@ -15,7 +15,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -151,15 +151,19 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
   )]
   
   if (save_to_disk == TRUE){
-    as.data.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_step4.csv")
-    write.table(fr_main_dataset_step4, "data/tmp/fr_main_dataset_step4.csv")
+    fr_main_dataset_step4 <- as.data.table(fr_main_dataset_step4)
+    filename <- file.path(tmp, "fr_main_dataset_step4.csv")
+    fwrite(fr_main_dataset_step4, filename)
+    cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
   
   # --- 4: Check and save missing location names ---
   missing <- dat_regnames$location_orig[is.na(dat_regnames$locationID)]
   if (length(missing) > 0) {
-    write.table(sort(unique(missing)),"data/tmp/check_missing_locations.csv" ,row.names = F,col.names=F)
-  }
+    filename <- file.path(tmp, "check_missing_locations.csv")
+    write.table(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
+    cat("Missing locations written to:", filename, "\n")
+    }
   
   # ---5: Save location table ---
   location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
@@ -169,9 +173,10 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
   setorder(location_table, locationID)
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
-  fwrite(location_table, "data/outputs/location_table.csv")
-
-  cat("\nStep 4 completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
+  filename <- file.path(outputs, "location_table.csv")
+  fwrite(location_table, filename)
+  
+  cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'outputs' folder\n ") 
  
    if (use_log == TRUE){
     sink()

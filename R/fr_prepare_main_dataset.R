@@ -15,7 +15,7 @@ fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_di
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
       if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
       } else {
@@ -151,12 +151,13 @@ fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_di
   ) := NULL]
   cat("\n  - Deleted rows where all columns are empty")
   
-  cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
-  
   if (save_to_disk == TRUE){
-    fwrite(dataset, "data/tmp/fr_main_dataset_step1.csv")
+    filename <- file.path(tmp, "fr_main_dataset_step1.csv")
+    fwrite(dataset, filename)
     cat("  - 'fr_main_datastep1.csv' is available in 'data/tmp' folder")
   }
+  
+  cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
   
   if (use_log == TRUE){
     sink()

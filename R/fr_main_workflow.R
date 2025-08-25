@@ -35,11 +35,22 @@ fr_input_data <- read.csv2('data/input/IntroData_raw.csv', fileEncoding = "UTF-8
 )
 setDT(fr_input_data) 
 
-# --- Define 'outputs' folder ---
-# coming soon
+# --- Define the 'data' folder ---
+data_dir <- "data"  # update if needed
 
-# --- Create 'tmp' folder if needed ---
-# coming soon
+# --- Define the 'outputs' folder ---
+outputs <- file.path(data_dir, "outputs")
+if (!dir.exists(outputs)) {
+  dir.create(outputs, recursive = TRUE)
+}
+cat("\nOutputs folder is ready at:", outputs, "\n")
+
+# --- Define and create 'tmp' folder ---
+tmp <- file.path(data_dir, "tmp")
+if (!dir.exists(tmp)) {
+  dir.create(tmp, recursive = TRUE)
+}
+cat("\nTemporary folder is ready at:", tmp, "\n")
 
 # --- Load functions ---
 source("R/fr_prepare_main_dataset.r")
@@ -80,9 +91,9 @@ cat("\nSTEP 4: Standardize localities")
 fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3, 
                                             use_log = TRUE, # TRUE to record progress in log file in 'outputs' folder
                                             save_to_disk = TRUE) # TRUE to save fr_main_dataset_4 in 'tmp' folder
-cat("\nStep 4 completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
+cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'outputs' folder\n ") 
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
 fr_final_dataset <- fr_terms_standard(fr_main_dataset_4, 
                                       use_log = TRUE) # TRUE to record progress in log file in 'outputs' folder
-cat("\n  Final dataset available in data/output folder\n ")
+cat("\n  Final dataset available in the 'outputs' folder\n ")

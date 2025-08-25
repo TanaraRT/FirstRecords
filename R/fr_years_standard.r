@@ -14,7 +14,7 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -353,9 +353,9 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
     end_years <- as.integer(ranges[, 3]) # Extract start and end years
     # Chronologically order start and end years (oldest to most recent)
     is_later <- start_years > end_years
-    tmp <- start_years
+    temp <- start_years
     start_years[is_later] <- end_years[is_later]
-    end_years[is_later] <- tmp[is_later]
+    end_years[is_later] <- temp[is_later]
     range_widths <- end_years - start_years
     
     collapsed_years <- mapply(function(start, end) {
@@ -409,7 +409,9 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
   pattern <- "^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5]))$|^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])\\s*-\\s*(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])))$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
-  fwrite(non_matching_rows, "data/tmp/fr_check_missing_years_1.csv")
+  filename <- file.path(tmp, "fr_check_missing_years1.csv")
+  fwrite(non_matching_rows, filename)
+  cat("\n  - Non-processed rows pre-final cleaning \"fr_check_missing_years1.csv\" available in tmp folder")
   
   cat("\nStep 3c: years have been standardized") 
   cat("\n  - Decades handled: randomized or interpreted early/mid/late decades")
@@ -418,8 +420,7 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
   cat("\n  - Ranges handled")
   cat ("\n  - Years ago handled")
   cat("\n  - After and post years handled")
-  cat("\n  - Non-matching rows pre-final cleaning \"fr_check_missing_years_1.csv\" available in tmp folder\n")
-  
+
   ## 3D) FINAL CLEANING
   
   clean_first_record <- function(dt) {
@@ -438,7 +439,8 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
   pattern <- "^\\d{3,4}$|^-\\d{3,4}$|^\\d{3,4}\\s*-\\s*\\d{3,4}$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
-  fwrite(non_matching_rows, "data/tmp/fr_check_missing_years2.csv")
+  filename <- file.path(tmp, "fr_check_missing_years2.csv")
+  fwrite(non_matching_rows, filename)
   
   # Remove non-processed/non-matching years and save processed data
   pattern <- "^-?\\d{3,4}$"
@@ -451,8 +453,9 @@ fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = F
   cat("\n  - Non-processed rows post-final cleaning \"fr_check_missing_years2.csv\" available in tmp folder")
   
   if (save_to_disk == TRUE){
-    fwrite(fr_main_dataset_step3, "data/tmp/fr_main_dataset_step3.csv")
-    cat("\n  - Output file available in outputs folder\n ")
+    filename <- file.path(tmp, "fr_main_dataset_step3.csv")
+    fwrite(fr_main_dataset_step3, filename)
+    cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
   
   cat("\nStep3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder\n ")
