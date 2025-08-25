@@ -8,18 +8,31 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
+fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = FALSE) {
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
+  # --- Open log file ---
+  if (use_log == TRUE){
+    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    if (file.exists(log_file)) {
+      sink(log_file, append = TRUE)  # Open log file for appending
+    } else {
+      sink(log_file, append = FALSE) # Create new log file
+    }
+  }
+  cat("\nSTEP 2: Standardize taxa") 
+
   # 1. Clean taxon names
   dataset[, taxon := str_squish(trimws(taxon))]
   dataset <- dataset[taxon != "" & !is.na(taxon)]
+  cat("\n   - Removed leading and trailing whitespace\n   - Deleted extra internal white spaces\n   - Deleted empty rows") 
   
   # 2. Call GBIF check function
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "taxon")
   matched_taxa <- unique(gbif_result[[1]])
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)])
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
+  cat("\n   - Standardized taxon names across the GBIF backbone taxonomy") 
   
   # 3. Define taxonomic groups
   matched_taxa$taxaGroup <- NA
@@ -56,7 +69,7 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa, phylum%in%c("Foraminifera","Cercozoa","Ciliophora","Ochrophyta","Oomycota","Myzozoa","Peronosporea", "Bigyra"))$scientificName] <- "SAR"
   matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa, genus%in%c("Plasmodium"))$scientificName] <- "SAR"
   
-  cat("Step 2b completed: taxonomic groups have been allocated\n")
+  cat("\n   - Allocated taxonomic groups")
 
   # 4. Creating and adding unique taxonIDs
   unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)]))
@@ -64,6 +77,8 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   
   matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE)
 
+  cat("\n   - Allocated taxon IDs")
+  
   # 5. Write outputs
   fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
@@ -82,11 +97,13 @@ fr_taxons_standard <- function(dataset = NULL, save_to_disk = FALSE) {
   
   if (save_to_disk == TRUE){
     fwrite(fr_main_dataset_step2, "data/tmp/fr_main_dataset_step2.csv")
-    }
+  }
   
-  cat("Step 2c completed: taxon ID have been allocated\n")
+  cat("\nStep 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'outputs' folder\n ")
   
-
+  if (use_log == TRUE){
+    sink()
+  }
   return(
     fr_main_dataset_step2
    )

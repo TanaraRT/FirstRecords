@@ -9,7 +9,20 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dat, save_to_disk = FALSE){
+fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
+  
+  stopifnot(!is.null(dat) && is.data.table(dat))
+  
+  # --- Open log file ---
+  if (use_log == TRUE){
+    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    if (file.exists(log_file)) {
+      sink(log_file, append = TRUE)  # Open log file for appending
+    } else {
+      sink(log_file, append = FALSE) # Create new log file
+    }
+  }
+  cat("\nSTEP 4: Standardize localities") 
 
   ## STEP 4A: Prepare reference tables and dataset
   # --- 1. Load reference location table ---
@@ -150,12 +163,18 @@ fr_localities_standard <- function(dat, save_to_disk = FALSE){
   
   # ---5: Save location table ---
   location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
-  location_table <- unique(location_table, by = "locationID")
+  location_table[, verbatimLocation_lower := tolower(verbatimLocation)]
+  location_table <- unique(location_table, by = "verbatimLocation_lower")
+  location_table[, verbatimLocation_lower := NULL]  # drop helper column
+  setorder(location_table, locationID)
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
   fwrite(location_table, "data/outputs/location_table.csv")
 
-  cat("\nStep 4e completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
-  
+  cat("\nStep 4 completed: locations have been standardized and the location table is available in data/outputs folder\n ") 
+ 
+   if (use_log == TRUE){
+    sink()
+  }
   return(fr_main_dataset_step4)
 }

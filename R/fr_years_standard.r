@@ -8,23 +8,41 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_disk = FALSE){
+fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = FALSE, save_to_disk = FALSE){
+  
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
-  # --- Check if FirstRecordEvent exist ---
-  if (!"firstRecordEvent" %in% colnames(dataset)) {
-    stop("No firstRecordEvent column found. Please specify in firstRecordEvent")
+  # --- Open log file ---
+  if (use_log == TRUE){
+    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+    if (file.exists(log_file)) {
+      sink(log_file, append = TRUE)  # Open log file for appending
+    } else {
+      sink(log_file, append = FALSE) # Create new log file
+    }
   }
+  cat("\nSTEP 3: Standardize years") 
+  
+  # --- Check if FirstRecordEvent exist ---
+  if (!fr_column_name %in% colnames(dataset)) {
+    stop("No first record column provided. Please specify in fr_column_name")
+  }
+  colnames(dataset)[colnames(dataset)==fr_column_name] <- "firstRecordEvent"
+  cat("\n   - Renamed 'fr_column_name' to 'firstRecordEvent'") 
   
   # --- Create verbatim copy ---
   if (!"verbatimFirstRecordEvent" %in% colnames(dataset)) {
     dataset[, verbatimFirstRecordEvent := firstRecordEvent]
   }
   
+  cat("\n   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'") 
+  
   # --- Initialize confidence column ---
   if (!"confidenceFirstRecordEvent" %in% colnames(dataset)) {
     dataset[, confidenceFirstRecordEvent := ""]
   }
+  
+  cat("\n   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'") 
   
   ## 3A) BASIC DATA CLEANING
   
@@ -435,6 +453,12 @@ fr_years_standard <- function(dataset = NULL, firstRecordEvent = NULL, save_to_d
   if (save_to_disk == TRUE){
     fwrite(fr_main_dataset_step3, "data/tmp/fr_main_dataset_step3.csv")
     cat("\n  - Output file available in outputs folder\n ")
+  }
+  
+  cat("\nStep3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder\n ")
+
+  if (use_log == TRUE){
+    sink()
   }
   return(fr_main_dataset_step3)
 }

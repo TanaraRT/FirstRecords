@@ -8,11 +8,25 @@
 ## v2.0, 2025                                                           ##
 ##########################################################################
 
-fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
+fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_disk = FALSE){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
-  # prepare master dataset
+  
+  # --- Open log file ---
+  if (use_log == TRUE){
+    log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+      if (file.exists(log_file)) {
+      sink(log_file, append = TRUE)  # Open log file for appending
+      } else {
+        sink(log_file, append = FALSE) # Create new log file
+      }
+  }
+  
+  cat("\n --- FIRST RECORD ", format(Sys.Date(), "%Y-%m-%d"), " ---\n ")
+  cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
+  
+  # --- Prepare master dataset ---
   dataset <- dataset[, .(
     locationID = "",
     verbatimLocation = Country,
@@ -56,8 +70,10 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
     bibliographicCitation = Source,
     accessRights = DataUsage
     )]
+   cat("\n  - Loaded relevant columns")
 
-  # replace NA and "NULL", "unknown", "n.d" and "?" with empty strings
+  # --- Basic cleaning ---
+  ## replace NA and "NULL", "unknown", "n.d" and "?" with empty strings
   dataset[is.na(dataset)] <- ""
   dataset[, names(dataset) := lapply(.SD, function(x) {
     if (is.character(x)) {
@@ -71,12 +87,16 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
     }
   })]
   
-  # delete rows where all columns are empty
+  cat("\n  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings")
+  
+  ## Delete rows where all columns are empty
   dataset <- dataset[
     rowSums(!(is.na(dataset) | dataset == "")) > 0
   ]
+  cat("\n  - Deleted rows where all columns are empty")
   
-  # Store original fr values in verbatimFirstRecordEvent
+  # --- Prepare first record columns ---
+  ## Store original fr values in verbatimFirstRecordEvent
   dataset[, verbatimFirstRecordEvent := FirstRecord] # Initialize verbatimFirstRecordEvent with FirstRecord
   dataset[ # Assign verbatimFirstRecordEvent from FirstRecord1 if it's empty
     verbatimFirstRecordEvent %in% c("", NA) & FirstRecord1 != "",
@@ -99,26 +119,47 @@ fr_prepare_main_dataset <- function (dataset = NULL, save_to_disk = FALSE){
     verbatimFirstRecordEvent := paste(FirstRecord1, FirstRecord2, sep = " - ")
   ]
   
-  # Prepare firstRecordEvent and confidenceFirstRecordEvent columns
+  ## Prepare firstRecordEvent column
   dataset[, firstRecordEvent := verbatimFirstRecordEvent] # Initialize firstRecordEvent with verbatimFirstRecordEvent
+  cat("\n  - Stored original first records in verbatimFirstRecord")
+  
+  ## Prepare confidenceFirstRecordEvent column
   dataset[, confidenceFirstRecordEvent := "low confidence"] # Initialize with low confidence
+  cat("\n  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'")
   
-  # Store original species names in originalNameUsage and create new columns
-  dataset[, originalNameUsage := originalNameUsage1] # Initialize originalNameUsage with originalNameUsage1
-  dataset[ # Assign originalNameUsage from originalNameUsage2 if it's empty
-    originalNameUsage %in% c("", NA) & originalNameUsage1 != "",
-    originalNameUsage := originalNameUsage2
-  ]
+  # --- Prepare species columns ---
+  ## Store original species names in originalNameUsage and create new columns
+  #dataset[, originalNameUsage := originalNameUsage1] # Initialize originalNameUsage with originalNameUsage1
+  #dataset[ # Assign originalNameUsage from originalNameUsage2 if it's empty
+   # originalNameUsage %in% c("", NA) & originalNameUsage1 != "",
+    #originalNameUsage := originalNameUsage2
+  #]
   
-  # delete old columns
+  dataset[, originalNameUsage := fifelse(
+    !is.na(originalNameUsage1) & originalNameUsage1 != "",
+    originalNameUsage1,
+    originalNameUsage2
+  )]
+  cat("\n  - Stored original names in origninalNameUsage")
+
+  
+  ## Delete old columns
   dataset$taxon <- dataset$originalNameUsage
   dataset[, c(
     "DateNaturalisation", "FirstRecord", "FirstRecord1", "FirstRecord2",
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"
   ) := NULL]
+  cat("\n  - Deleted rows where all columns are empty")
+  
   cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
+  
   if (save_to_disk == TRUE){
-  fwrite(dataset, "data/tmp/fr_main_dataset_step1.csv")
+    fwrite(dataset, "data/tmp/fr_main_dataset_step1.csv")
+    cat("  - 'fr_main_datastep1.csv' is available in 'data/tmp' folder")
+  }
+  
+  if (use_log == TRUE){
+    sink()
   }
   return(dataset)
-  }
+}

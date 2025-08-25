@@ -8,10 +8,21 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_terms_standard <- function(dataset){
-    
+fr_terms_standard <- function(dataset, use_log = FALSE){
     standard_terms <- fread("data/config/standard_terms.csv")
     stopifnot(is.data.table(dataset), is.data.table(standard_terms))
+    
+    # --- Open log file ---
+    if (use_log == TRUE){
+      log_file <- file.path("data","outputs", paste0("log_file_", Sys.Date(),".txt"))
+      if (file.exists(log_file)) {
+        sink(log_file, append = TRUE)  # Open log file for appending
+      } else {
+        sink(log_file, append = FALSE) # Create new log file
+      }
+    }
+    
+    cat("\nSTEP 5: Standardize remaining terms") 
     
     unresolved_all <- list()
     
@@ -85,6 +96,8 @@ fr_terms_standard <- function(dataset){
     fwrite(dataset, filename)
     
     cat("\n  Final dataset available in data/output folder\n ")
-    
+    if (use_log == TRUE){
+      sink()
+    }
     return(dataset)
   }
