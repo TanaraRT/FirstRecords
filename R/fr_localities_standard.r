@@ -9,13 +9,13 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
+fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
   
   stopifnot(!is.null(dat) && is.data.table(dat))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -26,12 +26,21 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
 
   ## STEP 4A: Prepare reference tables and dataset
   # --- 1. Load reference location table ---
-  regions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "location", na.strings = "")
+  
+  regions <- read.xlsx(
+    file.path(config, "AllLocations.xlsx"),
+    sheet = "location",
+    na.strings = ""
+  )
   regions <- regions[, c("locationID", "location", "location_var", "sinas_region")]
   regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
   regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
   
-  subregions <- read.xlsx("data/config/AllLocations.xlsx", sheet = "stateProvince", na.strings = "")
+  subregions <- read.xlsx(
+    file.path(config, "AllLocations.xlsx"),
+    sheet = "stateProvince",
+    na.strings = ""
+  )
   subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")]
   subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
   subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
@@ -143,7 +152,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
     left_join(regions |> select(location, locationID, sinas_region), by = "location")
   
   # --- 3: Save fr_main_dataset_step4 with standardized location names ---
-  fr_main_dataset_step4 <- write_regnames[, c("locationID", "location", "taxonID", "taxon",
+  fr_main_dataset_step4 <- write_regnames[, c("locationID", "location", "verbatimLocation", "taxonID", "taxon",
                                        "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                        "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
                                        "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
@@ -173,10 +182,10 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE){
   setorder(location_table, locationID)
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
-  filename <- file.path(outputs, "location_table.csv")
+  filename <- file.path(output, "location_table.csv")
   fwrite(location_table, filename)
   
-  cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'outputs' folder\n ") 
+  cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'output' folder\n ") 
  
    if (use_log == TRUE){
     sink()

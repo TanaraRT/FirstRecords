@@ -8,13 +8,13 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = FALSE, save_to_disk = FALSE){
+fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
   
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {

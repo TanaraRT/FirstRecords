@@ -8,14 +8,14 @@
 ## v2.0, 2025                                                           ##
 ##########################################################################
 
-fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_disk = FALSE){
+fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
       if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
       } else {

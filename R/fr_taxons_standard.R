@@ -8,12 +8,12 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = FALSE) {
+fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config) {
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(outputs, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -79,7 +79,7 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
 
   cat("\n   - Allocated taxon IDs")
   
-  # 5. Write outputs
+  # 5. Write output
   fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                             "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
@@ -93,7 +93,7 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
                                            "order","class","phylum","kingdom", "taxaGroup"
   )])
   
-  filename <- file.path(outputs, "taxonomy_table.csv")
+  filename <- file.path(output, "taxonomy_table.csv")
   fwrite(taxonomy_table, filename)
   filename <- file.path(tmp, "fr_check_missing_taxa.csv")
   fwrite(mismatches, filename)
@@ -103,7 +103,7 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
     fwrite(fr_main_dataset_step2, filename)
     cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
-  cat("\nStep 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'outputs' folder\n ")
+  cat("\nStep 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder\n ")
   
   if (use_log == TRUE){
     sink()
