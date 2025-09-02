@@ -80,6 +80,7 @@ locationID,location,verbatimLocation,region
 48,Canada,Canada British Columbia ,Northern America
 48,Canada,Canada Nova Scotia,Northern America
 48,Canada,Canada Ontario,Northern America
+48,Canada,Canada Qu�bec ,Northern America
 48,Canada,British Columbia,Northern America
 48,Canada,CANADA Newfoundland and Labrador,Northern America
 48,Canada,CANADA Quebec,Northern America
@@ -133,16 +134,11 @@ locationID,location,verbatimLocation,region
 52,China,China (Xinjiang),Eastern Asia
 52,China,China (Zhejiang),Eastern Asia
 52,China,China (Tibet),Eastern Asia
-52,China,"China(AH, CQ, FJ, GD, GX, GZ, HB, HN, JS, JX, SC, SH,  YN, ZJ, HI, HK, MO)   ,Taiwan",Eastern Asia
 52,China,"China(BJ, HA, HE, LN, SD, SN, SX, TJ)",Eastern Asia
 52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ, GS, NM, NX, XJ, QH, XZ)",Eastern Asia
-52,China,"China(GS, NM, NX)",Eastern Asia
-52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ, GS, NM, NX, XJ),Taiwan",Eastern Asia
 52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ, XJ)",Eastern Asia
 52,China,"China(HL, JL)",Eastern Asia
 52,China,"China(HL, JL, GS, NM, NX)",Eastern Asia
-52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ)",Eastern Asia
-52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ, AH, CQ, FJ, GD, GX, GZ, HB, HN, JS, JX, SC, SH, YN, ZJ, HI, HK, MO, GS, NM, NX, XJ, QH, XZ),Taiwan",Eastern Asia
 52,China,"China(HL, JL, BJ, HA, HE, LN, SD, SN, SX, TJ, GS, NM, NX)",Eastern Asia
 52,China,"China(BJ, HA, HE, LN, SD, SN, SX, TJ, GS, NM, NX)",Eastern Asia
 52,China,"Mainland, China",Eastern Asia
@@ -190,6 +186,7 @@ locationID,location,verbatimLocation,region
 78,Balearic Islands,Spain (Balearic Islands),Europe
 79,Canary Islands,Canary Island,Sub-Saharan Africa
 79,Canary Islands,Spain (Canary islands),Sub-Saharan Africa
+79,Canary Islands,Canary Is,Sub-Saharan Africa
 79,Canary Islands,Canary Islands,Sub-Saharan Africa
 80,Spain,Spain,Europe
 80,Spain,Spain (mainland),Europe
@@ -249,6 +246,7 @@ locationID,location,verbatimLocation,region
 110,Hong Kong,China (Hongkong),Eastern Asia
 110,Hong Kong,Hong Kong,Eastern Asia
 110,Hong Kong,Hong-Kong,Eastern Asia
+110,Hong Kong,Hon Kong,Eastern Asia
 111,Heard Island and McDonald Island,Heard and McDonald Islands,Antarctic
 112,Honduras,Honduras,Central America and the Caribbean
 113,Croatia,Croatia,Europe
@@ -276,6 +274,7 @@ locationID,location,verbatimLocation,region
 126,Italy,Italy (mainland),Europe
 126,Italy,Italy,Europe
 126,Italy,Italy  ,Europe
+127,Sardinia,Sardegna (Sardinia),Europe
 127,Sardinia,Italy (Italy- Sardinia),Europe
 127,Sardinia,Italy (Sardinia),Europe
 127,Sardinia,Sardinia,Europe
@@ -283,13 +282,14 @@ locationID,location,verbatimLocation,region
 128,Sicily,Italy (Italy- Sicily),Europe
 128,Sicily,Sicilia,Europe
 128,Sicily,Sicilia (Sicily),Europe
-128,Sicily,Sicily,Europe
 128,Sicily,Italy (Sicily),Europe
+128,Sicily,Sicily,Europe
 129,Jamaica,Jamaica,Central America and the Caribbean
 131,Jordan,JORDAN,Saharo-Arabia
 132,Japan,Japan,Eastern Asia
 132,Japan,Japan ,Eastern Asia
 132,Japan,Ryukyu Islands,Eastern Asia
+132,Japan,Fuji,Eastern Asia
 133,Kazakhstan,Kazakhstan,Western Asia
 134,Kenya,Kenya,Sub-Saharan Africa
 135,Kyrgyzstan,Kyrgyzstan,Western Asia
@@ -299,8 +299,10 @@ locationID,location,verbatimLocation,region
 137,Kiribati,KIRIBATI,Pacific
 137,Kiribati,Phoenix Islands,Pacific
 138,Saint Kitts and Nevis,Saint Kitts and Nevis,Central America and the Caribbean
+138,Saint Kitts and Nevis,Nevis,Central America and the Caribbean
 139,South Korea,South Korea,Eastern Asia
 139,South Korea,"Korea, Republic of",Eastern Asia
+139,South Korea,Korea,Eastern Asia
 140,Kuwait,KUWAIT,Saharo-Arabia
 141,Laos,Laos,Southern Asia
 141,Laos,LAO PEOPLE'S DEMOCRATIC REPUBLIC,Southern Asia
@@ -387,6 +389,7 @@ locationID,location,verbatimLocation,region
 194,Philippines,Malesia (Philippines),Southern Asia
 194,Philippines,PHILIPPINES,Southern Asia
 195,Palau,Palau,Pacific
+195,Palau,Palau island,Pacific
 196,Papua New Guinea,Malesia (New Guinea),Southern Asia
 196,Papua New Guinea,PAPUA NEW GUINEA,Southern Asia
 196,Papua New Guinea,New Guinea,Southern Asia
@@ -422,6 +425,7 @@ locationID,location,verbatimLocation,region
 215,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,Antarctic
 215,South Georgia and the South Sandwich Islands,South Georgia,Antarctic
 216,Ascension,Ascension Islands,Sub-Saharan Africa
+216,Ascension,Ascension Island,Sub-Saharan Africa
 216,Ascension,Ascension,Sub-Saharan Africa
 216,Ascension,Ascencion,Sub-Saharan Africa
 217,Saint Helena,SAINT HELENA,Sub-Saharan Africa
@@ -467,6 +471,7 @@ locationID,location,verbatimLocation,region
 244,Trinidad and Tobago,Trinidad,Central America and the Caribbean
 245,Tunisia,Tunusia,Saharo-Arabia
 245,Tunisia,Tunisia,Saharo-Arabia
+245,Tunisia,Tunesia,Saharo-Arabia
 246,Turkey,Turkey,Western Asia
 246,Turkey,Turkey (in Europe),Western Asia
 247,Tuvalu,Tuvalu,Pacific
@@ -479,7 +484,9 @@ locationID,location,verbatimLocation,region
 250,Uganda,Uganda,Sub-Saharan Africa
 251,Ukraine,Ukraine,Europe
 252,United States Minor Outlying Islands,UNITED STATES MINOR OUTLYING ISLAND,Pacific
+252,United States Minor Outlying Islands,UNITED STATES Midway,Pacific
 252,United States Minor Outlying Islands,US Minor Outlying Islands,Pacific
+252,United States Minor Outlying Islands,UNITED STATES Johnston Atoll,Pacific
 252,United States Minor Outlying Islands,Wake Island,Pacific
 253,Uruguay,Uruguay,Southern America
 254,Alaska,Alaska,Northern America
@@ -498,6 +505,7 @@ locationID,location,verbatimLocation,region
 256,United States of America,Florida,Northern America
 256,United States of America,UNITED STATES Arizona,Northern America
 256,United States of America,USA Idaho,Northern America
+256,United States of America,USA New England/New York,Northern America
 256,United States of America,USA Wisconsin,Northern America
 256,United States of America,USA Louisiana,Northern America
 256,United States of America,UNITED STATES Delaware,Northern America
@@ -569,12 +577,15 @@ locationID,location,verbatimLocation,region
 266,Samoa,SAMOA,Pacific
 272,Yemen,YEMEN,Saharo-Arabia
 273,South Africa,South Africa,Sub-Saharan Africa
+273,South Africa,Rep S Africa,Sub-Saharan Africa
 273,South Africa,Prince Edward Islands,Sub-Saharan Africa
 273,South Africa,Marion Island,Sub-Saharan Africa
+273,South Africa,RSA,Sub-Saharan Africa
 273,South Africa,South Africa ,Sub-Saharan Africa
 274,Zambia,ZAMBIA,Sub-Saharan Africa
 276,Zimbabwe,Zimbabwe,Sub-Saharan Africa
 1201,Corsica,France (Corsica),Europe
+1201,Corsica,Corse (Corsica),Europe
 1201,Corsica,Corsica,Europe
 1201,Corsica,Corse,Europe
 3914,Antipodes Island,Antipodes,Australasia

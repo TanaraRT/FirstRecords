@@ -28,10 +28,12 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
   cat("\n   - Removed leading and trailing whitespace\n   - Deleted extra internal white spaces\n   - Deleted empty rows") 
   
   # 2. Call GBIF check function
+  sink()
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "taxon")
   matched_taxa <- unique(gbif_result[[1]])
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)])
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
+  sink(log_file, append = TRUE)
   cat("\n   - Standardized taxon names across the GBIF backbone taxonomy") 
   
   # 3. Define taxonomic groups
