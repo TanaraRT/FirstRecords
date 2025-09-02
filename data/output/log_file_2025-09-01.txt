@@ -381,3 +381,17 @@ STEP 5: Standardize remaining terms  - establishmentMeans terms have been standa
  
   Final dataset available in the 'output' folder
  
+ Initialization
+  - Config folder is ready at: data/config . Please make sure configuration files are uploaded in this folder.
+
+  - Input folder is ready at: data/input . Please make sure input dataset is uploaded in this folder.
+
+  - Output folder is ready at: data/output 
+
+  - Temporary folder is ready at: data/tmp 
+
+  - Functions and input data loaded
+
+Intialization completed
+ 
+STEP 1: Prepare main dataset
