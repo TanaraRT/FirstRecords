@@ -103,7 +103,7 @@ fr_terms_standard <- function(dataset, use_log = FALSE, output, input, tmp, conf
     .SD[1],
     by = .(taxon, location),
     .SDcols = orig_cols
-  ][, ..orig_cols][order(location)]  # restore original order#dataset <- dataset[
+  ][, ..orig_cols][order(location, taxon)]  # restore original order#dataset <- dataset[
   #  order(!(nzchar(datasetName)), firstRecordEvent),
   #  .SD[1],
   #  by = .(taxon, location)
