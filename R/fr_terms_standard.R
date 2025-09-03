@@ -97,11 +97,17 @@ fr_terms_standard <- function(dataset, use_log = FALSE, output, input, tmp, conf
   # Delete rows where "taxon", "verbatimLocation" and "firstRecordEvent" are similar
   dataset <- unique(dataset, by = c("taxon", "verbatimLocation", "firstRecordEvent"))
   # If we have first records for a taxa in the same location, select the one from a paper in priority, or the earliest one
+  orig_cols <- names(dataset)  # store column order
   dataset <- dataset[
     order(!(nzchar(datasetName)), firstRecordEvent),
     .SD[1],
-    by = .(taxon, location)
-  ]
+    by = .(taxon, location),
+    .SDcols = orig_cols
+  ][, ..orig_cols][order(location)]  # restore original order#dataset <- dataset[
+  #  order(!(nzchar(datasetName)), firstRecordEvent),
+  #  .SD[1],
+  #  by = .(taxon, location)
+  #]
   #dataset <- dataset[order(firstRecordEvent), .SD[1], by = .(taxon, location)]
      
   # --- Export cleaned dataset ---

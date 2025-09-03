@@ -23,7 +23,6 @@ source("R/fr_initialization.r")
 init <- fr_initialization (data_dir = "data") 
 
 cat("\nIntialization completed\n ") 
-
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset") 
 
