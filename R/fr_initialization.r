@@ -8,24 +8,40 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_initialization <- function (data_dir){
+fr_initialization <- function (data_dir=NULL){
   
   if (!dir.exists(data_dir)){
     stop("Data directory not found: ", data_dir)
   }
 
   # --- Call libraries ---
-  suppressPackageStartupMessages({
-   library(Hmisc)
-    library(gsubfn)
-    library(stringr)
-    library(stringi)
-    library(data.table)
-    library(rgbif)
-    library(worrms)
-    library(openxlsx)
-    library(tidyverse)
-    })
+  
+  packages <- c("Hmisc", "gsubfn", "stringr", "stringi", "data.table", "rgbif",
+                "worrms", "openxlsx", "tidyverse") 
+  
+  new.packages <- packages[!(packages %in% installed.packages()[,"Package"])] # check which of them is not yet installed
+  if(length(new.packages)) install.packages(new.packages); rm(new.packages) # install them
+  
+  # load all required packages
+  l <- sapply(packages, function(s) suppressMessages( 
+                                        suppressWarnings(
+                                            require(s, quietly=T, character.only = TRUE))
+                                        )
+                                    ); 
+                rm(packages, l
+              ) 
+  
+  # suppressPackageStartupMessages({
+  #  library(Hmisc)
+  #   library(gsubfn)
+  #   library(stringr)
+  #   library(stringi)
+  #   library(data.table)
+  #   library(rgbif)
+  #   library(worrms)
+  #   library(openxlsx)
+  #   library(tidyverse)
+  #   })
 
   # --- Define or create the 'config' folder ---
   config <- file.path(data_dir, "config")
@@ -57,13 +73,13 @@ fr_initialization <- function (data_dir){
   cat("\n  - Temporary folder is ready at:", tmp, "\n")
 
 # --- Load functions ---
-  source("R/fr_prepare_main_dataset.r")
-  source("R/fr_taxons_standard.r")
-  source("R/check_GBIF_taxa.r")
-  source("R/fr_years_standard.r")
-  source("R/fr_localities_standard.r")
-  source("R/fr_terms_standard.R")
-  source("R/standardize_and_filter_terms.r")
+  source(file.path("R","fr_prepare_main_dataset.r"))
+  source(file.path("R","fr_taxons_standard.r"))
+  source(file.path("R","check_GBIF_taxa.r"))
+  source(file.path("R","fr_years_standard.r"))
+  source(file.path("R","fr_localities_standard.r"))
+  source(file.path("R","fr_terms_standard.R"))
+  source(file.path("R","standardize_and_filter_terms.r"))
 
 # --- Import data ---
   filename <- file.path(input, "IntroData_raw.csv")
@@ -75,10 +91,10 @@ fr_initialization <- function (data_dir){
   cat("\n  - Functions and input data loaded\n")
   
   return(list(
-    config = config,
-    input = input,
-    output = output,
-    tmp = tmp,
+    # config = config,
+    # input = input,
+    # output = output,
+    # tmp = tmp,
     fr_input_data = fr_input_data
   ))
   }

@@ -10,37 +10,31 @@
 ##########################################################################
 
 check_GBIF_taxa <- function(taxon_names=NULL,
-                         column_name_taxa=NULL){
+                         column_name_taxa=NULL,
+                         save_interm=TRUE,
+                         data_dir=NULL){
   
   ## check input variable
   if (is.null(taxon_names)){
-    
     stop("No taxon names provided.")
-    
   } else if (is.character(taxon_names)){ # check if input file is a vector
-    
     dat <- as.data.frame(taxon_names)
     colnames(dat) <- "taxon"
-    
   } else if (is.data.frame(taxon_names)){ # check if input file is a data.frame
-    
     dat <- taxon_names
-    
   } else {
-    
     stop("Cannot coerce data into data.frame. Please provide a data.frame or vector as input.")
-    
   }
   
   if (!is.null(column_name_taxa)){ # check if column name of taxa provided
-    
     colnames(dat)[colnames(dat)==column_name_taxa] <- "taxon" # rename to standard column name
-    
   }
   if (all(colnames(dat)!="taxon")){ # check if column "taxon_orig" can be found
-    
     stop("No column with taxon names found. Please specify in column_name_taxa.")
-    
+  }
+  
+  if (!file.exists(file.path(data_dir, "tmp"))){ # to store intermediate output
+    dir.create(file.path(data_dir, "tmp"))
   }
   
   if (any(colnames(dat)=="kingdom_user")){
@@ -58,9 +52,12 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   pb <- txtProgressBar(min=0, max=n_taxa, initial=0,style = 3)
   
   options(warn=-1) # the use of 'tibbles' data frame generates warnings as a bug; if solved this options() should be turned off
-  
+
+  # variables for saving intermediate output while looping  
+  iter <- 0 # counter for storing intermediate output (roughly every 100 steps)
+  old_j <- 0 # counter for storing outdated output for later removal
+
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
-  
   for (j in 1:n_taxa) {# loop over all species names; takes some hours...
 
     # select species name and download taxonomy
@@ -407,9 +404,28 @@ check_GBIF_taxa <- function(taxon_names=NULL,
 #      try(mismatches$status[nrow(mismatches)] <- db$status,silent = T)
 #      try(mismatches$matchType[nrow(mismatches)] <- db$matchType,silent = T)
     }
-   # print(j)
-    #update progress bar
-    try(info <- sprintf("%d%% done", round((j/n_taxa)*100)), silent = TRUE)
+    # print(j)
+    
+    # save results of intermediate steps
+    if (save_interm){
+      if (iter<(round(j/100)*100)){
+        
+        # remove existing temporary file from previous iteration
+        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", old_j, ".csv")))
+        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", old_j, ".csv")))
+        
+        # save new temporary file
+        fwrite(dat, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", j, ".csv")))
+        fwrite(mismatches, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", j, ".csv")))
+        
+        # set counter to current tmp file
+        iter <- (round(j/100)*100) # counter to store already saved iterations
+        old_j <- j
+      }
+    }
+
+    # update progress bar
+    try(info <- sprintf("%d%% done", round((j/n_taxa)*100, 2)), silent = TRUE)
     setTxtProgressBar(pb, j, label = info)
   }
   #print(info)
@@ -422,7 +438,9 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   out <- list()
   out[[1]] <- dat
   out[[2]] <- mismatches
+  
   cat("Step 2a completed: species names have been standardized across the GBIF backbone taxonomy\n")
+  
   return(out)
 }
 

@@ -8,12 +8,21 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config) {
+fr_taxons_standard <- function(dataset = NULL, 
+                               use_log = FALSE, 
+                               save_to_disk = FALSE,
+                               data_dir = data_dir
+                               # output, 
+                               # input, 
+                               # tmp, 
+                               # config
+                               ) {
+  
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -29,7 +38,10 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
   
   # 2. Call GBIF check function
   sink()
-  gbif_result <- check_GBIF_taxa(taxon_names = dataset, column_name_taxa = "taxon")
+  gbif_result <- check_GBIF_taxa(taxon_names = dataset, 
+                                 column_name_taxa = "taxon",
+                                 save_interm=TRUE,
+                                 data_dir=data_dir)
   matched_taxa <- unique(gbif_result[[1]])
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)])
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
@@ -95,13 +107,14 @@ fr_taxons_standard <- function(dataset = NULL, use_log = FALSE, save_to_disk = F
                                            "order","class","phylum","kingdom", "taxaGroup"
   )])
   
-  filename <- file.path(output, "taxonomy_table.csv")
+  filename <- file.path(data_dir, "output", "taxonomy_table.csv")
   fwrite(taxonomy_table, filename)
-  filename <- file.path(tmp, "fr_check_missing_taxa.csv")
+  
+  filename <- file.path(data_dir, "tmp", "fr_check_missing_taxa.csv")
   fwrite(mismatches, filename)
 
   if (save_to_disk == TRUE){
-    filename <- file.path(tmp, "fr_main_dataset_step2.csv")
+    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step2.csv")
     fwrite(fr_main_dataset_step2, filename)
     cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }

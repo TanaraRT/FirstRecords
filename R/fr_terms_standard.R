@@ -8,14 +8,21 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_terms_standard <- function(dataset, use_log = FALSE, output, input, tmp, config){
+fr_terms_standard <- function(dataset, 
+                              use_log = FALSE, 
+                              data_dir = NULL
+                              # output, 
+                              # input, 
+                              # tmp, 
+                              # config
+                              ){
  
-  standard_terms <- fread(file.path(config, "standard_terms.csv"))
+  standard_terms <- fread(file.path(data_dir, "config", "standard_terms.csv"))
   stopifnot(is.data.table(dataset), is.data.table(standard_terms))
     
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
       } else {
@@ -87,7 +94,7 @@ fr_terms_standard <- function(dataset, use_log = FALSE, output, input, tmp, conf
   all_unresolved <- rbindlist(unresolved_all, use.names = TRUE, fill = TRUE)
     if (nrow(all_unresolved) > 0) {
       setnames(all_unresolved, names(all_unresolved)[1], "unmatched_term")  # rename first column safely
-      filename <- file.path(tmp, "check_unresolved_terms.csv")
+      filename <- file.path(data_dir, "tmp", "check_unresolved_terms.csv")
       #fwrite(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
       fwrite(unique(all_unresolved), filename)
       cat("\n    ⚠ Warning: Unresolved terms found. See 'check_unresolved_terms.csv' available in the 'tmp' folder\n")
@@ -105,10 +112,10 @@ fr_terms_standard <- function(dataset, use_log = FALSE, output, input, tmp, conf
   #dataset <- dataset[order(firstRecordEvent), .SD[1], by = .(taxon, location)]
      
   # --- Export cleaned dataset ---
-  filename <- file.path(output, paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
+  filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
   fwrite(dataset, filename)
     
-  cat("\n  Final dataset available in data/output folder\n ")
+  cat("\n  Final dataset available in output folder\n ")
   if (use_log == TRUE){
     sink()
   }
