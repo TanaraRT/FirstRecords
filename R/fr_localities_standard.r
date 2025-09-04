@@ -9,13 +9,21 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
+fr_localities_standard <- function(dat, 
+                                   use_log = FALSE, 
+                                   save_to_disk = FALSE, 
+                                   data_dir=NULL
+                                   # output, 
+                                   # input, 
+                                   # tmp, 
+                                   # config
+                                   ){
   
   stopifnot(!is.null(dat) && is.data.table(dat))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -28,7 +36,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, o
   # --- 1. Load reference location table ---
   
   regions <- read.xlsx(
-    file.path(config, "AllLocations.xlsx"),
+    file.path(data_dir, "config", "AllLocations.xlsx"),
     sheet = "location",
     na.strings = ""
   )
@@ -37,7 +45,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, o
   regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
   
   subregions <- read.xlsx(
-    file.path(config, "AllLocations.xlsx"),
+    file.path(data_dir, "config", "AllLocations.xlsx"),
     sheet = "stateProvince",
     na.strings = ""
   )
@@ -161,7 +169,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, o
   
   if (save_to_disk == TRUE){
     fr_main_dataset_step4 <- as.data.table(fr_main_dataset_step4)
-    filename <- file.path(tmp, "fr_main_dataset_step4.csv")
+    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step4.csv")
     fwrite(fr_main_dataset_step4, filename)
     cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
@@ -169,7 +177,7 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, o
   # --- 4: Check and save missing location names ---
   missing <- dat_regnames$location_orig[is.na(dat_regnames$locationID)]
   if (length(missing) > 0) {
-    filename <- file.path(tmp, "check_missing_locations.csv")
+    filename <- file.path(data_dir, "tmp", "check_missing_locations.csv")
     write.table(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
     cat("Missing locations written to:", filename, "\n")
     }
@@ -182,7 +190,8 @@ fr_localities_standard <- function(dat, use_log = FALSE, save_to_disk = FALSE, o
   setorder(location_table, locationID)
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
-  filename <- file.path(output, "location_table.csv")
+  
+  filename <- file.path(data_dir, "output", "location_table.csv")
   fwrite(location_table, filename)
   
   cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'output' folder\n ") 
