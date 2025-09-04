@@ -33,7 +33,6 @@ source(file.path("R", "fr_initialization.r"))
 init <- fr_initialization(data_dir = data_dir) # HANNO: I think that an init file is not necessary any more as I removed the folder paths.
 
 cat("\nIntialization completed\n ") 
-
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset") 
 
