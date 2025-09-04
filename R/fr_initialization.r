@@ -27,9 +27,8 @@ fr_initialization <- function (data_dir=NULL){
                                         suppressWarnings(
                                             require(s, quietly=T, character.only = TRUE))
                                         )
-                                    ); 
-                rm(packages, l
-              ) 
+                                    ) 
+  rm(packages, l) 
   
   # suppressPackageStartupMessages({
   #  library(Hmisc)
