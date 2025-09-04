@@ -8,23 +8,14 @@
 ## v2.0, 2025                                                           ##
 ##########################################################################
 
-fr_prepare_main_dataset <- function (dataset = NULL, 
-                                     use_log = FALSE, 
-                                     save_to_disk = FALSE, 
-                                     data_dir = NULL
-                                     # output, 
-                                     # input, 
-                                     # tmp, 
-                                     # config
-                                     ){
-  
+fr_prepare_main_dataset <- function (dataset = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
       if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
       } else {
@@ -161,9 +152,9 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   cat("\n  - Deleted rows where all columns are empty")
   
   if (save_to_disk == TRUE){
-    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step1.csv")
+    filename <- file.path(tmp, "fr_main_dataset_step1.csv")
     fwrite(dataset, filename)
-    cat("  - 'fr_main_datastep1.csv' is available in 'tmp' folder")
+    cat("  - 'fr_main_datastep1.csv' is available in 'data/tmp' folder")
   }
   
   cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 

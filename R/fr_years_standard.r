@@ -8,22 +8,13 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_years_standard <- function(dataset = NULL, 
-                              fr_column_name = NULL, 
-                              use_log = FALSE, 
-                              save_to_disk = FALSE,
-                              data_dir = NULL
-                              # output, 
-                              # input, 
-                              # tmp, 
-                              # config
-                              ){
+fr_years_standard <- function(dataset = NULL, fr_column_name = NULL, use_log = FALSE, save_to_disk = FALSE, output, input, tmp, config){
   
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
   # --- Open log file ---
   if (use_log == TRUE){
-    log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
+    log_file <- file.path(output, paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
       sink(log_file, append = TRUE)  # Open log file for appending
     } else {
@@ -418,10 +409,8 @@ fr_years_standard <- function(dataset = NULL,
   pattern <- "^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5]))$|^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])\\s*-\\s*(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])))$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
-  filename <- file.path(data_dir, "tmp", "fr_check_missing_years1.csv")
-  
+  filename <- file.path(tmp, "fr_check_missing_years1.csv")
   fwrite(non_matching_rows, filename)
-  
   cat("\n  - Non-processed rows pre-final cleaning \"fr_check_missing_years1.csv\" available in tmp folder")
   
   cat("\nStep 3c: years have been standardized") 
@@ -450,8 +439,7 @@ fr_years_standard <- function(dataset = NULL,
   pattern <- "^\\d{3,4}$|^-\\d{3,4}$|^\\d{3,4}\\s*-\\s*\\d{3,4}$"
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
-  
-  filename <- file.path(data_dir, "tmp", "fr_check_missing_years2.csv")
+  filename <- file.path(tmp, "fr_check_missing_years2.csv")
   fwrite(non_matching_rows, filename)
   
   # Remove non-processed/non-matching years and save processed data
@@ -465,7 +453,7 @@ fr_years_standard <- function(dataset = NULL,
   cat("\n  - Non-processed rows post-final cleaning \"fr_check_missing_years2.csv\" available in tmp folder")
   
   if (save_to_disk == TRUE){
-    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step3.csv")
+    filename <- file.path(tmp, "fr_main_dataset_step3.csv")
     fwrite(fr_main_dataset_step3, filename)
     cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
