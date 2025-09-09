@@ -8,35 +8,32 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-## PREPARE WORKSPACE AND IMPORT DATA #####################################
-
-cat("\n Initialization") 
+## PREPARE WORKSPACE AND CONFIGURATION ###################################
 
 # --- Clean workspace ---
 graphics.off()
 rm(list = ls())
 
-
-# please define "data_dir" folder ("data" by default)
+# --- Please define "data_dir" folder ("data" by default) ---
 data_dir = "data"
 
+# --- Please define "input_file" ("IntroData_raw.csv" by default) ---
+input_file = "IntroData_raw.csv"
 
-
-
-# --- Workflow start --- #######################################################
-
+## INITIALIZATION #########################################################
+cat("\n Initialization") 
 
 # --- Prepare workspace and import data ---
 source(file.path("R", "fr_initialization.r"))
 
 # --- Check folders and load packages and scripts --- #
-init <- fr_initialization(data_dir = data_dir) # HANNO: I think that an init file is not necessary any more as I removed the folder paths.
-
+init <- fr_initialization(data_dir = data_dir, input_file = "IntroData_raw.csv")
 cat("\nIntialization completed\n ") 
+
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset") 
 
-fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = init$fr_input_data,
+fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = init,
                                              use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                              save_to_disk = TRUE, # TRUE to save fr_main_dataset_1 in 'tmp' folder
                                              data_dir = data_dir)

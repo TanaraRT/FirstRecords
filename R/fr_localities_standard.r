@@ -13,10 +13,6 @@ fr_localities_standard <- function(dat,
                                    use_log = FALSE, 
                                    save_to_disk = FALSE, 
                                    data_dir=NULL
-                                   # output, 
-                                   # input, 
-                                   # tmp, 
-                                   # config
                                    ){
   
   stopifnot(!is.null(dat) && is.data.table(dat))
@@ -33,8 +29,8 @@ fr_localities_standard <- function(dat,
   cat("\nSTEP 4: Standardize localities") 
 
   ## STEP 4A: Prepare reference tables and dataset
+ 
   # --- 1. Load reference location table ---
-  
   regions <- read.xlsx(
     file.path(data_dir, "config", "AllLocations.xlsx"),
     sheet = "location",
@@ -145,7 +141,6 @@ fr_localities_standard <- function(dat,
   }
   dat_regnames <- dat
   
-  
   cat("\nStep 4d completed: warnings will be issued for unresolved terms")
   
   ## STEP 4E: Outputs
@@ -198,6 +193,7 @@ fr_localities_standard <- function(dat,
  
    if (use_log == TRUE){
     sink()
-  }
+   }
+  
   return(fr_main_dataset_step4)
 }

@@ -11,10 +11,6 @@
 fr_terms_standard <- function(dataset, 
                               use_log = FALSE, 
                               data_dir = NULL
-                              # output, 
-                              # input, 
-                              # tmp, 
-                              # config
                               ){
  
   standard_terms <- fread(file.path(data_dir, "config", "standard_terms.csv"))
@@ -29,7 +25,6 @@ fr_terms_standard <- function(dataset,
         sink(log_file, append = FALSE) # Create new log file
       }
     }
-    
   cat("\nSTEP 5: Standardize remaining terms") 
     
   unresolved_all <- list()
@@ -52,7 +47,7 @@ fr_terms_standard <- function(dataset,
   unresolved_all[["occurrenceStatus"]] <- result$unresolved_terms
   cat("\n  - occurrenceStatus terms have been standardized")
     
-  # Apply custom rule: assume "present" unless explicitly "absent"
+  # Assume "present" unless explicitly "absent"
   dataset[occurrenceStatus != "absent", occurrenceStatus := "present"]
     
   # --- 3. degreeOfEstablishment ---
@@ -110,20 +105,17 @@ fr_terms_standard <- function(dataset,
     .SD[1],
     by = .(taxon, location),
     .SDcols = orig_cols
-  ][, ..orig_cols][order(location, taxon)]  # restore original order#dataset <- dataset[
-  #  order(!(nzchar(datasetName)), firstRecordEvent),
-  #  .SD[1],
-  #  by = .(taxon, location)
-  #]
-  #dataset <- dataset[order(firstRecordEvent), .SD[1], by = .(taxon, location)]
+  ][, ..orig_cols][order(location, verbatimLocation, taxon)]  
      
   # --- Export cleaned dataset ---
   filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
   fwrite(dataset, filename)
     
   cat("\n  Final dataset available in output folder\n ")
-  if (use_log == TRUE){
+ 
+   if (use_log == TRUE){
     sink()
   }
+  
   return(dataset)
 }

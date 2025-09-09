@@ -5,8 +5,8 @@
 ##   Check and replace terms using a standard terms reference table     ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
-## T. Renard Truong                                                     ##
-## v1.0, August 2025                                                    ##
+## T. Renard Truong, H. Seebens                                         ##
+## v2.0, August 2025                                                    ##
 ##########################################################################
 
 standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_col, ref_col = NULL, std_ref = NULL) {

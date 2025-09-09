@@ -12,11 +12,7 @@ fr_taxons_standard <- function(dataset = NULL,
                                use_log = FALSE, 
                                save_to_disk = FALSE,
                                data_dir = data_dir
-                               # output, 
-                               # input, 
-                               # tmp, 
-                               # config
-                               ) {
+                               ){
   
   stopifnot(!is.null(dataset) && is.data.table(dataset))
   
@@ -88,9 +84,7 @@ fr_taxons_standard <- function(dataset = NULL,
   # 4. Creating and adding unique taxonIDs
   unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)]))
   unique_taxa[, taxonID := .I]
-  
   matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE)
-
   cat("\n   - Allocated taxon IDs")
   
   # 5. Write output
@@ -118,12 +112,12 @@ fr_taxons_standard <- function(dataset = NULL,
     fwrite(fr_main_dataset_step2, filename)
     cat("\n  - Updated dataset available in 'tmp' folder\n ")
   }
+  
   cat("\nStep 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder\n ")
   
   if (use_log == TRUE){
     sink()
   }
-  return(
-    fr_main_dataset_step2
-   )
+  
+  return(fr_main_dataset_step2)
 }

@@ -13,10 +13,6 @@ fr_years_standard <- function(dataset = NULL,
                               use_log = FALSE, 
                               save_to_disk = FALSE,
                               data_dir = NULL
-                              # output, 
-                              # input, 
-                              # tmp, 
-                              # config
                               ){
   
   stopifnot(!is.null(dataset) && is.data.table(dataset))
@@ -43,14 +39,12 @@ fr_years_standard <- function(dataset = NULL,
   if (!"verbatimFirstRecordEvent" %in% colnames(dataset)) {
     dataset[, verbatimFirstRecordEvent := firstRecordEvent]
   }
-  
   cat("\n   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'") 
   
   # --- Initialize confidence column ---
   if (!"confidenceFirstRecordEvent" %in% colnames(dataset)) {
     dataset[, confidenceFirstRecordEvent := ""]
   }
-  
   cat("\n   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'") 
   
   ## 3A) BASIC DATA CLEANING
@@ -419,9 +413,7 @@ fr_years_standard <- function(dataset = NULL,
   # Filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
   filename <- file.path(data_dir, "tmp", "fr_check_missing_years1.csv")
-  
   fwrite(non_matching_rows, filename)
-  
   cat("\n  - Non-processed rows pre-final cleaning \"fr_check_missing_years1.csv\" available in tmp folder")
   
   cat("\nStep 3c: years have been standardized") 
@@ -475,5 +467,6 @@ fr_years_standard <- function(dataset = NULL,
   if (use_log == TRUE){
     sink()
   }
+  
   return(fr_main_dataset_step3)
 }

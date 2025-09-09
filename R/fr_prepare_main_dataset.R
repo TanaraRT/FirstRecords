@@ -12,10 +12,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
                                      use_log = FALSE, 
                                      save_to_disk = FALSE, 
                                      data_dir = NULL
-                                     # output, 
-                                     # input, 
-                                     # tmp, 
-                                     # config
                                      ){
   
   if (is.null(dataset) || !is.data.frame(dataset)) {
@@ -31,7 +27,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
         sink(log_file, append = FALSE) # Create new log file
       }
   }
-  
   cat("\n --- FIRST RECORD ", format(Sys.Date(), "%Y-%m-%d"), " ---\n ")
   cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
   
@@ -95,7 +90,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
       x
     }
   })]
-  
   cat("\n  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings")
   
   ## Delete rows where all columns are empty
@@ -136,14 +130,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   dataset[, confidenceFirstRecordEvent := "low confidence"] # Initialize with low confidence
   cat("\n  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'")
   
-  # --- Prepare species columns ---
-  ## Store original species names in originalNameUsage and create new columns
-  #dataset[, originalNameUsage := originalNameUsage1] # Initialize originalNameUsage with originalNameUsage1
-  #dataset[ # Assign originalNameUsage from originalNameUsage2 if it's empty
-   # originalNameUsage %in% c("", NA) & originalNameUsage1 != "",
-    #originalNameUsage := originalNameUsage2
-  #]
-  
   dataset[, originalNameUsage := fifelse(
     !is.na(originalNameUsage1) & originalNameUsage1 != "",
     originalNameUsage1,
@@ -151,7 +137,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   )]
   cat("\n  - Stored original names in origninalNameUsage")
 
-  
   ## Delete old columns
   dataset$taxon <- dataset$originalNameUsage
   dataset[, c(
@@ -165,11 +150,11 @@ fr_prepare_main_dataset <- function (dataset = NULL,
     fwrite(dataset, filename)
     cat("  - 'fr_main_datastep1.csv' is available in 'tmp' folder")
   }
-  
   cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
   
   if (use_log == TRUE){
     sink()
   }
+  
   return(dataset)
 }

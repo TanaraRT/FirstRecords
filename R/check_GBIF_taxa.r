@@ -58,7 +58,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   old_j <- 0 # counter for storing outdated output for later removal
 
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
-  for (j in 1:n_taxa) {# loop over all species names; takes some hours...
+  for (j in 61400:n_taxa) {# loop over all species names; takes some hours...
 
     # select species name and download taxonomy
     ind_tax <- which(dat$taxon==taxlist[j])
@@ -87,7 +87,6 @@ check_GBIF_taxa <- function(taxon_names=NULL,
       next # jump to next taxon
       
     } else if (any(db$status=="SYNONYM" & db$matchType=="EXACT" & colnames(db)=="species")) { # select synonyms
-      
       
       ## SYNONYMS #################################################################################
       
@@ -400,12 +399,8 @@ check_GBIF_taxa <- function(taxon_names=NULL,
         matchType = if (!is.null(db$matchType)) as.character(db$matchType[1]) else NA_character_,
         stringsAsFactors = FALSE
       ))
-#      mismatches <- rbind(mismatches,c(taxlist[j],NA,NA))
-#      try(mismatches$status[nrow(mismatches)] <- db$status,silent = T)
-#      try(mismatches$matchType[nrow(mismatches)] <- db$matchType,silent = T)
     }
-    # print(j)
-    
+
     # save results of intermediate steps
     if (save_interm){
       if (iter<(round(j/100)*100)){
@@ -433,8 +428,6 @@ check_GBIF_taxa <- function(taxon_names=NULL,
 
   options(warn=0) # the use of 'tibbles' data frame generates warnings as a bug; if solved this options() should be turned off
   
-  # dat <- dat[!is.na(dat$GBIFstatus),] # remove species not resolved in GBIF
-
   out <- list()
   out[[1]] <- dat
   out[[2]] <- mismatches
@@ -443,4 +436,3 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   
   return(out)
 }
-

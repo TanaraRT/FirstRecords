@@ -37,8 +37,8 @@ locationID,location,verbatimLocation,region
 16,Kerguelen Islands,Kerguelen Island,Antarctic
 19,Amsterdam Island,Amsterdam Islands,Antarctic
 20,Australia,Australia,Australasia
-20,Australia,AUSTRALIA New South Wales,Australasia
 20,Australia,AUSTRALIA Australian Capital Territory,Australasia
+20,Australia,AUSTRALIA New South Wales,Australasia
 20,Australia,AUSTRALIA Northern Territory,Australasia
 20,Australia,AUSTRALIA Queensland,Australasia
 20,Australia,AUSTRALIA South Australia,Australasia
@@ -88,9 +88,9 @@ locationID,location,verbatimLocation,region
 48,Canada,CANADA Prince Edward Island,Northern America
 48,Canada,CANADA Manitoba,Northern America
 48,Canada, Canada,Northern America
+48,Canada,CANADA New Brunswick,Northern America
 48,Canada,Prince Edward Island,Northern America
 48,Canada,CANADA Alberta,Northern America
-48,Canada,CANADA New Brunswick,Northern America
 48,Canada,CANADA Northwest Territories,Northern America
 48,Canada,CANADA Yukon,Northern America
 48,Canada,Canada Prince Edward Island ,Northern America
@@ -286,8 +286,8 @@ locationID,location,verbatimLocation,region
 128,Sicily,Italy (Sicily),Europe
 129,Jamaica,Jamaica,Central America and the Caribbean
 131,Jordan,JORDAN,Saharo-Arabia
-132,Japan,Japan ,Eastern Asia
 132,Japan,Japan,Eastern Asia
+132,Japan,Japan ,Eastern Asia
 132,Japan,Ryukyu Islands,Eastern Asia
 132,Japan,Fuji,Eastern Asia
 133,Kazakhstan,Kazakhstan,Western Asia
@@ -350,7 +350,7 @@ locationID,location,verbatimLocation,region
 169,Mauritania,MAURITANIA,Sub-Saharan Africa
 170,Montserrat,Montserrat,Central America and the Caribbean
 171,Martinique,Martinique,Central America and the Caribbean
-172,Mauritius,Mauritius,Sub-Saharan Africa
+172,Mauritius,MAURITIUS,Sub-Saharan Africa
 172,Mauritius,Mauritus,Sub-Saharan Africa
 173,Rodriguez Island,Rodriguez Island,Sub-Saharan Africa
 174,Malawi,Malawi,Sub-Saharan Africa
@@ -371,8 +371,8 @@ locationID,location,verbatimLocation,region
 184,Netherlands,Holland,Europe
 185,Norway,Norway,Europe
 185,Norway,Norway (mainland),Europe
-186,Nepal,Nepal,Southern Asia
 186,Nepal,Nepal ,Southern Asia
+186,Nepal,Nepal,Southern Asia
 187,Nauru,Nauru,Pacific
 188,New Zealand,New Zealand,Australasia
 188,New Zealand,Auckland,Australasia
@@ -475,9 +475,9 @@ locationID,location,verbatimLocation,region
 246,Turkey,Turkey,Western Asia
 246,Turkey,Turkey (in Europe),Western Asia
 247,Tuvalu,Tuvalu,Pacific
-248,Taiwan,"Taiwan, ROC",Eastern Asia
 248,Taiwan,Taiwan,Eastern Asia
 248,Taiwan,"TAIWAN, PROVINCE OF CHINA",Eastern Asia
+248,Taiwan,"Taiwan, ROC",Eastern Asia
 248,Taiwan,"Taiwan, ROC ",Eastern Asia
 249,Tanzania,Tanzania,Sub-Saharan Africa
 249,Tanzania,"TANZANIA, UNITED REPUBLIC OF",Sub-Saharan Africa
@@ -490,13 +490,13 @@ locationID,location,verbatimLocation,region
 252,United States Minor Outlying Islands,Wake Island,Pacific
 253,Uruguay,Uruguay,Southern America
 254,Alaska,Alaska,Northern America
-255,Hawaii,Hawaii,Pacific
 255,Hawaii,Hawaiian Islands,Pacific
 255,Hawaii,Hawiian Islands,Pacific
+255,Hawaii,Hawaii,Pacific
 255,Hawaii,UNITED STATES Hawaiian Islands,Pacific
 255,Hawaii,Hawaaiian Islands,Pacific
-256,United States of America,USA,Northern America
 256,United States of America,United States,Northern America
+256,United States of America,USA,Northern America
 256,United States of America,United States of America,Northern America
 256,United States of America,UNITED STATES Florida,Northern America
 256,United States of America,UNITED STATES Oregon,Northern America
@@ -532,10 +532,10 @@ locationID,location,verbatimLocation,region
 256,United States of America,UNITED STATES South Carolina,Northern America
 256,United States of America,California,Northern America
 256,United States of America,USA Texas,Northern America
+256,United States of America,UNITED STATES Michigan,Northern America
 256,United States of America,UNITED STATES Arkansas,Northern America
 256,United States of America,UNITED STATES Connecticut,Northern America
 256,United States of America,UNITED STATES Iowa,Northern America
-256,United States of America,UNITED STATES Michigan,Northern America
 256,United States of America,UNITED STATES Missouri,Northern America
 256,United States of America,UNITED STATES New Jersey,Northern America
 256,United States of America,UNITED STATES Mississippi,Northern America
@@ -551,12 +551,12 @@ locationID,location,verbatimLocation,region
 256,United States of America,UNITED STATES Virginia,Northern America
 256,United States of America,UNITED STATES West Virginia,Northern America
 256,United States of America,UNITED STATES Kansas,Northern America
+256,United States of America,UNITED STATES Rhode Island,Northern America
 256,United States of America,UNITED STATES District of Columbia,Northern America
 256,United States of America,UNITED STATES Indiana,Northern America
 256,United States of America,UNITED STATES Kentucky,Northern America
 256,United States of America,UNITED STATES New Hampshire,Northern America
 256,United States of America,UNITED STATES North Dakota,Northern America
-256,United States of America,UNITED STATES Rhode Island,Northern America
 256,United States of America,UNITED STATES Tennessee,Northern America
 256,United States of America,DE,Northern America
 256,United States of America,Arkansas,Northern America
@@ -578,8 +578,8 @@ locationID,location,verbatimLocation,region
 272,Yemen,YEMEN,Saharo-Arabia
 273,South Africa,South Africa,Sub-Saharan Africa
 273,South Africa,Rep S Africa,Sub-Saharan Africa
-273,South Africa,Marion Island,Sub-Saharan Africa
 273,South Africa,Prince Edward Islands,Sub-Saharan Africa
+273,South Africa,Marion Island,Sub-Saharan Africa
 273,South Africa,RSA,Sub-Saharan Africa
 273,South Africa,South Africa ,Sub-Saharan Africa
 274,Zambia,ZAMBIA,Sub-Saharan Africa
