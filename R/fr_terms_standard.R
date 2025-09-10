@@ -109,7 +109,13 @@ fr_terms_standard <- function(dataset,
      
   # --- Export cleaned dataset ---
   filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
-  fwrite(dataset, filename)
+ # fwrite(dataset, filename)
+  fwrite(
+    dataset,
+    file = filename,
+    sep = ";",        # use semicolon as separator
+    quote = TRUE,     # force all fields to be quoted as text
+    row.names = FALSE)
     
   cat("\n  Final dataset available in output folder\n ")
  
