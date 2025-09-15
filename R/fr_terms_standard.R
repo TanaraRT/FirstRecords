@@ -9,6 +9,7 @@
 ##########################################################################
 
 fr_terms_standard <- function(dataset, 
+                              save_to_disk = FALSE,
                               use_log = FALSE, 
                               data_dir = NULL
                               ){
@@ -94,32 +95,16 @@ fr_terms_standard <- function(dataset,
       fwrite(unique(all_unresolved), filename)
       cat("\n    ⚠ Warning: Unresolved terms found. See 'check_unresolved_terms.csv' available in the 'tmp' folder\n")
     }    
-    
-  # --- Delete duplicates ---
-  # Delete rows where "taxon", "verbatimLocation" and "firstRecordEvent" are similar
-  dataset <- unique(dataset, by = c("taxon", "verbatimLocation", "firstRecordEvent"))
-  # If we have first records for a taxa in the same location, select the one from a paper in priority, or the earliest one
-  orig_cols <- names(dataset)  # store column order
-  dataset <- dataset[
-    order(!(nzchar(datasetName)), firstRecordEvent),
-    .SD[1],
-    by = .(taxon, location),
-    .SDcols = orig_cols
-  ][, ..orig_cols][order(location, verbatimLocation, taxon)]  
-     
-  # --- Export cleaned dataset ---
-  filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
- # fwrite(dataset, filename)
-  fwrite(
-    dataset,
-    file = filename,
-    sep = ";",        # use semicolon as separator
-    quote = TRUE,     # force all fields to be quoted as text
-    row.names = FALSE)
-    
-  cat("\n  Final dataset available in output folder\n ")
  
-   if (use_log == TRUE){
+  if (save_to_disk == TRUE){
+    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step5.csv")
+    fwrite(dataset, filename)
+    cat("\n  - Updated dataset available in 'tmp' folder\n ")
+  }
+  
+  cat("\nStep 5 completed: remaining terms have been standardized") 
+  
+  if (use_log == TRUE){
     sink()
   }
   

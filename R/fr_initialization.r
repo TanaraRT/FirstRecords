@@ -71,6 +71,7 @@ fr_initialization <- function (data_dir=NULL, input_file=NULL){
   source(file.path("R","fr_localities_standard.r"))
   source(file.path("R","fr_terms_standard.R"))
   source(file.path("R","standardize_and_filter_terms.r"))
+  source(file.path("R","fr_save_output_dataset.R"))
 
 # --- Import data ---
   filename <- file.path(input, input_file)

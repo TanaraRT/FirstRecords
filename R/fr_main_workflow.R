@@ -37,7 +37,7 @@ fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = init,
                                              use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                              save_to_disk = TRUE, # TRUE to save fr_main_dataset_1 in 'tmp' folder
                                              data_dir = data_dir)
-cat("\nStep 1 completed: main dataset 'fr_main_dataset' ready to be processed\n ") 
+cat("\nStep 1 completed: main dataset 'fr_main_dataset_1' ready to be processed\n ") 
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa") 
@@ -52,7 +52,7 @@ cat("\nSTEP 3: Standardize years")
 fr_main_dataset_3 <- fr_years_standard(dataset = fr_main_dataset_2, 
                                        fr_column_name = "firstRecordEvent", 
                                        use_log = TRUE, # TRUE to record progress in log file in 'output' folder
-                                       save_to_disk = TRUE, # TRUE to save fr_main_dataset_2 in 'tmp' folder
+                                       save_to_disk = TRUE, # TRUE to save fr_main_dataset_3 in 'tmp' folder
                                        data_dir = data_dir) 
 cat("\nStep3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder\n ")
 
@@ -60,12 +60,21 @@ cat("\nStep3 completed: first records (years) have been standardized in 'fr_main
 cat("\nSTEP 4: Standardize localities") 
 fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3, 
                                             use_log = TRUE, # TRUE to record progress in log file in 'output' folder
-                                            save_to_disk = TRUE, # TRUE to save fr_main_dataset_2 in 'tmp' folder
+                                            save_to_disk = TRUE, # TRUE to save fr_main_dataset_4 in 'tmp' folder
                                             data_dir = data_dir) 
-cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'output' folder\n ") 
+cat("\nStep 4 completed: locations have been standardized in 'fr_main_dataset_4'. The location table is available in the 'output' folder. Locations that couldn't be standardized are available in the 'tmp' folder\n ") 
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
-fr_final_dataset <- fr_terms_standard(fr_main_dataset_4, 
+cat("\nSTEP 5: Standardize remaining terms") 
+fr_main_dataset_5 <- fr_terms_standard(fr_main_dataset_4, 
                                       use_log = TRUE, # TRUE to record progress in log file in 'output' folder
+                                      save_to_disk = TRUE, # TRUE to save fr_main_dataset_5 in 'tmp' folder
                                       data_dir = data_dir) 
+cat("\nStep 5 completed: habitats, pathways, occurence status, degree of invasion have been standardized in 'fr_main_dataset_5'. Terms that couldn't be standardized are available in the 'tmp' folder\n ")
+
+## 6) SAVE FINAL DATASET ################################################
+cat("\nSTEP 6: Save final dataset") 
+fr_final_dataset <- fr_save_output_dataset(fr_main_dataset_5, 
+                    use_log = TRUE, # TRUE to record progress in log file in 'output' folder
+                    data_dir = data_dir)
 cat("\n  Final dataset available in the 'output' folder\n ")
