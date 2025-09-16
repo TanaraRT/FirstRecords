@@ -9,13 +9,20 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dat, 
+fr_localities_standard <- function(dataset = NULL, 
                                    use_log = FALSE, 
                                    save_to_disk = FALSE, 
                                    data_dir=NULL
                                    ){
   
-  stopifnot(!is.null(dat) && is.data.table(dat))
+  stopifnot(!is.null(dataset) && is.data.table(dataset))
+  
+  ### HANNO: stopifnot only stops the execution but does not provide an informative error message. You may add an if-statement with a proper error message such as   
+  ### if (!is.null(dataset)){
+  ###  stop("Input dataset missing.")
+  ### }
+  ### This applies to most functions.
+
   
   # --- Open log file ---
   if (use_log == TRUE){
@@ -53,11 +60,11 @@ fr_localities_standard <- function(dat,
   dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
   
   # --- 3. Prepare dataset for processing ---
-  dat <- rename(dat, "location_orig" = "locality") #standardize column name
-  dat <- select(dat, -locationID) #remove existing locationID column
+  dataset <- rename(dataset, "location_orig" = "locality") #standardize column name
+  dataset <- select(dataset, -locationID) #remove existing locationID column
   
   # --- 4. Prepare for matching with regions ---
-  dat_match1 <- dat ## use another dat set for region matching to keep the original names
+  dat_match1 <- dataset ## use another dat set for region matching to keep the original names
   dat_match1$order <- 1:nrow(dat_match1)
   dat_match1$location_orig <- gsub("\\xa0|\\xc2", " ", dat_match1$location_orig)  # Replace special spaces
   dat_match1$location_orig <- gsub("^\\s+|\\s+$", "", dat_match1$location_orig)  # Trim leading/trailing whitespace
@@ -69,10 +76,10 @@ fr_localities_standard <- function(dat,
   
   ## STEP 4B: Exact location matching
   
-  # --- 1: Match names of 'dat' with region names of 'regions'--- 
+  # --- 1: Match names of 'dataset' with region names of 'regions'--- 
   dat_match_regions <- merge(dat_match1, regions, by.x = "location_lower", by.y = "location_lower", all.x = TRUE)
   
-  # --- 2: Match names of 'dat' with region names of 'subregions' --- 
+  # --- 2: Match names of 'dataset' with region names of 'subregions' --- 
   dat_match_subregions <- merge(dat_match1, subregions, by.x = "location_lower", by.y = "Gadm1_lower", all.x = TRUE)
   
   cat("\nStep 4b completed: exact region and subregion names matched")
@@ -119,27 +126,27 @@ fr_localities_standard <- function(dat,
   
   # --- 4: Final merging of both data sets with standardized region names to original data ---
   dat_match1 <- dat_match1[order(dat_match1$order),]
-  if (!identical(dat_match1$taxon_orig,dat$taxon_orig)) stop("Data sets not sorted equally!")
+  if (!identical(dat_match1$taxon_orig, dataset$taxon_orig)) stop("Data sets not sorted equally!")
   
-  dat$locationID <- dat_match1$locationID
-  dat$location <- dat_match1$location
-  dat$stateProvince <- dat_match1$gadm1_name
+  dataset$locationID <- dat_match1$locationID
+  dataset$location <- dat_match1$location
+  dataset$stateProvince <- dat_match1$gadm1_name
   
   cat("\nStep 4c completed: variant region and subregion names matched")
   
   ## STEP 4D: Warnings for duplication
   
   # --- 1: Check if any locations in the original dataframe correspond to duplicated locations in the world ---
-  if (any(dat$location_orig %in% dup)) {
-    # Extract the matching names from dat$location_orig
-    matching_names <- unique(dat$location_orig[dat$location_orig %in% dup])
+  if (any(dataset$location_orig %in% dup)) {
+    # Extract the matching names from dataset$location_orig
+    matching_names <- unique(dataset$location_orig[dataset$location_orig %in% dup])
     warning(paste(
       "\n    Warning: Unresolved terms in file.The following location name(s) correspond to multiple subregions in the world:",
       paste(matching_names, collapse = ", "),
       ". Please modify the original location name(s) by including the country name in parentheses(), and try again (e.g: Amazonas (Colombia)) \n"
     ))
   }
-  dat_regnames <- dat
+  dat_regnames <- dataset
   
   cat("\nStep 4d completed: warnings will be issued for unresolved terms")
   
@@ -175,7 +182,7 @@ fr_localities_standard <- function(dat,
     filename <- file.path(data_dir, "tmp", "check_missing_locations.csv")
     write.table(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
     cat("Missing locations written to:", filename, "\n")
-    }
+  }
   
   # ---5: Save location table ---
   location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]

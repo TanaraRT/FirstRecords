@@ -8,7 +8,7 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_initialization <- function (data_dir=NULL, input_file=NULL){
+fr_initialization <- function(data_dir=NULL, input_file=NULL){
   
   if (!dir.exists(data_dir)){
     stop("Data directory not found: ", data_dir)
@@ -34,14 +34,14 @@ fr_initialization <- function (data_dir=NULL, input_file=NULL){
   if (!dir.exists(config)) {
     dir.create(config, recursive = TRUE)
   }
-  cat("\n  - Configuration folder is ready at:", config, ". Please make sure configuration files are uploaded in this folder.\n")
+  cat(paste0("\n  - Configuration folder is ready at:", config, ". Please make sure configuration files are uploaded in this folder.\n"))
 
   # --- Define or create the 'input' folder ---
   input <- file.path(data_dir, "input")
   if (!dir.exists(input)) {
     dir.create(input, recursive = TRUE)
   }
-  cat("\n  - Input folder is ready at:", input, ". Please make sure input dataset is uploaded in this folder.\n")
+  cat(paste0("\n  - Input folder is ready at:", input, ". Please make sure input dataset is uploaded in this folder.\n"))
   
   # --- Construct full path to input file ---
   filename <- file.path(input, input_file)

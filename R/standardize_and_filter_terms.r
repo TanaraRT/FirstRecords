@@ -9,7 +9,18 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_col, ref_col = NULL, std_ref = NULL) {
+standardize_and_filter_terms <- function(dt = NULL,  # ?
+                                         term_col = NULL, # ?
+                                         std_table = NULL, # ?
+                                         orig_col = NULL, # ?
+                                         std_col = NULL, # ?
+                                         ref_col = NULL, # ?
+                                         std_ref = NULL # ?
+                                         ) {
+  
+  ### HANNO: Please add comments to the individual input variables above
+  
+  
   term_col_sym <- as.name(term_col)
   
   # Clean and lowercase for easy matching
@@ -34,7 +45,9 @@ standardize_and_filter_terms <- function(dt, term_col, std_table, orig_col, std_
   # Collect unresolved terms
   unresolved <- unique(dt[is.na(match_idx), ..term_col])
   unresolved <- unresolved[get(term_col) != ""]
-  if (nrow(unresolved) > 0) unresolved[, context := term_col]
+  if (nrow(unresolved) > 0) {
+    unresolved[, context := term_col]
+  }
   
   # Second pass: strict match to identify and delete unmatched terms
   match_idx2 <- match(tolower(dt[[term_col]]), std_table$std_lc)

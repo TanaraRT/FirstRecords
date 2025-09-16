@@ -179,11 +179,11 @@ fr_years_standard <- function(dataset = NULL,
   
   cat("\nStep3a completed: basic data cleaning") 
   cat("\n  - Removed or standardized spaces and special characters") 
-  cat("\n  - Replaced number words with digits")
+  cat("\n  - Replaced written year with digits")
   cat("\n  - Converted full (d, m, y) and partial dates (m, y) to years")
   cat("\n  - Normalized two-digit and BC years to four-digit format")
   cat("\n  - Replaced slashes/spaces between years with hyphens")
-  cat("\n  - Deleted references")
+  cat("\n  - Deleted references in cells")
   
   ## 3B) CONFIDENCE ASSIGNMENT
   
@@ -200,7 +200,7 @@ fr_years_standard <- function(dataset = NULL,
       ifelse(!is.na(decade_num) & decade_num >= 1500 & decade_num %% 100 != 0,
              "medium-high confidence",
              "low confidence")
-    }
+      }
     ]
     
     # --- 3. Two-year ranges or ranges with "or"/"and": assign based on range width ---
@@ -246,12 +246,12 @@ fr_years_standard <- function(dataset = NULL,
   dataset <- mark_confidence(dataset)
   
   cat("\nStep 3b completed: Confidence terms assigned\
-  - Full years above 1500: high confidence\
-  - Decades above 1500: medium-high confidence\
-  - Ranges <9: medium-high confidence\
-  - 9 < Ranges <=15: medium confidence\
-  - 15 < Ranges <=20: medium-low confidence\
-  - 20 < Ranges : low confidence\
+  - Full years after 1500: high confidence\
+  - Decades after 1500: medium-high confidence\
+  - Ranges <9 years: medium-high confidence\
+  - 9 years < Ranges <=15 years: medium confidence\
+  - 15 years < Ranges <=20 years: medium-low confidence\
+  - 20 years < Ranges : low confidence\
   Other: low confidence") 
   
   ## 3C) STANDARDIZE YEARS
@@ -418,11 +418,11 @@ fr_years_standard <- function(dataset = NULL,
   
   cat("\nStep 3c: years have been standardized") 
   cat("\n  - Decades handled: randomized or interpreted early/mid/late decades")
-  cat("\n  - Centuries handled: +50 or interpreted early/mid/late decades")
-  cat("\n  - Two possible years handled (and and or)")
-  cat("\n  - Ranges handled")
-  cat ("\n  - Years ago handled")
-  cat("\n  - After and post years handled")
+  cat("\n  - Centuries handled: +50 years or interpreted early/mid/late decades")
+  cat("\n  - Two provided years handled ('and' and 'or')")
+  cat("\n  - Ranges handled: randomized")
+  cat("\n  - 'Years ago' handled")
+  cat("\n  - 'After'- and 'post'-years handled")
 
   ## 3D) FINAL CLEANING
   

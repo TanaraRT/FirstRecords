@@ -8,13 +8,14 @@
 ## v2.0, August 2025                                                    ##
 ##########################################################################
 
-fr_terms_standard <- function(dataset, 
+fr_terms_standard <- function(dataset = NULL, 
                               save_to_disk = FALSE,
                               use_log = FALSE, 
                               data_dir = NULL
                               ){
  
   standard_terms <- fread(file.path(data_dir, "config", "standard_terms.csv"))
+  
   stopifnot(is.data.table(dataset), is.data.table(standard_terms))
     
   # --- Open log file ---
@@ -29,11 +30,14 @@ fr_terms_standard <- function(dataset,
   cat("\nSTEP 5: Standardize remaining terms") 
     
   unresolved_all <- list()
-    
+  
   # --- 1. establishmentMeans ---
   result <- standardize_and_filter_terms(
-    dataset, "establishmentMeans", standard_terms,
-    "origTerm_establishmentMeans", "standardTerm_establishmentMeans"
+    dt = dataset, 
+    term_col = "establishmentMeans", 
+    std_table = standard_terms,
+    orig_col = "origTerm_establishmentMeans", 
+    std_col = "standardTerm_establishmentMeans"
     )
   dataset <- result$cleaned_data
   unresolved_all[["establishmentMeans"]] <- result$unresolved_terms
@@ -41,8 +45,11 @@ fr_terms_standard <- function(dataset,
     
   # --- 2. occurrenceStatus ---
   result <- standardize_and_filter_terms(
-    dataset, "occurrenceStatus", standard_terms,
-    "origTerm_occurrenceStatus", "standardTerm_occurrenceStatus"
+    dt = dataset, 
+    term_col = "occurrenceStatus", 
+    std_table = standard_terms,
+    orig_col = "origTerm_occurrenceStatus", 
+    std_col = "standardTerm_occurrenceStatus"
     )
   dataset <- result$cleaned_data
   unresolved_all[["occurrenceStatus"]] <- result$unresolved_terms
@@ -53,8 +60,11 @@ fr_terms_standard <- function(dataset,
     
   # --- 3. degreeOfEstablishment ---
   result <- standardize_and_filter_terms(
-    dataset, "degreeOfEstablishment", standard_terms,
-    "origTerm_degreeOfEstablishment", "standardTerm_degreeOfEstablishment"
+    dt = dataset, 
+    term_col = "degreeOfEstablishment", 
+    std_table = standard_terms,
+    orig_col = "origTerm_degreeOfEstablishment", 
+    std_col = "standardTerm_degreeOfEstablishment"
   )
   dataset <- result$cleaned_data
   unresolved_all[["degreeOfEstablishment"]] <- result$unresolved_terms
@@ -62,8 +72,11 @@ fr_terms_standard <- function(dataset,
     
   # --- 4. pathway ---
   result <- standardize_and_filter_terms(
-    dataset, "pathway", standard_terms,
-    "origTerm_pathway", "standardTerm_pathway"
+    dt = dataset, 
+    term_col = "pathway", 
+    std_table = standard_terms,
+    orig_col = "origTerm_pathway", 
+    std_col = "standardTerm_pathway"
   )
   dataset <- result$cleaned_data
   unresolved_all[["pathway"]] <- result$unresolved_terms
@@ -71,8 +84,11 @@ fr_terms_standard <- function(dataset,
     
   # --- 5. habitat ---
   result <- standardize_and_filter_terms(
-    dataset, "habitat", standard_terms,
-    "origTerm_habitat", "standardTerm_habitat"
+    dt = dataset, 
+    term_col = "habitat", 
+    std_table = standard_terms,
+    orig_col = "origTerm_habitat", 
+    std_col = "standardTerm_habitat"
     )
   dataset <- result$cleaned_data
   unresolved_all[["habitat"]] <- result$unresolved_terms
@@ -80,9 +96,13 @@ fr_terms_standard <- function(dataset,
     
   # ---6. datasets ---
   result <- standardize_and_filter_terms(
-    dataset, "datasetName", standard_terms,
-    "origTerm_datasetName", "standardTerm_datasetName", "bibliographicCitation",
-    "bibliographicCitation_dataset"
+    dt = dataset, 
+    term_col = "datasetName", 
+    std_table = standard_terms,
+    orig_col = "origTerm_datasetName", 
+    std_col = "standardTerm_datasetName", 
+    ref_col = "bibliographicCitation",
+    std_ref = "bibliographicCitation_dataset"
   )
   dataset <- result$cleaned_data
 
