@@ -337,7 +337,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
           next # jump to next taxon
         
         }
-      } else if (any(alternatives$status=="SYNONYM" & alternatives$matchType=="EXACT" & any(colnames(alternatives)=="species"))) { # check for synonyms in 'alternatives'
+      } else if (any(alternatives$status=="SYNONYM" & alternatives$matchType=="EXACT" & any(colnames(db)=="species"))) { # check for synonyms in 'alternatives' if full species name provided in db
 
       ## check alternative names #################################################################################
         alt_syn <- alternatives[alternatives$status == "SYNONYM" & alternatives$matchType == "EXACT", ]

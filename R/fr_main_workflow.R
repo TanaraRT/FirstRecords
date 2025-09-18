@@ -58,7 +58,7 @@ cat("\nStep3 completed: first records (years) have been standardized in 'fr_main
 
 ## 4) STANDARDIZATION OF LOCALITIES #######################################
 cat("\nSTEP 4: Standardize localities") 
-fr_main_dataset_4 <- fr_localities_standard(fr_main_dataset_3, 
+fr_main_dataset_4 <- fr_localities_standard(dataset = fr_main_dataset_3, 
                                             use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                             save_to_disk = TRUE, # TRUE to save fr_main_dataset_4 in 'tmp' folder
                                             data_dir = data_dir) 

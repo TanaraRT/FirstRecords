@@ -9,9 +9,9 @@
 ##########################################################################
 
 fr_save_output_dataset <- function(dataset, 
-                              use_log = FALSE, 
-                              data_dir = NULL
-){
+                                   use_log = FALSE, 
+                                   data_dir = NULL
+                                   ){
   
   # --- Open log file ---
   if (use_log == TRUE){
@@ -48,7 +48,8 @@ fr_save_output_dataset <- function(dataset,
     file = filename,
     sep = ";",        # use semicolon as separator
     quote = TRUE,     # force all fields to be quoted as text
-    row.names = FALSE)
+    row.names = FALSE
+  )
   
   cat("\n  Final dataset available in output folder\n ")
   
