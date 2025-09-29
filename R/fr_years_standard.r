@@ -52,6 +52,12 @@ fr_years_standard <- function(dataset = NULL,
   # --- Clean text ---
   dataset$firstRecordEvent <- gsub(",", "", dataset$firstRecordEvent) # Remove commas
   dataset$firstRecordEvent <- gsub("['’]", "", dataset$firstRecordEvent) # Remove apostrophes
+  dataset$firstRecordEvent <- gsub(
+    "\\b(prior to|before)\\b", 
+    "PRIOR_TO_TOKEN", 
+    dataset$firstRecordEvent,
+    ignore.case = TRUE
+  ) # Ensure "prior to" or "before" is treated properly in the next steps
   dataset$firstRecordEvent <- gsub("\\s+", " ", dataset$firstRecordEvent) # Remove spaces
   dataset$firstRecordEvent <- trimws(dataset$firstRecordEvent) # Trim whitespace
   dataset$firstRecordEvent <- tolower(dataset$firstRecordEvent) # Replaces capital letters
