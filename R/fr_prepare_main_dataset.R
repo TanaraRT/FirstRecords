@@ -113,7 +113,7 @@ fr_prepare_main_dataset <- function (dataset = NULL,
     verbatimFirstRecordEvent %in% c("", NA) & DateNaturalisation != "",
     verbatimFirstRecordEvent := DateNaturalisation
   ]
-  dataset[ # Assign verbatimFirstRecordEvent from DateNaturalisation if it's empty
+  dataset[ # Assign verbatimFirstRecordEvent from FirstRecord_intentional if it's empty
     verbatimFirstRecordEvent %in% c("", NA) & FirstRecord_intentional != "",
     verbatimFirstRecordEvent := FirstRecord_intentional
   ]
