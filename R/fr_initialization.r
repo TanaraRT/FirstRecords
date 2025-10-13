@@ -70,15 +70,15 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
   source(file.path("R","fr_years_standard.r"))
   source(file.path("R","fr_localities_standard.r"))
   source(file.path("R","fr_terms_standard.R"))
-  source(file.path("R","standardize_and_filter_terms.r"))
   source(file.path("R","fr_save_output_dataset.R"))
+  source(file.path("R","standardize_terms.R"))
 
 # --- Import data ---
   filename <- file.path(input, input_file)
   fr_input_data <- read.csv2(filename, fileEncoding = "UTF-8",
                            stringsAsFactors = FALSE
   )
-  setDT(fr_input_data) 
+  setDT(fr_input_data) # convert to data.table
   
   cat("\n  - Functions and input data loaded\n")
   

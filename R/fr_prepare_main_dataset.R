@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## T. Renard Truong, H. Seebens                                         ##
-## v2.0, 2025                                                           ##
+## v2.0, October 2025                                                   ##
 ##########################################################################
 
 fr_prepare_main_dataset <- function (dataset = NULL, 
@@ -22,9 +22,9 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   if (use_log == TRUE){
     log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
       if (file.exists(log_file)) {
-      sink(log_file, append = TRUE)  # Open log file for appending
+      sink(log_file, append = TRUE)  # open log file for appending if log_file already exists
       } else {
-        sink(log_file, append = FALSE) # Create new log file
+        sink(log_file, append = FALSE) # create new log file if log_file does not exist yet
       }
   }
   cat("\n --- FIRST RECORD ", format(Sys.Date(), "%Y-%m-%d"), " ---\n ")
@@ -32,47 +32,47 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   
   # --- Prepare master dataset ---
   dataset <- dataset[, .(
-    locationID = "",
-    verbatimLocation = Country,
-    locality = Country,
-    country = "",
-    region = "",
-    taxon = "",
-    originalNameUsage = "",
-    originalNameUsage1 = GenusSpecies,
-    originalNameUsage2 = paste(Genus, Species, Author),
-    scientificName = "",
-    scientificNameAuthorship = Author,
-    GBIFstatus = "MISSING",
-    GBIFmatchtype = NA,
-    GBIFnote = NA,
-    GBIFstatus_Synonym = NA,
-    species = NA,
-    genus = NA,
-    family = NA,
-    class = NA,
-    order = NA,
-    phylum = NA,
-    kingdom = NA,
-    GBIFtaxonRank = NA,
-    GBIFusageKey = NA,
-    taxaGroup = LifeForm,
-    habitat = Habitat,
-    FirstRecord1,
-    FirstRecord2,
-    FirstRecord,
-    DateNaturalisation,
-    FirstRecord_intentional,
-    firstRecordEvent ="",
-    verbatimFirstRecordEvent = "",
-    confidenceFirstRecordEvent = "",
-    occurrenceStatus = PresentStatus,
-    establishmentMeans = PresentStatus,
-    degreeOfEstablishment = PresentStatus,
-    pathway = Pathway,
-    datasetName = Source,
-    bibliographicCitation = Source,
-    accessRights = DataUsage
+    locationID = "", # create locationID column
+    verbatimLocation = Country, # create verbatimLocation and initialize it with "Country" from raw dataset
+    locality = Country, # create locality and initialize it with "Country" from raw dataset
+    country = "", # create country column
+    region = "", # create region column
+    taxon = "", # create taxon column
+    originalNameUsage = "", # create originalNameUsage column
+    originalNameUsage1 = GenusSpecies, # create temporary column to store species names
+    originalNameUsage2 = paste(Genus, Species, Author), # create temporary column to store species names
+    scientificName = "", # create scientificName column
+    scientificNameAuthorship = Author, # create scientificNameAuthorship and initialize it with "Author" from raw dataset
+    GBIFstatus = "MISSING",  # create scientificName column and initialize it with "MISSING"
+    GBIFmatchtype = NA, # create GBIFmatchtype column
+    GBIFnote = NA, # create GBIFmatchtype column
+    GBIFstatus_Synonym = NA, # create GBIFmatchtype column
+    species = NA, # create species column
+    genus = NA, # create genus column
+    family = NA, # create family column
+    class = NA, # create class column
+    order = NA, # create order column
+    phylum = NA, # create phylum column
+    kingdom = NA, # create kingdom column
+    GBIFtaxonRank = NA, # create GBIFtaxonRank column
+    GBIFusageKey = NA, # create GBIFusageKey column
+    taxaGroup = LifeForm, # create locality and initialize it with "Country" from raw dataset
+    habitat = Habitat, # create habitat and initialize it with "Habitat" from raw dataset
+    FirstRecord1, # create temporary column to store first records from raw dataset
+    FirstRecord2, # create temporary column to store first records from raw dataset
+    FirstRecord, # create temporary column to store first records from raw dataset
+    DateNaturalisation, # create temporary column to store first records from raw dataset
+    FirstRecord_intentional, # create temporary column to store first records from raw dataset
+    firstRecordEvent ="", #  create firstRecordEvent
+    verbatimFirstRecordEvent = "", # create verbatimFirstRecordEvent
+    confidenceFirstRecordEvent = "", # create confidenceFirstRecordEvent
+    occurrenceStatus = PresentStatus, # create occurrenceStatus and initialize it with "PresentStatus" from raw dataset
+    establishmentMeans = PresentStatus, #create establishmentMeansand initialize it with "PresentStatus" from raw dataset
+    degreeOfEstablishment = PresentStatus, #create degreeOfEstablishment and initialize it with "PresentStatus" from raw dataset
+    pathway = Pathway, #create pathway and initialize it with "Pathway" from raw dataset
+    datasetName = Source, #create datasetName and initialize it with "Source" from raw dataset
+    bibliographicCitation = Source, #create bibliographicCitation and initialize it with "Source" from raw dataset
+    accessRights = DataUsage #create accessRights with "DataUsage" and initialize it from raw dataset
     )]
    cat("\n  - Loaded relevant columns")
 
@@ -137,13 +137,13 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   )]
   cat("\n  - Stored original names in origninalNameUsage")
 
-  ## Delete old columns
+  ## Delete temporary columns
   dataset$taxon <- dataset$originalNameUsage
   dataset[, c(
     "DateNaturalisation", "FirstRecord", "FirstRecord1", "FirstRecord2",
     "FirstRecord_intentional", "originalNameUsage1", "originalNameUsage2"
   ) := NULL]
-  cat("\n  - Deleted rows where all columns are empty")
+  cat("\n  - Deleted temporary columns are empty")
   
   if (save_to_disk == TRUE){
     filename <- file.path(data_dir, "tmp", "fr_main_dataset_step1.csv")

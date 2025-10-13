@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## M. Gomez Suarez, H. Seebens, T. Renard Truong                        ##
-## v2.0, August 2025                                                    ##
+## v2.0, October 2025                                                   ##
 ##########################################################################
 
 
@@ -15,22 +15,17 @@ fr_localities_standard <- function(dataset = NULL,
                                    data_dir=NULL
                                    ){
   
-  stopifnot(!is.null(dataset) && is.data.table(dataset))
-  
-  ### HANNO: stopifnot only stops the execution but does not provide an informative error message. You may add an if-statement with a proper error message such as   
-  ### if (!is.null(dataset)){
-  ###  stop("Input dataset missing.")
-  ### }
-  ### This applies to most functions.
-
+  if (is.null(dataset) || !is.data.table(dataset)) {
+    stop("Error: argument 'dataset' must be a non-null data.table.")
+  }
   
   # --- Open log file ---
   if (use_log == TRUE){
     log_file <- file.path(data_dir, "output", paste0("log_file_", Sys.Date(), ".txt"))
     if (file.exists(log_file)) {
-      sink(log_file, append = TRUE)  # Open log file for appending
+      sink(log_file, append = TRUE)  # open log file for appending
     } else {
-      sink(log_file, append = FALSE) # Create new log file
+      sink(log_file, append = FALSE) # create new log file
     }
   }
   cat("\nSTEP 4: Standardize localities") 
@@ -38,23 +33,26 @@ fr_localities_standard <- function(dataset = NULL,
   ## STEP 4A: Prepare reference tables and dataset
  
   # --- 1. Load reference location table ---
+  
+  ## Regions
   regions <- read.xlsx(
     file.path(data_dir, "config", "AllLocations.xlsx"),
     sheet = "location",
     na.strings = ""
   )
-  regions <- regions[, c("locationID", "location", "location_var", "sinas_region")]
-  regions$location_var <- tolower(regions$location_var)  # Set all to lowercase for matching
-  regions$location_lower <- tolower(regions$location)  # Set all to lowercase for matching
+  regions <- regions[, c("locationID", "location", "location_var", "sinas_region")] # select relevant columns
+  regions$location_var <- tolower(regions$location_var)  # set all to lowercase for matching
+  regions$location_lower <- tolower(regions$location)  # set all to lowercase for matching
   
+  ## Sub-regions
   subregions <- read.xlsx(
     file.path(data_dir, "config", "AllLocations.xlsx"),
     sheet = "stateProvince",
     na.strings = ""
   )
-  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")]
-  subregions$gadm1_var <- tolower(subregions$gadm1_var)  # Set all to lowercase for matching
-  subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # Set all to lowercase for matching
+  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")] # select relevant columns
+  subregions$gadm1_var <- tolower(subregions$gadm1_var)  # set all to lowercase for matching
+  subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # set all to lowercase for matching
 
   # --- 2. Get duplicated names of subregions ---
   dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
@@ -64,8 +62,8 @@ fr_localities_standard <- function(dataset = NULL,
   dataset <- select(dataset, -locationID) #remove existing locationID column
   
   # --- 4. Prepare for matching with regions ---
-  dat_match1 <- dataset ## use another dat set for region matching to keep the original names
-  dat_match1$order <- 1:nrow(dat_match1)
+  dat_match1 <- dataset # use another dat set for region matching to keep the original names
+  dat_match1$order <- 1:nrow(dat_match1) # create index column to preserve original order
   dat_match1$location_orig <- gsub("\\xa0|\\xc2", " ", dat_match1$location_orig)  # Replace special spaces
   dat_match1$location_orig <- gsub("^\\s+|\\s+$", "", dat_match1$location_orig)  # Trim leading/trailing whitespace
   dat_match1$location_orig <- gsub("  ", " ", dat_match1$location_orig)  # Replace double spaces
@@ -103,7 +101,7 @@ fr_localities_standard <- function(dataset = NULL,
   # --- 2: Match based on keywords in 'subregions' - after 'gadm1_var' column ---
   ind_keys_subregions <- which(!is.na(subregions$gadm1_var))
   for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
-    gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple subregion name variations provided
+    gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple sub-region name variations provided
     for (k in gadm1_var) {
       ind_match <- which(dat_match_subregions$location_lower == k)
       if (length(unique(subregions$gadm1_name[j])) > 1) 
@@ -188,7 +186,7 @@ fr_localities_standard <- function(dataset = NULL,
   location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
   location_table[, verbatimLocation_lower := tolower(verbatimLocation)]
   location_table <- unique(location_table, by = "verbatimLocation_lower")
-  location_table[, verbatimLocation_lower := NULL]  # drop helper column
+  location_table[, verbatimLocation_lower := NULL]  # delete temporary column
   setorder(location_table, locationID)
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"

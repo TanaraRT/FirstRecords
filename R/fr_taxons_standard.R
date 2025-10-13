@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## H. Seebens, T. Renard Truong                                         ##
-## v2.0, August 2025                                                    ##
+## v2.0, October 2025                                                   ##
 ##########################################################################
 
 fr_taxons_standard <- function(dataset = NULL, 
@@ -14,7 +14,9 @@ fr_taxons_standard <- function(dataset = NULL,
                                data_dir = data_dir
                                ){
   
-  stopifnot(!is.null(dataset) && is.data.table(dataset))
+  if (is.null(dataset) || !is.data.table(dataset)) {
+    stop("Error: argument 'dataset' must be a non-null data.table.")
+  }
   
   # --- Open log file ---
   if (use_log == TRUE){
@@ -27,24 +29,24 @@ fr_taxons_standard <- function(dataset = NULL,
   }
   cat("\nSTEP 2: Standardize taxa") 
 
-  # 1. Clean taxon names
-  dataset[, taxon := str_squish(trimws(taxon))]
-  dataset <- dataset[taxon != "" & !is.na(taxon)]
+  # --- 1. Clean taxon names ---
+  dataset[, taxon := str_squish(trimws(taxon))] # remove leading, trailing and multiple white spaces
+  dataset <- dataset[taxon != "" & !is.na(taxon)] # delete rows without taxa
   cat("\n   - Removed leading and trailing whitespace\n   - Deleted extra internal white spaces\n   - Deleted empty rows") 
   
-  # 2. Call GBIF check function
+  # --- 2. Call GBIF check function ---
   sink()
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, 
                                  column_name_taxa = "taxon",
                                  save_interm=TRUE,
                                  data_dir=data_dir)
-  matched_taxa <- unique(gbif_result[[1]])
-  mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)])
-  matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)]
+  matched_taxa <- unique(gbif_result[[1]]) # extract unique standardized species names
+  mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)]) # extract unique unmatched species names, ordered by taxa
+  matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)] # replace unmatched species by "NoMatch" in matched_taxa
   sink(log_file, append = TRUE)
   cat("\n   - Standardized taxon names across the GBIF backbone taxonomy") 
   
-  # 3. Define taxonomic groups
+  # --- 3. Define taxonomic groups: fill in the column taxaGroup, based on class and order ---
   matched_taxa$taxaGroup <- NA
   matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa,class=="Mammalia")$scientificName] <- "Mammals"
   matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa,class=="Aves")$scientificName] <- "Birds"
@@ -81,13 +83,15 @@ fr_taxons_standard <- function(dataset = NULL,
   
   cat("\n   - Allocated taxonomic groups")
 
-  # 4. Creating and adding unique taxonIDs
-  unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)]))
-  unique_taxa[, taxonID := .I]
-  matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE)
+  # --- 4. Creating and adding unique taxonIDs ---
+  unique_taxa <- unique(na.omit(matched_taxa[, .(taxon)])) # extract unique, non-missing taxon names from matched_taxa
+  unique_taxa[, taxonID := .I] # assign a unique integer ID (taxonID) to each taxon ('.I returns the row index, which is used as an ID)
+  matched_taxa <- merge(matched_taxa, unique_taxa, by = "taxon", all = TRUE) # merge taxonID in matched_taxa
   cat("\n   - Allocated taxon IDs")
   
-  # 5. Write output
+  # --- 5. Write output ---
+  
+  ## Create fr_main_dataset_step2
   fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                             "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
@@ -95,6 +99,13 @@ fr_taxons_standard <- function(dataset = NULL,
                                             "accessRights"
   )]
   
+  if (save_to_disk == TRUE){
+    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step2.csv")
+    fwrite(fr_main_dataset_step2, filename)
+    cat("\n  - Updated dataset available in 'tmp' folder\n ")
+  }
+  
+  ## Create the taxonomy table
   taxonomy_table <- unique(matched_taxa[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
                                            "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
                                            "GBIFusageKey","GBIFnote","species","genus","family",
@@ -104,14 +115,9 @@ fr_taxons_standard <- function(dataset = NULL,
   filename <- file.path(data_dir, "output", "taxonomy_table.csv")
   fwrite(taxonomy_table, filename)
   
-  filename <- file.path(data_dir, "tmp", "fr_check_missing_taxa.csv")
+  ## Create the unmatched taxa table
+  filename <- file.path(data_dir, "tmp", "fr_check_unresolved_taxa.csv")
   fwrite(mismatches, filename)
-
-  if (save_to_disk == TRUE){
-    filename <- file.path(data_dir, "tmp", "fr_main_dataset_step2.csv")
-    fwrite(fr_main_dataset_step2, filename)
-    cat("\n  - Updated dataset available in 'tmp' folder\n ")
-  }
   
   cat("\nStep 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder\n ")
   

@@ -5,7 +5,7 @@
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## T. Renard Truong, H. Seebens                                         ##
-## v2.0, August 2025                                                    ##
+## v2.0, October 2025                                                   ##
 ##########################################################################
 
 fr_years_standard <- function(dataset = NULL, 
@@ -15,7 +15,9 @@ fr_years_standard <- function(dataset = NULL,
                               data_dir = NULL
                               ){
   
-  stopifnot(!is.null(dataset) && is.data.table(dataset))
+  if (is.null(dataset) || !is.data.table(dataset)) {
+    stop("Error: argument 'dataset' must be a non-null data.table.")
+  }
   
   # --- Open log file ---
   if (use_log == TRUE){
@@ -50,23 +52,23 @@ fr_years_standard <- function(dataset = NULL,
   ## 3A) BASIC DATA CLEANING
   
   # --- Clean text ---
-  dataset$firstRecordEvent <- gsub(",", "", dataset$firstRecordEvent) # Remove commas
-  dataset$firstRecordEvent <- gsub("['’]", "", dataset$firstRecordEvent) # Remove apostrophes
+  dataset$firstRecordEvent <- gsub(",", "", dataset$firstRecordEvent) # remove commas
+  dataset$firstRecordEvent <- gsub("['’]", "", dataset$firstRecordEvent) # remove apostrophes
   dataset$firstRecordEvent <- gsub(
     "\\b(prior to|before)\\b", 
     "PRIOR_TO_TOKEN", 
     dataset$firstRecordEvent,
     ignore.case = TRUE
-  ) # Ensure "prior to" or "before" is treated properly in the next steps
-  dataset$firstRecordEvent <- gsub("\\s+", " ", dataset$firstRecordEvent) # Remove spaces
-  dataset$firstRecordEvent <- trimws(dataset$firstRecordEvent) # Trim whitespace
-  dataset$firstRecordEvent <- tolower(dataset$firstRecordEvent) # Replaces capital letters
-  dataset$firstRecordEvent <- str_replace_all( # Normalize whitespace
-    dataset$firstRecordEvent, "\\p{Zs}|\\s+"," ")
-  dataset$firstRecordEvent <- gsub(" to ", " - ", dataset$firstRecordEvent) # Replace "to" by "-"
-  dataset$firstRecordEvent <- gsub(" & ", " - ", dataset$firstRecordEvent) # Replace "&" by "-"
-  dataset$firstRecordEvent <- gsub(";", "-", dataset$firstRecordEvent) # Replace ";" by "-"
-  dataset$firstRecordEvent <- gsub("�", "", dataset$firstRecordEvent, fixed = TRUE)# Delete "�"
+  ) # ensure "prior to" or "before" is treated properly in the next steps
+  dataset$firstRecordEvent <- gsub("to", " - ", dataset$firstRecordEvent) # replace "to" by "-"
+  dataset$firstRecordEvent <- gsub("&", " and ", dataset$firstRecordEvent) # replace "&" by "-"
+  dataset$firstRecordEvent <- gsub(";", "-", dataset$firstRecordEvent) # replace ";" by "-"
+  dataset$firstRecordEvent <- gsub("�", "", dataset$firstRecordEvent, fixed = TRUE)# delete "�"
+  dataset$firstRecordEvent <- gsub("\\s+", " ", dataset$firstRecordEvent) # remove spaces
+  dataset$firstRecordEvent <- trimws(dataset$firstRecordEvent) # trim whitespace
+  dataset$firstRecordEvent <- tolower(dataset$firstRecordEvent) # replaces capital letters
+  dataset$firstRecordEvent <- str_replace_all(
+    dataset$firstRecordEvent, "\\p{Zs}|\\s+"," ") # normalize whitespace
   
   # --- Replace words with numbers ---
   word_to_number <- c(
@@ -86,7 +88,10 @@ fr_years_standard <- function(dataset = NULL,
     )
   }
   
-  # --- Replace full dates with years ---
+  # --- Replace dates with years ---
+  
+  ## Remove day and month 
+  # example: 17 october 1991 -> 1911
   pattern <- paste0(
     "\\b\\d{1,2}(st|nd|rd|th)?\\s+",
     "(january|february|march|april|may|june|july|august|september|october|november|december)",
@@ -94,7 +99,8 @@ fr_years_standard <- function(dataset = NULL,
   )
   dataset$firstRecordEvent <- gsub(pattern, "\\3", dataset$firstRecordEvent, ignore.case = TRUE)
   
-  # --- Remove months ---
+  ## Remove months
+  # example: october 1991 -> 1911
   remove_months <- c(
     "january" = "", "february" = "", "march" = "", "april" = "", "may" = "",
     "june" = "", "july" = "", "august" = "", "september" = "", "october" = "",
@@ -112,7 +118,7 @@ fr_years_standard <- function(dataset = NULL,
   # --- Standardize years with 2 digits ---
   
   ## Ranges in the 19th century
-  # Example: 1817-19 -> 1817-1819
+  # example: 1817-19 -> 1817-1819
   dataset$firstRecordEvent <- str_replace_all(
     dataset$firstRecordEvent,
     "(\\b18\\d{2})[-–|,](\\d{2})\\b",
@@ -123,7 +129,7 @@ fr_years_standard <- function(dataset = NULL,
   )
   
   ## Ranges in the 20th century
-  # Example: 1927-30 -> 1927-1930
+  # example: 1927-30 -> 1927-1930
   dataset$firstRecordEvent <- str_replace_all(
     dataset$firstRecordEvent,
     "(\\b19\\d{2})[-–|,](\\d{2})\\b",
@@ -134,7 +140,7 @@ fr_years_standard <- function(dataset = NULL,
   )
   
   ## Ranges in the 21st century
-  # Example: 20012-14 -> 2012- 2014
+  # example: 20012-14 -> 2012- 2014
   dataset$firstRecordEvent <- str_replace_all(
     dataset$firstRecordEvent,
     "(\\b20\\d{2})[-–](\\d{2})\\b",
@@ -145,7 +151,7 @@ fr_years_standard <- function(dataset = NULL,
   )
   
   ## For standalone 2-digit years (avoiding centuries)
-  # Example: 78 -> 1978
+  # example: 78 -> 1978
   dataset$firstRecordEvent <- str_replace_all(
     dataset$firstRecordEvent,
     "(?<!\\d)(\\d{2})(?!\\d|\\s*(st|nd|rd|th)\\s+(century|c|cen))",
@@ -225,7 +231,7 @@ fr_years_standard <- function(dataset = NULL,
         start_years <- as.integer(split_result[[1]][valid_pairs])
         end_years   <- as.integer(split_result[[2]][valid_pairs])
         selected_rows <- range_rows[valid_pairs]
-        # Ensure chronological order
+        # ensure chronological order
         ordered <- mapply(function(start, end) {
           if (start > end) c(end, start) else c(start, end)
         }, start_years, end_years)
@@ -234,7 +240,7 @@ fr_years_standard <- function(dataset = NULL,
         end_years   <- as.integer(ordered[2, ])
         range_widths <- end_years - start_years
         
-        # Assign confidence by width
+        # assign confidence by width
         dt[selected_rows[range_widths <= 9],
            confidenceFirstRecordEvent := "medium-high confidence"]
         dt[selected_rows[range_widths > 9  & range_widths <= 15],
@@ -336,20 +342,36 @@ fr_years_standard <- function(dataset = NULL,
   inds <- which(!is.na(century_years))
   dataset$firstRecordEvent[inds] <- century_years[inds]
   
-  # --- Handling two possible years ("or" and "and")
-  range_pattern <- "^\\s*(-?\\d+)\\s*(or|and)\\s*(-?\\d+)\\s*$" # pattern
+  # --- Handling two possible years ("or")
+  range_pattern <- "^\\s*(-?\\d+)\\s*(or)\\s*(-?\\d+)\\s*$" # pattern
   range_rows <- grepl(range_pattern, dataset$firstRecordEvent) # find rows
   if (any(range_rows)) { # Extract start and end years from pattern
     ranges <- str_match(dataset$firstRecordEvent[range_rows], range_pattern)
     start_years <- as.integer(ranges[, 2])
     end_years <- as.integer(ranges[, 4])
-    ordered <- mapply(function(start, end) { # Ensure correct ordering
+    ordered <- mapply(function(start, end) { # ensure correct ordering
       if (start > end) c(end, start) else c(start, end)
     }, start_years, end_years)
     start_years <- as.integer(ordered[1, ])
     end_years <- as.integer(ordered[2, ])
     range_widths <- end_years - start_years
-    dataset$firstRecordEvent[range_rows] <- as.character(end_years) # Assign most recent
+    dataset$firstRecordEvent[range_rows] <- as.character(end_years) # assign most recent
+  }
+  
+  # --- Handling two years ("and")
+  range_pattern <- "^\\s*(-?\\d+)\\s*(and)\\s*(-?\\d+)\\s*$" # pattern
+  range_rows <- grepl(range_pattern, dataset$firstRecordEvent) # find rows
+  if (any(range_rows)) { # extract start and end years from pattern
+    ranges <- str_match(dataset$firstRecordEvent[range_rows], range_pattern)
+    start_years <- as.integer(ranges[, 2])
+    end_years <- as.integer(ranges[, 4])
+    ordered <- mapply(function(start, end) { # ensure correct ordering
+      if (start > end) c(end, start) else c(start, end)
+    }, start_years, end_years)
+    start_years <- as.integer(ordered[1, ])
+    end_years <- as.integer(ordered[2, ])
+    range_widths <- end_years - start_years
+    dataset$firstRecordEvent[range_rows] <- as.character(start_years) # assign earliest year
   }
   
   # --- Handling ranges ---
@@ -359,8 +381,8 @@ fr_years_standard <- function(dataset = NULL,
   if (any(range_rows)) {
     ranges <- str_match(dataset$firstRecordEvent[range_rows], range_pattern)
     start_years <- as.integer(ranges[, 2])
-    end_years <- as.integer(ranges[, 3]) # Extract start and end years
-    # Chronologically order start and end years (oldest to most recent)
+    end_years <- as.integer(ranges[, 3]) # extract start and end years
+    # chronologically order start and end years (oldest to most recent)
     is_later <- start_years > end_years
     temp <- start_years
     start_years[is_later] <- end_years[is_later]
@@ -379,8 +401,8 @@ fr_years_standard <- function(dataset = NULL,
   
   # --- Handling years, decades, centuries ago ---
   # example: 20 years ago -> 1980
-  reference_year <- 2000 # Define reference year
-  time_units <- list("years? ago" = 1, "decades? ago" = 10, "centur(?:y|ies) ago" = 100) # Define time units and their multipliers (in years)
+  reference_year <- 2000 # define reference year
+  time_units <- list("years? ago" = 1, "decades? ago" = 10, "centur(?:y|ies) ago" = 100) # define time units and their multipliers (in years)
   
   # Loop through units and process them
   for (pattern in names(time_units)) {
@@ -406,17 +428,17 @@ fr_years_standard <- function(dataset = NULL,
     }
     c(year = NA, confidence = NA)
   }
-  # Apply to all rows
+  # apply to all rows
   after_results <- t(sapply(dataset$firstRecordEvent, convert_after))
   
-  # Add new values only where a match was found
+  # add new values only where a match was found
   matched_inds <- which(!is.na(after_results[, "year"]))
   dataset$firstRecordEvent[matched_inds] <- after_results[matched_inds, "year"]
   dataset$confidenceFirstRecordEvent[matched_inds] <-after_results[matched_inds, "confidence"]
   
   # --- Check non-matching formats (1) ---
   pattern <- "^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5]))$|^(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])\\s*-\\s*(-?(?:[0-9]{1,3}|1[0-9]{3}|20[0-1][0-9]|202[0-5])))$"
-  # Filter rows that DO NOT match this pattern
+  # filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
   filename <- file.path(data_dir, "tmp", "fr_check_missing_years1.csv")
   fwrite(non_matching_rows, filename)
@@ -433,20 +455,20 @@ fr_years_standard <- function(dataset = NULL,
   ## 3D) FINAL CLEANING
   
   clean_first_record <- function(dt) {
-    dt[, firstRecordEvent := gsub("[^0-9\\-]", "", firstRecordEvent)]  # Keep only digits and -
-    dt[, firstRecordEvent := gsub("(?<!\\d)(\\d{1,2})(?!\\d)", "", firstRecordEvent, perl = TRUE)]  # Remove 1–2 digit numbers
-    dt[, firstRecordEvent := gsub("-{2,}", "-", firstRecordEvent)] # Replace multiple - by one
-    dt[, firstRecordEvent := gsub("-+$", "", firstRecordEvent)]  # Remove trailing hyphens
+    dt[, firstRecordEvent := gsub("[^0-9\\-]", "", firstRecordEvent)]  # keep only digits and -
+    dt[, firstRecordEvent := gsub("(?<!\\d)(\\d{1,2})(?!\\d)", "", firstRecordEvent, perl = TRUE)]  # remove 1–2 digit numbers
+    dt[, firstRecordEvent := gsub("-{2,}", "-", firstRecordEvent)] # replace multiple - by one
+    dt[, firstRecordEvent := gsub("-+$", "", firstRecordEvent)]  # remove trailing hyphens
   }
   clean_first_record(dataset)
   
   # Remove empty firstRecordEvent values
-  # Extract rows that we will delete (empty firstRecordEvent, but not empty verbatim_fr)
+  # extract rows that we will delete (empty firstRecordEvent, but not empty verbatim_fr)
   dataset <- dataset[firstRecordEvent != ""]
   
   # Extract non-processed/non-matching years (e.g., ranges)
   pattern <- "^\\d{3,4}$|^-\\d{3,4}$|^\\d{3,4}\\s*-\\s*\\d{3,4}$"
-  # Filter rows that DO NOT match this pattern
+  # filter rows that DO NOT match this pattern
   non_matching_rows <- dataset[!grepl(pattern, firstRecordEvent)]
   
   filename <- file.path(data_dir, "tmp", "fr_check_missing_years2.csv")
@@ -454,9 +476,9 @@ fr_years_standard <- function(dataset = NULL,
   
   # Remove non-processed/non-matching years and save processed data
   pattern <- "^-?\\d{3,4}$"
-  # Filter rows that DO NOT match this pattern
+  # filter rows that DO NOT match this pattern
   fr_main_dataset_step3 <- as.data.table(dataset[grepl(pattern, dataset$firstRecordEvent), ])
-  # Remove rows where years are >= 2025
+  # remove rows where years are >= 2025
   fr_main_dataset_step3 <- fr_main_dataset_step3[firstRecordEvent <= 2025 | is.na(firstRecordEvent)]
   
   cat("Step 3d completed: final cleaning, text has been erased")

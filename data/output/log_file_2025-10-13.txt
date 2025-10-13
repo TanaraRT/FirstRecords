@@ -1,0 +1,785 @@
+
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+✔ degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+✔ habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+✔ establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+✔ occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+✔ pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+✔ datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+✔ degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+✔ habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+✔ establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+✔ occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+✔ pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+✔ datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+ --- FIRST RECORD  2025-10-13  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+   - Standardized taxon names across the GBIF backbone taxonomy
+   - Allocated taxonomic groups
+   - Allocated taxon IDs
+  - Updated dataset available in 'tmp' folder
+ 
+Step 2 completed: taxa have been standardized. Unmatched taxa are available in the 'tmp' folder and a taxonomy table is available in the 'output' folder
+ 
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
