@@ -58,7 +58,7 @@ check_GBIF_taxa <- function(taxon_names=NULL,
   old_j <- 0 # counter for storing outdated output for later removal
 
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
-  for (j in 61424:n_taxa) {# loop over all species names; takes some hours...
+  for (j in 1:n_taxa) {# loop over all species names; takes some hours...
 
     # select species name and download taxonomy
     ind_tax <- which(dat$taxon==taxlist[j])

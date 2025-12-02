@@ -205,6 +205,14 @@ fr_years_standard <- function(dataset = NULL,
     dt[grepl("^\\d{4}$", firstRecordEvent), 
        confidenceFirstRecordEvent := ifelse(as.numeric(firstRecordEvent) >= 1500, "high confidence", confidenceFirstRecordEvent)]
     
+    # --- 1b. Two years: high or low confidence based on 1500 threshold ---
+    # example: 1991 and 1997 -> high confidence
+    dt[grepl("^\\s*\\d{4}\\s*(?:and|&)\\s*\\d{4}\\s*$", firstRecordEvent), 
+       confidenceFirstRecordEvent := {
+         years <- as.numeric(unlist(strsplit(firstRecordEvent, "\\s*(?:and|&)\\s*")))
+         if (all(years >= 1500)) "high confidence" else "low confidence"
+       }]
+    
     # --- 2. Decades: low to medium-high confidence ---
     # example: 1990s -> medium-high confidence; 1490s -> low confidence
     dt[grepl("^\\d{4}s$|^\\d{2}s$", firstRecordEvent), confidenceFirstRecordEvent := {
@@ -215,14 +223,14 @@ fr_years_standard <- function(dataset = NULL,
       }
     ]
     
-    # --- 3. Two-year ranges or ranges with "or"/"and": assign based on range width ---
+    # --- 3. Two-year ranges or ranges with "or": assign based on range width ---
     # example: 1922-1927 -> high confidence; 1922-1976 -> low confidence 
-    range_rows <- which(grepl("(?i)^\\s*-?\\d+\\s*([-–]|or|and)\\s*-?\\d+\\s*$",
+    range_rows <- which(grepl("(?i)^\\s*-?\\d+\\s*([-–]|or)\\s*-?\\d+\\s*$",
                               dt$firstRecordEvent
     ))
     if (length(range_rows) > 0) {# Clean and standardize separators to '-'
       cleaned <- gsub("\\s+", "", dt$firstRecordEvent[range_rows])
-      cleaned <- gsub("(?i)\\s*(?:or|and|[-–])\\s*", "-", cleaned)
+      cleaned <- gsub("(?i)\\s*(?:or|[-–])\\s*", "-", cleaned)
       split_result <- tstrsplit(cleaned, "-", fixed = TRUE) # Split into start and end years
       valid_pairs <- suppressWarnings(!is.na(as.integer(split_result[[1]])) &
                                         !is.na(as.integer(split_result[[2]]))
