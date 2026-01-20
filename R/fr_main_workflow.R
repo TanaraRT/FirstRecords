@@ -18,7 +18,9 @@ rm(list = ls())
 data_dir = "data"
 
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
-input_file = "IntroData_raw.csv"
+#input_file = "IntroData_raw.csv"
+input_file = "IntroData_raw.xlsx"
+
 
 ## INITIALIZATION #########################################################
 cat("\n Initialization") 
@@ -27,7 +29,7 @@ cat("\n Initialization")
 source(file.path("R", "fr_initialization.r"))
 
 # --- Check folders and load packages and scripts --- #
-init <- fr_initialization(data_dir = data_dir, input_file = "IntroData_raw.csv")
+init <- fr_initialization(data_dir = data_dir, input_file = input_file)
 cat("\nIntialization completed\n ") 
 
 ## 1) PREPARATION OF DATASET #############################################

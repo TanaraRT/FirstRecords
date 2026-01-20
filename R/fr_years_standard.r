@@ -60,6 +60,7 @@ fr_years_standard <- function(dataset = NULL,
     dataset$firstRecordEvent,
     ignore.case = TRUE
   ) # ensure "prior to" or "before" is treated properly in the next steps
+  dataset$firstRecordEvent <- gsub("[>]", " after ", dataset$firstRecordEvent) # replace " >" by "after"
   dataset$firstRecordEvent <- gsub("to", " - ", dataset$firstRecordEvent) # replace "to" by "-"
   dataset$firstRecordEvent <- gsub("&", " and ", dataset$firstRecordEvent) # replace "&" by "-"
   dataset$firstRecordEvent <- gsub(";", "-", dataset$firstRecordEvent) # replace ";" by "-"
@@ -409,19 +410,59 @@ fr_years_standard <- function(dataset = NULL,
   
   # --- Handling years, decades, centuries ago ---
   # example: 20 years ago -> 1980
-  reference_year <- 2000 # define reference year
-  time_units <- list("years? ago" = 1, "decades? ago" = 10, "centur(?:y|ies) ago" = 100) # define time units and their multipliers (in years)
   
-  # Loop through units and process them
+  ref_year <- as.numeric(
+    stringr::str_extract(dataset$bibliographicCitation, "(?<=\\()[0-9]{4}(?=\\))")
+  )
+  time_units <- list(
+    "years? ago"     = 1,
+    "decades? ago"   = 10,
+    "centur(?:y|ies) ago" = 100
+  )
   for (pattern in names(time_units)) {
-    full_pattern <- paste0("([\\d]+(?:\\.\\d+)?)\\s*(?:or more\\s*)?", pattern)
-    matches <- str_match(dataset$firstRecordEvent, full_pattern)
-    has_match <- !is.na(matches[, 1]);
-    if (any(has_match)) {
-      value <- as.numeric(matches[has_match, 2]) * time_units[[pattern]]
-      dataset$firstRecordEvent[has_match] <- as.character(reference_year - value)
+    
+    full_pattern <- paste0(
+      "([\\d]+(?:\\.\\d+)?)\\s*(?:or more\\s*)?",
+      pattern
+    )
+    
+    matches <- stringr::str_match(dataset$firstRecordEvent, full_pattern)
+    has_match <- !is.na(matches[, 1])
+    
+    if (!any(has_match)) next
+    
+    value <- as.numeric(matches[has_match, 2]) * time_units[[pattern]]
+    
+    ## CASE 1: ≥ 100 years ago → use fixed reference year
+    idx_old <- has_match & value >= 100
+    
+    if (any(idx_old)) {
+      dataset$firstRecordEvent[idx_old] <-
+        as.character(reference_year - value[value >= 100])
+    }
+    
+    ## CASE 2: < 100 years ago → use bibliographic reference year
+    idx_recent <- has_match & value < 100 & !is.na(ref_year)
+    
+    if (any(idx_recent)) {
+      dataset$firstRecordEvent[idx_recent] <-
+        as.character(ref_year[idx_recent] - value[value < 100])
     }
   }
+  
+#  reference_year <- 2000 # define reference year
+ # time_units <- list("years? ago" = 1, "decades? ago" = 10, "centur(?:y|ies) ago" = 100) # define time units and their multipliers (in years)
+  
+  # Loop through units and process them
+ # for (pattern in names(time_units)) {
+  #  full_pattern <- paste0("([\\d]+(?:\\.\\d+)?)\\s*(?:or more\\s*)?", pattern)
+   # matches <- str_match(dataset$firstRecordEvent, full_pattern)
+    #has_match <- !is.na(matches[, 1]);
+#    if (any(has_match)) {
+ #     value <- as.numeric(matches[has_match, 2]) * time_units[[pattern]]
+  #    dataset$firstRecordEvent[has_match] <- as.character(reference_year - value)
+   # }
+  #}
   
   # --- Handling after- and post- years
   # example: after 1917 -> 1919

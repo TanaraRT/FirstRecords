@@ -40,7 +40,7 @@ fr_localities_standard <- function(dataset = NULL,
     sheet = "location",
     na.strings = ""
   )
-  regions <- regions[, c("locationID", "location", "location_var", "sinas_region")] # select relevant columns
+  regions <- regions[, c("locationID", "location", "location_var", "sinas_region", "continent")] # select relevant columns
   regions$location_var <- tolower(regions$location_var)  # set all to lowercase for matching
   regions$location_lower <- tolower(regions$location)  # set all to lowercase for matching
   
@@ -50,7 +50,7 @@ fr_localities_standard <- function(dataset = NULL,
     sheet = "stateProvince",
     na.strings = ""
   )
-  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region")] # select relevant columns
+  subregions <- subregions[, c("locationID", "location", "location_var", "gadm1_name", "gadm1_var", "sinas_region", "continent")] # select relevant columns
   subregions$gadm1_var <- tolower(subregions$gadm1_var)  # set all to lowercase for matching
   subregions$Gadm1_lower <- tolower(subregions$gadm1_name)  # set all to lowercase for matching
 
@@ -157,7 +157,7 @@ fr_localities_standard <- function(dataset = NULL,
   # --- 2: Clean locations and locationID 
   write_regnames <- write_regnames |> 
     select(-c(stateProvince, locationID)) |> 
-    left_join(regions |> select(location, locationID, sinas_region), by = "location")
+    left_join(regions |> select(location, locationID, sinas_region, continent), by = "location")
   
   # --- 3: Save fr_main_dataset_step4 with standardized location names ---
   fr_main_dataset_step4 <- write_regnames[, c("locationID", "location", "verbatimLocation", "taxonID", "taxon",
@@ -183,7 +183,7 @@ fr_localities_standard <- function(dataset = NULL,
   }
   
   # ---5: Save location table ---
-  location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region)]
+  location_table <- write_regnames[, .(locationID, location, verbatimLocation, sinas_region, continent)]
   location_table[, verbatimLocation_lower := tolower(verbatimLocation)]
   location_table <- unique(location_table, by = "verbatimLocation_lower")
   location_table[, verbatimLocation_lower := NULL]  # delete temporary column

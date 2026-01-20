@@ -75,9 +75,18 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
 
 # --- Import data ---
   filename <- file.path(input, input_file)
-  fr_input_data <- read.csv2(filename, fileEncoding = "UTF-8",
-                           stringsAsFactors = FALSE
-  )
+## Extract file extension
+  file_ext <- tools::file_ext(filename)
+  
+  # Read file based on extension
+  if (tolower(file_ext) %in% c("xlsx", "xls")) {
+    fr_input_data <- read.xlsx(filename)
+  } else if (tolower(file_ext) %in% c("csv", "txt")) {
+    fr_input_data <- fread(filename, encoding = "UTF-8")  # fread is faster than read.csv
+  } else {
+    stop("Unsupported file type: ", file_ext)
+  }
+  
   setDT(fr_input_data) # convert to data.table
   
   cat("\n  - Functions and input data loaded\n")

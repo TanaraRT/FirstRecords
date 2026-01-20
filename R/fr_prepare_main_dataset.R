@@ -13,7 +13,6 @@ fr_prepare_main_dataset <- function (dataset = NULL,
                                      save_to_disk = FALSE, 
                                      data_dir = NULL
                                      ){
-  
   if (is.null(dataset) || !is.data.frame(dataset)) {
     stop("Invalid input: dataset must be a data.frame or data.table")
   }
@@ -31,6 +30,9 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   cat("\nSTEP 1: Prepare main dataset: fr_main_dataset") 
   
   # --- Prepare master dataset ---
+  
+  print(names(dataset))
+  
   dataset <- dataset[, .(
     locationID = "", # create locationID column
     verbatimLocation = Country, # create verbatimLocation and initialize it with "Country" from raw dataset
