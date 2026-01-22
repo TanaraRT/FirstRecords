@@ -18,8 +18,7 @@ rm(list = ls())
 data_dir = "data"
 
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
-#input_file = "IntroData_raw.csv"
-input_file = "IntroData_raw.xlsx"
+input_file = "IntroData_raw_2026.xlsx"
 
 
 ## INITIALIZATION #########################################################
