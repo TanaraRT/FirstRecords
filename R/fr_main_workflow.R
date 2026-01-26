@@ -9,7 +9,6 @@
 ##########################################################################
 
 ## PREPARE WORKSPACE AND CONFIGURATION ###################################
-
 # --- Clean workspace ---
 graphics.off()
 rm(list = ls())
@@ -18,8 +17,8 @@ rm(list = ls())
 data_dir = "data"
 
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
-input_file = "IntroData_raw_2026.xlsx"
-
+#input_file = "IntroData_raw_2026.xlsx"
+input_file <- "sample_2000.xlsx"
 
 ## INITIALIZATION #########################################################
 cat("\n Initialization") 

@@ -1,6 +1,214 @@
 locationID,location,verbatimLocation,region,continent
-50,Switzerland,GE,Europe,Europe
-91,United Kingdom,UK,Europe,Europe
-141,Laos,CH,Southern Asia,Asia
-256,United States of America,DE,Northern America,North America
-256,United States of America,MT,Northern America,North America
+6,Albania,ALBANIA,Europe,Europe
+11,Argentina,Argentine,Southern America,South America
+14,Antarctica,North-west Antarctic Peninsula,Antarctic,Antarctica
+15,Crozet Islands,Crozet,Antarctic,Antarctica
+16,Kerguelen Islands,Kerguelen,Antarctic,Antarctica
+20,Australia,Australia,Australasia,Oceania
+20,Australia,AUSTRALIA Queensland,Australasia,Oceania
+22,Austria,Austria,Europe,Europe
+25,Belgium,Belgium,Europe,Europe
+32,Bulgaria,Bulgaria,Europe,Europe
+34,Bahamas,Bahamas,Central America and the Caribbean,North America
+35,Bosnia and Herzegovina,Bosnia and Herzegovina,Europe,Europe
+37,Belarus,Belarus,Europe,Europe
+38,Belize,Belize,Central America and the Caribbean,North America
+39,Bermuda,Bermuda,Central America and the Caribbean,North America
+41,Brazil,Brazil,Southern America,South America
+42,Barbados,Barbados,Central America and the Caribbean,North America
+44,Bhutan,Bhutan,Southern Asia,Asia
+48,Canada,Canada,Northern America,North America
+48,Canada,Quebec,Northern America,North America
+48,Canada,CANADA Yukon,Northern America,North America
+48,Canada,CANADA Manitoba,Northern America,North America
+50,Switzerland,Switzerland,Europe,Europe
+51,Chile,Chile,Southern America,South America
+52,China,China (Chongqing),Eastern Asia,Asia
+52,China,China (Hunan),Eastern Asia,Asia
+52,China,China,Eastern Asia,Asia
+52,China,China (Xinjiang),Eastern Asia,Asia
+52,China,China (Guizhou),Eastern Asia,Asia
+52,China,China (Sichuan),Eastern Asia,Asia
+52,China,China (Heilongjiang),Eastern Asia,Asia
+52,China,China (Guangxi),Eastern Asia,Asia
+52,China,China (Shanghai),Eastern Asia,Asia
+52,China,China (Beijing),Eastern Asia,Asia
+52,China,China (Henan),Eastern Asia,Asia
+52,China,China (Tianjin),Eastern Asia,Asia
+52,China,China (Shenxi),Eastern Asia,Asia
+52,China,China (Hubei),Eastern Asia,Asia
+52,China,China (Jiangsu),Eastern Asia,Asia
+52,China,China (Gansu),Eastern Asia,Asia
+52,China,China (Guangdong),Eastern Asia,Asia
+52,China,China (Jilin),Eastern Asia,Asia
+52,China,China (Fujian),Eastern Asia,Asia
+52,China,China (Hebei),Eastern Asia,Asia
+52,China,China (Inner Mongolia),Eastern Asia,Asia
+52,China,China (Yunnan),Eastern Asia,Asia
+52,China,China (Jiangxi),Eastern Asia,Asia
+52,China,China (Shandong),Eastern Asia,Asia
+52,China,China (Shanxi),Eastern Asia,Asia
+52,China,China (Tibet),Eastern Asia,Asia
+52,China,China (Zhejiang),Eastern Asia,Asia
+52,China,China (Anhui),Eastern Asia,Asia
+52,China,China (Ningxia),Eastern Asia,Asia
+52,China,China (Hainan),Eastern Asia,Asia
+52,China,Shaanxi,Eastern Asia,Asia
+52,China,China (Liaoning),Eastern Asia,Asia
+52,China,China (Qinghai),Eastern Asia,Asia
+55,Democratic Republic of the Congo,DR Congo,Sub-Saharan Africa,Africa
+57,Cook Islands,Cook Islands,Pacific,Oceania
+58,Colombia,Colombia,Southern America,South America
+59,Comoros,Comoros,Sub-Saharan Africa,Africa
+61,Costa Rica,Costa Rica,Central America and the Caribbean,North America
+62,Cuba,Cuba,Central America and the Caribbean,North America
+64,Cayman Islands,CAYMAN ISLANDS,Central America and the Caribbean,North America
+65,Cyprus,Cyprus,Western Asia,Asia
+66,Czech Republic,Czech Republic,Europe,Europe
+67,Germany,Germany,Europe,Europe
+67,Germany,Germany (mainland),Europe,Europe
+69,Dominica,Dominica,Central America and the Caribbean,North America
+70,Denmark,Denmark,Europe,Europe
+71,Dominican Republic,DOMINICAN REPUBLIC,Central America and the Caribbean,North America
+72,Algeria,Algeria,Saharo-Arabia,Africa
+74,Galapagos,Galapagos,Southern America,South America
+75,Egypt,Egypt,Saharo-Arabia,Africa
+75,Egypt,Egypt  ,Saharo-Arabia,Africa
+79,Canary Islands,Canary Is,Sub-Saharan Africa,Africa
+79,Canary Islands,Spain (Canary islands),Sub-Saharan Africa,Africa
+80,Spain,Spain,Europe,Europe
+80,Spain,Spain (mainland),Europe,Europe
+81,Estonia,Estonia,Europe,Europe
+83,Finland,Finland,Europe,Europe
+85,Falkland Islands,Falklands/Malvinas,Antarctic,Antarctica
+85,Falkland Islands,Falkland Islands,Antarctic,Antarctica
+86,France,France,Europe,Europe
+86,France,France (mainland),Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,Scotland,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,England,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,United Kingdom,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,Wales,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,Northern Ireland,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,United Kingdom of Great Britain and Northern Ireland,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,Great Britain,Europe,Europe
+91,United Kingdom of Great Britain and Northern Ireland,United Kingdom (Britain),Europe,Europe
+92,Georgia,GEORGIA,Western Asia,Asia
+94,Ghana,Ghana,Sub-Saharan Africa,Africa
+100,Equatorial Guinea,Equatorial Guinea,Sub-Saharan Africa,Africa
+103,Greece,Greece,Europe,Europe
+110,Hong Kong,Hong Kong,Eastern Asia,Asia
+110,Hong Kong,China (Hongkong),Eastern Asia,Asia
+112,Honduras,Honduras,Central America and the Caribbean,North America
+113,Croatia,Croatia,Europe,Europe
+114,Haiti,Haiti,Central America and the Caribbean,North America
+115,Hungary,Hungary,Europe,Europe
+116,Indonesia,Malesia (Java),Southern Asia,Asia
+116,Indonesia,Indonesia,Southern Asia,Asia
+118,India,India,Southern Asia,Asia
+121,Ireland,Ireland,Europe,Europe
+122,Iran,Iran,Western Asia,Asia
+124,Iceland,Iceland,Europe,Europe
+125,Israel,Israel,Saharo-Arabia,Asia
+126,Italy,Italy,Europe,Europe
+126,Italy,Italy (mainland),Europe,Europe
+127,Sardinia,Sardegna (Sardinia),Europe,Europe
+127,Sardinia,Sardinia,Europe,Europe
+127,Sardinia,Italy (Italy- Sardinia),Europe,Europe
+132,Japan,Japan,Eastern Asia,Asia
+132,Japan,Japan ,Eastern Asia,Asia
+134,Kenya,Kenya,Sub-Saharan Africa,Africa
+139,"Korea, Republic of",South Korea,Eastern Asia,Asia
+139,"Korea, Republic of","Korea, Republic of",Eastern Asia,Asia
+140,Kuwait,KUWAIT,Saharo-Arabia,Asia
+142,Lebanon,Lebanon,Saharo-Arabia,Asia
+146,Liechtenstein,Liechtenstein,Europe,Europe
+147,Sri Lanka,Sri Lanka,Southern Asia,Asia
+149,Lithuania,Lithuania,Europe,Europe
+150,Luxembourg,Luxemburg,Europe,Europe
+151,Latvia,Latvia,Europe,Europe
+153,Saint-Martin,Saint Martin,Central America and the Caribbean,North America
+157,Madagascar,Madagascar,Sub-Saharan Africa,Africa
+159,Mexico,Mexico,Northern America,North America
+163,Malta,Malta,Europe,Europe
+166,Mongolia,Mongolia,Eastern Asia,Asia
+170,Montserrat,Montserrat,Central America and the Caribbean,North America
+171,Martinique,Martinique,Central America and the Caribbean,North America
+172,Mauritius,MAURITIUS,Sub-Saharan Africa,Africa
+175,Malaysia,Malaysia,Southern Asia,Asia
+176,Mayotte,Mayotte,Sub-Saharan Africa,Africa
+178,New Caledonia,New Caledonia,Pacific,Oceania
+180,Norfolk Island,Norfolk Island,Australasia,Oceania
+181,Nigeria,Nigeria,Sub-Saharan Africa,Africa
+184,Netherlands,Netherlands,Europe,Europe
+185,Norway,Norway,Europe,Europe
+186,Nepal,Nepal,Southern Asia,Asia
+188,New Zealand,New Zealand,Australasia,Oceania
+188,New Zealand,Auckland,Australasia,Oceania
+189,Oman,OMAN,Saharo-Arabia,Asia
+191,Panama,PANAMA,Central America and the Caribbean,North America
+194,Philippines,Philippines,Southern Asia,Asia
+196,Papua New Guinea,New Guinea,Southern Asia,Asia
+197,Poland,Poland,Europe,Europe
+198,Puerto Rico,Puerto Rico,Central America and the Caribbean,North America
+199,North Korea,North Korea,Eastern Asia,Asia
+200,Azores,Azores,Sub-Saharan Africa,Africa
+200,Azores,Portugal (Azores),Sub-Saharan Africa,Africa
+201,Madeira,Madeira,Sub-Saharan Africa,Africa
+201,Madeira,Portugal (Madeira),Sub-Saharan Africa,Africa
+202,Portugal,Portugal,Europe,Europe
+202,Portugal,Portugal (mainland),Europe,Europe
+203,Paraguay,Paraguay,Southern America,South America
+206,Réunion,La Reunion,Sub-Saharan Africa,Africa
+206,Réunion,Reunion,Sub-Saharan Africa,Africa
+207,Romania,Romania,Europe,Europe
+208,Russian Federation,Russia,Europe,Europe
+208,Russian Federation,Russian Federation,Europe,Europe
+208,Russian Federation,European part of Russia,Europe,Europe
+210,Saudi Arabia,SAUDI ARABIA,Saharo-Arabia,Asia
+214,Singapore,Singapore,Southern Asia,Asia
+215,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,Antarctic,Antarctica
+217,Saint Helena,Saint Helena,Sub-Saharan Africa,Africa
+218,Tristan da Cunha,Tristan group,Antarctic,Antarctica
+219,Svalbard and Jan Mayen,Svalbard,Europe,Europe
+220,Solomon Islands,Solomon Islands,Pacific,Oceania
+222,El Salvador,El Salvador,Central America and the Caribbean,North America
+227,São Tomé and Príncipe,Sao tome and Principe,Sub-Saharan Africa,Africa
+229,Slovakia,Slovakia,Europe,Europe
+230,Slovenia,Slovenia,Europe,Europe
+231,Sweden,Sweden,Europe,Europe
+233,Seychelles,Seychelles,Sub-Saharan Africa,Africa
+236,Chad,Chad,Sub-Saharan Africa,Africa
+244,Trinidad and Tobago,Trinidad and Tabago,Central America and the Caribbean,North America
+245,Tunisia,Tunisia,Saharo-Arabia,Africa
+246,Turkey,Türkiye,Western Asia,Asia
+246,Turkey,Turkey (in Europe),Western Asia,Asia
+246,Turkey,Turkey,Western Asia,Asia
+248,Taiwan,Taiwan,Eastern Asia,Asia
+251,Ukraine,Ukraine,Europe,Europe
+254,Alaska,Alaska,Northern America,North America
+255,Hawaiian Islands,Hawaiian Islands,Pacific,Oceania
+255,Hawaiian Islands,Hawaii,Pacific,Oceania
+255,Hawaiian Islands,Hawiian Islands,Pacific,Oceania
+255,Hawaiian Islands,UNITED STATES Hawaiian Islands,Pacific,Oceania
+256,United States of America,United States,Northern America,North America
+256,United States of America,USA,Northern America,North America
+256,United States of America,United States of America,Northern America,North America
+256,United States of America,California,Northern America,North America
+256,United States of America,UNITED STATES California,Northern America,North America
+256,United States of America,UNITED STATES Florida,Northern America,North America
+256,United States of America,UNITED STATES Virginia,Northern America,North America
+256,United States of America,UNITED STATES Washington,Northern America,North America
+257,Uzbekistan,UZBEKISTAN,Western Asia,Asia
+261,Virgin Islands (British),British Virgin Islands,Central America and the Caribbean,North America
+262,Virgin Islands (U.S.),US Virgin Islands,Central America and the Caribbean,North America
+262,Virgin Islands (U.S.),"VIRGIN ISLANDS, US",Central America and the Caribbean,North America
+264,Vanuatu,Vanuatu,Pacific,Oceania
+273,South Africa,South Africa,Sub-Saharan Africa,Africa
+273,South Africa,Prince Edward Islands,Sub-Saharan Africa,Africa
+273,South Africa,RSA,Sub-Saharan Africa,Africa
+276,Zimbabwe,Zimbabwe,Sub-Saharan Africa,Africa
+1201,Corsica,Corse (Corsica),Europe,Europe
+3917,Kermadec Islands,Kermadec Islands,Australasia,Oceania
+3918,Lord Howe Island,Lord Howe Island,Australasia,Oceania
+3924,Socotra Island,Socotra Island,Saharo-Arabia,Asia
+3925,French Polynesia,French Polynesia,Pacific,Oceania
