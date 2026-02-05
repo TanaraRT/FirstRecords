@@ -36,12 +36,20 @@ fr_taxons_standard <- function(dataset = NULL,
   
   # --- 2. Call GBIF check function ---
   sink()
+  ########################
+  ## TEMPORARY CHANGE ##
+  dataset <- read.csv(file.path(data_dir, "tmp", "TaxonHarmonisation_fulldataset_intermediate_5581.csv"))
+  ########################
   gbif_result <- check_GBIF_taxa(taxon_names = dataset, 
                                  column_name_taxa = "taxon",
                                  save_interm=TRUE,
                                  data_dir=data_dir)
   matched_taxa <- unique(gbif_result[[1]]) # extract unique standardized species names
   mismatches <- unique(gbif_result[[2]][order(gbif_result[[2]]$taxon)]) # extract unique unmatched species names, ordered by taxa
+  
+  setDT(matched_taxa)
+  setDT(mismatches)
+  
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)] # replace unmatched species by "NoMatch" in matched_taxa
   sink(log_file, append = TRUE)
   cat("\n   - Standardized taxon names across the GBIF backbone taxonomy") 

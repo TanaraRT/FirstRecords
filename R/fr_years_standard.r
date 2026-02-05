@@ -411,6 +411,7 @@ fr_years_standard <- function(dataset = NULL,
   # --- Handling years, decades, centuries ago ---
   # example: 20 years ago -> 1980
   
+  reference_year <- 2000  # define reference year
   ref_year <- as.numeric(
     stringr::str_extract(dataset$bibliographicCitation, "(?<=\\()[0-9]{4}(?=\\))")
   )
@@ -435,7 +436,7 @@ fr_years_standard <- function(dataset = NULL,
     
     ## CASE 1: ≥ 100 years ago → use fixed reference year
     idx_old <- has_match & value >= 100
-    
+
     if (any(idx_old)) {
       dataset$firstRecordEvent[idx_old] <-
         as.character(reference_year - value[value >= 100])

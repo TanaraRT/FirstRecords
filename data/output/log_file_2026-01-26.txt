@@ -229,3 +229,28 @@ STEP 2: Standardize taxa
    - Removed leading and trailing whitespace
    - Deleted extra internal white spaces
    - Deleted empty rows
+ --- FIRST RECORD  2026-01-26  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset [1] "GenusSpecies"            "Genus"                   "Species"                
+ [4] "Author"                  "Family"                  "Order"                  
+ [7] "Class"                   "PresentStatus"           "FirstRecord1"           
+[10] "FirstRecord2"            "FirstRecord"             "DateNaturalisation"     
+[13] "FirstRecord_intentional" "DataQuality"             "Country"                
+[16] "LifeForm"                "TaxonType"               "Habitat"                
+[19] "GrowthFormPlants"        "Pathway"                 "Origin"                 
+[22] "Region"                  "Island"                  "Source"                 
+[25] "DataUsage"               "NextDataSet"            
+
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows

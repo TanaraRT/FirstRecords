@@ -59,9 +59,22 @@ check_GBIF_taxa <- function(taxon_names=NULL,
 
   mismatches <- data.frame(taxon=NA,status=NA,matchType=NA)
   for (j in 1:n_taxa) {# loop over all species names; takes some hours...
-
-    # select species name and download taxonomy
+    
     ind_tax <- which(dat$taxon==taxlist[j])
+    
+    ########################
+    ## TEMPORARY CHANGE ##
+    
+    # Check if GBIFusageKey is already populated
+    if (!is.na(dat$GBIFusageKey[ind_tax]) &&
+        !is.null(dat$GBIFusageKey[ind_tax]) &&
+        dat$GBIFusageKey[ind_tax] != "") {
+      next  # Skip to next taxon if usageKey exists
+    }
+
+    ########################
+    
+    # select species name and download taxonomy
     db_all <- name_backbone_verbose(taxlist[j],strict=T) # check for names and synonyms
     db <- db_all[["data"]]
     alternatives <- db_all$alternatives

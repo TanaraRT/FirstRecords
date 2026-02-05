@@ -1,0 +1,792 @@
+
+ --- FIRST RECORD  2026-01-28  ---
+ 
+STEP 1: Prepare main dataset: fr_main_dataset [1] "GenusSpecies"            "Genus"                   "Species"                
+ [4] "Author"                  "Family"                  "Order"                  
+ [7] "Class"                   "PresentStatus"           "FirstRecord1"           
+[10] "FirstRecord2"            "FirstRecord"             "DateNaturalisation"     
+[13] "FirstRecord_intentional" "DataQuality"             "Country"                
+[16] "LifeForm"                "TaxonType"               "Habitat"                
+[19] "GrowthFormPlants"        "Pathway"                 "Origin"                 
+[22] "Region"                  "Island"                  "Source"                 
+[25] "DataUsage"               "NextDataSet"            
+
+  - Loaded relevant columns
+  - Replaced NA, 'NULL', 'unknown', 'n.d.' and '?' with empty strings
+  - Deleted rows where all columns are empty
+  - Stored original first records in verbatimFirstRecord
+  - Created confidenceFirstRecordEvent column and initialized it with 'low confidence'
+  - Stored original names in origninalNameUsage
+  - Deleted temporary columns are empty  - 'fr_main_datastep1.csv' is available in 'tmp' folder
+Step 1 completed: main dataset 'fr_main_dataset' ready to be processed
+ 
+STEP 2: Standardize taxa
+   - Removed leading and trailing whitespace
+   - Deleted extra internal white spaces
+   - Deleted empty rows
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+STEP 3: Standardize years
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+STEP 3: Standardize years
+   - Renamed 'fr_column_name' to 'firstRecordEvent'
+   - If it doesn't already exsit, created 'verbatimFirstRecordEvent'
+   - If it doesn't already exsit, created 'confidenceFirstRecordEvent'
+Step3a completed: basic data cleaning
+  - Removed or standardized spaces and special characters
+  - Replaced written year with digits
+  - Converted full (d, m, y) and partial dates (m, y) to years
+  - Normalized two-digit and BC years to four-digit format
+  - Replaced slashes/spaces between years with hyphens
+  - Deleted references in cells
+Step 3b completed: Confidence terms assigned
+  - Full years after 1500: high confidence
+  - Decades after 1500: medium-high confidence
+  - Ranges <9 years: medium-high confidence
+  - 9 years < Ranges <=15 years: medium confidence
+  - 15 years < Ranges <=20 years: medium-low confidence
+  - 20 years < Ranges : low confidence
+  Other: low confidence
+  - Non-processed rows pre-final cleaning "fr_check_missing_years1.csv" available in tmp folder
+Step 3c: years have been standardized
+  - Decades handled: randomized or interpreted early/mid/late decades
+  - Centuries handled: +50 years or interpreted early/mid/late decades
+  - Two provided years handled ('and' and 'or')
+  - Ranges handled: randomized
+  - 'Years ago' handled
+  - 'After'- and 'post'-years handledStep 3d completed: final cleaning, text has been erased
+  - Non-processed rows post-final cleaning "fr_check_missing_years2.csv" available in tmp folder
+  - Updated dataset available in 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+Step3 completed: first records (years) have been standardized in 'fr_main_dataset_3'. Years that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 4: Standardize localities
+STEP 4: Standardize localities
+Step 4a completed: reference table and dataset ready for process
+Step 4b completed: exact region and subregion names matched
+Step 4c completed: variant region and subregion names matched
+Step 4d completed: warnings will be issued for unresolved terms
+  - Updated dataset available in 'tmp' folder
+ Missing locations written to: data/tmp/check_missing_locations.csv 
+
+Step 4 completed: locations have been standardized and the location table is available in the 'output' folder
+ 
+Step 4 completed: locations have been standardized in 'fr_main_dataset_4'. The location table is available in the 'output' folder. Locations that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 5: Standardize remaining terms
+STEP 5: Standardize remaining terms
+STEP: Standardize 'degreeOfEstablishment' terms
+
+degreeOfEstablishment standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'habitat' terms
+
+habitat standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'establishmentMeans' terms
+
+establishmentMeans standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'occurrenceStatus' terms
+
+occurrenceStatus standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'pathway' terms
+
+pathway standardization completed. Unmatched terms replaced with blanks.
+
+STEP: Standardize 'datasetName' terms
+
+datasetName standardization completed. Unmatched terms replaced with blanks.
+
+  - Updated dataset available in 'tmp' folder
+ 
+Step 5 completed: remaining terms have been standardized
+Step 5 completed: habitats, pathways, occurence status, degree of invasion have been standardized in 'fr_main_dataset_5'. Terms that couldn't be standardized are available in the 'tmp' folder
+ 
+STEP 6: Save final dataset
+STEP 6: Saving final dataset
+  Final dataset available in output folder
+ 
+  Final dataset available in the 'output' folder
+ Reading layer `loc_simple' from data source 
+  `C:\Users\jlu-su\Documents\G_R directories\FirstRecords\data\analysis\loc_simple.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 289 features and 2 fields (with 3 geometries empty)
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -180 ymin: -90 xmax: 180 ymax: 83.65833
+Geodetic CRS:  WGS 84
+[1] "Locations in shapefile:"
+  [1] "Aruba"                            "Afghanistan"                     
+  [3] "Angola"                           "Anguilla"                        
+  [5] "Åland"                            "Albania"                         
+  [7] "Andorra"                          "Curaçao"                         
+  [9] "Sint Maarten"                     "United Arab Emirates"            
+ [11] "Argentina"                        "Armenia"                         
+ [13] "American Samoa"                   "Antarctica"                      
+ [15] "Crozet Islands"                   "Kerguelen Islands"               
+ [17] "Scattered Islands"                "Australia"                       
+ [19] "Austria"                          "Azerbaijan"                      
+ [21] "Burundi"                          "Belgium"                         
+ [23] "Benin"                            "Bonaire"                         
+ [25] "Saba"                             "Sint Eustatius"                  
+ [27] "Burkina Faso"                     "Bangladesh"                      
+ [29] "Bulgaria"                         "Bahrain"                         
+ [31] "Bahamas"                          "Bosnia and Herzegovina"          
+ [33] "Saint-Barthélemy"                 "Belarus"                         
+ [35] "Belize"                           "Bermuda"                         
+ [37] "Bolivia"                          "Brazil"                          
+ [39] "Barbados"                         "Brunei"                          
+ [41] "Bhutan"                           "Bouvet Island"                   
+ [43] "Botswana"                         "Central African Republic"        
+ [45] "Canada"                           "Cocos Islands"                   
+ [47] "Switzerland"                      "Chile"                           
+ [49] "China"                            "Côte d'Ivoire"                   
+ [51] "Cameroon"                         "Democratic Republic of the Congo"
+ [53] "Republic of the Congo"            "Cook Islands"                    
+ [55] "Colombia"                         "Comoros"                         
+ [57] "Cape Verde"                       "Costa Rica"                      
+ [59] "Cuba"                             "Christmas Island"                
+ [61] "Cayman Islands"                   "Cyprus"                          
+ [63] "Czech Republic"                   "Germany"                         
+ [65] "Djibouti"                         "Dominica"                        
+ [67] "Denmark"                          "Dominican Republic"              
+ [69] "Algeria"                          "Ecuador"                         
+ [71] "Egypt"                            "Eritrea"                         
+ [73] "Western Sahara"                   "Spain"                           
+ [75] "Estonia"                          "Ethiopia"                        
+ [77] "Finland"                          "Fiji"                            
+ [79] "Falkland Islands"                 "France"                          
+ [81] "Faroe Islands"                    "Micronesia"                      
+ [83] "Gabon"                            "United Kingdom"                  
+ [85] "Georgia"                          "Guernsey"                        
+ [87] "Ghana"                            "Gibraltar"                       
+ [89] "Guinea"                           "Guadeloupe"                      
+ [91] "Gambia"                           "Guinea-Bissau"                   
+ [93] "Equatorial Guinea"                "Greece"                          
+ [95] "Grenada"                          "Greenland"                       
+ [97] "Guatemala"                        "French Guiana"                   
+ [99] "Guam"                             "Guyana"                          
+[101] "Hong Kong"                        "Heard Island and McDonald Island"
+[103] "Honduras"                         "Croatia"                         
+[105] "Haiti"                            "Hungary"                         
+[107] "Indonesia"                        "Isle of Man"                     
+[109] "India"                            "Chagos Archipelago"              
+[111] "Ireland"                          "Iran"                            
+[113] "Iraq"                             "Iceland"                         
+[115] "Israel"                           "Italy"                           
+[117] "Jamaica"                          "Jersey"                          
+[119] "Jordan"                           "Japan"                           
+[121] "Kazakhstan"                       "Kenya"                           
+[123] "Kyrgyzstan"                       "Cambodia"                        
+[125] "Kiribati"                         "Saint Kitts and Nevis"           
+[127] "South Korea"                      "Kuwait"                          
+[129] "Laos"                             "Lebanon"                         
+[131] "Liberia"                          "Libya"                           
+[133] "Saint Lucia"                      "Liechtenstein"                   
+[135] "Sri Lanka"                        "Lesotho"                         
+[137] "Lithuania"                        "Luxembourg"                      
+[139] "Latvia"                           "Macao"                           
+[141] "Saint-Martin"                     "Morocco"                         
+[143] "Monaco"                           "Moldova"                         
+[145] "Madagascar"                       "Maldives"                        
+[147] "Mexico"                           "Marshall Islands"                
+[149] "North Macedonia"                  "Mali"                            
+[151] "Malta"                            "Myanmar"                         
+[153] "Montenegro"                       "Mongolia"                        
+[155] "Northern Mariana Islands"         "Mozambique"                      
+[157] "Mauritania"                       "Montserrat"                      
+[159] "Martinique"                       "Mauritius"                       
+[161] "Malawi"                           "Malaysia"                        
+[163] "Mayotte"                          "Namibia"                         
+[165] "New Caledonia"                    "Niger"                           
+[167] "Norfolk Island"                   "Nigeria"                         
+[169] "Nicaragua"                        "Niue"                            
+[171] "Netherlands"                      "Norway"                          
+[173] "Nepal"                            "Nauru"                           
+[175] "New Zealand"                      "Oman"                            
+[177] "Pakistan"                         "Panama"                          
+[179] "Pitcairn Islands"                 "Peru"                            
+[181] "Philippines"                      "Palau"                           
+[183] "Papua New Guinea"                 "Poland"                          
+[185] "Puerto Rico"                      "North Korea"                     
+[187] "Portugal"                         "Paraguay"                        
+[189] "Palestine"                        "Qatar"                           
+[191] "Réunion"                          "Romania"                         
+[193] "Russia"                           "Rwanda"                          
+[195] "Saudi Arabia"                     "South Sudan"                     
+[197] "Sudan"                            "Senegal"                         
+[199] "Singapore"                        "South Georgia and the South Sand"
+[201] "Ascension"                        "Saint Helena"                    
+[203] "Tristan da Cunha"                 "Svalbard and Jan Mayen"          
+[205] "Solomon Islands"                  "Sierra Leone"                    
+[207] "El Salvador"                      "San Marino"                      
+[209] "Somalia"                          "Saint Pierre and Miquelon"       
+[211] "Serbia"                           "São Tomé and Príncipe"           
+[213] "Suriname"                         "Slovakia"                        
+[215] "Slovenia"                         "Sweden"                          
+[217] "Eswatini"                         "Seychelles"                      
+[219] "Syria"                            "Turks and Caicos Islands"        
+[221] "Chad"                             "Togo"                            
+[223] "Thailand"                         "Tajikistan"                      
+[225] "Tokelau"                          "Turkmenistan"                    
+[227] "Tonga"                            "Timor-Leste"                     
+[229] "Trinidad and Tobago"              "Tunisia"                         
+[231] "Turkey"                           "Tuvalu"                          
+[233] "Taiwan"                           "Tanzania"                        
+[235] "Uganda"                           "Ukraine"                         
+[237] "United States Minor Outlying Isl" "Uruguay"                         
+[239] "United States of America"         "Uzbekistan"                      
+[241] "Vatican City"                     "Saint Vincent and the Grenadines"
+[243] "Venezuela"                        "Virgin Islands (British)"        
+[245] "Virgin Islands (U.S.)"            "Vietnam"                         
+[247] "Vanuatu"                          "Wallis and Futuna"               
+[249] "Samoa"                            "Akrotiri and Dhekelia"           
+[251] "Caspian Sea"                      "Kosovo"                          
+[253] "Paracel Islands"                  "Spratly Islands"                 
+[255] "Yemen"                            "South Africa"                    
+[257] "Zambia"                           "Northern Cyprus"                 
+[259] "Zimbabwe"                         "Vancouver Island"                
+[261] "Shetland Islands"                 "Socotra Island"                  
+[263] "Rapa Nui"                         "Amsterdam Island"                
+[265] "St. Paul Island"                  "Antipodes Island"                
+[267] "Lord Howe Island"                 "Fernando de Noronha"             
+[269] "Ogasawara Islands"                "Izu Islands"                     
+[271] "Kermadec Islands"                 "Galapagos"                       
+[273] "Tasmania"                         "Alaska"                          
+[275] "Hawaii"                           "Balearic Islands"                
+[277] "Canary Islands"                   "Aegean"                          
+[279] "Crete"                            "Nicobar and Andaman Islands"     
+[281] "Sardinia"                         "Sicily"                          
+[283] "Azores"                           "Madeira"                         
+[285] "Rodriguez Island"                 "Zanzibar Island"                 
+[287] "Antigua and Barbuda"              "Corsica"                         
+[289] "French Polynesia"                
+[1] "Locations in fr_data:"
+  [1] "Aegean"                                      
+  [2] "Afghanistan"                                 
+  [3] "Alaska"                                      
+  [4] "Albania"                                     
+  [5] "Algeria"                                     
+  [6] "American Samoa"                              
+  [7] "Amsterdam Island"                            
+  [8] "Andorra"                                     
+  [9] "Angola"                                      
+ [10] "Anguilla"                                    
+ [11] "Antarctica"                                  
+ [12] "Antigua and Barbuda"                         
+ [13] "Antipodes Island"                            
+ [14] "Argentina"                                   
+ [15] "Armenia"                                     
+ [16] "Aruba"                                       
+ [17] "Ascension"                                   
+ [18] "Australia"                                   
+ [19] "Austria"                                     
+ [20] "Azerbaijan"                                  
+ [21] "Azores"                                      
+ [22] "Bahamas"                                     
+ [23] "Bahrain"                                     
+ [24] "Balearic Islands"                            
+ [25] "Bangladesh"                                  
+ [26] "Barbados"                                    
+ [27] "Belarus"                                     
+ [28] "Belgium"                                     
+ [29] "Belize"                                      
+ [30] "Benin"                                       
+ [31] "Bermuda"                                     
+ [32] "Bhutan"                                      
+ [33] "Bolivia"                                     
+ [34] "Bonaire"                                     
+ [35] "Bosnia and Herzegovina"                      
+ [36] "Botswana"                                    
+ [37] "Brazil"                                      
+ [38] "Brunei"                                      
+ [39] "Bulgaria"                                    
+ [40] "Burkina Faso"                                
+ [41] "Burundi"                                     
+ [42] "Cambodia"                                    
+ [43] "Cameroon"                                    
+ [44] "Canada"                                      
+ [45] "Canary Islands"                              
+ [46] "Cape Verde"                                  
+ [47] "Cayman Islands"                              
+ [48] "Central African Republic"                    
+ [49] "Chad"                                        
+ [50] "Chagos Archipelago"                          
+ [51] "Chile"                                       
+ [52] "China"                                       
+ [53] "Christmas Island"                            
+ [54] "Cocos Islands"                               
+ [55] "Colombia"                                    
+ [56] "Comoros"                                     
+ [57] "Cook Islands"                                
+ [58] "Corsica"                                     
+ [59] "Costa Rica"                                  
+ [60] "Crete"                                       
+ [61] "Croatia"                                     
+ [62] "Crozet Islands"                              
+ [63] "Cuba"                                        
+ [64] "Curaçao"                                     
+ [65] "Cyprus"                                      
+ [66] "Czech Republic"                              
+ [67] "Côte d'Ivoire"                               
+ [68] "Democratic Republic of the Congo"            
+ [69] "Denmark"                                     
+ [70] "Djibouti"                                    
+ [71] "Dominica"                                    
+ [72] "Dominican Republic"                          
+ [73] "Ecuador"                                     
+ [74] "Egypt"                                       
+ [75] "El Salvador"                                 
+ [76] "Equatorial Guinea"                           
+ [77] "Eritrea"                                     
+ [78] "Estonia"                                     
+ [79] "Eswatini"                                    
+ [80] "Ethiopia"                                    
+ [81] "Falkland Islands"                            
+ [82] "Faroe Islands"                               
+ [83] "Fernando de Noronha"                         
+ [84] "Fiji"                                        
+ [85] "Finland"                                     
+ [86] "France"                                      
+ [87] "French Guiana"                               
+ [88] "French Polynesia"                            
+ [89] "Gabon"                                       
+ [90] "Galapagos"                                   
+ [91] "Gambia"                                      
+ [92] "Georgia"                                     
+ [93] "Germany"                                     
+ [94] "Ghana"                                       
+ [95] "Gibraltar"                                   
+ [96] "Greece"                                      
+ [97] "Greenland"                                   
+ [98] "Grenada"                                     
+ [99] "Guadeloupe"                                  
+[100] "Guam"                                        
+[101] "Guatemala"                                   
+[102] "Guinea"                                      
+[103] "Guinea-Bissau"                               
+[104] "Guyana"                                      
+[105] "Haiti"                                       
+[106] "Hawaii"                                      
+[107] "Heard Island and McDonald Island"            
+[108] "Honduras"                                    
+[109] "Hong Kong"                                   
+[110] "Hungary"                                     
+[111] "Iceland"                                     
+[112] "India"                                       
+[113] "Indonesia"                                   
+[114] "Iran"                                        
+[115] "Iraq"                                        
+[116] "Ireland"                                     
+[117] "Isle of Man"                                 
+[118] "Israel"                                      
+[119] "Italy"                                       
+[120] "Jamaica"                                     
+[121] "Japan"                                       
+[122] "Jersey"                                      
+[123] "Jordan"                                      
+[124] "Kazakhstan"                                  
+[125] "Kenya"                                       
+[126] "Kerguelen Islands"                           
+[127] "Kermadec Islands"                            
+[128] "Kiribati"                                    
+[129] "Kuwait"                                      
+[130] "Kyrgyzstan"                                  
+[131] "Laos"                                        
+[132] "Latvia"                                      
+[133] "Lebanon"                                     
+[134] "Lesotho"                                     
+[135] "Liberia"                                     
+[136] "Libya"                                       
+[137] "Liechtenstein"                               
+[138] "Lithuania"                                   
+[139] "Lord Howe Islands"                           
+[140] "Luxembourg"                                  
+[141] "Macao"                                       
+[142] "Madagascar"                                  
+[143] "Madeira"                                     
+[144] "Malawi"                                      
+[145] "Malaysia"                                    
+[146] "Maldives"                                    
+[147] "Mali"                                        
+[148] "Malta"                                       
+[149] "Marshall Islands"                            
+[150] "Martinique"                                  
+[151] "Mauritania"                                  
+[152] "Mauritius"                                   
+[153] "Mayotte"                                     
+[154] "Mexico"                                      
+[155] "Micronesia"                                  
+[156] "Moldova"                                     
+[157] "Monaco"                                      
+[158] "Mongolia"                                    
+[159] "Montenegro"                                  
+[160] "Montserrat"                                  
+[161] "Morocco"                                     
+[162] "Mozambique"                                  
+[163] "Myanmar"                                     
+[164] "Namibia"                                     
+[165] "Nauru"                                       
+[166] "Nepal"                                       
+[167] "Netherlands"                                 
+[168] "New Caledonia"                               
+[169] "New Zealand"                                 
+[170] "Nicaragua"                                   
+[171] "Nicobar and Andaman Islands"                 
+[172] "Niger"                                       
+[173] "Nigeria"                                     
+[174] "Niue"                                        
+[175] "Norfolk Island"                              
+[176] "North Korea"                                 
+[177] "North Macedonia"                             
+[178] "Northern Mariana Islands"                    
+[179] "Norway"                                      
+[180] "Ogasawara Islands"                           
+[181] "Oman"                                        
+[182] "Pakistan"                                    
+[183] "Palau"                                       
+[184] "Palestine"                                   
+[185] "Panama"                                      
+[186] "Papua New Guinea"                            
+[187] "Paraguay"                                    
+[188] "Peru"                                        
+[189] "Philippines"                                 
+[190] "Pitcairn Islands"                            
+[191] "Poland"                                      
+[192] "Portugal"                                    
+[193] "Puerto Rico"                                 
+[194] "Qatar"                                       
+[195] "Rapa Nui"                                    
+[196] "Republic of the Congo"                       
+[197] "Rodriguez Island"                            
+[198] "Romania"                                     
+[199] "Russia"                                      
+[200] "Rwanda"                                      
+[201] "Réunion"                                     
+[202] "Saint Helena"                                
+[203] "Saint Kitts and Nevis"                       
+[204] "Saint Lucia"                                 
+[205] "Saint Pierre and Miquelon"                   
+[206] "Saint Vincent and the Grenadines"            
+[207] "Saint-Barthélemy"                            
+[208] "Saint-Martin"                                
+[209] "Samoa"                                       
+[210] "San Marino"                                  
+[211] "Sardinia"                                    
+[212] "Saudi Arabia"                                
+[213] "Senegal"                                     
+[214] "Serbia"                                      
+[215] "Seychelles"                                  
+[216] "Sicily"                                      
+[217] "Sierra Leone"                                
+[218] "Singapore"                                   
+[219] "Sint Maarten"                                
+[220] "Slovakia"                                    
+[221] "Slovenia"                                    
+[222] "Socotra Island"                              
+[223] "Solomon Islands"                             
+[224] "Somalia"                                     
+[225] "South Africa"                                
+[226] "South Georgia and the South Sandwich Islands"
+[227] "South Korea"                                 
+[228] "Spain"                                       
+[229] "Sri Lanka"                                   
+[230] "Sudan"                                       
+[231] "Suriname"                                    
+[232] "Svalbard and Jan Mayen"                      
+[233] "Sweden"                                      
+[234] "Switzerland"                                 
+[235] "Syria"                                       
+[236] "São Tomé and Príncipe"                       
+[237] "Taiwan"                                      
+[238] "Tajikistan"                                  
+[239] "Tanzania"                                    
+[240] "Tasmania"                                    
+[241] "Thailand"                                    
+[242] "Timor-Leste"                                 
+[243] "Togo"                                        
+[244] "Tokelau"                                     
+[245] "Tonga"                                       
+[246] "Trinidad and Tobago"                         
+[247] "Tristan da Cunha"                            
+[248] "Tunisia"                                     
+[249] "Turkey"                                      
+[250] "Turkmenistan"                                
+[251] "Turks and Caicos Islands"                    
+[252] "Tuvalu"                                      
+[253] "Uganda"                                      
+[254] "Ukraine"                                     
+[255] "United Arab Emirates"                        
+[256] "United Kingdom"                              
+[257] "United States Minor Outlying Islands"        
+[258] "United States of America"                    
+[259] "Uruguay"                                     
+[260] "Uzbekistan"                                  
+[261] "Vanuatu"                                     
+[262] "Venezuela"                                   
+[263] "Vietnam"                                     
+[264] "Virgin Islands (British)"                    
+[265] "Virgin Islands (U.S.)"                       
+[266] "Wallis and Futuna"                           
+[267] "Western Sahara"                              
+[268] "Yemen"                                       
+[269] "Zambia"                                      
+[270] "Zanzibar Island"                             
+[271] "Zimbabwe"                                    
+[272] "Åland"                                       
+[273] NA                                            
+[1] "Locations with data after merge:"
+  [1] "Aegean"                           "Afghanistan"                     
+  [3] "Åland"                            "Alaska"                          
+  [5] "Albania"                          "Algeria"                         
+  [7] "American Samoa"                   "Amsterdam Island"                
+  [9] "Andorra"                          "Angola"                          
+ [11] "Anguilla"                         "Antarctica"                      
+ [13] "Antigua and Barbuda"              "Antipodes Island"                
+ [15] "Argentina"                        "Armenia"                         
+ [17] "Aruba"                            "Ascension"                       
+ [19] "Australia"                        "Austria"                         
+ [21] "Azerbaijan"                       "Azores"                          
+ [23] "Bahamas"                          "Bahrain"                         
+ [25] "Balearic Islands"                 "Bangladesh"                      
+ [27] "Barbados"                         "Belarus"                         
+ [29] "Belgium"                          "Belize"                          
+ [31] "Benin"                            "Bermuda"                         
+ [33] "Bhutan"                           "Bolivia"                         
+ [35] "Bonaire"                          "Bosnia and Herzegovina"          
+ [37] "Botswana"                         "Brazil"                          
+ [39] "Brunei"                           "Bulgaria"                        
+ [41] "Burkina Faso"                     "Burundi"                         
+ [43] "Cambodia"                         "Cameroon"                        
+ [45] "Canada"                           "Canary Islands"                  
+ [47] "Cape Verde"                       "Cayman Islands"                  
+ [49] "Central African Republic"         "Chad"                            
+ [51] "Chagos Archipelago"               "Chile"                           
+ [53] "China"                            "Christmas Island"                
+ [55] "Cocos Islands"                    "Colombia"                        
+ [57] "Comoros"                          "Cook Islands"                    
+ [59] "Corsica"                          "Costa Rica"                      
+ [61] "Côte d'Ivoire"                    "Crete"                           
+ [63] "Croatia"                          "Crozet Islands"                  
+ [65] "Cuba"                             "Curaçao"                         
+ [67] "Cyprus"                           "Czech Republic"                  
+ [69] "Democratic Republic of the Congo" "Denmark"                         
+ [71] "Djibouti"                         "Dominica"                        
+ [73] "Dominican Republic"               "Ecuador"                         
+ [75] "Egypt"                            "El Salvador"                     
+ [77] "Equatorial Guinea"                "Eritrea"                         
+ [79] "Estonia"                          "Eswatini"                        
+ [81] "Ethiopia"                         "Falkland Islands"                
+ [83] "Faroe Islands"                    "Fernando de Noronha"             
+ [85] "Fiji"                             "Finland"                         
+ [87] "France"                           "French Guiana"                   
+ [89] "French Polynesia"                 "Gabon"                           
+ [91] "Galapagos"                        "Gambia"                          
+ [93] "Georgia"                          "Germany"                         
+ [95] "Ghana"                            "Gibraltar"                       
+ [97] "Greece"                           "Greenland"                       
+ [99] "Grenada"                          "Guadeloupe"                      
+[101] "Guam"                             "Guatemala"                       
+[103] "Guinea"                           "Guinea-Bissau"                   
+[105] "Guyana"                           "Haiti"                           
+[107] "Hawaii"                           "Heard Island and McDonald Island"
+[109] "Honduras"                         "Hong Kong"                       
+[111] "Hungary"                          "Iceland"                         
+[113] "India"                            "Indonesia"                       
+[115] "Iran"                             "Iraq"                            
+[117] "Ireland"                          "Isle of Man"                     
+[119] "Israel"                           "Italy"                           
+[121] "Jamaica"                          "Japan"                           
+[123] "Jersey"                           "Jordan"                          
+[125] "Kazakhstan"                       "Kenya"                           
+[127] "Kerguelen Islands"                "Kermadec Islands"                
+[129] "Kiribati"                         "Kuwait"                          
+[131] "Kyrgyzstan"                       "Laos"                            
+[133] "Latvia"                           "Lebanon"                         
+[135] "Lesotho"                          "Liberia"                         
+[137] "Libya"                            "Liechtenstein"                   
+[139] "Lithuania"                        "Luxembourg"                      
+[141] "Macao"                            "Madagascar"                      
+[143] "Madeira"                          "Malawi"                          
+[145] "Malaysia"                         "Maldives"                        
+[147] "Mali"                             "Malta"                           
+[149] "Marshall Islands"                 "Martinique"                      
+[151] "Mauritania"                       "Mauritius"                       
+[153] "Mayotte"                          "Mexico"                          
+[155] "Micronesia"                       "Moldova"                         
+[157] "Monaco"                           "Mongolia"                        
+[159] "Montenegro"                       "Montserrat"                      
+[161] "Morocco"                          "Mozambique"                      
+[163] "Myanmar"                          "Namibia"                         
+[165] "Nauru"                            "Nepal"                           
+[167] "Netherlands"                      "New Caledonia"                   
+[169] "New Zealand"                      "Nicaragua"                       
+[171] "Nicobar and Andaman Islands"      "Niger"                           
+[173] "Nigeria"                          "Niue"                            
+[175] "Norfolk Island"                   "North Korea"                     
+[177] "North Macedonia"                  "Northern Mariana Islands"        
+[179] "Norway"                           "Ogasawara Islands"               
+[181] "Oman"                             "Pakistan"                        
+[183] "Palau"                            "Palestine"                       
+[185] "Panama"                           "Papua New Guinea"                
+[187] "Paraguay"                         "Peru"                            
+[189] "Philippines"                      "Pitcairn Islands"                
+[191] "Poland"                           "Portugal"                        
+[193] "Puerto Rico"                      "Qatar"                           
+[195] "Rapa Nui"                         "Republic of the Congo"           
+[197] "Réunion"                          "Rodriguez Island"                
+[199] "Romania"                          "Russia"                          
+[201] "Rwanda"                           "Saint-Barthélemy"                
+[203] "Saint-Martin"                     "Saint Helena"                    
+[205] "Saint Kitts and Nevis"            "Saint Lucia"                     
+[207] "Saint Pierre and Miquelon"        "Saint Vincent and the Grenadines"
+[209] "Samoa"                            "San Marino"                      
+[211] "São Tomé and Príncipe"            "Sardinia"                        
+[213] "Saudi Arabia"                     "Senegal"                         
+[215] "Serbia"                           "Seychelles"                      
+[217] "Sicily"                           "Sierra Leone"                    
+[219] "Singapore"                        "Sint Maarten"                    
+[221] "Slovakia"                         "Slovenia"                        
+[223] "Socotra Island"                   "Solomon Islands"                 
+[225] "Somalia"                          "South Africa"                    
+[227] "South Korea"                      "Spain"                           
+[229] "Sri Lanka"                        "Sudan"                           
+[231] "Suriname"                         "Svalbard and Jan Mayen"          
+[233] "Sweden"                           "Switzerland"                     
+[235] "Syria"                            "Taiwan"                          
+[237] "Tajikistan"                       "Tanzania"                        
+[239] "Tasmania"                         "Thailand"                        
+[241] "Timor-Leste"                      "Togo"                            
+[243] "Tokelau"                          "Tonga"                           
+[245] "Trinidad and Tobago"              "Tristan da Cunha"                
+[247] "Tunisia"                          "Turkey"                          
+[249] "Turkmenistan"                     "Turks and Caicos Islands"        
+[251] "Tuvalu"                           "Uganda"                          
+[253] "Ukraine"                          "United Arab Emirates"            
+[255] "United Kingdom"                   "United States of America"        
+[257] "Uruguay"                          "Uzbekistan"                      
+[259] "Vanuatu"                          "Venezuela"                       
+[261] "Vietnam"                          "Virgin Islands (British)"        
+[263] "Virgin Islands (U.S.)"            "Wallis and Futuna"               
+[265] "Western Sahara"                   "Yemen"                           
+[267] "Zambia"                           "Zanzibar Island"                 
+[269] "Zimbabwe"                        
+[1] "In shapefile but not in data:"
+ [1] "Scattered Islands"                "Saba"                            
+ [3] "Sint Eustatius"                   "Bouvet Island"                   
+ [5] "Guernsey"                         "South Sudan"                     
+ [7] "South Georgia and the South Sand" "United States Minor Outlying Isl"
+ [9] "Vatican City"                     "Akrotiri and Dhekelia"           
+[11] "Caspian Sea"                      "Kosovo"                          
+[13] "Paracel Islands"                  "Spratly Islands"                 
+[15] "Northern Cyprus"                  "Vancouver Island"                
+[17] "Shetland Islands"                 "St. Paul Island"                 
+[19] "Lord Howe Island"                 "Izu Islands"                     
+[1] "In data but not in shapefile:"
+[1] "Lord Howe Islands"                           
+[2] "South Georgia and the South Sandwich Islands"
+[3] "United States Minor Outlying Islands"        
+           taxaGroup n_records
+              <char>     <int>
+ 1:  Vascular plants     54594
+ 2:             <NA>     20402
+ 3:          Insects     16589
+ 4:            Birds      4205
+ 5:           Fishes      3770
+ 6:        Arachnids      1269
+ 7:          Mammals      1180
+ 8:              SAR       798
+ 9:         Reptiles       337
+10: Other arthropods       196
+11:       Bryophytes       167
+12:       Amphibians       162
+Empty data.table (0 rows and 1 cols): taxonID
+Key: <taxon>
+   taxonID     n
+     <int> <int>
+1:     187     2
+2:     736     2
+3:    2977     2
+4:    6287     2
+5:   16840     2
+6:   18766     2
+7:   24402     2
+8:   27763     2
+9:      NA     4
