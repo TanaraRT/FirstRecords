@@ -1,6 +1,10 @@
 .Rproj.user
+*.Rproj
 .Rhistory
 .RData
 .Ruserdata
 .DS_Store
 data/tmp/
+*.xlsx
+*.zip
+~*
