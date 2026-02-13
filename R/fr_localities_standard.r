@@ -12,7 +12,8 @@
 fr_localities_standard <- function(dataset = NULL, 
                                    use_log = FALSE, 
                                    save_to_disk = FALSE, 
-                                   data_dir=NULL
+                                   data_dir=NULL,
+                                   identifier = NULL
                                    ){
   
   if (is.null(dataset) || !is.data.table(dataset)) {
@@ -164,7 +165,10 @@ fr_localities_standard <- function(dataset = NULL,
                                        "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                        "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
                                        "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
-                                       "accessRights"
+                                       "accessRights", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
+                                       "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
+                                       "GBIFusageKey","GBIFnote","species","genus","family",
+                                       "order","class","phylum","kingdom", "taxaGroup"
   )]
   
   if (save_to_disk == TRUE){
@@ -191,7 +195,7 @@ fr_localities_standard <- function(dataset = NULL,
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
   
-  filename <- file.path(data_dir, "output", "location_table.csv")
+  filename <- file.path(data_dir, "output",  paste0("location_table_", identifier,".csv"))
   fwrite(location_table, filename)
   
   cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'output' folder\n ") 

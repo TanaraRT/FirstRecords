@@ -19,6 +19,13 @@ data_dir = "data"
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
 input_file = "IntroData_raw_2026.xlsx"
 
+# --- Please define an identifier "ID" of the final dataset (date by default) ---
+ID = Sys.Date()
+
+# --- Set to TRUE to resume from an interrupted run in Phase 2 (FALSE by default) and specify intermediate file to load ---
+restart <- FALSE
+intermediate_restart_file = "TaxonHarmonisation_fulldataset_intermediate_57_2026-02-11.csv"
+
 ## INITIALIZATION #########################################################
 cat("\n Initialization") 
 
@@ -32,11 +39,16 @@ cat("\nIntialization completed\n ")
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset") 
 
+if (restart){
+  filename <- file.path(data_dir, "tmp", intermediate_restart_file)
+  fr_main_dataset_1 <- as.data.table(read.csv(filename))
+} else{
 fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = init,
                                              use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                              save_to_disk = TRUE, # TRUE to save fr_main_dataset_1 in 'tmp' folder
                                              data_dir = data_dir)
 cat("\nStep 1 completed: main dataset 'fr_main_dataset_1' ready to be processed\n ") 
+}
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa") 
@@ -60,7 +72,8 @@ cat("\nSTEP 4: Standardize localities")
 fr_main_dataset_4 <- fr_localities_standard(dataset = fr_main_dataset_3, 
                                             use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                             save_to_disk = TRUE, # TRUE to save fr_main_dataset_4 in 'tmp' folder
-                                            data_dir = data_dir) 
+                                            data_dir = data_dir,
+                                            identifier = ID) 
 cat("\nStep 4 completed: locations have been standardized in 'fr_main_dataset_4'. The location table is available in the 'output' folder. Locations that couldn't be standardized are available in the 'tmp' folder\n ") 
 
 ## 5) STANDARDIZATION OF REMAINING TERMS ################################
@@ -75,5 +88,6 @@ cat("\nStep 5 completed: habitats, pathways, occurence status, degree of invasio
 cat("\nSTEP 6: Save final dataset") 
 fr_final_dataset <- fr_save_output_dataset(fr_main_dataset_5, 
                     use_log = TRUE, # TRUE to record progress in log file in 'output' folder
-                    data_dir = data_dir)
+                    data_dir = data_dir,
+                    identifier = ID)
 cat("\n  Final dataset available in the 'output' folder\n ")

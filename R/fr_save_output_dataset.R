@@ -10,7 +10,8 @@
 
 fr_save_output_dataset <- function(dataset, 
                                    use_log = FALSE, 
-                                   data_dir = NULL
+                                   data_dir = NULL,
+                                   identifier = NULL
                                    ){
   
   # --- Open log file ---
@@ -41,8 +42,24 @@ fr_save_output_dataset <- function(dataset,
   ][, ..orig_cols                                      # 5. Return only the original columns
   ][order(location, verbatimLocation, taxon)]          # 6. Final ordering for readability
   
+  # --- Export taxonomy table ---
+  taxonomy_table <- unique(dataset[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
+                                                "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
+                                                "GBIFusageKey","GBIFnote","species","genus","family",
+                                                "order","class","phylum","kingdom", "taxaGroup"
+  )])
+  
+  filename <- file.path(data_dir, "output", paste0("taxonomy_table_", identifier, ".csv"))
+  fwrite(taxonomy_table, filename)
+  
   # --- Export cleaned dataset ---
-  filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", Sys.Date(), ".csv"))
+  filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", identifier, ".csv"))
+  dataset <- dataset[, c("locationID", "location", "verbatimLocation", "taxonID", "taxon",
+                         "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
+                         "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
+                         "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
+                         "accessRights"
+  )]
   fwrite(
     dataset,
     file = filename,

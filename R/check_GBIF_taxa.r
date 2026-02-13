@@ -62,17 +62,13 @@ check_GBIF_taxa <- function(taxon_names=NULL,
     
     ind_tax <- which(dat$taxon==taxlist[j])
     
-    ########################
-    ## TEMPORARY CHANGE ##
-    
     # Check if GBIFusageKey is already populated
-    if (!is.na(dat$GBIFusageKey[ind_tax]) &&
+    if (length(ind_tax) == 1 &&
+        !is.na(dat$GBIFusageKey[ind_tax]) &&
         !is.null(dat$GBIFusageKey[ind_tax]) &&
         dat$GBIFusageKey[ind_tax] != "") {
-      next  # Skip to next taxon if usageKey exists
+      next
     }
-
-    ########################
     
     # select species name and download taxonomy
     db_all <- name_backbone_verbose(taxlist[j],strict=T) # check for names and synonyms
@@ -419,12 +415,12 @@ check_GBIF_taxa <- function(taxon_names=NULL,
       if (iter<(round(j/100)*100)){
         
         # remove existing temporary file from previous iteration
-        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", old_j, ".csv")))
-        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", old_j, ".csv")))
+        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", old_j, "_.csv")))
+        file.remove(file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", old_j, "_.csv")))
         
         # save new temporary file
-        fwrite(dat, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", j, ".csv")))
-        fwrite(mismatches, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", j, ".csv")))
+        fwrite(dat, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_fulldataset_intermediate_", j, "_.csv")))
+        fwrite(mismatches, file.path(data_dir, "tmp", paste0("TaxonHarmonisation_mismatches_intermediate_", j, "_.csv")))
         
         # set counter to current tmp file
         iter <- (round(j/100)*100) # counter to store already saved iterations
