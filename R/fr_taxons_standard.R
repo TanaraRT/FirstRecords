@@ -92,7 +92,7 @@ fr_taxons_standard <- function(dataset = NULL,
   # --- 5. Write output ---
   
   ## Create fr_main_dataset_step2
-  fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "locality", "country", "region", "taxonID", "taxon",
+  fr_main_dataset_step2 <- matched_taxa[, c("locationID", "verbatimLocation", "location", "country", "region", "taxonID", "taxon",
                                             "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                             "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
                                             "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	

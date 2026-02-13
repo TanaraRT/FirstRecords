@@ -68,7 +68,7 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
   source(file.path("R","fr_taxons_standard.r"))
   source(file.path("R","check_GBIF_taxa.r"))
   source(file.path("R","fr_years_standard.r"))
-  source(file.path("R","fr_localities_standard.r"))
+  source(file.path("R","fr_locations_standard.r"))
   source(file.path("R","fr_terms_standard.R"))
   source(file.path("R","fr_save_output_dataset.R"))
   source(file.path("R","standardize_terms.R"))

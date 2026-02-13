@@ -36,7 +36,7 @@ fr_prepare_main_dataset <- function (dataset = NULL,
   dataset <- dataset[, .(
     locationID = "", # create locationID column
     verbatimLocation = Country, # create verbatimLocation and initialize it with "Country" from raw dataset
-    locality = Country, # create locality and initialize it with "Country" from raw dataset
+    location = Country, # create location and initialize it with "Country" from raw dataset
     country = "", # create country column
     region = "", # create region column
     taxon = "", # create taxon column
@@ -58,7 +58,7 @@ fr_prepare_main_dataset <- function (dataset = NULL,
     kingdom = NA, # create kingdom column
     GBIFtaxonRank = NA, # create GBIFtaxonRank column
     GBIFusageKey = NA, # create GBIFusageKey column
-    taxaGroup = LifeForm, # create locality and initialize it with "Country" from raw dataset
+    taxaGroup = LifeForm, # create taxonomic group name and initialize it with LifeForm from raw dataset
     habitat = Habitat, # create habitat and initialize it with "Habitat" from raw dataset
     FirstRecord1, # create temporary column to store first records from raw dataset
     FirstRecord2, # create temporary column to store first records from raw dataset

@@ -1,7 +1,7 @@
 ##########################################################################
 ##                                                                      ##
 ##                       FIRST RECORDS WORKFLOW                         ##
-##                       Standardize localities                         ##
+##                       Standardize locations                         ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## M. Gomez Suarez, H. Seebens, T. Renard Truong                        ##
@@ -9,7 +9,7 @@
 ##########################################################################
 
 
-fr_localities_standard <- function(dataset = NULL, 
+fr_locations_standard <- function(dataset = NULL, 
                                    use_log = FALSE, 
                                    save_to_disk = FALSE, 
                                    data_dir=NULL
@@ -28,7 +28,7 @@ fr_localities_standard <- function(dataset = NULL,
       sink(log_file, append = FALSE) # create new log file
     }
   }
-  cat("\nSTEP 4: Standardize localities") 
+  cat("\nSTEP 4: Standardize locations") 
 
   ## STEP 4A: Prepare reference tables and dataset
  
