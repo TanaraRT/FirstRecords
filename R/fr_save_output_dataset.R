@@ -27,7 +27,7 @@ fr_save_output_dataset <- function(dataset,
   
   # --- Delete duplicates ---
   
-  ## Delete rows where "taxon", "verbatimLocation" and "firstRecordEvent" are similar
+  ## Delete rows where "taxon", "verbatimLocation" and "firstRecordEvent" are identical
   dataset <- unique(dataset, by = c("taxon", "verbatimLocation", "firstRecordEvent"))
   
   ## Select one first record per "location" and "taxon"
@@ -43,14 +43,22 @@ fr_save_output_dataset <- function(dataset,
   ][order(location, verbatimLocation, taxon)]          # 6. Final ordering for readability
   
   # --- Export taxonomy table ---
-  taxonomy_table <- unique(dataset[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
-                                                "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
-                                                "GBIFusageKey","GBIFnote","species","genus","family",
-                                                "order","class","phylum","kingdom", "taxaGroup"
+  filename <- file.path(data_dir, "tmp", "temp_taxonomy_table.csv")
+  taxonomy_table <- fread(filename)
+  taxonomy_table <- unique(taxonomy_table[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "taxaGroup", #"scientificNameAuthorship",
+                                                "GBIFstatus", "GBIFmatchType", "GBIFconfidence", "GBIFstatus_Synonym", "GBIFtaxonRank",
+                                                "GBIFusageKey", "workflowNote","species","genus","family",
+                                                "order","class","phylum","kingdom"
   )])
   
+  taxonomy_table[is.na(taxonomy_table)] <- ""
+  
+  ## remove taxa not in dataset anymore
+  taxonomy_table <- taxonomy_table[taxonID%in%dataset$taxonID] 
+  
+  ## export taxonomic table
   filename <- file.path(data_dir, "output", paste0("taxonomy_table_", identifier, ".csv"))
-  fwrite(taxonomy_table, filename)
+  fwrite(taxonomy_table, filename) # write without "" !!!
   
   # --- Export cleaned dataset ---
   filename <- file.path(data_dir, "output", paste0("fr_main_dataset_final_", identifier, ".csv"))
@@ -60,6 +68,12 @@ fr_save_output_dataset <- function(dataset,
                          "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
                          "accessRights"
   )]
+<<<<<<< HEAD
+  
+  dataset[is.na(dataset)] <- ""
+  
+=======
+>>>>>>> main
   fwrite(
     dataset,
     file = filename,

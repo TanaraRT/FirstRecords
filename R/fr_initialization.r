@@ -16,7 +16,8 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
 
   # --- Call libraries ---
   packages <- c("Hmisc", "gsubfn", "stringr", "stringi", "data.table", "rgbif",
-                "worrms", "openxlsx", "tidyverse") 
+                "worrms", "openxlsx", "tidyverse", "doParallel",  "foreach"
+  ) 
   
   new.packages <- packages[!(packages %in% installed.packages()[,"Package"])] # check which of them is not yet installed
   if (length(new.packages)) install.packages(new.packages); rm(new.packages) # install them
@@ -34,14 +35,14 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
   if (!dir.exists(config)) {
     dir.create(config, recursive = TRUE)
   }
-  cat(paste0("\n  - Configuration folder is ready at:", config, ". Please make sure configuration files are uploaded in this folder.\n"))
+  cat(paste0("\n  - Configuration folder is ready at: ", config, ". Please make sure configuration files are uploaded in this folder.\n"))
 
   # --- Define or create the 'input' folder ---
   input <- file.path(data_dir, "input")
   if (!dir.exists(input)) {
     dir.create(input, recursive = TRUE)
   }
-  cat(paste0("\n  - Input folder is ready at:", input, ". Please make sure input dataset is uploaded in this folder.\n"))
+  cat(paste0("\n  - Input folder is ready at: ", input, ". Please make sure input dataset is uploaded in this folder.\n"))
   
   # --- Construct full path to input file ---
   filename <- file.path(input, input_file)
@@ -66,9 +67,9 @@ fr_initialization <- function(data_dir=NULL, input_file=NULL){
 # --- Load functions ---
   source(file.path("R","fr_prepare_main_dataset.r"))
   source(file.path("R","fr_taxons_standard.r"))
-  source(file.path("R","check_GBIF_taxa.r"))  
+  source(file.path("R","check_GBIF_taxa_parallel.r"))  
   source(file.path("R","fr_years_standard.r"))
-  source(file.path("R","fr_localities_standard.r"))
+  source(file.path("R","fr_locations_standard.r"))
   source(file.path("R","fr_terms_standard.R"))
   source(file.path("R","fr_save_output_dataset.R"))
   source(file.path("R","standardize_terms.R"))

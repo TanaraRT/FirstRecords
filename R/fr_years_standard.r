@@ -69,7 +69,7 @@ fr_years_standard <- function(dataset = NULL,
   dataset$firstRecordEvent <- trimws(dataset$firstRecordEvent) # trim whitespace
   dataset$firstRecordEvent <- tolower(dataset$firstRecordEvent) # replaces capital letters
   dataset$firstRecordEvent <- str_replace_all(
-    dataset$firstRecordEvent, "\\p{Zs}|\\s+"," ") # normalize whitespace
+  dataset$firstRecordEvent, "\\p{Zs}|\\s+"," ") # normalize whitespace
   
   # --- Replace words with numbers ---
   word_to_number <- c(
@@ -273,7 +273,7 @@ fr_years_standard <- function(dataset = NULL,
   - 9 years < Ranges <=15 years: medium confidence\
   - 15 years < Ranges <=20 years: medium-low confidence\
   - 20 years < Ranges : low confidence\
-  Other: low confidence") 
+  - Other: low confidence") 
   
   ## 3C) STANDARDIZE YEARS
   

@@ -5,4 +5,7 @@
 .Ruserdata
 .DS_Store
 data/tmp/
+*.xlsx
+*.zip
+~*
 *.numbers
