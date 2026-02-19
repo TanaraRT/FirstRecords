@@ -17,10 +17,10 @@ standardize_terms <- function(dataset = NULL,
     stop("Error: argument 'dataset' must be a non-null data.table.")
   }
   
-  cat(paste0("\nSTEP: Standardize '", term, "' terms\n"))
+  cat(paste0("\n - Standardize '", term, "' terms"))
   
   # --- Load reference table ---
-  standard_table <- fread(file.path(data_dir, paste0("config/standard_", term, ".csv")), header = TRUE)
+  standard_table <- fread(file.path(data_dir, paste0("config/standard_", term, ".csv")), header = TRUE, fill=TRUE)
   col_std <- grep("std|standard|term", names(standard_table), value = TRUE)[1]  # standard term
   col_var <- grep("var", names(standard_table), value = TRUE)[1]                # variants
   
@@ -79,9 +79,9 @@ standardize_terms <- function(dataset = NULL,
   if (save_to_disk) {
     filename_out <- file.path(data_dir, "tmp", paste0("fr_main_dataset_", term, "_standardized.csv"))
     fwrite(dat, filename_out)
-    cat("\nUpdated dataset saved to '", filename_out, "'\n", sep = "")
+    cat("\nUpdated dataset saved to '", filename_out, sep = "")
   }
   
-  cat("\n", term, " standardization completed. Unmatched terms replaced with blanks.\n", sep = "")
+  cat("\n - ", term, " standardization completed. Unmatched terms replaced with blanks.", sep = "")
   return(dat)
 }

@@ -1,7 +1,7 @@
 ##########################################################################
 ##                                                                      ##
 ##                       FIRST RECORDS WORKFLOW                         ##
-##                       Standardize locations                         ##
+##                       Standardize locations                          ##
 ##                   -----------------------------                      ##
 ##                                                                      ##
 ## M. Gomez Suarez, H. Seebens, T. Renard Truong                        ##
@@ -12,7 +12,8 @@
 fr_locations_standard <- function(dataset = NULL, 
                                    use_log = FALSE, 
                                    save_to_disk = FALSE, 
-                                   data_dir=NULL
+                                   data_dir=NULL,
+                                   identifier = NULL
                                    ){
   
   if (is.null(dataset) || !is.data.table(dataset)) {
@@ -58,7 +59,7 @@ fr_locations_standard <- function(dataset = NULL,
   dup <- unique(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name)[duplicated(gsub("\\s*\\(.*?\\)", "", subregions$gadm1_name))])
   
   # --- 3. Prepare dataset for processing ---
-  dataset <- rename(dataset, "location_orig" = "locality") #standardize column name
+  dataset <- rename(dataset, "location_orig" = "location") #standardize column name
   dataset <- select(dataset, -locationID) #remove existing locationID column
   
   # --- 4. Prepare for matching with regions ---
@@ -100,18 +101,41 @@ fr_locations_standard <- function(dataset = NULL,
   
   # --- 2: Match based on keywords in 'subregions' - after 'gadm1_var' column ---
   ind_keys_subregions <- which(!is.na(subregions$gadm1_var))
-  for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
-    gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple sub-region name variations provided
-    for (k in gadm1_var) {
-      ind_match <- which(dat_match_subregions$location_lower == k)
-      if (length(unique(subregions$gadm1_name[j])) > 1) 
-        cat(paste0("Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
+  for (j in ind_keys_subregions) {
+    
+    gadm1_vars <- trimws(strsplit(subregions$gadm1_var[j], ";")[[1]])
+    
+    for (k in gadm1_vars) {
       
-      dat_match_subregions$gadm1_name[ind_match] <- subregions$gadm1_name[j]
-      dat_match_subregions$location[ind_match] <- subregions$location[j]
-      dat_match_subregions$locationID[ind_match] <- subregions$locationID[j]
+      ind_match <- dat_match_subregions$location_lower == k
+      
+      if (!any(ind_match)) next
+      
+      if (length(unique(subregions$gadm1_name[j])) > 1) {
+        stop(sprintf(
+          "'%s' matches multiple rows in dat_match_subregions. Check gadm1_var.",
+          k
+        ))
+      }
+      
+      dat_match_subregions[ind_match, c("gadm1_name", "location", "locationID")] <-
+        subregions[j, c("gadm1_name", "location", "locationID")]
     }
   }
+  
+  # for (j in ind_keys_subregions) {  # loop over rows with multiple subregion name variations
+  #   gadm1_var <- unlist(strsplit(subregions$gadm1_var[j], "; ")) # check if multiple sub-region name variations provided
+  #   for (k in gadm1_var) {
+  #     ind_match <- which(dat_match_subregions$location_lower == k)
+  #     if (length(unique(subregions$gadm1_name[j])) > 1)
+  #       cat(paste0("Warning: ", k, " matches multiple location names. Refine gadm1_var!"))
+  # 
+  #     dat_match_subregions$gadm1_name[ind_match] <- subregions$gadm1_name[j]
+  #     dat_match_subregions$location[ind_match] <- subregions$location[j]
+  #     dat_match_subregions$locationID[ind_match] <- subregions$locationID[j]
+  #   }
+  # }
+
   
   # --- 3: Merge both data frames with standardized locations names ('region' and 'subregion') ---
   dat_match1 <- full_join(dat_match_subregions, 
@@ -164,14 +188,14 @@ fr_locations_standard <- function(dataset = NULL,
                                        "habitat",	"firstRecordEvent",	"verbatimFirstRecordEvent", 
                                        "confidenceFirstRecordEvent",	"occurrenceStatus",	"establishmentMeans",
                                        "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
-                                       "accessRights"
+                                       "accessRights" 
   )]
   
   if (save_to_disk == TRUE){
     fr_main_dataset_step4 <- as.data.table(fr_main_dataset_step4)
     filename <- file.path(data_dir, "tmp", "fr_main_dataset_step4.csv")
     fwrite(fr_main_dataset_step4, filename)
-    cat("\n  - Updated dataset available in 'tmp' folder\n ")
+    cat("\n - Updated dataset available in 'tmp' folder ")
   }
   
   # --- 4: Check and save missing location names ---
@@ -179,7 +203,7 @@ fr_locations_standard <- function(dataset = NULL,
   if (length(missing) > 0) {
     filename <- file.path(data_dir, "tmp", "check_missing_locations.csv")
     write.table(sort(unique(missing)), filename, row.names = FALSE, col.names = FALSE)
-    cat("Missing locations written to:", filename, "\n")
+    cat("\n - Missing locations written to:", filename)
   }
   
   # ---5: Save location table ---
@@ -191,14 +215,14 @@ fr_locations_standard <- function(dataset = NULL,
   location_table <- location_table[locationID != "" & !is.na(locationID)]
   names(location_table)[names(location_table) == "sinas_region"] <- "region"
   
-  filename <- file.path(data_dir, "output", "location_table.csv")
+  filename <- file.path(data_dir, "output",  paste0("location_table_", identifier,".csv"))
   fwrite(location_table, filename)
   
   cat("\nStep 4 completed: locations have been standardized and the location table is available in the 'output' folder\n ") 
  
-   if (use_log == TRUE){
+  if (use_log == TRUE){
     sink()
-   }
+  }
   
   return(fr_main_dataset_step4)
 }
