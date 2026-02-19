@@ -70,6 +70,7 @@ fr_taxons_standard <- function(dataset = NULL,
                                                                                        "Percopsiformes", "Batrachoidiformes", "Lophiiformes", "Gadiformes", "Ophidiiformes", "Mugiliformes", "Atheriniformes", 
                                                                                        "Beloniformes", "Cetomimiformes", "Cyprinodontiformes", "Stephanoberyciformes", "Beryciformes", "Zeiformes", 
                                                                                        "Gobiesociformes", "Gasterosteiformes", "Syngnathiformes", "Synbranchiformes", "Tetraodontiformes", "Pleuronectiformes", 
+
                                                                                        "Scorpaeniformes", "Perciformes")] <- "Fishes"
   matched_taxa$taxaGroup[matched_taxa$class%in%c("Reptilia", "Testudines","Squamata", "Crocodylia")] <- "Reptiles"
   matched_taxa$taxaGroup[matched_taxa$class=="Amphibia"] <- "Amphibians"
@@ -127,12 +128,14 @@ fr_taxons_standard <- function(dataset = NULL,
   }
   
   ## Create a temporary taxonomy table
+
   temp_taxonomy_table <- matched_taxa
   # temp_taxonomy_table <- unique(matched_taxa[,c("taxonID", "taxon", "originalNameUsage", "scientificName", "scientificNameAuthorship", 
   #                                          "GBIFstatus","GBIFstatus_Synonym", "GBIFmatchtype", "GBIFtaxonRank",
   #                                          "GBIFusageKey","GBIFnote","species","genus","family",
   #                                          "order","class","phylum","kingdom", "taxaGroup"
   # )])
+
   
   filename <- file.path(data_dir, "tmp", "temp_taxonomy_table.csv")
   fwrite(temp_taxonomy_table, filename)

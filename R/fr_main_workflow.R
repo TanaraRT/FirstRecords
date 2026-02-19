@@ -23,6 +23,13 @@ input_file = "IntroData_raw_170226.xlsx"
 
 # --- Please define an identifier "ID" of the final dataset (date by default) ---
 ID = Sys.Date()
+<<<<<<< HEAD
+=======
+
+# --- Set to TRUE to resume from an interrupted run in Phase 2 (FALSE by default) and specify intermediate file to load ---
+restart <- FALSE
+intermediate_restart_file = "TaxonHarmonisation_fulldataset_intermediate_57_2026-02-11.csv"
+>>>>>>> main
 
 ## INITIALIZATION #########################################################
 cat("\n Initialization")   
@@ -37,11 +44,16 @@ cat("\nIntialization completed\n ")
 ## 1) PREPARATION OF DATASET #############################################
 cat("\nSTEP 1: Prepare main dataset") 
 
+if (restart){
+  filename <- file.path(data_dir, "tmp", intermediate_restart_file)
+  fr_main_dataset_1 <- as.data.table(read.csv(filename))
+} else{
 fr_main_dataset_1 <- fr_prepare_main_dataset(dataset = init,
                                            use_log = TRUE, # TRUE to record progress in log file in 'output' folder
                                            save_to_disk = TRUE, # TRUE to save fr_main_dataset_1 in 'tmp' folder
                                            data_dir = data_dir)
 cat("\nStep 1 completed: main dataset 'fr_main_dataset_1' ready to be processed\n ") 
+}
 
 ## 2) STANDARDIZATION OF TAXA ############################################
 cat("\nSTEP 2: Standardize taxa") 

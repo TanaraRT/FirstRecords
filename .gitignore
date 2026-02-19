@@ -8,3 +8,4 @@ data/tmp/
 *.xlsx
 *.zip
 ~*
+*.numbers
