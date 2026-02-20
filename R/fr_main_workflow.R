@@ -19,17 +19,14 @@ ptime <- proc.time()
 data_dir = "data"
 
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
-input_file = "IntroData_raw_170226.xlsx"
+input_file = "IntroData_raw_2026.xlsx"
 
 # --- Please define an identifier "ID" of the final dataset (date by default) ---
 ID = Sys.Date()
-<<<<<<< HEAD
-=======
 
 # --- Set to TRUE to resume from an interrupted run in Phase 2 (FALSE by default) and specify intermediate file to load ---
 restart <- FALSE
 intermediate_restart_file = "TaxonHarmonisation_fulldataset_intermediate_57_2026-02-11.csv"
->>>>>>> main
 
 ## INITIALIZATION #########################################################
 cat("\n Initialization")   

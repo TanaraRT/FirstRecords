@@ -68,12 +68,8 @@ fr_save_output_dataset <- function(dataset,
                          "degreeOfEstablishment", "pathway",	"datasetName",	"bibliographicCitation",	
                          "accessRights"
   )]
-<<<<<<< HEAD
-  
+
   dataset[is.na(dataset)] <- ""
-  
-=======
->>>>>>> main
   fwrite(
     dataset,
     file = filename,

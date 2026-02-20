@@ -96,6 +96,15 @@ fr_taxons_standard <- function(dataset = NULL,
   # matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa, genus%in%c("Plasmodium"))$scientificName] <- "SAR"
   # matched_taxa$taxaGroup[is.na(matched_taxa$taxaGroup)] <- "Other" # avoid "other" as also un-matched taxa will be assigned
   
+  #TEMPORARY ADDITION!!!!!!
+  #===============
+  # After taxaGroup assignment, resolve conflicts by taking most frequent non-NA value per taxon
+ # matched_taxa[, taxaGroup := {
+  #  non_na <- taxaGroup[!is.na(taxaGroup)]
+   # if (length(non_na) == 0) NA_character_
+#    else names(sort(table(non_na), decreasing = TRUE))[1]
+ # }, by = taxon]
+  #=========================
   cat("\n - Allocated taxonomic groups")
 
   # --- 4. Creating and adding unique taxonIDs ---
