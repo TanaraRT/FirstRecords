@@ -5,8 +5,8 @@
 .Ruserdata
 .DS_Store
 data/tmp/
-*.xlsx
 *.zip
 ~*
 *.numbers
 FirstRecords_031225/
+Upload/
