@@ -61,7 +61,19 @@ fr_locations_standard <- function(dataset = NULL,
   # --- 3. Prepare dataset for processing ---
   dataset <- rename(dataset, "location_orig" = "location") #standardize column name
   dataset <- select(dataset, -locationID) #remove existing locationID column
-  
+  dataset <- dataset |> #remove records with empty verbatimLocation
+    mutate(
+      verbatimLocation = as.character(verbatimLocation),
+      verbatimLocation = gsub("\\xa0|\\xc2", " ", verbatimLocation),  # non-breaking spaces
+      verbatimLocation = gsub("[[:cntrl:]]", "", verbatimLocation),   # control characters
+      verbatimLocation = trimws(verbatimLocation)
+    ) |>
+    filter(
+      !is.na(verbatimLocation),
+      verbatimLocation != "",
+      !grepl("^\\s*$", verbatimLocation),     # only whitespace
+      tolower(verbatimLocation) != "na"
+    )
   # --- 4. Prepare for matching with regions ---
   dat_match1 <- dataset # use another dat set for region matching to keep the original names
   dat_match1$order <- 1:nrow(dat_match1) # create index column to preserve original order
