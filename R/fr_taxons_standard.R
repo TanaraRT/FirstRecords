@@ -52,10 +52,14 @@ fr_taxons_standard <- function(dataset = NULL,
   matched_taxa[, taxon := fifelse(is.na(taxon), originalNameUsage, taxon)] # fill NA in taxon with originalNameUsage in matched_taxa
   matched_taxa[, GBIFstatus := fifelse(is.na(GBIFstatus), "NoMatch", GBIFstatus)] # replace unmatched species by "NoMatch" in matched_taxa
 
-  # if (use_log == TRUE){
-  #   sink(log_file, append = TRUE)
-  # }
-  
+  ## identify taxa with deviating taxonomic trees, remove from matched_taxa and add to mismatches
+  unique_taxa <- unique((matched_taxa[, .(phylum, taxon)])) # extract unique, non-missing taxon names from matched_taxa
+  setorder(unique_taxa)
+  ind_dupl <- which(duplicated(unique_taxa$taxon)) # same taxon but with different taxaGroup -> unresolved taxonomic tree
+  further_mismatches_ind <- matched_taxa$taxon%in%unique_taxa$taxon[ind_dupl] # extract unresolved taxa
+  mismatches <- rbind(mismatches, matched_taxa[further_mismatches_ind]) # add to mismatches
+  matched_taxa <- matched_taxa[!further_mismatches_ind] # remove from matched
+
   cat("\n - Standardized taxon names across the GBIF backbone taxonomy") 
   
   # --- 3. Define taxonomic groups: fill in the column taxaGroup, based on class and order ---
@@ -96,15 +100,6 @@ fr_taxons_standard <- function(dataset = NULL,
   # matched_taxa$taxaGroup[matched_taxa$scientificName%in%subset(matched_taxa, genus%in%c("Plasmodium"))$scientificName] <- "SAR"
   # matched_taxa$taxaGroup[is.na(matched_taxa$taxaGroup)] <- "Other" # avoid "other" as also un-matched taxa will be assigned
   
-  #TEMPORARY ADDITION!!!!!!
-  #===============
-  # After taxaGroup assignment, resolve conflicts by taking most frequent non-NA value per taxon
- # matched_taxa[, taxaGroup := {
-  #  non_na <- taxaGroup[!is.na(taxaGroup)]
-   # if (length(non_na) == 0) NA_character_
-#    else names(sort(table(non_na), decreasing = TRUE))[1]
- # }, by = taxon]
-  #=========================
   cat("\n - Allocated taxonomic groups")
 
   # --- 4. Creating and adding unique taxonIDs ---
@@ -112,6 +107,7 @@ fr_taxons_standard <- function(dataset = NULL,
   setorder(unique_taxa)
   unique_taxa[, taxonID := .I] # assign a unique integer ID (taxonID) to each taxon ('.I returns the row index, which is used as an ID)
   matched_taxa <- merge(matched_taxa, unique_taxa[, .(taxon, taxonID)], by = "taxon", all = TRUE) # merge taxonID in matched_taxa
+  
   cat("\n - Allocated taxon IDs")
   
   # --- 5. Write output ---

@@ -93,7 +93,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
   # for (i in 1:length(db_all)){ #
   
     gbif_entry <- name_backbone_verbose(taxlist[i], strict=F) # check for names and synonyms
-    # gbif_entry <- name_backbone_verbose("Mammillaria sp 1", strict=F) # check for names and synonyms
+    # gbif_entry <- name_backbone_verbose("uronema marinum", strict=F) # check for names and synonyms
     
     originalNameUsage <- attr(gbif_entry, "args")$name  
     
@@ -202,7 +202,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
         ## fill cells related to taxonomy
         out_entry <- fill_taxonomy(db, out_entry)
         
-        out_entry$workflowNote <- "case 4"
+        out_entry$workflowNote <- "case 3"
         
         return(out_entry)
         
@@ -246,7 +246,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                 }
               }
               
-              out_entry$workflowNote <- "case 5a"
+              out_entry$workflowNote <- "case 4a"
               
               return(out_entry)
               
@@ -258,8 +258,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
               # criterion <- alternatives$status=="SYNONYM" & alternatives$matchType=="EXACT" #& which(alternatives$confidence==max(alternatives$confidence, na.rm=T))
               
               criterion <- 1
-              
-              
+
               # check if taxon rank is correct (sometimes GBIF reports SPECIES rather than GENUS in alternatives)
               db2_all <- name_backbone_verbose(alternatives$species[criterion]) # get new match with new taxon name
               
@@ -280,7 +279,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                     out_entry$GBIFstatus <- "SYNONYM"
                     out_entry$GBIFstatus_Synonym <- db2_all$data$status
                     
-                    out_entry$workflowNote <- "case 5b"
+                    out_entry$workflowNote <- "case 4b"
                     
                     return(out_entry)
                     
@@ -307,7 +306,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
           ## fill cells related to taxonomy
           out_entry <- fill_taxonomy(db, out_entry)
           
-          out_entry$workflowNote <- "case 5c"
+          out_entry$workflowNote <- "case 4c"
           
           return(out_entry)
 
@@ -330,7 +329,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
           ## fill cells related to taxonomy
           out_entry <- fill_taxonomy(alternatives[criterion,], out_entry)
           
-          out_entry$workflowNote <- "case 6a"
+          out_entry$workflowNote <- "case 5a"
           
           return(out_entry)
           
@@ -357,7 +356,7 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                 out_entry$GBIFstatus <- "SYNONYM"
                 out_entry$GBIFstatus_Synonym <- db2_all$data$status
                 
-                out_entry$workflowNote <- "case 6b"
+                out_entry$workflowNote <- "case 5b"
                 
                 return(out_entry)
                 
@@ -382,13 +381,13 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
       ## fill cells related to taxonomy
       out_entry <- fill_taxonomy(db, out_entry)
       
-      out_entry$workflowNote <- "case 8"
+      out_entry$workflowNote <- "case 6"
       
       return(out_entry)
       
     } else {
       
-      out_entry$workflowNote <- "case 9"
+      out_entry$workflowNote <- "case 7"
       
       return(out_entry)
       

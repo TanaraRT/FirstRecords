@@ -70,6 +70,7 @@ fr_save_output_dataset <- function(dataset,
   )]
 
   dataset[is.na(dataset)] <- ""
+  
   fwrite(
     dataset,
     file = filename,
