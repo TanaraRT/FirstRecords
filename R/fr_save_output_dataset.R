@@ -56,6 +56,8 @@ fr_save_output_dataset <- function(dataset,
   ## remove taxa not in dataset anymore
   taxonomy_table <- taxonomy_table[taxonID%in%dataset$taxonID] 
   
+  setorder(taxonomy_table, taxaGroup, taxon)
+  
   ## export taxonomic table
   filename <- file.path(data_dir, "output", paste0("taxonomy_table_", identifier, ".csv"))
   fwrite(taxonomy_table, filename) # write without "" !!!
@@ -70,6 +72,12 @@ fr_save_output_dataset <- function(dataset,
   )]
 
   dataset[is.na(dataset)] <- ""
+  dataset$habitat[dataset$habitat=="NA"] <- ""
+  dataset$occurrenceStatus[dataset$occurrenceStatus=="NA"] <- ""
+  dataset$establishmentMeans[dataset$establishmentMeans=="NA"] <- ""
+  dataset$degreeOfEstablishment[dataset$degreeOfEstablishment=="NA"] <- ""
+  dataset$pathway[dataset$pathway=="NA"] <- ""
+  dataset$datasetName[dataset$datasetName=="NA"] <- ""
   
   fwrite(
     dataset,
