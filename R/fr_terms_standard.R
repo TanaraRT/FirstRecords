@@ -60,9 +60,15 @@ fr_terms_standard <- function(dataset = NULL,
     term = "occurrenceStatus",
     data_dir = data_dir)
   ## Assume "present" unless explicitly "absent"
-  dataset[occurrenceStatus != "absent" | is.na(occurrenceStatus), occurrenceStatus := "present"]
-  
-  
+#  dataset[occurrenceStatus != "absent" | is.na(occurrenceStatus), occurrenceStatus := "present"]
+  # Clean whitespace 
+  dataset[, occurrenceStatus := trimws(occurrenceStatus)]
+  dataset[, occurrenceStatus := tolower(occurrenceStatus)]
+  dataset[
+    is.na(occurrenceStatus) |
+      occurrenceStatus %in% c("", "null", "na"),
+    occurrenceStatus := "present"
+  ]  
   # --- 5. pathway ---
   
   dataset <- standardize_terms(
