@@ -19,11 +19,10 @@ ptime <- proc.time()
 data_dir = "data"
 
 # --- Please define "input_file" ("IntroData_raw.csv" by default) ---
-input_file = "IntroData_raw_170226.xlsx"
+input_file = "IntroData_raw_2026.xlsx"
 
 # --- Please define an identifier "ID" of the final dataset (date by default) ---
 ID = Sys.Date()
-
 
 ##########################################################################
 ## INITIALIZATION ########################################################

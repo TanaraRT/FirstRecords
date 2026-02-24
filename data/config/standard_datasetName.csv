@@ -1,34 +1,23 @@
-datasetName_standard,datasetName_var,,,,,
-GAVIA,GAVIA,,,,,
-GISD,GISD,,,,,
-Global alien spiders database,Global alien spiders database,,,,,
-APASD,APASD/NIAES,,,,,
-DAISIE,DAISIE,,,,,
-Consortium of California Herbaria,Consortium of California Herbaria,,,,,
-I3N,I3N 2017,,,,,
-APASD,APASD,,,,,
-"FAO-ILRI Best bet forages species for different edapho-climatic conditions
-",FAO,,,,,
-ILORA datasets,Banerjee 2020,,,,,
-DAISIE,DAISIE (Jan Pergl),,,,,
-SNIB,CONABIO,,,,,
-DAISIE,DAISIE (updated by Helen Roy),,,,,
-NOBANIS,NOBANIS,,,,,
-ASJ,ASJ,,,,,
-CABI ISC,CABI ISC,,,,,
-Atlas of Living Australia,Atlas of Living Australia,,,,,
-BONAP,BONAP,,,,,
-antmaps,antmaps,,,,,
-Australia Virtual Herbarium,Australia Virtual Herbarium,,,,,
-BFIS,BFIS,,,,,
-SeaLifeBase,SeaLifeBase,,,,,
-USDA PLANTS database,USDA,,,,,
-The Herbaria,The University and Jepson Herbaria,,,,,
-FishBase,FishBase,,,,,
-AquaNIS,AquaNIS (2020),,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-CVH,CVH,,,,,
+datasetName_standard,datasetName_var
+Atlas of Living Australia (ALA),ALA (2015)
+antmaps,Antmaps (2016)
+Asian-Pacific Alien Species Database (APASD),APASD (2020)
+Aquatic Non-Indigeneous and Cryptogenic Species Database (AquaNIS),AquaNIS (2015)
+Alien Species of Japan (ASJ),ASJ (2020)
+The Australasian Virtual Herbarium (AVH),AVH (2015)
+The Belgian Forum on Invasive Species (BFIS) ,BFIS (2020)
+The Biota of North America Program (BONAP),BONAP (2015)
+CABI Invasive Species Compendium (ISC),CABI ISC (2015)
+CONABIO Sistema Nacional de Información sobre Biodiversidad (SNIB),CONABIO (2013)
+Consortium of California Herbaria,Consortium of California Herbaria (2020)
+Delivering Alien Invasive Species Inventories for Europe (DAISIE),DAISIE (2014)
+ European Alien Species Information Network (EASIN),EASIN (2021)
+FishBase,FishBase (2020)
+Global Distribution and Drivers of Alien Bird Species Richness (GAVIA),GAVIA (2017)
+Global Invasive Species Database (GISD),GISD (2015)
+The University and Jepson Herbaria,The University and Jepson Herbaria (2020)
+USDA PLANTS Database,USDA PLANTS Database (2020)
+Indian aLien flOra infoRmAtion (ILORA),ILORA (2021)
+European Network on Invasive Alien Species (NOBANIS),NOBANIS (2018)
+SeaLifeBase,SeaLifeBase (2020)
+Chinese Virtual Herbarium (CVH),CVH (2021)

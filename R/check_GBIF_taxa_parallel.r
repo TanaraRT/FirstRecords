@@ -48,22 +48,16 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
   n_taxa <- length(taxlist)
   cat(" - The number of taxa to be processed is", n_taxa, "\n")
 
-  
   ## get taxonomic information from GBIF #######################################
   
   cat(" - Retrieve information from GBIF...\n")
-  
   # Rprof()
-  
   # check: Acentropus niveus; Acaena spp (multiple accepted names); Acacia fimbriata GDon; Acacia nilotica (L) Del subsp nilotica
-  
   
   ##############################################################################
   
   ## assign taxonomic information to records ###################################
-  
   ## Helper functions to avoid redundancy in the code ##########################
-  
   ## function to fill cells related to taxonomy
   fill_taxonomy <- function(src, dst, i = 1) {
     fields <- c("species", "genus", "family", "class", "order", "phylum", "kingdom")
@@ -101,7 +95,6 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                             species=NA, genus=NA, family=NA, class=NA, order=NA, phylum=NA, kingdom=NA, 
                             GBIFusageKey=NA, GBIFtaxonRank=NA, GBIFstatus= "NoMatch", 
                             GBIFmatchType=NA, workflowNote=NA, GBIFstatus_Synonym=NA, GBIFconfidence=NA)
-    
 
     # select species name and download taxonomy
     db <- gbif_entry$data
@@ -213,18 +206,13 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
         ########################################################################    
 
         # if (any(alternatives$matchType=="EXACT")){ # check for exact matches in alternatives
-        #   
         #   criterion <- min(which(alternatives$matchType=="EXACT")) # take the first records, which seemed to be the best match (based on experience)
-        #   
         #   if (alternatives$status[criterion]=="ACCEPTED"){
         if (nrow(alternatives)>0){
           # criterion <- alternatives$matchType=="EXACT" & alternatives$status=="ACCEPTED" #& which(alternatives$confidence==max(alternatives$confidence, na.rm=T))
-
           criterion <- 1 # first row seems to match best if confidence is sufficiently high
-          
           if (alternatives$confidence[criterion]>60){
             if (alternatives$status[criterion]=="ACCEPTED"){
-              
               out_entry$taxon      <- alternatives[criterion,]$canonicalName[1]
               out_entry$scientificName <- alternatives[criterion,]$scientificName[1]
               
@@ -245,18 +233,13 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                   out_entry$GBIFtaxonRank <- db2_all$alternatives$rank[1] # overwrite rank if deviating
                 }
               }
-              
               out_entry$workflowNote <- "case 4a"
-              
               return(out_entry)
-              
             }
             
             ## check if information of synonyms is provided in alternatives
             if (alternatives$status[criterion]=="SYNONYM" | alternatives$status[criterion]=="HETEROTYPIC_SYNONYM"){
-              
               # criterion <- alternatives$status=="SYNONYM" & alternatives$matchType=="EXACT" #& which(alternatives$confidence==max(alternatives$confidence, na.rm=T))
-              
               criterion <- 1
 
               # check if taxon rank is correct (sometimes GBIF reports SPECIES rather than GENUS in alternatives)
@@ -278,11 +261,8 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                     
                     out_entry$GBIFstatus <- "SYNONYM"
                     out_entry$GBIFstatus_Synonym <- db2_all$data$status
-                    
                     out_entry$workflowNote <- "case 4b"
-                    
                     return(out_entry)
-                    
                   }
                 }
               }
@@ -305,11 +285,8 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
           # out_entry <- fill_gbif_core(db, out_entry)
           ## fill cells related to taxonomy
           out_entry <- fill_taxonomy(db, out_entry)
-          
           out_entry$workflowNote <- "case 4c"
-          
           return(out_entry)
-
         }
       }      
     }
@@ -352,20 +329,15 @@ check_GBIF_taxa_parallel <- function(taxon_names=NULL, # vector or data.frame
                 out_entry <- fill_gbif_core(db2_all$data, out_entry)
                 ## fill cells related to taxonomy
                 out_entry <- fill_taxonomy(db2_all$data, out_entry)
-                
                 out_entry$GBIFstatus <- "SYNONYM"
                 out_entry$GBIFstatus_Synonym <- db2_all$data$status
-                
                 out_entry$workflowNote <- "case 5b"
-                
                 return(out_entry)
-                
               }
             }
           }
         }
       }
-        
     } 
     if ("status"%in%colnames(db)){
       
