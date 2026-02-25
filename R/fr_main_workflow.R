@@ -18,7 +18,7 @@ ptime <- proc.time()
 # --- Please define "data_dir" folder ("data" by default) ---
 data_dir = "data"
 
-# --- Please define "input_file" ("IntroData_raw.csv" by default) ---
+# --- Please define "input_file" ("FirstRecords_sample_2000.xlsx" by default) ---
 input_file = "FirstRecords_sample_2000.xlsx"
 
 # --- Please define an identifier "ID" of the final dataset (date by default) ---
